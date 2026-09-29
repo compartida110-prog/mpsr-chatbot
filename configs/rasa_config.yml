@@ -20,14 +20,13 @@ pipeline:
   - name: CountVectorsFeaturizer
   - name: DIETClassifier
     epochs: 100          # valor base de la grilla; probar 150 y 200 en corridas separadas
-    batch_size: [64, 128]
+    batch_size: 64       # valor único por corrida; una lista [64, 128] haría crecer el lote de 64 a 128 durante el entrenamiento, no probaría ambos
     embedding_dimension: 20   # valor base de la grilla; probar 50 en corridas separadas
     learning_rate: 0.001
     constrain_similarities: true
     random_seed: 42
     entity_recognition: true
 
-# Nota: Rasa no permite pasar múltiples valores de epochs/embedding_dimension en un
-# solo archivo. Para la grilla completa, duplicar este archivo por combinación
-# (ej. rasa_config_e100_d20.yml, rasa_config_e150_d50.yml, ...) y registrar cada
-# corrida en logs/ con su ID de experimento (ver docs/, matriz T08).
+# Nota: Rasa no permite pasar múltiples valores de la grilla en un solo archivo.
+# scripts/run_rasa_grid.py genera un config por combinación y semilla a partir de
+# este archivo y lo guarda en logs/<experiment_id>/config.yml (matriz T06).

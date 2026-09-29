@@ -1,0 +1,4 @@
+# Diccionario de jerga local de Juliaca/Puno usado en la normalización (P06).
+# Una fila por palabra: jerga,estandar (sin tildes en la columna jerga).
+# Cualquier cambio después de entrenar se registra en incident_log.csv.
+jerga,estandar

@@ -8,11 +8,13 @@ __pycache__/
 .rasa/
 *.tar.gz
 
-# Modelos y logs (pesados; no versionar directamente, usar Git LFS si es necesario)
+# Modelos (pesados; no versionar directamente, usar Git LFS si es necesario)
 models/*
 !models/.gitkeep
-logs/*
-!logs/.gitkeep
+
+# Los resultados de logs/ SÍ se versionan (P15: predicciones, métricas, configs);
+# solo se excluyen los logs crudos de entrenamiento.
+logs/**/train.log
 
 # Sistema
 .DS_Store
