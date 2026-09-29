@@ -1,0 +1,8 @@
+# Verifica la última versión estable de Rasa antes de fijarla (pip install rasa==<version>).
+# Aquí se deja sin pin exacto; registra la versión real instalada en README (rasa --version)
+# como parte de la reproducibilidad (P15).
+rasa
+scikit-learn>=1.3
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10

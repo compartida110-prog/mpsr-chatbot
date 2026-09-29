@@ -1,0 +1,18 @@
+# Entorno
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Rasa
+.rasa/
+*.tar.gz
+
+# Modelos y logs (pesados; no versionar directamente, usar Git LFS si es necesario)
+models/*
+!models/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Sistema
+.DS_Store
