@@ -42,13 +42,20 @@ mpsr-chatbot/
 ## Instalación
 
 ```bash
-git clone <url-de-este-repositorio>
+git clone https://github.com/compartida110-prog/mpsr-chatbot.git
 cd mpsr-chatbot
-python -m venv venv
-source venv/bin/activate        # En Windows: venv\Scripts\activate
+py -3.10 -m venv venv           # en Linux/macOS: python3.10 -m venv venv
+venv\Scripts\activate           # en Linux/macOS: source venv/bin/activate
 pip install -r requirements.txt
-rasa --version                  # registrar la versión exacta usada (reproducibilidad, P15)
+python -m rasa --version
 ```
+
+**Entorno verificado (P15):** Python 3.10.11, Rasa 3.6.21, Rasa SDK 3.6.2,
+TensorFlow 2.12.0, scikit-learn 1.1.3, pandas 2.0.3, numpy 1.23.5, scipy 1.10.1
+(Windows 11, 2026-09-29).
+
+> En Windows con *Smart App Control* activo, el ejecutable `rasa.exe` puede ser
+> bloqueado. Usa siempre `python -m rasa ...` (por ejemplo `python -m rasa train nlu`).
 
 ## Flujo de trabajo (según el Protocolo V1.1)
 
