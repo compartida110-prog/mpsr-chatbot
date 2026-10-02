@@ -1,0 +1,6 @@
+COMPARACIÓN DE MÉTODOS EN TEST (P11) — media ± DE sobre semillas 10–50
+
+método                            accuracy     precision_macro        recall_macro            f1_macro   balanced_accuracy
+TF-IDF + SVM                 0.3827±0.0000       0.3559±0.0000       0.2793±0.0000       0.2975±0.0000       0.3827±0.0000   (n=5, F1≥0.85: no cumple)
+TF-IDF + LogReg              0.4074±0.0000       0.3628±0.0000       0.2821±0.0000       0.2961±0.0000       0.4074±0.0000   (n=5, F1≥0.85: no cumple)
+Rasa NLU / DIET              0.5506±0.0396       0.4924±0.0366       0.4010±0.0453       0.4134±0.0400       0.5506±0.0396   (n=5, F1≥0.85: no cumple)

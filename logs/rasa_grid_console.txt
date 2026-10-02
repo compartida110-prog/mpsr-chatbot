@@ -1,0 +1,10 @@
+Fase 1 — se reutiliza la grilla ya evaluada en logs/rasa_validation.csv
+  => combinación seleccionada: epochs=150 batch_size=64 embedding_dimension=50 (F1 macro validación = 0.4041)
+Fase 2 — repeticiones en test (semillas [10, 20, 30, 40, 50]):
+  RASA-e150-b64-d50-s10 (15s)        accuracy=0.5185  precision_macro=0.4449  recall_macro=0.3590  f1_macro=0.3751  balanced_accuracy=0.5185
+  RASA-e150-b64-d50-s20 (114s)       accuracy=0.6173  precision_macro=0.5386  recall_macro=0.4762  f1_macro=0.4771  balanced_accuracy=0.6173
+  RASA-e150-b64-d50-s30 (97s)        accuracy=0.5309  precision_macro=0.5068  recall_macro=0.3874  f1_macro=0.4037  balanced_accuracy=0.5309
+  RASA-e150-b64-d50-s40 (98s)        accuracy=0.5309  precision_macro=0.4675  recall_macro=0.3772  f1_macro=0.3876  balanced_accuracy=0.5309
+  RASA-e150-b64-d50-s50 (153s)       accuracy=0.5556  precision_macro=0.5045  recall_macro=0.4054  f1_macro=0.4237  balanced_accuracy=0.5556
+  RASA/DIET media ± DE: accuracy=0.5506±0.0396  precision_macro=0.4924±0.0366  recall_macro=0.4010±0.0453  f1_macro=0.4134±0.0400  balanced_accuracy=0.5506±0.0396
+  Criterio F1 macro ≥ 0.85: NO CUMPLE

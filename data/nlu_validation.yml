@@ -1,0 +1,138 @@
+version: "3.1"
+
+nlu:
+- intent: afirmar
+  examples: |
+    - si
+    - claro que si
+    - correcto eso es
+- intent: ayuda_chatbot
+  examples: |
+    - como te uso
+    - que temas conoces
+    - para que sirve este chat
+- intent: certificado_posesion
+  examples: |
+    - como tramito un certificado de posesion
+    - necesito un certificado de posesion de mi terreno
+    - que requisitos piden para certificado de posesion
+- intent: constancia_no_adeudo
+  examples: |
+    - como saco mi constancia de no adeudo
+    - necesito un certificado de que no debo nada a la municipalidad
+    - donde tramito la constancia de no adeudo
+- intent: consulta_no_entendida
+  examples: |
+    - que quisiste decir con eso
+    - no comprendi puedes repetir
+    - explicamelo mas simple por favor
+- intent: copia_documento
+  examples: |
+    - como saco una copia certificada de mi expediente
+    - necesito una copia de un documento que presente
+    - donde pido copias de mis tramites anteriores
+- intent: denuncia_seguridad_ciudadana
+  examples: |
+    - quiero reportar un problema de seguridad en mi barrio
+    - como denuncio algo sospechoso a seguridad ciudadana
+    - necesito reportar un robo en mi zona
+- intent: estado_reclamo
+  examples: |
+    - como consulto el estado de mi reclamo
+    - presente un reclamo como se si lo atendieron
+    - donde veo la respuesta a mi queja
+- intent: fraccionamiento_deuda
+  examples: |
+    - debo varios años de predial puedo pagar en cuotas
+    - que requisitos piden para fraccionar una deuda
+    - donde solicito el fraccionamiento de mi deuda
+- intent: hablar_con_persona
+  examples: |
+    - no quiero hablar con un robot quiero un humano
+    - hay alguien real que me pueda atender
+    - pasame con un funcionario por favor
+- intent: horario_mesa_partes
+  examples: |
+    - cual es el horario de atencion de mesa de partes
+    - a que hora abre mesa de partes
+    - hasta que hora atienden en mesa de partes
+- intent: impuesto_alcabala
+  examples: |
+    - cuanto es el impuesto de alcabala por mi compra
+    - donde pago el impuesto de alcabala
+    - necesito informacion sobre el impuesto de alcabala
+- intent: libro_reclamaciones
+  examples: |
+    - puedo reclamar por el libro de reclamaciones online
+    - como lleno el libro de reclamaciones
+    - necesito el libro de reclamaciones para una queja
+- intent: licencia_edificacion_requisitos
+  examples: |
+    - que requisitos piden para la licencia de edificacion
+    - quiero construir que necesito para la licencia de edificacion
+    - que documentos se necesitan para licencia de construccion
+- intent: licencia_funcionamiento_plazo
+  examples: |
+    - en cuanto tiempo me dan la licencia de funcionamiento
+    - cuantos dias demora el tramite de licencia de funcionamiento
+    - cual es el plazo de atencion para la licencia de funcionamiento
+- intent: limpieza_via_publica
+  examples: |
+    - hay basura acumulada en mi cuadra a quien aviso
+    - como pido limpieza publica para mi zona
+    - quiero reportar una via publica descuidada
+- intent: negar
+  examples: |
+    - no gracias
+    - no es lo que busco
+    - no otra cosa
+- intent: pago_predial_como
+  examples: |
+    - puedo pagar mi predial por internet
+    - como cancelo el autoavaluo de mi casa
+    - que opciones tengo para pagar predial
+- intent: partida_matrimonio
+  examples: |
+    - que requisitos piden para partida de matrimonio
+    - quiero un certificado de mi matrimonio civil
+    - cuanto cuesta la partida de matrimonio
+- intent: poda_arboles
+  examples: |
+    - un arbol esta muy crecido y es peligroso como reporto
+    - como pido que corten las ramas de un arbol publico
+    - necesito solicitar poda municipal
+- intent: queja_atencion
+  examples: |
+    - no me atendieron bien en ventanilla a donde reclamo
+    - quiero reportar mala atencion en mesa de partes
+    - como reporto una queja sobre un funcionario
+- intent: redes_sociales_mpsr
+  examples: |
+    - cual es el facebook de la municipalidad
+    - tienen redes sociales donde informan tramites
+    - donde sigo las noticias de la mpsr
+- intent: repetir_informacion
+  examples: |
+    - puedes repetir lo que dijiste
+    - repiteme eso por favor
+    - no alcance a leer puedes repetir
+- intent: requisitos_defensa_civil
+  examples: |
+    - para mi local comercial que necesito de defensa civil
+    - que papeles debo presentar para itse
+    - cuales son los requisitos de seguridad para mi tienda
+- intent: requisitos_matrimonio_civil
+  examples: |
+    - que requisitos piden para matrimonio civil
+    - quiero casarme por civil que necesito
+    - que documentos piden para matrimonio municipal
+- intent: saludo
+  examples: |
+    - buenas
+    - hola buenas tardes
+    - hola como estas
+- intent: sugerencia
+  examples: |
+    - donde dejo mis comentarios sobre el servicio
+    - quiero proponer una mejora a un tramite
+    - como envio una sugerencia a la mpsr

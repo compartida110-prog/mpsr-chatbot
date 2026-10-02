@@ -1,0 +1,138 @@
+version: "3.1"
+
+nlu:
+- intent: agradecimiento
+  examples: |
+    - gracias por la informacion
+    - muchas gracias
+    - gracias me ayudo bastante
+- intent: certificado_defensa_civil
+  examples: |
+    - como obtengo el certificado de defensa civil
+    - necesito mi certificado de defensa civil para mi local
+    - que requisitos piden para certificado de defensa civil
+- intent: constancia_domiciliaria
+  examples: |
+    - como saco una constancia domiciliaria
+    - necesito un certificado de domicilio
+    - que requisitos piden para constancia domiciliaria
+- intent: consulta_deuda_predial
+  examples: |
+    - como consulto mi deuda del impuesto predial
+    - quiero saber cuanto debo de predial
+    - donde veo mi estado de cuenta del impuesto predial
+- intent: contacto_telefonico
+  examples: |
+    - cual es el telefono de la municipalidad
+    - como llamo a la mpsr
+    - necesito el numero de contacto de la municipalidad
+- intent: costos_generales
+  examples: |
+    - donde veo los costos de los tramites municipales
+    - cuanto cuestan los tramites en general
+    - donde esta el tupa con los precios de tramites
+- intent: despedida
+  examples: |
+    - chau gracias
+    - hasta luego
+    - nos vemos
+- intent: estado_tramite
+  examples: |
+    - como consulto el estado de mi tramite
+    - quiero saber en que va mi expediente
+    - donde veo el avance de mi solicitud
+- intent: fuera_de_alcance
+  examples: |
+    - cual es el clima en juliaca hoy
+    - que equipo de futbol es mejor
+    - cuentame un chiste
+- intent: horario_atencion_general
+  examples: |
+    - la municipalidad atiende los fines de semana
+    - que dias atiende la municipalidad
+    - cual es el horario de atencion al publico
+- intent: horario_recojo_basura
+  examples: |
+    - a que hora pasa el carro de la basura
+    - cual es el horario de recojo de basura en mi zona
+    - que dias recogen la basura
+- intent: inspeccion_tecnica
+  examples: |
+    - cuanto demora la inspeccion tecnica de mi negocio
+    - quien hace la inspeccion de seguridad en edificaciones
+    - como programo una visita de defensa civil
+- intent: licencia_edificacion_costo
+  examples: |
+    - cuanto cuesta la licencia de edificacion
+    - cual es el costo de licencia de construccion
+    - cuanto debo pagar para licenciar mi obra
+- intent: licencia_funcionamiento_costo
+  examples: |
+    - a cuanto sale sacar la licencia para mi tienda
+    - que precio tiene tramitar la licencia de funcionamiento
+    - quisiera saber el monto de la licencia de funcionamiento
+- intent: licencia_funcionamiento_requisitos
+  examples: |
+    - que requisitos necesito para sacar mi licencia de funcionamiento
+    - quiero saber los requisitos para la licencia de funcionamiento
+    - que documentos piden para licencia de funcionamiento de mi tienda
+- intent: mantenimiento_parques
+  examples: |
+    - como reporto el mal estado de un parque
+    - el parque de mi barrio necesita mantenimiento
+    - donde solicito arreglo de un parque publico
+- intent: pago_arbitrios
+  examples: |
+    - cuanto debo de arbitrios este año
+    - que son los arbitrios y como los pago
+    - donde consulto mi deuda de arbitrios
+- intent: partida_defuncion
+  examples: |
+    - como tramito una partida de defuncion
+    - necesito el certificado de defuncion de un familiar
+    - que requisitos piden para partida de defuncion
+- intent: partida_nacimiento
+  examples: |
+    - como saco una copia de mi partida de nacimiento
+    - necesito mi partida de nacimiento
+    - donde tramito mi partida de nacimiento
+- intent: presentar_reclamo
+  examples: |
+    - como presento un reclamo a la municipalidad
+    - quiero hacer un reclamo formal
+    - donde registro una queja contra la municipalidad
+- intent: rectificacion_partida
+  examples: |
+    - necesito corregir mi apellido en la partida
+    - donde solicito la rectificacion de una partida civil
+    - que requisitos piden para rectificar un acta
+- intent: renovacion_licencia
+  examples: |
+    - como renuevo mi licencia de funcionamiento
+    - se me vencio mi licencia como la renuevo
+    - que tramite hago para renovar la licencia de mi negocio
+- intent: reporte_alumbrado_publico
+  examples: |
+    - un poste de luz esta malogrado como reporto
+    - quiero reportar un foco publico que no enciende
+    - donde reporto una falla de alumbrado publico
+- intent: requisitos_generales
+  examples: |
+    - que documento de identidad piden para hacer tramites
+    - necesito llevar mi dni para cualquier tramite
+    - que requisitos generales piden en la municipalidad
+- intent: requisitos_mesa_partes
+  examples: |
+    - que requisitos piden en mesa de partes
+    - que necesito para presentar un documento en mesa de partes
+    - que papeles debo llevar a mesa de partes
+- intent: serenazgo_contacto
+  examples: |
+    - serenazgo atiende las 24 horas
+    - donde queda la oficina de serenazgo
+    - como pido apoyo de serenazgo
+- intent: ubicacion_oficinas
+  examples: |
+    - como llego a la municipalidad de san roman
+    - en que parte de juliaca esta la municipalidad
+    - necesito la ubicacion exacta del palacio municipal

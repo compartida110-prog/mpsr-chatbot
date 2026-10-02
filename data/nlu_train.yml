@@ -1,0 +1,273 @@
+version: "3.1"
+
+nlu:
+- intent: afirmar
+  examples: |
+    - asi es
+    - si exacto
+    - eso mismo
+- intent: agradecimiento
+  examples: |
+    - ok gracias
+    - perfecto muchas gracias
+    - gracias por tu ayuda
+- intent: ayuda_chatbot
+  examples: |
+    - que puedes hacer
+    - en que me puedes ayudar
+    - que tipo de consultas respondes
+- intent: certificado_defensa_civil
+  examples: |
+    - quiero sacar el itse para mi negocio
+    - como tramito mi certificado de seguridad en edificacion
+    - donde solicito la inspeccion de defensa civil
+- intent: certificado_posesion
+  examples: |
+    - quiero formalizar la posesion de mi lote que hago
+    - donde solicito constancia de posesion
+    - cuanto demora el certificado de posesion
+- intent: constancia_domiciliaria
+  examples: |
+    - donde tramito mi constancia de residencia
+    - quiero un documento que acredite donde vivo
+    - cuanto cuesta la constancia domiciliaria
+- intent: constancia_no_adeudo
+  examples: |
+    - quiero un documento que diga que estoy al dia en mis pagos
+    - como obtengo una constancia de no adeudo municipal
+    - necesito comprobar que no tengo deudas con la mpsr
+- intent: consulta_deuda_predial
+  examples: |
+    - tengo deuda pendiente de autoavaluo
+    - como se si debo predial de este año
+    - quisiera revisar mi deuda de impuesto predial
+- intent: consulta_no_entendida
+  examples: |
+    - no entendi tu respuesta
+    - puedes explicarlo de otra forma
+    - no me quedo claro lo que dijiste
+- intent: contacto_telefonico
+  examples: |
+    - tienen un whatsapp de atencion
+    - cual es el correo de la municipalidad
+    - como me comunico con la mpsr por telefono
+- intent: copia_documento
+  examples: |
+    - perdi mi copia como consigo otra
+    - puedo pedir copia certificada de una resolucion
+    - que costo tiene una copia certificada
+- intent: costos_generales
+  examples: |
+    - quiero saber cuanto cuesta cada tramite
+    - hay una lista de precios de tramites municipales
+    - donde consulto las tasas municipales
+- intent: denuncia_seguridad_ciudadana
+  examples: |
+    - a quien llamo si veo algo raro en la calle
+    - quiero hacer una denuncia de inseguridad
+    - como contacto a serenazgo por un problema de seguridad
+- intent: despedida
+  examples: |
+    - ya gracias me voy
+    - adios
+    - listo hasta pronto
+- intent: estado_reclamo
+  examples: |
+    - cuanto demora en resolverse un reclamo
+    - como le hago seguimiento a mi reclamo
+    - quiero saber si ya respondieron mi queja
+- intent: estado_tramite
+  examples: |
+    - presente un documento como se si ya lo revisaron
+    - como rastreo mi expediente municipal
+    - necesito saber el estado de mi solicitud
+- intent: fraccionamiento_deuda
+  examples: |
+    - puedo fraccionar mi deuda tributaria
+    - quiero pagar mi deuda municipal en partes se puede
+    - como hago un fraccionamiento de mi deuda predial
+- intent: fuera_de_alcance
+  examples: |
+    - puedes ayudarme con mi tarea de matematicas
+    - que hora es en lima
+    - me recomiendas un restaurante
+- intent: hablar_con_persona
+  examples: |
+    - quiero hablar con una persona
+    - me puedes pasar con un trabajador
+    - necesito hablar con alguien de la municipalidad
+- intent: horario_atencion_general
+  examples: |
+    - cual es el horario de atencion de la municipalidad
+    - a que hora abren la municipalidad
+    - hasta que hora atienden en la mpsr
+- intent: horario_mesa_partes
+  examples: |
+    - mesa de partes atiende los sabados
+    - que dias atiende mesa de partes
+    - cual es el horario para presentar documentos
+- intent: horario_recojo_basura
+  examples: |
+    - el camion de basura no paso a que hora viene
+    - como se el horario de recoleccion de residuos
+    - que dias hay recojo de basura en mi barrio
+- intent: impuesto_alcabala
+  examples: |
+    - que es el impuesto de alcabala y como lo pago
+    - compre un terreno tengo que pagar alcabala
+    - como tramito el pago de alcabala
+- intent: inspeccion_tecnica
+  examples: |
+    - como solicito una inspeccion tecnica de seguridad
+    - necesito que vengan a inspeccionar mi local
+    - que pasos sigo para pedir una itse
+- intent: libro_reclamaciones
+  examples: |
+    - donde esta el libro de reclamaciones
+    - quiero usar el libro de reclamaciones
+    - como accedo al libro de reclamaciones virtual
+- intent: licencia_edificacion_costo
+  examples: |
+    - a cuanto sale el tramite de licencia de edificacion
+    - que precio tiene la licencia para construir
+    - quiero saber el monto de la licencia de obra
+- intent: licencia_edificacion_requisitos
+  examples: |
+    - voy a ampliar mi casa que papeles necesito
+    - que me piden para licenciar una construccion nueva
+    - para remodelar mi vivienda que requisitos hay
+- intent: licencia_funcionamiento_costo
+  examples: |
+    - cuanto cuesta la licencia de funcionamiento
+    - cual es el costo de la licencia de funcionamiento
+    - cuanto tengo que pagar por la licencia de mi negocio
+- intent: licencia_funcionamiento_plazo
+  examples: |
+    - cuando estara lista mi licencia si la pido hoy
+    - cuanto tarda en salir la licencia de mi negocio
+    - cuantos dias habiles toma aprobar la licencia
+- intent: licencia_funcionamiento_requisitos
+  examples: |
+    - voy a abrir un negocio que necesito para la licencia
+    - para aperturar mi local que papeles me piden
+    - que se necesita para licenciar un negocio nuevo
+- intent: limpieza_via_publica
+  examples: |
+    - como solicito limpieza de una calle
+    - mi calle esta muy sucia como reporto
+    - donde pido el servicio de barrido de calles
+- intent: mantenimiento_parques
+  examples: |
+    - las areas verdes de mi zona estan descuidadas
+    - como pido que arreglen el parque de mi urbanizacion
+    - quiero reportar juegos rotos en el parque
+- intent: negar
+  examples: |
+    - no
+    - no es eso
+    - para nada
+- intent: pago_arbitrios
+  examples: |
+    - como pago los arbitrios municipales
+    - donde cancelo mis arbitrios de limpieza publica
+    - quiero pagar mis arbitrios como hago
+- intent: pago_predial_como
+  examples: |
+    - como pago mi impuesto predial
+    - donde puedo pagar el predial
+    - que formas de pago hay para el impuesto predial
+- intent: partida_defuncion
+  examples: |
+    - donde registro un fallecimiento
+    - como saco copia de una partida de defuncion
+    - que documentos necesito para inscribir una defuncion
+- intent: partida_matrimonio
+  examples: |
+    - como obtengo mi partida de matrimonio
+    - necesito una copia de mi partida de matrimonio
+    - donde tramito mi partida de matrimonio
+- intent: partida_nacimiento
+  examples: |
+    - perdi mi partida de nacimiento como saco otra
+    - que requisitos piden para partida de nacimiento
+    - quiero una copia certificada de mi partida de nacimiento
+- intent: poda_arboles
+  examples: |
+    - como solicito la poda de un arbol
+    - hay un arbol que necesita poda frente a mi casa
+    - donde pido el servicio de poda de arboles
+- intent: presentar_reclamo
+  examples: |
+    - no estoy conforme con un tramite como reclamo
+    - que requisitos piden para presentar un reclamo
+    - necesito reclamar por un servicio municipal
+- intent: queja_atencion
+  examples: |
+    - quiero quejarme de la atencion que recibi
+    - el personal me atendio mal como reporto
+    - tengo una queja sobre el servicio de un trabajador
+- intent: rectificacion_partida
+  examples: |
+    - como rectifico un error en mi partida de nacimiento
+    - mi partida tiene un dato mal escrito como lo corrijo
+    - que tramite hago para rectificar una partida
+- intent: redes_sociales_mpsr
+  examples: |
+    - como encuentro a la municipalidad en redes sociales
+    - tienen pagina web oficial
+    - donde publican los comunicados oficiales
+- intent: renovacion_licencia
+  examples: |
+    - que necesito para renovar mi licencia vencida
+    - quiero actualizar mi licencia de funcionamiento como hago
+    - cuales son los pasos para renovar una licencia
+- intent: repetir_informacion
+  examples: |
+    - me lo puedes volver a decir
+    - vuelve a enviarme esa informacion
+    - repite la respuesta anterior porfa
+- intent: reporte_alumbrado_publico
+  examples: |
+    - hay un cable suelto en un poste a quien aviso
+    - como reporto que una calle esta sin luz
+    - necesito reportar un poste de alumbrado dañado
+- intent: requisitos_defensa_civil
+  examples: |
+    - que requisitos piden para defensa civil
+    - que documentos necesito para el certificado de defensa civil
+    - que me piden para la inspeccion de seguridad
+- intent: requisitos_generales
+  examples: |
+    - puedo hacer un tramite con copia de mi dni
+    - que documentos basicos debo llevar siempre
+    - necesito algo mas aparte del dni para tramites
+- intent: requisitos_matrimonio_civil
+  examples: |
+    - cuanto cuesta el matrimonio civil en la municipalidad
+    - como programo mi matrimonio civil
+    - que pasos sigo para casarme en la mpsr
+- intent: requisitos_mesa_partes
+  examples: |
+    - quiero presentar una solicitud que necesito
+    - como presento un documento a la municipalidad
+    - que formato debe tener mi solicitud para mesa de partes
+- intent: saludo
+  examples: |
+    - hola
+    - buenos dias
+    - que tal
+- intent: serenazgo_contacto
+  examples: |
+    - cual es el numero de serenazgo
+    - como contacto a serenazgo
+    - necesito el telefono de seguridad ciudadana
+- intent: sugerencia
+  examples: |
+    - quiero dejar una sugerencia a la municipalidad
+    - como puedo sugerir una mejora
+    - tengo una idea para mejorar la atencion municipal
+- intent: ubicacion_oficinas
+  examples: |
+    - donde queda la municipalidad
+    - cual es la direccion de la mpsr
+    - donde estan las oficinas de la municipalidad

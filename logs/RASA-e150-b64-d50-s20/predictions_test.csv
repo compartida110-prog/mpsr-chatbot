@@ -1,0 +1,82 @@
+utterance_id,text,intent,predicted,correct
+U0001,¿Qué requisitos necesito para sacar mi licencia de funcionamiento?,licencia_funcionamiento_requisitos,licencia_funcionamiento_costo,False
+U0002,Quiero saber los requisitos para la licencia de funcionamiento,licencia_funcionamiento_requisitos,licencia_funcionamiento_costo,False
+U0003,¿Qué documentos piden para licencia de funcionamiento de mi tienda?,licencia_funcionamiento_requisitos,licencia_funcionamiento_costo,False
+U0010,¿A cuánto sale sacar la licencia para mi tienda?,licencia_funcionamiento_costo,licencia_edificacion_costo,False
+U0011,¿Qué precio tiene tramitar la licencia de funcionamiento?,licencia_funcionamiento_costo,licencia_funcionamiento_costo,True
+U0012,Quisiera saber el monto de la licencia de funcionamiento,licencia_funcionamiento_costo,licencia_funcionamiento_costo,True
+U0025,¿Cuánto cuesta la licencia de edificación?,licencia_edificacion_costo,licencia_edificacion_costo,True
+U0026,¿Cuál es el costo de licencia de construcción?,licencia_edificacion_costo,licencia_edificacion_costo,True
+U0027,¿Cuánto debo pagar para licenciar mi obra?,licencia_edificacion_costo,licencia_edificacion_costo,True
+U0031,¿Cómo renuevo mi licencia de funcionamiento?,renovacion_licencia,licencia_funcionamiento_costo,False
+U0032,"Se me venció mi licencia, ¿cómo la renuevo?",renovacion_licencia,renovacion_licencia,True
+U0033,¿Qué trámite hago para renovar la licencia de mi negocio?,renovacion_licencia,renovacion_licencia,True
+U0037,¿Cómo consulto mi deuda del impuesto predial?,consulta_deuda_predial,fraccionamiento_deuda,False
+U0038,Quiero saber cuánto debo de predial,consulta_deuda_predial,pago_predial_como,False
+U0039,¿Dónde veo mi estado de cuenta del impuesto predial?,consulta_deuda_predial,pago_predial_como,False
+U0052,¿Cuánto debo de arbitrios este año?,pago_arbitrios,pago_arbitrios,True
+U0053,¿Qué son los arbitrios y cómo los pago?,pago_arbitrios,pago_arbitrios,True
+U0054,¿Dónde consulto mi deuda de arbitrios?,pago_arbitrios,pago_arbitrios,True
+U0073,¿Qué requisitos piden en mesa de partes?,requisitos_mesa_partes,horario_mesa_partes,False
+U0074,¿Qué necesito para presentar un documento en mesa de partes?,requisitos_mesa_partes,horario_mesa_partes,False
+U0075,¿Qué papeles debo llevar a mesa de partes?,requisitos_mesa_partes,requisitos_generales,False
+U0079,¿Cómo consulto el estado de mi trámite?,estado_tramite,costos_generales,False
+U0080,Quiero saber en qué va mi expediente,estado_tramite,estado_tramite,True
+U0081,¿Dónde veo el avance de mi solicitud?,estado_tramite,estado_tramite,True
+U0103,¿Cómo saco una constancia domiciliaria?,constancia_domiciliaria,constancia_domiciliaria,True
+U0104,Necesito un certificado de domicilio,constancia_domiciliaria,constancia_domiciliaria,True
+U0105,¿Qué requisitos piden para constancia domiciliaria?,constancia_domiciliaria,constancia_domiciliaria,True
+U0109,¿Cómo obtengo el certificado de defensa civil?,certificado_defensa_civil,requisitos_defensa_civil,False
+U0110,Necesito mi certificado de Defensa Civil para mi local,certificado_defensa_civil,requisitos_defensa_civil,False
+U0111,¿Qué requisitos piden para certificado de Defensa Civil?,certificado_defensa_civil,requisitos_defensa_civil,False
+U0118,¿Cuánto demora la inspección técnica de mi negocio?,inspeccion_tecnica,inspeccion_tecnica,True
+U0119,¿Quién hace la inspección de seguridad en edificaciones?,inspeccion_tecnica,certificado_defensa_civil,False
+U0120,¿Cómo programo una visita de Defensa Civil?,inspeccion_tecnica,requisitos_matrimonio_civil,False
+U0136,¿Serenazgo atiende las 24 horas?,serenazgo_contacto,serenazgo_contacto,True
+U0137,¿Dónde queda la oficina de serenazgo?,serenazgo_contacto,ubicacion_oficinas,False
+U0138,¿Cómo pido apoyo de serenazgo?,serenazgo_contacto,serenazgo_contacto,True
+U0139,¿Cómo saco una copia de mi partida de nacimiento?,partida_nacimiento,partida_nacimiento,True
+U0140,Necesito mi partida de nacimiento,partida_nacimiento,partida_nacimiento,True
+U0141,¿Dónde tramito mi partida de nacimiento?,partida_nacimiento,partida_nacimiento,True
+U0151,¿Cómo tramito una partida de defunción?,partida_defuncion,partida_defuncion,True
+U0152,Necesito el certificado de defunción de un familiar,partida_defuncion,partida_defuncion,True
+U0153,¿Qué requisitos piden para partida de defunción?,partida_defuncion,partida_defuncion,True
+U0160,Necesito corregir mi apellido en la partida,rectificacion_partida,rectificacion_partida,True
+U0161,¿Dónde solicito la rectificación de una partida civil?,rectificacion_partida,rectificacion_partida,True
+U0162,¿Qué requisitos piden para rectificar un acta?,rectificacion_partida,rectificacion_partida,True
+U0169,¿A qué hora pasa el carro de la basura?,horario_recojo_basura,horario_recojo_basura,True
+U0170,¿Cuál es el horario de recojo de basura en mi zona?,horario_recojo_basura,horario_recojo_basura,True
+U0171,¿Qué días recogen la basura?,horario_recojo_basura,horario_recojo_basura,True
+U0175,"Un poste de luz está malogrado, ¿cómo reporto?",reporte_alumbrado_publico,reporte_alumbrado_publico,True
+U0176,Quiero reportar un foco público que no enciende,reporte_alumbrado_publico,hablar_con_persona,False
+U0177,¿Dónde reporto una falla de alumbrado público?,reporte_alumbrado_publico,reporte_alumbrado_publico,True
+U0181,¿Cómo reporto el mal estado de un parque?,mantenimiento_parques,mantenimiento_parques,True
+U0182,El parque de mi barrio necesita mantenimiento,mantenimiento_parques,mantenimiento_parques,True
+U0183,¿Dónde solicito arreglo de un parque público?,mantenimiento_parques,mantenimiento_parques,True
+U0199,¿Cómo presento un reclamo a la municipalidad?,presentar_reclamo,presentar_reclamo,True
+U0200,Quiero hacer un reclamo formal,presentar_reclamo,presentar_reclamo,True
+U0201,¿Dónde registro una queja contra la municipalidad?,presentar_reclamo,partida_defuncion,False
+U0232,¿La municipalidad atiende los fines de semana?,horario_atencion_general,horario_atencion_general,True
+U0233,¿Qué días atiende la municipalidad?,horario_atencion_general,horario_atencion_general,True
+U0234,¿Cuál es el horario de atención al público?,horario_atencion_general,horario_atencion_general,True
+U0238,¿Cómo llego a la municipalidad de San Román?,ubicacion_oficinas,horario_atencion_general,False
+U0239,¿En qué parte de Juliaca está la municipalidad?,ubicacion_oficinas,horario_atencion_general,False
+U0240,Necesito la ubicación exacta del palacio municipal,ubicacion_oficinas,costos_generales,False
+U0241,¿Qué documento de identidad piden para hacer trámites?,requisitos_generales,requisitos_defensa_civil,False
+U0242,¿Necesito llevar mi DNI para cualquier trámite?,requisitos_generales,requisitos_generales,True
+U0243,¿Qué requisitos generales piden en la municipalidad?,requisitos_generales,ubicacion_oficinas,False
+U0247,¿Dónde veo los costos de los trámites municipales?,costos_generales,costos_generales,True
+U0248,¿Cuánto cuestan los trámites en general?,costos_generales,costos_generales,True
+U0249,¿Dónde está el tupa con los precios de trámites?,costos_generales,costos_generales,True
+U0253,¿Cuál es el teléfono de la municipalidad?,contacto_telefonico,contacto_telefonico,True
+U0254,¿Cómo llamo a la MPSR?,contacto_telefonico,horario_atencion_general,False
+U0255,Necesito el número de contacto de la municipalidad,contacto_telefonico,serenazgo_contacto,False
+U0271,"Chau, gracias",despedida,agradecimiento,False
+U0272,Hasta luego,despedida,despedida,True
+U0273,Nos vemos,despedida,saludo,False
+U0277,Gracias por la información,agradecimiento,agradecimiento,True
+U0278,Muchas gracias,agradecimiento,agradecimiento,True
+U0279,"Gracias, me ayudó bastante",agradecimiento,agradecimiento,True
+U0295,¿Cuál es el clima en Juliaca hoy?,fuera_de_alcance,fuera_de_alcance,True
+U0296,¿Qué equipo de fútbol es mejor?,fuera_de_alcance,poda_arboles,False
+U0297,Cuéntame un chiste,fuera_de_alcance,saludo,False

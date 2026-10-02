@@ -1,0 +1,27 @@
+{
+  "experiment_id": "RASA-e100-b64-d20-s42",
+  "evaluated_on": "validation",
+  "seed": 42,
+  "metrics": {
+    "accuracy": 0.5679012345679012,
+    "precision_macro": 0.44801587301587303,
+    "recall_macro": 0.36507936507936506,
+    "f1_macro": 0.3842403628117914,
+    "balanced_accuracy": 0.5679012345679012
+  },
+  "n_evaluated": 81,
+  "config": {
+    "epochs": 100,
+    "batch_size": 64,
+    "embedding_dimension": 20,
+    "evaluate_on_number_of_examples": 0,
+    "pipeline_file": "logs/RASA-e100-b64-d20-s42/config.yml"
+  },
+  "corpus_file": "corpus\\corpus_metadata.csv",
+  "corpus_sha256": "665e9e4c679669e50f69c64ba55862c78528b53c84d7d41e204cf237b2562470",
+  "git_commit": "067caea",
+  "timestamp": "2026-10-02T12:29:27",
+  "python": "3.10.11",
+  "model_file": "models\\rasa\\RASA-e100-b64-d20-s42.tar.gz",
+  "train_seconds": 86.3
+}
