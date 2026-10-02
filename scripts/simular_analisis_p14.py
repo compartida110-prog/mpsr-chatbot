@@ -14,7 +14,7 @@ import numpy as np
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent  # raíz del repositorio
-OUT = ROOT / "experiments"
+OUT = ROOT / "logs" / "simulaciones_P14"
 from scipy import stats
 import json
 

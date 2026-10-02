@@ -24,7 +24,7 @@ intención en train (9 ejemplos de entrenamiento por intención).
 | Versión | Utterances | Grupos/intención | Partición | Archivo |
 |---------|-----------|------------------|-----------|---------|
 | v1 | 324 | 2 | 162/81/81 | `corpus/historico/corpus_metadata_v1_324.csv` |
-| v2 (actual) | 648 | 4 | 486/81/81 | `corpus/corpus_metadata.csv` — generado con `experiments/expand_corpus.py` |
+| v2 (actual) | 648 | 4 | 486/81/81 | `corpus/corpus_metadata.csv` — generado con `scripts/expand_corpus.py` |
 
 ⚠️ **Importante**: el campo `source` de cada fila dice *"construcción manual
 (+ plantillas coloquiales) (pendiente contrastar con TUPA oficial)"* — es un
@@ -38,7 +38,8 @@ plantillas compartidas, y la auditoría detecta una fuga train/test (ver
 ```
 mpsr-chatbot/
 ├── README.md                  Este archivo
-├── requirements.txt           Dependencias de Python (versiones fijadas)
+├── requirements.txt           Dependencias directas de Python (versiones exactas)
+├── requirements-lock.txt      `pip freeze` completo del entorno verificado
 ├── .gitignore
 ├── domain.yml                 54 intenciones + respuestas (placeholders por completar con texto real del TUPA)
 ├── corpus/                    Corpus MPSR-Bot y sus registros de auditoría/partición
@@ -46,7 +47,7 @@ mpsr-chatbot/
 │   ├── corpus_audit.csv       Registro de auditoría: duplicados, desbalance (P03)
 │   ├── dataset_split.csv      Partición train/validation/test (P05)
 │   ├── corpus_summary.json    Resumen: totales, distribución, verificación de fuga
-│   ├── historico/             Corpus v1 (324) y su partición; entrada de experiments/expand_corpus.py
+│   ├── historico/             Corpus v1 (324) y su partición; entrada de scripts/expand_corpus.py
 │   └── Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx   Línea base P01 SIMULADA (n=120)
 ├── configs/                   Configuraciones fijadas ANTES de entrenar
 │   ├── baseline_config.json   TF-IDF + SVM / regresión logística (P07)
@@ -57,10 +58,11 @@ mpsr-chatbot/
 │   ├── nlu_full.yml           Las 648 utterances completas (referencia/auditoría)
 │   ├── rules.yml              Mapeo 1 a 1 intención → respuesta (punto de partida)
 │   └── nlu_{train,validation,test}.yml   Generados por scripts/export_rasa_nlu.py (no editar)
-├── scripts/                   Pipeline del protocolo (ver "Orden de ejecución")
-├── experiments/               Corridas preliminares: baseline P07 y SIMULACIONES de P14
+├── scripts/                   Todo el código: pipeline del protocolo y corridas preliminares
 ├── models/                    Modelos entrenados (no se versionan: pesados)
 ├── logs/                      Predicciones, métricas, configs y resúmenes por experimento (P10, P15)
+│   ├── EXP_BASELINE_SVM_S42_2026/   Resultado de scripts/train_baseline_p07.py (citado en el Informe)
+│   ├── simulaciones_P14/      Resultados SIMULADOS de P14
 │   └── v1_corpus324/          Los mismos resultados para el corpus v1
 ├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/)
 ├── docs/                      Protocolo V1.1, matriz, Ficha 2, Ficha de diagnóstico P01, Informe preliminar
@@ -128,18 +130,22 @@ python -m rasa shell nlu                            # smoke test manual (P11.1)
 10. **Incidencias** (P16): cualquier desviación del protocolo se registra en
     `incident_log.csv`, nunca se resuelve en silencio.
 
-### Corridas preliminares en `experiments/`
+### Corridas preliminares (también en `scripts/`)
 
 | Script | Qué hace | Resultado |
 |--------|----------|-----------|
-| `expand_corpus.py` | Amplía el corpus v1 (324) a v2 (648) y lo re-particiona | `corpus/*`, `data/nlu.yml`, `data/nlu_full.yml` |
-| `train_baseline_p07.py` | Baseline P07 real sobre el corpus actual (seed 42) | `resultado_baseline_P07.json` — F1 macro test = 0.5614 (v2; v1: 0.2975) |
-| `simular_P14_n120.py` | P14 con línea base P01 simulada (xlsx, n=120) + post-test **SIMULADO** | `SIMULACION_resultado_P14_n120.json` |
-| `simular_analisis_p14.py` | P14 totalmente **SIMULADO** (versión anterior, n=30) | `SIMULACION_resultado_P14.json` |
+| `scripts/expand_corpus.py` | Amplía el corpus v1 (324) a v2 (648) y lo re-particiona | `corpus/*`, `data/nlu.yml`, `data/nlu_full.yml` |
+| `scripts/train_baseline_p07.py` | Baseline P07 de una sola corrida (seed 42, sin normalización P06) | `logs/EXP_BASELINE_SVM_S42_2026/resultado_baseline_P07.json` — F1 macro test = 0.5614 (v2; v1: 0.2975), valor citado en el Informe de Ejecución Preliminar |
+| `scripts/simular_P14_n120.py` | P14 con línea base P01 simulada (xlsx, n=120) + post-test **SIMULADO** | `logs/simulaciones_P14/SIMULACION_resultado_P14_n120.json` |
+| `scripts/simular_analisis_p14.py` | P14 totalmente **SIMULADO** (versión anterior, n=30) | `logs/simulaciones_P14/SIMULACION_resultado_P14.json` |
 
 Los resultados `SIMULACION_*` **no son hallazgos de la tesis**: solo demuestran
 que el pipeline de P14 funciona. Re-ejecutados el 2026-10-02 en Windows con el
-entorno de `requirements.txt`, los tres scripts reproducen exactamente los mismos valores.
+entorno de `requirements.txt`, estos scripts reproducen exactamente los mismos valores.
+
+`scripts/train_baseline.py` es la versión completa del baseline (normalización P06,
+selección en validación y 5 semillas en test, resultados en `logs/BASE-*`); se
+conserva `train_baseline_p07.py` porque produjo el valor reportado en el Informe.
 
 ## Orden de ejecución
 

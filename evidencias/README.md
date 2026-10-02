@@ -15,3 +15,8 @@ versión del corpus. Dentro de cada una:
 | [`v2_corpus648/`](v2_corpus648/README.md) | v2: 648 utterances, 4 grupos/intención | 2026-10-02 | 0.5621 / 0.5919 / 0.6335 ± 0.0238 |
 
 Las desviaciones encontradas en cada ejecución están en `incident_log.csv`.
+
+> Nota: las salidas registran los comandos tal como se ejecutaron. Desde el
+> commit "Fix: fija versiones exactas..." la carpeta `experiments/` ya no existe:
+> sus scripts están en `scripts/` y sus resultados en `logs/EXP_BASELINE_SVM_S42_2026/`
+> y `logs/simulaciones_P14/` (mismos valores).

@@ -11,7 +11,7 @@ import numpy as np
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent  # raíz del repositorio
-OUT = ROOT / "experiments"
+OUT = ROOT / "logs" / "EXP_BASELINE_SVM_S42_2026"
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
