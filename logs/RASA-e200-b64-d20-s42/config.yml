@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-124210-simple-determinant
+assistant_id: 20261002-144502-kind-albedo

@@ -19,9 +19,9 @@
   },
   "corpus_file": "corpus\\corpus_metadata.csv",
   "corpus_sha256": "665e9e4c679669e50f69c64ba55862c78528b53c84d7d41e204cf237b2562470",
-  "git_commit": "ec0f8f5",
-  "timestamp": "2026-10-02T14:17:40",
+  "git_commit": "7042312",
+  "timestamp": "2026-10-02T14:48:36",
   "python": "3.10.11",
   "model_file": "models\\rasa\\RASA-e150-b64-d50-s10.tar.gz",
-  "train_seconds": 14.9
+  "train_seconds": 25.0
 }

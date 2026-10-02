@@ -1,0 +1,35 @@
+2026-10-02 14:39:22
+$ venv/Scripts/python.exe experiments/simular_analisis_p14.py
+======================================================================
+*** SIMULACIÓN ILUSTRATIVA -- NO SON DATOS DE CAMPO REALES ***
+======================================================================
+
+--- Tiempo de atención (minutos) ---
+  n: 30
+  media_pre: 58.24
+  media_post: 20.9
+  diferencia_media: -37.34
+  shapiro_wilk_p: 0.1035
+  normalidad_cumplida: True
+  prueba_usada: t de Student pareada
+  estadistico: -23.4831
+  p_value: 0.0
+  cohen_d: -4.287
+  decision_H0: Se rechaza H0 (diferencia significativa)
+  pct_reduccion_promedio: 64.4
+
+--- Satisfacción (Likert 1-5) ---
+  n: 30
+  media_pre: 2.84
+  media_post: 3.96
+  diferencia_media: 1.13
+  shapiro_wilk_p: 0.1993
+  normalidad_cumplida: True
+  prueba_usada: t de Student pareada
+  estadistico: 10.1063
+  p_value: 0.0
+  cohen_d: 1.845
+  decision_H0: Se rechaza H0 (diferencia significativa)
+
+Archivo guardado: SIMULACION_resultado_P14.json
+exit=0

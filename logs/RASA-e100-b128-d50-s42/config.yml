@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-123218-few-column
+assistant_id: 20261002-144122-afraid-constraint

@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-122752-serious-mortar
+assistant_id: 20261002-143914-ivory-box

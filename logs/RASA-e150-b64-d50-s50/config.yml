@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 50
   entity_recognition: true
-assistant_id: 20261002-142338-medium-interval
+assistant_id: 20261002-145110-regular-BLT

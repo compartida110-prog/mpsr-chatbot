@@ -1,0 +1,58 @@
+2026-10-02 14:39:39
+$ venv/Scripts/python.exe scripts/train_baseline.py
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+train=162  validation=81  test=81  intenciones=54
+
+Fase 1 — selección en validación (seed=42):
+  BASE-SVM-C0.1-s42                  accuracy=0.4198  precision_macro=0.3848  recall_macro=0.2576  f1_macro=0.2852  balanced_accuracy=0.4198
+  BASE-SVM-C1-s42                    accuracy=0.4321  precision_macro=0.4070  recall_macro=0.2713  f1_macro=0.3025  balanced_accuracy=0.4321
+  BASE-SVM-C10-s42                   accuracy=0.4198  precision_macro=0.3689  recall_macro=0.2519  f1_macro=0.2814  balanced_accuracy=0.4198
+  BASE-LOGREG-C1.0-s42               accuracy=0.4321  precision_macro=0.3739  recall_macro=0.2713  f1_macro=0.2952  balanced_accuracy=0.4321
+  => C seleccionado para SVM: 1 (F1 macro validación = 0.3025)
+
+Fase 2 — repeticiones en test (semillas [10, 20, 30, 40, 50]):
+  BASE-SVM-C1-s10                    accuracy=0.3827  precision_macro=0.3559  recall_macro=0.2793  f1_macro=0.2975  balanced_accuracy=0.3827
+  BASE-SVM-C1-s20                    accuracy=0.3827  precision_macro=0.3559  recall_macro=0.2793  f1_macro=0.2975  balanced_accuracy=0.3827
+  BASE-SVM-C1-s30                    accuracy=0.3827  precision_macro=0.3559  recall_macro=0.2793  f1_macro=0.2975  balanced_accuracy=0.3827
+  BASE-SVM-C1-s40                    accuracy=0.3827  precision_macro=0.3559  recall_macro=0.2793  f1_macro=0.2975  balanced_accuracy=0.3827
+  BASE-SVM-C1-s50                    accuracy=0.3827  precision_macro=0.3559  recall_macro=0.2793  f1_macro=0.2975  balanced_accuracy=0.3827
+  SVM media ± DE: accuracy=0.3827±0.0000  precision_macro=0.3559±0.0000  recall_macro=0.2793±0.0000  f1_macro=0.2975±0.0000  balanced_accuracy=0.3827±0.0000
+  Criterio F1 macro ≥ 0.85: NO CUMPLE
+
+  BASE-LOGREG-C1.0-s10               accuracy=0.4074  precision_macro=0.3628  recall_macro=0.2821  f1_macro=0.2961  balanced_accuracy=0.4074
+  BASE-LOGREG-C1.0-s20               accuracy=0.4074  precision_macro=0.3628  recall_macro=0.2821  f1_macro=0.2961  balanced_accuracy=0.4074
+  BASE-LOGREG-C1.0-s30               accuracy=0.4074  precision_macro=0.3628  recall_macro=0.2821  f1_macro=0.2961  balanced_accuracy=0.4074
+  BASE-LOGREG-C1.0-s40               accuracy=0.4074  precision_macro=0.3628  recall_macro=0.2821  f1_macro=0.2961  balanced_accuracy=0.4074
+  BASE-LOGREG-C1.0-s50               accuracy=0.4074  precision_macro=0.3628  recall_macro=0.2821  f1_macro=0.2961  balanced_accuracy=0.4074
+  LOGREG media ± DE: accuracy=0.4074±0.0000  precision_macro=0.3628±0.0000  recall_macro=0.2821±0.0000  f1_macro=0.2961±0.0000  balanced_accuracy=0.4074±0.0000
+  Criterio F1 macro ≥ 0.85: NO CUMPLE
+
+Resultados detallados en logs/BASE-*/ ; resúmenes en logs/baseline_validation.csv y logs/baseline_test.csv
+exit=0

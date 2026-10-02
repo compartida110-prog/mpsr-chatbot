@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 10
   entity_recognition: true
-assistant_id: 20261002-141712-obliging-flight
+assistant_id: 20261002-144802-cheerful-log

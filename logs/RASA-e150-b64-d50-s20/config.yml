@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 20
   entity_recognition: true
-assistant_id: 20261002-141748-juvenile-marmalade
+assistant_id: 20261002-144849-rounded-angel

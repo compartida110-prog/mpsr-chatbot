@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-124928-laminated-squash
+assistant_id: 20261002-144631-senior-folder

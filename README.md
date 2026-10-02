@@ -164,6 +164,17 @@ responde la pregunta de control de la sección 3.2 del protocolo.
 `--eval-examples N` activa el early stopping de la sección 2.10
 (`evaluate_on_number_of_examples`, tomados de train).
 
+## Resultados preliminares (corpus starter, 2026-10-02)
+
+| Método | Accuracy | F1 macro (test, semillas 10–50) | Criterio F1 ≥ 0.85 |
+|--------|----------|--------------------------------|--------------------|
+| TF-IDF + SVM (C=1) | 0.3827 | 0.2975 ± 0.0000 | No cumple |
+| TF-IDF + LogReg (C=1.0) | 0.4074 | 0.2961 ± 0.0000 | No cumple |
+| Rasa NLU / DIET (e150, b64, d50) | 0.5506 | 0.4134 ± 0.0400 | No cumple |
+
+Salida completa y captura de cada ejecución en [`evidencias/`](evidencias/README.md);
+desviaciones del protocolo en [`incident_log.csv`](incident_log.csv).
+
 ## Reproducibilidad
 
 Todas las semillas, configuraciones y particiones quedan fijadas en `configs/`

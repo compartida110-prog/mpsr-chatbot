@@ -1,0 +1,76 @@
+inicio: 2026-10-02 14:39:00
+$ python scripts/run_rasa_grid.py
+Exportando datos NLU:
+  data\nlu_train.yml: 162 utterances, 54 intenciones
+  data\nlu_validation.yml: 81 utterances, 27 intenciones
+  data\nlu_test.yml: 81 utterances, 27 intenciones
+
+Fase 1 — grilla en validación (12 combinaciones, seed=42):
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e100-b64-d20-s42 (21s)        accuracy=0.5679  precision_macro=0.4480  recall_macro=0.3651  f1_macro=0.3842  balanced_accuracy=0.5679
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e100-b64-d50-s42 (15s)        accuracy=0.5679  precision_macro=0.4810  recall_macro=0.3566  f1_macro=0.3863  balanced_accuracy=0.5679
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e100-b128-d20-s42 (22s)       accuracy=0.5309  precision_macro=0.4256  recall_macro=0.3185  f1_macro=0.3438  balanced_accuracy=0.5309
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e100-b128-d50-s42 (24s)       accuracy=0.5432  precision_macro=0.4516  recall_macro=0.3411  f1_macro=0.3693  balanced_accuracy=0.5432
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d20-s42 (23s)        accuracy=0.5556  precision_macro=0.4126  recall_macro=0.3659  f1_macro=0.3807  balanced_accuracy=0.5556
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s42 (23s)        accuracy=0.5679  precision_macro=0.5179  recall_macro=0.3651  f1_macro=0.4041  balanced_accuracy=0.5679
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b128-d20-s42 (25s)       accuracy=0.5309  precision_macro=0.4246  recall_macro=0.3413  f1_macro=0.3678  balanced_accuracy=0.5309
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b128-d50-s42 (24s)       accuracy=0.5556  precision_macro=0.4365  recall_macro=0.3571  f1_macro=0.3807  balanced_accuracy=0.5556
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e200-b64-d20-s42 (24s)        accuracy=0.5556  precision_macro=0.4444  recall_macro=0.3846  f1_macro=0.4005  balanced_accuracy=0.5556
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e200-b64-d50-s42 (24s)        accuracy=0.5432  precision_macro=0.4742  recall_macro=0.3492  f1_macro=0.3832  balanced_accuracy=0.5432
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e200-b128-d20-s42 (24s)       accuracy=0.4815  precision_macro=0.3909  recall_macro=0.3095  f1_macro=0.3363  balanced_accuracy=0.4815
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e200-b128-d50-s42 (24s)       accuracy=0.5062  precision_macro=0.4264  recall_macro=0.3178  f1_macro=0.3396  balanced_accuracy=0.5062
+  => combinación seleccionada: epochs=150 batch_size=64 embedding_dimension=50 (F1 macro validación = 0.4041)
+
+Fase 2 — repeticiones en test (semillas [10, 20, 30, 40, 50]):
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s10 (25s)        accuracy=0.5185  precision_macro=0.4449  recall_macro=0.3590  f1_macro=0.3751  balanced_accuracy=0.5185
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s20 (25s)        accuracy=0.6173  precision_macro=0.5386  recall_macro=0.4762  f1_macro=0.4771  balanced_accuracy=0.6173
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s30 (25s)        accuracy=0.5309  precision_macro=0.5068  recall_macro=0.3874  f1_macro=0.4037  balanced_accuracy=0.5309
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s40 (25s)        accuracy=0.5309  precision_macro=0.4675  recall_macro=0.3772  f1_macro=0.3876  balanced_accuracy=0.5309
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+  RASA-e150-b64-d50-s50 (26s)        accuracy=0.5556  precision_macro=0.5045  recall_macro=0.4054  f1_macro=0.4237  balanced_accuracy=0.5556
+  RASA/DIET media ± DE: accuracy=0.5506±0.0396  precision_macro=0.4924±0.0366  recall_macro=0.4010±0.0453  f1_macro=0.4134±0.0400  balanced_accuracy=0.5506±0.0396
+  Criterio F1 macro ≥ 0.85: NO CUMPLE
+exit=0
+fin: 2026-10-02 14:51:46

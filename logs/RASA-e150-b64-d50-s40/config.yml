@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 40
   entity_recognition: true
-assistant_id: 20261002-142140-purple-announcer
+assistant_id: 20261002-145023-solid-bus

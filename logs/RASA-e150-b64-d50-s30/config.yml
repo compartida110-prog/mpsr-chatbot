@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 30
   entity_recognition: true
-assistant_id: 20261002-141952-ordered-tungsten
+assistant_id: 20261002-144936-lenient-himalayan
