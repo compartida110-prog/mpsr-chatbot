@@ -1,0 +1,79 @@
+REPORTE DE AUDITORÍA — Corpus MPSR-Bot (P03/P04)
+Archivo: C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\corpus\corpus_metadata.csv
+SHA-256: 665e9e4c679669e50f69c64ba55862c78528b53c84d7d41e204cf237b2562470
+Utterances: 324 | Intenciones: 54 (esperadas 50) | Categorías: 9 (esperadas 9) | Grupos base_phrase_id: 108
+Umbral casi-duplicados: 0.9 (Jaccard de tokens o Levenshtein normalizada, misma intención)
+
+Incidencias detectadas:
+  Pares casi-duplicados: 0
+
+
+Desbalance (máx/mín utterances por intención): 1.00
+Intenciones con menos de 3 grupos de frase base (no se pueden repartir en train/val/test): ['afirmar', 'agradecimiento', 'ayuda_chatbot', 'certificado_defensa_civil', 'certificado_posesion', 'constancia_domiciliaria', 'constancia_no_adeudo', 'consulta_deuda_predial', 'consulta_no_entendida', 'contacto_telefonico', 'copia_documento', 'costos_generales', 'denuncia_seguridad_ciudadana', 'despedida', 'estado_reclamo', 'estado_tramite', 'fraccionamiento_deuda', 'fuera_de_alcance', 'hablar_con_persona', 'horario_atencion_general', 'horario_mesa_partes', 'horario_recojo_basura', 'impuesto_alcabala', 'inspeccion_tecnica', 'libro_reclamaciones', 'licencia_edificacion_costo', 'licencia_edificacion_requisitos', 'licencia_funcionamiento_costo', 'licencia_funcionamiento_plazo', 'licencia_funcionamiento_requisitos', 'limpieza_via_publica', 'mantenimiento_parques', 'negar', 'pago_arbitrios', 'pago_predial_como', 'partida_defuncion', 'partida_matrimonio', 'partida_nacimiento', 'poda_arboles', 'presentar_reclamo', 'queja_atencion', 'rectificacion_partida', 'redes_sociales_mpsr', 'renovacion_licencia', 'repetir_informacion', 'reporte_alumbrado_publico', 'requisitos_defensa_civil', 'requisitos_generales', 'requisitos_matrimonio_civil', 'requisitos_mesa_partes', 'saludo', 'serenazgo_contacto', 'sugerencia', 'ubicacion_oficinas']
+
+Utterances por categoría:
+  Interacción conversacional: 60
+  Licencias y autorizaciones: 36
+  Tributos y pagos municipales: 36
+  Trámites documentarios: 36
+  Información general: 36
+  Defensa civil y seguridad ciudadana: 30
+  Registro civil: 30
+  Servicios públicos: 30
+  Reclamos y quejas: 30
+
+Utterances por intención:
+  licencia_funcionamiento_requisitos: 6 (2 grupos)
+  requisitos_generales: 6 (2 grupos)
+  reporte_alumbrado_publico: 6 (2 grupos)
+  mantenimiento_parques: 6 (2 grupos)
+  poda_arboles: 6 (2 grupos)
+  limpieza_via_publica: 6 (2 grupos)
+  presentar_reclamo: 6 (2 grupos)
+  estado_reclamo: 6 (2 grupos)
+  libro_reclamaciones: 6 (2 grupos)
+  queja_atencion: 6 (2 grupos)
+  sugerencia: 6 (2 grupos)
+  horario_atencion_general: 6 (2 grupos)
+  ubicacion_oficinas: 6 (2 grupos)
+  costos_generales: 6 (2 grupos)
+  licencia_funcionamiento_costo: 6 (2 grupos)
+  contacto_telefonico: 6 (2 grupos)
+  redes_sociales_mpsr: 6 (2 grupos)
+  saludo: 6 (2 grupos)
+  despedida: 6 (2 grupos)
+  agradecimiento: 6 (2 grupos)
+  afirmar: 6 (2 grupos)
+  negar: 6 (2 grupos)
+  fuera_de_alcance: 6 (2 grupos)
+  hablar_con_persona: 6 (2 grupos)
+  ayuda_chatbot: 6 (2 grupos)
+  consulta_no_entendida: 6 (2 grupos)
+  horario_recojo_basura: 6 (2 grupos)
+  requisitos_matrimonio_civil: 6 (2 grupos)
+  rectificacion_partida: 6 (2 grupos)
+  partida_defuncion: 6 (2 grupos)
+  licencia_funcionamiento_plazo: 6 (2 grupos)
+  licencia_edificacion_requisitos: 6 (2 grupos)
+  licencia_edificacion_costo: 6 (2 grupos)
+  renovacion_licencia: 6 (2 grupos)
+  consulta_deuda_predial: 6 (2 grupos)
+  pago_predial_como: 6 (2 grupos)
+  pago_arbitrios: 6 (2 grupos)
+  impuesto_alcabala: 6 (2 grupos)
+  fraccionamiento_deuda: 6 (2 grupos)
+  constancia_no_adeudo: 6 (2 grupos)
+  requisitos_mesa_partes: 6 (2 grupos)
+  estado_tramite: 6 (2 grupos)
+  horario_mesa_partes: 6 (2 grupos)
+  copia_documento: 6 (2 grupos)
+  certificado_posesion: 6 (2 grupos)
+  constancia_domiciliaria: 6 (2 grupos)
+  certificado_defensa_civil: 6 (2 grupos)
+  inspeccion_tecnica: 6 (2 grupos)
+  requisitos_defensa_civil: 6 (2 grupos)
+  denuncia_seguridad_ciudadana: 6 (2 grupos)
+  serenazgo_contacto: 6 (2 grupos)
+  partida_nacimiento: 6 (2 grupos)
+  partida_matrimonio: 6 (2 grupos)
+  repetir_informacion: 6 (2 grupos)

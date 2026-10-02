@@ -14,26 +14,47 @@ TramiFácil. Este repositorio implementa el Protocolo Experimental V1.1 (ver `do
 - **OE3**: Medir la reducción del tiempo de respuesta tras la implementación del chatbot.
 - **OE4**: Evaluar el nivel de satisfacción ciudadana (encuesta Likert, n≈120).
 
+## Estado actual del corpus (P02–P05 ✅ generado — starter)
+
+Ya existe una primera versión programática del Corpus MPSR-Bot: **54 intenciones
+en 9 categorías, 324 utterances** (108 grupos de 2–3 paráfrasis cada uno),
+particionadas por `base_phrase_id` (semilla 42), con cobertura garantizada de
+las 54 intenciones en el split de entrenamiento.
+
+⚠️ **Importante**: el campo `source` de cada fila dice *"construcción manual
+(pendiente contrastar con TUPA oficial)"* — este es un corpus de arranque para
+poder avanzar con el pipeline técnico (P06–P11) mientras se gestiona el acceso
+al TUPA real de la MPSR y se amplía cada intención con más ejemplos (idealmente
+≥3 grupos/intención antes del entrenamiento final, no solo 2).
+
 ## Estructura del repositorio
 
 ```
 mpsr-chatbot/
 ├── README.md                  Este archivo
-├── requirements.txt           Dependencias de Python
+├── requirements.txt           Dependencias de Python (versiones fijadas)
 ├── .gitignore
+├── domain.yml                 54 intenciones + respuestas (placeholders por completar con texto real del TUPA)
 ├── corpus/                    Corpus MPSR-Bot y sus registros de auditoría/partición
-│   ├── corpus_metadata.csv    Inventario de utterances (P02)
+│   ├── corpus_metadata.csv    Inventario de las 324 utterances (P02)
 │   ├── corpus_audit.csv       Registro de auditoría: duplicados, desbalance (P03)
-│   └── dataset_split.csv      Partición train/validation/test (P05)
+│   ├── dataset_split.csv      Partición train/validation/test (P05)
+│   ├── corpus_summary.json    Resumen: totales, distribución, verificación de fuga
+│   └── Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx   Línea base P01 SIMULADA (n=120)
 ├── configs/                   Configuraciones fijadas ANTES de entrenar
 │   ├── baseline_config.json   TF-IDF + SVM / regresión logística (P07)
 │   ├── rasa_config.yml        Pipeline Rasa NLU con DIETClassifier (P08)
 │   └── jerga_local.csv        Diccionario de jerga local para la normalización (P06)
-├── scripts/                   Código de los experimentos (ver "Orden de ejecución")
-├── data/                      NLU en formato Rasa, generado desde el corpus (no editar a mano)
+├── data/                      Archivos en formato Rasa
+│   ├── nlu.yml                SOLO el split "train" (lo que usa `rasa train`)
+│   ├── nlu_full.yml           Las 324 utterances completas (referencia/auditoría)
+│   ├── rules.yml              Mapeo 1 a 1 intención → respuesta (punto de partida)
+│   └── nlu_{train,validation,test}.yml   Generados por scripts/export_rasa_nlu.py (no editar)
+├── scripts/                   Pipeline del protocolo (ver "Orden de ejecución")
+├── experiments/               Corridas preliminares: baseline P07 y SIMULACIONES de P14
 ├── models/                    Modelos entrenados (no se versionan: pesados)
 ├── logs/                      Predicciones, métricas, configs y resúmenes por experimento (P10, P15)
-├── docs/                      Protocolo V1.1, matriz de trazabilidad, fichas de revisión
+├── docs/                      Protocolo V1.1, matriz, Ficha 2, Ficha de diagnóstico P01, Informe preliminar
 └── incident_log.csv           Bitácora de incidencias y desviaciones del protocolo (P16)
 ```
 
@@ -60,28 +81,55 @@ TensorFlow 2.12.0, scikit-learn 1.1.3, pandas 2.0.3, numpy 1.23.5, scipy 1.10.1
 > En Windows con *Smart App Control* activo, el ejecutable `rasa.exe` puede ser
 > bloqueado. Usa siempre `python -m rasa ...` (por ejemplo `python -m rasa train nlu`).
 
+### Entrenamiento rápido (con el corpus starter ya incluido)
+
+```bash
+python -m rasa data validate --data data/nlu.yml data/rules.yml --domain domain.yml --config configs/rasa_config.yml
+python -m rasa train nlu --nlu data/nlu.yml --domain domain.yml --config configs/rasa_config.yml
+python -m rasa shell nlu                            # smoke test manual (P11.1)
+```
+
 ## Flujo de trabajo (según el Protocolo V1.1)
 
-1. **Corpus** (P01–P05): completar `corpus/corpus_metadata.csv`, auditar en
-   `corpus_audit.csv` (duplicados con similitud Jaccard/Levenshtein ≥ 0.90) y
-   generar la partición 70/15/15 en `dataset_split.csv` con `random_seed = 42`,
-   agrupando por `base_phrase_id` para evitar fuga de datos.
+1. **Corpus** (P01–P05): ✅ generado (starter, 324 utterances). Pendiente:
+   contrastar/ampliar con el TUPA real de la MPSR, y correr la auditoría
+   (`scripts/audit_corpus.py`) sobre datos reales cuando se recolecten.
 2. **Baseline** (P07): entrenar TF-IDF + SVM con la grilla definida en
    `configs/baseline_config.json` (C ∈ {0.1, 1, 10}), seed = 42.
-3. **Rasa NLU / DIET** (P08): entrenar con `configs/rasa_config.yml`
-   (`rasa train nlu`), probando la grilla epochs ∈ {100,150,200},
-   batch_size ∈ {64,128}, embedding_dimension ∈ {20,50}.
+3. **Rasa NLU / DIET** (P08): grilla epochs ∈ {100,150,200},
+   batch_size ∈ {64,128}, embedding_dimension ∈ {20,50} con `scripts/run_rasa_grid.py`.
 4. **Repeticiones** (P10): repetir baseline y Rasa/DIET con semillas
    10, 20, 30, 40, 50; registrar cada corrida en `logs/`.
 5. **Evaluación** (P11): calcular Accuracy, Precision macro, Recall macro,
    F1 macro y Balanced Accuracy sobre el conjunto de prueba (criterio: F1 ≥ 0.85).
-6. **Piloto y encuesta** (P12–P13): desplegar el chatbot, medir tiempo de
-   respuesta y aplicar la encuesta Likert (n≈120, ver Sección 2.4.1 del protocolo
-   para el análisis de sensibilidad del tamaño de muestra).
-7. **Análisis estadístico** (P14): verificar normalidad (Shapiro-Wilk, α=0.05)
+6. **Pruebas técnicas internas** (P11.1): `rasa data validate`, `rasa test nlu
+   --cross-validation`, `rasa test core`, pruebas unitarias de custom actions,
+   smoke test manual de las 54 intenciones vía `rasa shell`. Sin personas externas.
+7. **Pre-piloto** (P11.2): 5–15 personas ajenas a la muestra final, guion de
+   15–20 consultas, encuesta con Alfa de Cronbach ≥ 0.70. Criterio de salida:
+   F1 ≥ 0.75 + Alfa ≥ 0.70.
+8. **Piloto y encuesta** (P12–P13): la MPSR no autorizó despliegue en su
+   plataforma ni acceso físico al local. El chatbot se despliega en un canal
+   propio (WhatsApp/Telegram/web) y el reclutamiento de los 120 participantes
+   (y de OE1) se hace en estudios contables/jurídicos de Juliaca que atienden
+   trámites municipales — ver incidencia registrada en `incident_log.csv` y la
+   limitación de muestreo (estratificado → por cuotas) a documentar en la discusión.
+9. **Análisis estadístico** (P14): verificar normalidad (Shapiro-Wilk, α=0.05)
    antes de aplicar t de Student pareada; si no se cumple, usar Wilcoxon.
-8. **Incidencias** (P16): cualquier desviación del protocolo se registra en
-   `incident_log.csv`, nunca se resuelve en silencio.
+10. **Incidencias** (P16): cualquier desviación del protocolo se registra en
+    `incident_log.csv`, nunca se resuelve en silencio.
+
+### Corridas preliminares en `experiments/`
+
+| Script | Qué hace | Resultado |
+|--------|----------|-----------|
+| `train_baseline_p07.py` | Baseline P07 real sobre el corpus starter (seed 42) | `resultado_baseline_P07.json` — F1 macro test = 0.2975 |
+| `simular_P14_n120.py` | P14 con línea base P01 simulada (xlsx, n=120) + post-test **SIMULADO** | `SIMULACION_resultado_P14_n120.json` |
+| `simular_analisis_p14.py` | P14 totalmente **SIMULADO** (versión anterior, n=30) | `SIMULACION_resultado_P14.json` |
+
+Los resultados `SIMULACION_*` **no son hallazgos de la tesis**: solo demuestran
+que el pipeline de P14 funciona. Re-ejecutados el 2026-10-02 en Windows con el
+entorno de `requirements.txt`, los tres scripts reproducen exactamente los mismos valores.
 
 ## Orden de ejecución
 
@@ -126,5 +174,6 @@ conjunto de prueba no se usa para seleccionar hiperparámetros ni modelo.
 ## Referencias del protocolo
 
 Ver `docs/` para el Protocolo Experimental V1.1 completo (Planteamiento,
-Metodología, Protocolo, Matriz de trazabilidad técnica) y la Ficha 2 de
-registro de correcciones.
+Metodología, Protocolo, Matriz de trazabilidad técnica), la Ficha 2 de
+registro de correcciones, la Ficha de Diagnóstico P01 (OE1) y el Informe de
+Ejecución Preliminar.

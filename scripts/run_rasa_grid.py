@@ -17,6 +17,7 @@ Uso:
     python scripts/run_rasa_grid.py                       # experimento completo (12 + 5 entrenamientos)
     python scripts/run_rasa_grid.py --eval-examples 50    # con early stopping (evaluate_on_number_of_examples)
     python scripts/run_rasa_grid.py --smoke               # prueba rápida del flujo; NO usar como resultado
+    python scripts/run_rasa_grid.py --only-repetitions    # reanuda solo la Fase 2 con la grilla ya evaluada
 """
 import argparse
 import asyncio
@@ -102,6 +103,9 @@ def main():
                     help="evaluate_on_number_of_examples para early stopping (0 = desactivado)")
     ap.add_argument("--smoke", action="store_true",
                     help="prueba rápida: 1 combinación, 5 épocas, 1 semilla. No es un resultado válido.")
+    ap.add_argument("--only-repetitions", action="store_true",
+                    help="omite la Fase 1 y toma la mejor combinación de logs/rasa_validation.csv "
+                         "(para reanudar si la Fase 2 se interrumpió)")
     args = ap.parse_args()
     logging.getLogger("tensorflow").setLevel(logging.ERROR)
     os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
@@ -116,12 +120,28 @@ def main():
     prefix, summary_prefix = "RASA", "rasa"
     if args.smoke:
         grid, seeds, prefix, summary_prefix = [(5, 64, 20)], REPETITION_SEEDS[:1], "SMOKE-RASA", "smoke_rasa"
-    for name in (f"{summary_prefix}_validation.csv", f"{summary_prefix}_test.csv"):
-        (LOGS / name).unlink(missing_ok=True)
+    val_summary = LOGS / f"{summary_prefix}_validation.csv"
+    if args.only_repetitions:
+        if not val_summary.exists():
+            sys.exit(f"ERROR: --only-repetitions necesita {val_summary} de una ejecución anterior.")
+        val_summary.replace(LOGS / f"{summary_prefix}_validation.csv.bak")
+    else:
+        val_summary.unlink(missing_ok=True)
+    (LOGS / f"{summary_prefix}_test.csv").unlink(missing_ok=True)
 
     # ---------------- Fase 1: selección en validación
-    print(f"\nFase 1 — grilla en validación ({len(grid)} combinaciones, seed={BASE_SEED}):")
     best, best_f1 = None, -1.0
+    if args.only_repetitions:
+        import pandas as pd
+
+        prev = pd.read_csv(LOGS / f"{summary_prefix}_validation.csv.bak")
+        row = prev.loc[prev["f1_macro"].idxmax()]
+        best, best_f1 = (int(row["epochs"]), int(row["batch_size"]), int(row["embedding_dimension"])), row["f1_macro"]
+        (LOGS / f"{summary_prefix}_validation.csv.bak").replace(LOGS / f"{summary_prefix}_validation.csv")
+        print(f"\nFase 1 — se reutiliza la grilla ya evaluada en logs/{summary_prefix}_validation.csv")
+        grid = []
+    else:
+        print(f"\nFase 1 — grilla en validación ({len(grid)} combinaciones, seed={BASE_SEED}):")
     for combo in grid:
         exp_id = f"{prefix}-e{combo[0]}-b{combo[1]}-d{combo[2]}-s{BASE_SEED}"
         m, secs = run(base, combo, BASE_SEED, df, "validation", exp_id, paths, args.eval_examples, args.corpus)

@@ -1,0 +1,272 @@
+version: "3.1"
+nlu:
+- intent: afirmar
+  examples: |
+    - Así es
+    - Sí, exacto
+    - Eso mismo
+- intent: agradecimiento
+  examples: |
+    - Ok, gracias
+    - Perfecto, muchas gracias
+    - Gracias por tu ayuda
+- intent: ayuda_chatbot
+  examples: |
+    - ¿Qué puedes hacer?
+    - ¿En qué me puedes ayudar?
+    - ¿Qué tipo de consultas respondes?
+- intent: certificado_defensa_civil
+  examples: |
+    - Quiero sacar el ITSE para mi negocio
+    - ¿Cómo tramito mi certificado de seguridad en edificación?
+    - ¿Dónde solicito la inspección de Defensa Civil?
+- intent: certificado_posesion
+  examples: |
+    - Quiero formalizar la posesión de mi lote, ¿qué hago?
+    - ¿Dónde solicito constancia de posesión?
+    - ¿Cuánto demora el certificado de posesión?
+- intent: constancia_domiciliaria
+  examples: |
+    - ¿Dónde tramito mi constancia de residencia?
+    - Quiero un documento que acredite dónde vivo
+    - ¿Cuánto cuesta la constancia domiciliaria?
+- intent: constancia_no_adeudo
+  examples: |
+    - Quiero un documento que diga que estoy al día en mis pagos
+    - ¿Cómo obtengo una constancia de no adeudo municipal?
+    - Necesito comprobar que no tengo deudas con la MPSR
+- intent: consulta_deuda_predial
+  examples: |
+    - ¿Tengo deuda pendiente de autoavalúo?
+    - ¿Cómo sé si debo predial de este año?
+    - Quisiera revisar mi deuda de impuesto predial
+- intent: consulta_no_entendida
+  examples: |
+    - No entendí tu respuesta
+    - ¿Puedes explicarlo de otra forma?
+    - No me quedó claro lo que dijiste
+- intent: contacto_telefonico
+  examples: |
+    - ¿Tienen un WhatsApp de atención?
+    - ¿Cuál es el correo de la municipalidad?
+    - ¿Cómo me comunico con la MPSR por teléfono?
+- intent: copia_documento
+  examples: |
+    - Perdí mi copia, ¿cómo consigo otra?
+    - ¿Puedo pedir copia certificada de una resolución?
+    - ¿Qué costo tiene una copia certificada?
+- intent: costos_generales
+  examples: |
+    - Quiero saber cuánto cuesta cada trámite
+    - ¿Hay una lista de precios de trámites municipales?
+    - ¿Dónde consulto las tasas municipales?
+- intent: denuncia_seguridad_ciudadana
+  examples: |
+    - ¿A quién llamo si veo algo raro en la calle?
+    - Quiero hacer una denuncia de inseguridad
+    - ¿Cómo contacto a serenazgo por un problema de seguridad?
+- intent: despedida
+  examples: |
+    - Ya, gracias, me voy
+    - Adiós
+    - Listo, hasta pronto
+- intent: estado_reclamo
+  examples: |
+    - ¿Cuánto demora en resolverse un reclamo?
+    - ¿Cómo le hago seguimiento a mi reclamo?
+    - Quiero saber si ya respondieron mi queja
+- intent: estado_tramite
+  examples: |
+    - Presenté un documento, ¿cómo sé si ya lo revisaron?
+    - ¿Cómo rastreo mi expediente municipal?
+    - Necesito saber el estado de mi solicitud
+- intent: fraccionamiento_deuda
+  examples: |
+    - ¿Puedo fraccionar mi deuda tributaria?
+    - Quiero pagar mi deuda municipal en partes, ¿se puede?
+    - ¿Cómo hago un fraccionamiento de mi deuda predial?
+- intent: fuera_de_alcance
+  examples: |
+    - ¿Puedes ayudarme con mi tarea de matemáticas?
+    - ¿Qué hora es en Lima?
+    - ¿Me recomiendas un restaurante?
+- intent: hablar_con_persona
+  examples: |
+    - Quiero hablar con una persona
+    - ¿Me puedes pasar con un trabajador?
+    - Necesito hablar con alguien de la municipalidad
+- intent: horario_atencion_general
+  examples: |
+    - ¿Cuál es el horario de atención de la municipalidad?
+    - ¿A qué hora abren la municipalidad?
+    - ¿Hasta qué hora atienden en la MPSR?
+- intent: horario_mesa_partes
+  examples: |
+    - ¿Mesa de partes atiende los sábados?
+    - ¿Qué días atiende mesa de partes?
+    - ¿Cuál es el horario para presentar documentos?
+- intent: horario_recojo_basura
+  examples: |
+    - El camión de basura no pasó, ¿a qué hora viene?
+    - ¿Cómo sé el horario de recolección de residuos?
+    - ¿Qué días hay recojo de basura en mi barrio?
+- intent: impuesto_alcabala
+  examples: |
+    - ¿Qué es el impuesto de alcabala y cómo lo pago?
+    - Compré un terreno, ¿tengo que pagar alcabala?
+    - ¿Cómo tramito el pago de alcabala?
+- intent: inspeccion_tecnica
+  examples: |
+    - ¿Cómo solicito una inspección técnica de seguridad?
+    - Necesito que vengan a inspeccionar mi local
+    - ¿Qué pasos sigo para pedir una ITSE?
+- intent: libro_reclamaciones
+  examples: |
+    - ¿Dónde está el libro de reclamaciones?
+    - Quiero usar el libro de reclamaciones
+    - ¿Cómo accedo al libro de reclamaciones virtual?
+- intent: licencia_edificacion_costo
+  examples: |
+    - ¿A cuánto sale el trámite de licencia de edificación?
+    - ¿Qué precio tiene la licencia para construir?
+    - Quiero saber el monto de la licencia de obra
+- intent: licencia_edificacion_requisitos
+  examples: |
+    - Voy a ampliar mi casa, ¿qué papeles necesito?
+    - ¿Qué me piden para licenciar una construcción nueva?
+    - Para remodelar mi vivienda, ¿qué requisitos hay?
+- intent: licencia_funcionamiento_costo
+  examples: |
+    - ¿Cuánto cuesta la licencia de funcionamiento?
+    - ¿Cuál es el costo de la licencia de funcionamiento?
+    - ¿Cuánto tengo que pagar por la licencia de mi negocio?
+- intent: licencia_funcionamiento_plazo
+  examples: |
+    - ¿Cuándo estará lista mi licencia si la pido hoy?
+    - ¿Cuánto tarda en salir la licencia de mi negocio?
+    - ¿Cuántos días hábiles toma aprobar la licencia?
+- intent: licencia_funcionamiento_requisitos
+  examples: |
+    - Voy a abrir un negocio, ¿qué necesito para la licencia?
+    - Para aperturar mi local, ¿qué papeles me piden?
+    - ¿Qué se necesita para licenciar un negocio nuevo?
+- intent: limpieza_via_publica
+  examples: |
+    - ¿Cómo solicito limpieza de una calle?
+    - Mi calle está muy sucia, ¿cómo reporto?
+    - ¿Dónde pido el servicio de barrido de calles?
+- intent: mantenimiento_parques
+  examples: |
+    - Las áreas verdes de mi zona están descuidadas
+    - ¿Cómo pido que arreglen el parque de mi urbanización?
+    - Quiero reportar juegos rotos en el parque
+- intent: negar
+  examples: |
+    - No
+    - No es eso
+    - Para nada
+- intent: pago_arbitrios
+  examples: |
+    - ¿Cómo pago los arbitrios municipales?
+    - ¿Dónde cancelo mis arbitrios de limpieza pública?
+    - Quiero pagar mis arbitrios, ¿cómo hago?
+- intent: pago_predial_como
+  examples: |
+    - ¿Cómo pago mi impuesto predial?
+    - ¿Dónde puedo pagar el predial?
+    - ¿Qué formas de pago hay para el impuesto predial?
+- intent: partida_defuncion
+  examples: |
+    - ¿Dónde registro un fallecimiento?
+    - ¿Cómo saco copia de una partida de defunción?
+    - ¿Qué documentos necesito para inscribir una defunción?
+- intent: partida_matrimonio
+  examples: |
+    - ¿Cómo obtengo mi partida de matrimonio?
+    - Necesito una copia de mi partida de matrimonio
+    - ¿Dónde tramito mi partida de matrimonio?
+- intent: partida_nacimiento
+  examples: |
+    - Perdí mi partida de nacimiento, ¿cómo saco otra?
+    - ¿Qué requisitos piden para partida de nacimiento?
+    - Quiero una copia certificada de mi partida de nacimiento
+- intent: poda_arboles
+  examples: |
+    - ¿Cómo solicito la poda de un árbol?
+    - Hay un árbol que necesita poda frente a mi casa
+    - ¿Dónde pido el servicio de poda de árboles?
+- intent: presentar_reclamo
+  examples: |
+    - No estoy conforme con un trámite, ¿cómo reclamo?
+    - ¿Qué requisitos piden para presentar un reclamo?
+    - Necesito reclamar por un servicio municipal
+- intent: queja_atencion
+  examples: |
+    - Quiero quejarme de la atención que recibí
+    - El personal me atendió mal, ¿cómo reporto?
+    - Tengo una queja sobre el servicio de un trabajador
+- intent: rectificacion_partida
+  examples: |
+    - ¿Cómo rectifico un error en mi partida de nacimiento?
+    - Mi partida tiene un dato mal escrito, ¿cómo lo corrijo?
+    - ¿Qué trámite hago para rectificar una partida?
+- intent: redes_sociales_mpsr
+  examples: |
+    - ¿Cómo encuentro a la municipalidad en redes sociales?
+    - ¿Tienen página web oficial?
+    - ¿Dónde publican los comunicados oficiales?
+- intent: renovacion_licencia
+  examples: |
+    - ¿Qué necesito para renovar mi licencia vencida?
+    - Quiero actualizar mi licencia de funcionamiento, ¿cómo hago?
+    - ¿Cuáles son los pasos para renovar una licencia?
+- intent: repetir_informacion
+  examples: |
+    - ¿Me lo puedes volver a decir?
+    - Vuelve a enviarme esa información
+    - Repite la respuesta anterior, porfa
+- intent: reporte_alumbrado_publico
+  examples: |
+    - Hay un cable suelto en un poste, ¿a quién aviso?
+    - ¿Cómo reporto que una calle está sin luz?
+    - Necesito reportar un poste de alumbrado dañado
+- intent: requisitos_defensa_civil
+  examples: |
+    - ¿Qué requisitos piden para defensa civil?
+    - ¿Qué documentos necesito para el certificado de Defensa Civil?
+    - ¿Qué me piden para la inspección de seguridad?
+- intent: requisitos_generales
+  examples: |
+    - ¿Puedo hacer un trámite con copia de mi DNI?
+    - ¿Qué documentos básicos debo llevar siempre?
+    - ¿Necesito algo más aparte del DNI para trámites?
+- intent: requisitos_matrimonio_civil
+  examples: |
+    - ¿Cuánto cuesta el matrimonio civil en la municipalidad?
+    - ¿Cómo programo mi matrimonio civil?
+    - ¿Qué pasos sigo para casarme en la MPSR?
+- intent: requisitos_mesa_partes
+  examples: |
+    - Quiero presentar una solicitud, ¿qué necesito?
+    - ¿Cómo presento un documento a la municipalidad?
+    - ¿Qué formato debe tener mi solicitud para mesa de partes?
+- intent: saludo
+  examples: |
+    - Hola
+    - Buenos días
+    - Qué tal
+- intent: serenazgo_contacto
+  examples: |
+    - ¿Cuál es el número de serenazgo?
+    - ¿Cómo contacto a serenazgo?
+    - Necesito el teléfono de seguridad ciudadana
+- intent: sugerencia
+  examples: |
+    - Quiero dejar una sugerencia a la municipalidad
+    - ¿Cómo puedo sugerir una mejora?
+    - Tengo una idea para mejorar la atención municipal
+- intent: ubicacion_oficinas
+  examples: |
+    - ¿Dónde queda la municipalidad?
+    - ¿Cuál es la dirección de la MPSR?
+    - ¿Dónde están las oficinas de la municipalidad?

@@ -1,0 +1,44 @@
+{
+  "experimento": "EXP_BASELINE_SVM_S42_2026",
+  "fecha_ejecucion": "2026-10-01",
+  "corpus": "corpus_metadata.csv (324 utterances, 54 intenciones, 9 categorías)",
+  "seed": 42,
+  "split_sizes": {
+    "train": 162,
+    "validation": 81,
+    "test": 81
+  },
+  "vectorizador": {
+    "tipo": "TfidfVectorizer",
+    "max_features": 5000,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "grilla_C": [
+    {
+      "C": 0.1,
+      "f1_macro_validation": 0.288
+    },
+    {
+      "C": 1,
+      "f1_macro_validation": 0.2986
+    },
+    {
+      "C": 10,
+      "f1_macro_validation": 0.2923
+    }
+  ],
+  "mejor_C_por_validacion": 1,
+  "f1_macro_validacion_mejor_modelo": 0.2986,
+  "alternativa_logreg_f1_macro_validacion": 0.3074,
+  "metricas_test_final": {
+    "accuracy": 0.3827,
+    "precision_macro": 0.3559,
+    "recall_macro": 0.2793,
+    "f1_macro": 0.2975,
+    "balanced_accuracy": 0.3827
+  },
+  "nota": "EJECUCIÓN REAL sobre el corpus de arranque (324 utterances). No es el corpus final de la tesis -- los valores de F1 reportados aquí son preliminares y se espera que mejoren al ampliar el corpus con más ejemplos reales por intención, según lo documentado en la Sección 2.4 del protocolo."
+}

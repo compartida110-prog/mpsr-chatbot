@@ -1,0 +1,13 @@
+{
+  "total_utterances": 324,
+  "total_intents": 54,
+  "total_categories": 9,
+  "total_groups_base_phrase_id": 108,
+  "split_counts": {
+    "train": 162,
+    "validation": 81,
+    "test": 81
+  },
+  "leaks_detected": 0,
+  "seed": 42
+}

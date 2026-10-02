@@ -1,0 +1,34 @@
+{
+  "ADVERTENCIA": "SIMULACIÓN ILUSTRATIVA -- estos valores NO provienen de recolección de campo real. Generados para demostrar el funcionamiento del pipeline de análisis estadístico (P14) con parámetros plausibles de los antecedentes citados en el protocolo.",
+  "seed": 42,
+  "n": 30,
+  "tiempo_atencion": {
+    "variable": "Tiempo de atención (minutos)",
+    "n": 30,
+    "media_pre": 58.24,
+    "media_post": 20.9,
+    "diferencia_media": -37.34,
+    "shapiro_wilk_p": 0.1035,
+    "normalidad_cumplida": true,
+    "prueba_usada": "t de Student pareada",
+    "estadistico": -23.4831,
+    "p_value": 0.0,
+    "cohen_d": -4.287,
+    "decision_H0": "Se rechaza H0 (diferencia significativa)",
+    "pct_reduccion_promedio": 64.4
+  },
+  "satisfaccion": {
+    "variable": "Satisfacción (Likert 1-5)",
+    "n": 30,
+    "media_pre": 2.84,
+    "media_post": 3.96,
+    "diferencia_media": 1.13,
+    "shapiro_wilk_p": 0.1993,
+    "normalidad_cumplida": true,
+    "prueba_usada": "t de Student pareada",
+    "estadistico": 10.1063,
+    "p_value": 0.0,
+    "cohen_d": 1.845,
+    "decision_H0": "Se rechaza H0 (diferencia significativa)"
+  }
+}

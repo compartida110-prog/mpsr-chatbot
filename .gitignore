@@ -18,3 +18,5 @@ logs/**/train.log
 
 # Sistema
 .DS_Store
+logs/rasa_phase2_full.txt
+logs/*.bak

@@ -1,0 +1,43 @@
+                                    precision    recall  f1-score   support
+
+                           afirmar       0.00      0.00      0.00         0
+                    agradecimiento       0.67      0.67      0.67         3
+         certificado_defensa_civil       0.17      0.33      0.22         3
+           constancia_domiciliaria       1.00      0.33      0.50         3
+              constancia_no_adeudo       0.00      0.00      0.00         0
+            consulta_deuda_predial       0.50      0.33      0.40         3
+               contacto_telefonico       0.50      0.33      0.40         3
+                  costos_generales       0.75      1.00      0.86         3
+                         despedida       0.50      0.33      0.40         3
+                    estado_tramite       1.00      1.00      1.00         3
+             fraccionamiento_deuda       0.00      0.00      0.00         0
+                  fuera_de_alcance       0.00      0.00      0.00         3
+          horario_atencion_general       0.25      0.33      0.29         3
+               horario_mesa_partes       0.00      0.00      0.00         0
+             horario_recojo_basura       1.00      0.67      0.80         3
+                inspeccion_tecnica       0.00      0.00      0.00         3
+        licencia_edificacion_costo       0.00      0.00      0.00         3
+   licencia_edificacion_requisitos       0.00      0.00      0.00         0
+     licencia_funcionamiento_costo       0.00      0.00      0.00         3
+licencia_funcionamiento_requisitos       0.00      0.00      0.00         3
+             mantenimiento_parques       1.00      0.33      0.50         3
+                    pago_arbitrios       1.00      0.33      0.50         3
+                 pago_predial_como       0.00      0.00      0.00         0
+                 partida_defuncion       0.67      0.67      0.67         3
+                partida_nacimiento       0.75      1.00      0.86         3
+                 presentar_reclamo       0.50      0.33      0.40         3
+                    queja_atencion       0.00      0.00      0.00         0
+             rectificacion_partida       0.00      0.00      0.00         3
+               renovacion_licencia       0.50      0.33      0.40         3
+         reporte_alumbrado_publico       1.00      0.67      0.80         3
+          requisitos_defensa_civil       0.00      0.00      0.00         0
+              requisitos_generales       0.50      0.33      0.40         3
+       requisitos_matrimonio_civil       0.00      0.00      0.00         0
+            requisitos_mesa_partes       0.00      0.00      0.00         3
+                            saludo       0.00      0.00      0.00         0
+                serenazgo_contacto       0.67      0.67      0.67         3
+                ubicacion_oficinas       0.25      0.33      0.29         3
+
+                          accuracy                           0.38        81
+                         macro avg       0.36      0.28      0.30        81
+                      weighted avg       0.49      0.38      0.41        81

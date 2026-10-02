@@ -1,0 +1,168 @@
+version: '3.1'
+intents:
+- afirmar
+- agradecimiento
+- ayuda_chatbot
+- certificado_defensa_civil
+- certificado_posesion
+- constancia_domiciliaria
+- constancia_no_adeudo
+- consulta_deuda_predial
+- consulta_no_entendida
+- contacto_telefonico
+- copia_documento
+- costos_generales
+- denuncia_seguridad_ciudadana
+- despedida
+- estado_reclamo
+- estado_tramite
+- fraccionamiento_deuda
+- fuera_de_alcance
+- hablar_con_persona
+- horario_atencion_general
+- horario_mesa_partes
+- horario_recojo_basura
+- impuesto_alcabala
+- inspeccion_tecnica
+- libro_reclamaciones
+- licencia_edificacion_costo
+- licencia_edificacion_requisitos
+- licencia_funcionamiento_costo
+- licencia_funcionamiento_plazo
+- licencia_funcionamiento_requisitos
+- limpieza_via_publica
+- mantenimiento_parques
+- negar
+- pago_arbitrios
+- pago_predial_como
+- partida_defuncion
+- partida_matrimonio
+- partida_nacimiento
+- poda_arboles
+- presentar_reclamo
+- queja_atencion
+- rectificacion_partida
+- redes_sociales_mpsr
+- renovacion_licencia
+- repetir_informacion
+- reporte_alumbrado_publico
+- requisitos_defensa_civil
+- requisitos_generales
+- requisitos_matrimonio_civil
+- requisitos_mesa_partes
+- saludo
+- serenazgo_contacto
+- sugerencia
+- ubicacion_oficinas
+responses:
+  utter_certificado_defensa_civil:
+  - text: '[PENDIENTE] Respuesta real para ''certificado_defensa_civil'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_certificado_posesion:
+  - text: '[PENDIENTE] Respuesta real para ''certificado_posesion'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_constancia_domiciliaria:
+  - text: '[PENDIENTE] Respuesta real para ''constancia_domiciliaria'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_constancia_no_adeudo:
+  - text: '[PENDIENTE] Respuesta real para ''constancia_no_adeudo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_consulta_deuda_predial:
+  - text: '[PENDIENTE] Respuesta real para ''consulta_deuda_predial'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_contacto_telefonico:
+  - text: '[PENDIENTE] Respuesta real para ''contacto_telefonico'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_copia_documento:
+  - text: '[PENDIENTE] Respuesta real para ''copia_documento'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_costos_generales:
+  - text: '[PENDIENTE] Respuesta real para ''costos_generales'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_denuncia_seguridad_ciudadana:
+  - text: '[PENDIENTE] Respuesta real para ''denuncia_seguridad_ciudadana'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_estado_reclamo:
+  - text: '[PENDIENTE] Respuesta real para ''estado_reclamo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_estado_tramite:
+  - text: '[PENDIENTE] Respuesta real para ''estado_tramite'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_fraccionamiento_deuda:
+  - text: '[PENDIENTE] Respuesta real para ''fraccionamiento_deuda'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_horario_atencion_general:
+  - text: '[PENDIENTE] Respuesta real para ''horario_atencion_general'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_horario_mesa_partes:
+  - text: '[PENDIENTE] Respuesta real para ''horario_mesa_partes'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_horario_recojo_basura:
+  - text: '[PENDIENTE] Respuesta real para ''horario_recojo_basura'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_impuesto_alcabala:
+  - text: '[PENDIENTE] Respuesta real para ''impuesto_alcabala'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_inspeccion_tecnica:
+  - text: '[PENDIENTE] Respuesta real para ''inspeccion_tecnica'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_libro_reclamaciones:
+  - text: '[PENDIENTE] Respuesta real para ''libro_reclamaciones'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_licencia_edificacion_costo:
+  - text: '[PENDIENTE] Respuesta real para ''licencia_edificacion_costo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_licencia_edificacion_requisitos:
+  - text: '[PENDIENTE] Respuesta real para ''licencia_edificacion_requisitos'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_licencia_funcionamiento_costo:
+  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_costo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_licencia_funcionamiento_plazo:
+  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_plazo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_licencia_funcionamiento_requisitos:
+  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_requisitos'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_limpieza_via_publica:
+  - text: '[PENDIENTE] Respuesta real para ''limpieza_via_publica'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_mantenimiento_parques:
+  - text: '[PENDIENTE] Respuesta real para ''mantenimiento_parques'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_pago_arbitrios:
+  - text: '[PENDIENTE] Respuesta real para ''pago_arbitrios'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_pago_predial_como:
+  - text: '[PENDIENTE] Respuesta real para ''pago_predial_como'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_partida_defuncion:
+  - text: '[PENDIENTE] Respuesta real para ''partida_defuncion'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_partida_matrimonio:
+  - text: '[PENDIENTE] Respuesta real para ''partida_matrimonio'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_partida_nacimiento:
+  - text: '[PENDIENTE] Respuesta real para ''partida_nacimiento'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_poda_arboles:
+  - text: '[PENDIENTE] Respuesta real para ''poda_arboles'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_presentar_reclamo:
+  - text: '[PENDIENTE] Respuesta real para ''presentar_reclamo'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_queja_atencion:
+  - text: '[PENDIENTE] Respuesta real para ''queja_atencion'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_rectificacion_partida:
+  - text: '[PENDIENTE] Respuesta real para ''rectificacion_partida'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_redes_sociales_mpsr:
+  - text: '[PENDIENTE] Respuesta real para ''redes_sociales_mpsr'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_renovacion_licencia:
+  - text: '[PENDIENTE] Respuesta real para ''renovacion_licencia'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_reporte_alumbrado_publico:
+  - text: '[PENDIENTE] Respuesta real para ''reporte_alumbrado_publico'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_requisitos_defensa_civil:
+  - text: '[PENDIENTE] Respuesta real para ''requisitos_defensa_civil'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_requisitos_generales:
+  - text: '[PENDIENTE] Respuesta real para ''requisitos_generales'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_requisitos_matrimonio_civil:
+  - text: '[PENDIENTE] Respuesta real para ''requisitos_matrimonio_civil'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_requisitos_mesa_partes:
+  - text: '[PENDIENTE] Respuesta real para ''requisitos_mesa_partes'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_serenazgo_contacto:
+  - text: '[PENDIENTE] Respuesta real para ''serenazgo_contacto'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_sugerencia:
+  - text: '[PENDIENTE] Respuesta real para ''sugerencia'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_ubicacion_oficinas:
+  - text: '[PENDIENTE] Respuesta real para ''ubicacion_oficinas'' — completar con el texto oficial del TUPA/MPSR.'
+  utter_saludo:
+  - text: ¡Hola! Soy el asistente virtual de la MPSR. ¿En qué trámite te puedo ayudar hoy?
+  utter_despedida:
+  - text: ¡Gracias por tu consulta! Que tengas un buen día.
+  utter_agradecimiento:
+  - text: ¡Con gusto! ¿Hay algo más en lo que te pueda ayudar?
+  utter_fuera_de_alcance:
+  - text: Soy un asistente especializado en trámites de la MPSR, así que no puedo ayudarte con eso. ¿Tienes alguna consulta sobre un trámite municipal?
+  utter_hablar_con_persona:
+  - text: Entiendo. Puedes acercarte a la Plataforma de Atención al Ciudadano de la MPSR o llamar a nuestra central telefónica para hablar con un funcionario.
+  utter_ayuda_chatbot:
+  - text: Puedo ayudarte con consultas sobre licencias, tributos municipales, trámites documentarios, defensa civil, registro civil, servicios públicos, reclamos e información general de la MPSR.
+  utter_consulta_no_entendida:
+  - text: Disculpa, no entendí bien tu consulta. ¿Puedes reformularla, por favor?
+  utter_repetir_informacion:
+  - text: Claro, te repito la información anterior.
+  utter_afirmar:
+  - text: Perfecto, continuemos.
+  utter_negar:
+  - text: Entendido, dime en qué más te puedo ayudar.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
