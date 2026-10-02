@@ -1,0 +1,36 @@
+2026-10-02 16:10:36
+$ venv/Scripts/python.exe experiments/simular_P14_n120.py
+Filas cargadas desde el archivo de P01: 120
+Sujetos con datos completos de línea base (tiempo + P10): n=119
+
+=== RESULTADOS (línea base real-simulada n=120 + post-test simulado) ===
+
+--- Tiempo de atención (minutos) ---
+  n: 119
+  media_pre: 88.97
+  media_post: 33.26
+  diferencia_media: -55.71
+  shapiro_wilk_p: 0.0
+  normalidad_cumplida: False
+  prueba_usada: Wilcoxon (rangos con signo)
+  estadistico: 0.0
+  p_value: 2.8809188185621934e-21
+  cohen_d: -1.034
+  decision_H0: Se rechaza H0 (diferencia significativa)
+  pct_reduccion_promedio: 62.3
+
+--- Satisfacción (Likert 1-5) ---
+  n: 119
+  media_pre: 2.98
+  media_post: 4.0
+  diferencia_media: 1.02
+  shapiro_wilk_p: 0.0
+  normalidad_cumplida: False
+  prueba_usada: Wilcoxon (rangos con signo)
+  estadistico: 0.0
+  p_value: 1.009333982465855e-21
+  cohen_d: 1.954
+  decision_H0: Se rechaza H0 (diferencia significativa)
+
+Archivo guardado: SIMULACION_resultado_P14_n120.json
+exit=0

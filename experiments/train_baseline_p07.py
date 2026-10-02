@@ -99,7 +99,7 @@ print(report)
 output = {
     "experimento": "EXP_BASELINE_SVM_S42_2026",
     "fecha_ejecucion": "2026-10-01",
-    "corpus": "corpus_metadata.csv (324 utterances, 54 intenciones, 9 categorías)",
+    "corpus": f"corpus_metadata.csv ({len(rows)} utterances, {len({r['intent'] for r in rows})} intenciones, {len({r['category'] for r in rows})} categorías)",
     "seed": SEED,
     "split_sizes": {"train": len(train), "validation": len(val), "test": len(test)},
     "vectorizador": {"tipo": "TfidfVectorizer", "max_features": 5000, "ngram_range": [1, 2]},

@@ -1,0 +1,11 @@
+2026-10-02 17:38:28
+$ venv/Scripts/python.exe scripts/stats_analysis.py modelos
+COMPARACIÓN DE MÉTODOS EN TEST (P11) — media ± DE sobre semillas 10–50
+
+método                            accuracy     precision_macro        recall_macro            f1_macro   balanced_accuracy
+TF-IDF + SVM                 0.6420±0.0000       0.6635±0.0000       0.5417±0.0000       0.5621±0.0000       0.6420±0.0000   (n=5, F1≥0.85: no cumple)
+TF-IDF + LogReg              0.7531±0.0000       0.6856±0.0000       0.5648±0.0000       0.5919±0.0000       0.7531±0.0000   (n=5, F1≥0.85: no cumple)
+Rasa NLU / DIET              0.7704±0.0241       0.7068±0.0267       0.6157±0.0259       0.6335±0.0238       0.7704±0.0241   (n=5, F1≥0.85: no cumple)
+
+Guardado en logs/stats_modelos.txt
+exit=0

@@ -1,1 +1,3 @@
 utterance_id,issue_type,description,similarity_score,resolution
+U0018,casi_duplicado_otro_grupo,similar a U0020 (levenshtein); grupos licencia_funcionamiento_costo__b2/licencia_funcionamiento_costo__b3,0.964,fusionar base_phrase_id (--apply)
+U0002,casi_duplicado_otro_grupo,similar a U0008 (levenshtein); grupos licencia_funcionamiento_requisitos__b1/licencia_funcionamiento_requisitos__b3,0.953,fusionar base_phrase_id (--apply)

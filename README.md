@@ -16,16 +16,22 @@ TramiFácil. Este repositorio implementa el Protocolo Experimental V1.1 (ver `do
 
 ## Estado actual del corpus (P02–P05 ✅ generado — starter)
 
-Ya existe una primera versión programática del Corpus MPSR-Bot: **54 intenciones
-en 9 categorías, 324 utterances** (108 grupos de 2–3 paráfrasis cada uno),
-particionadas por `base_phrase_id` (semilla 42), con cobertura garantizada de
-las 54 intenciones en el split de entrenamiento.
+Versión actual (**v2**) del Corpus MPSR-Bot: **54 intenciones en 9 categorías,
+648 utterances** (216 grupos, 4 grupos de 3 paráfrasis por intención),
+particionadas por `base_phrase_id` (semilla 42) en 486/81/81, con 3 grupos por
+intención en train (9 ejemplos de entrenamiento por intención).
+
+| Versión | Utterances | Grupos/intención | Partición | Archivo |
+|---------|-----------|------------------|-----------|---------|
+| v1 | 324 | 2 | 162/81/81 | `corpus/historico/corpus_metadata_v1_324.csv` |
+| v2 (actual) | 648 | 4 | 486/81/81 | `corpus/corpus_metadata.csv` — generado con `experiments/expand_corpus.py` |
 
 ⚠️ **Importante**: el campo `source` de cada fila dice *"construcción manual
-(pendiente contrastar con TUPA oficial)"* — este es un corpus de arranque para
-poder avanzar con el pipeline técnico (P06–P11) mientras se gestiona el acceso
-al TUPA real de la MPSR y se amplía cada intención con más ejemplos (idealmente
-≥3 grupos/intención antes del entrenamiento final, no solo 2).
+(+ plantillas coloquiales) (pendiente contrastar con TUPA oficial)"* — es un
+corpus de arranque para avanzar con el pipeline técnico (P06–P11) mientras se
+gestiona el acceso al TUPA real de la MPSR. Los grupos 3 y 4 se generaron con
+plantillas compartidas, y la auditoría detecta una fuga train/test (ver
+`incident_log.csv`).
 
 ## Estructura del repositorio
 
@@ -36,10 +42,11 @@ mpsr-chatbot/
 ├── .gitignore
 ├── domain.yml                 54 intenciones + respuestas (placeholders por completar con texto real del TUPA)
 ├── corpus/                    Corpus MPSR-Bot y sus registros de auditoría/partición
-│   ├── corpus_metadata.csv    Inventario de las 324 utterances (P02)
+│   ├── corpus_metadata.csv    Inventario de las 648 utterances, corpus v2 (P02)
 │   ├── corpus_audit.csv       Registro de auditoría: duplicados, desbalance (P03)
 │   ├── dataset_split.csv      Partición train/validation/test (P05)
 │   ├── corpus_summary.json    Resumen: totales, distribución, verificación de fuga
+│   ├── historico/             Corpus v1 (324) y su partición; entrada de experiments/expand_corpus.py
 │   └── Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx   Línea base P01 SIMULADA (n=120)
 ├── configs/                   Configuraciones fijadas ANTES de entrenar
 │   ├── baseline_config.json   TF-IDF + SVM / regresión logística (P07)
@@ -47,13 +54,15 @@ mpsr-chatbot/
 │   └── jerga_local.csv        Diccionario de jerga local para la normalización (P06)
 ├── data/                      Archivos en formato Rasa
 │   ├── nlu.yml                SOLO el split "train" (lo que usa `rasa train`)
-│   ├── nlu_full.yml           Las 324 utterances completas (referencia/auditoría)
+│   ├── nlu_full.yml           Las 648 utterances completas (referencia/auditoría)
 │   ├── rules.yml              Mapeo 1 a 1 intención → respuesta (punto de partida)
 │   └── nlu_{train,validation,test}.yml   Generados por scripts/export_rasa_nlu.py (no editar)
 ├── scripts/                   Pipeline del protocolo (ver "Orden de ejecución")
 ├── experiments/               Corridas preliminares: baseline P07 y SIMULACIONES de P14
 ├── models/                    Modelos entrenados (no se versionan: pesados)
 ├── logs/                      Predicciones, métricas, configs y resúmenes por experimento (P10, P15)
+│   └── v1_corpus324/          Los mismos resultados para el corpus v1
+├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/)
 ├── docs/                      Protocolo V1.1, matriz, Ficha 2, Ficha de diagnóstico P01, Informe preliminar
 └── incident_log.csv           Bitácora de incidencias y desviaciones del protocolo (P16)
 ```
@@ -91,7 +100,7 @@ python -m rasa shell nlu                            # smoke test manual (P11.1)
 
 ## Flujo de trabajo (según el Protocolo V1.1)
 
-1. **Corpus** (P01–P05): ✅ generado (starter, 324 utterances). Pendiente:
+1. **Corpus** (P01–P05): ✅ generado (starter v2, 648 utterances). Pendiente:
    contrastar/ampliar con el TUPA real de la MPSR, y correr la auditoría
    (`scripts/audit_corpus.py`) sobre datos reales cuando se recolecten.
 2. **Baseline** (P07): entrenar TF-IDF + SVM con la grilla definida en
@@ -123,7 +132,8 @@ python -m rasa shell nlu                            # smoke test manual (P11.1)
 
 | Script | Qué hace | Resultado |
 |--------|----------|-----------|
-| `train_baseline_p07.py` | Baseline P07 real sobre el corpus starter (seed 42) | `resultado_baseline_P07.json` — F1 macro test = 0.2975 |
+| `expand_corpus.py` | Amplía el corpus v1 (324) a v2 (648) y lo re-particiona | `corpus/*`, `data/nlu.yml`, `data/nlu_full.yml` |
+| `train_baseline_p07.py` | Baseline P07 real sobre el corpus actual (seed 42) | `resultado_baseline_P07.json` — F1 macro test = 0.5614 (v2; v1: 0.2975) |
 | `simular_P14_n120.py` | P14 con línea base P01 simulada (xlsx, n=120) + post-test **SIMULADO** | `SIMULACION_resultado_P14_n120.json` |
 | `simular_analisis_p14.py` | P14 totalmente **SIMULADO** (versión anterior, n=30) | `SIMULACION_resultado_P14.json` |
 
@@ -164,16 +174,20 @@ responde la pregunta de control de la sección 3.2 del protocolo.
 `--eval-examples N` activa el early stopping de la sección 2.10
 (`evaluate_on_number_of_examples`, tomados de train).
 
-## Resultados preliminares (corpus starter, 2026-10-02)
+## Resultados preliminares (2026-10-02)
 
-| Método | Accuracy | F1 macro (test, semillas 10–50) | Criterio F1 ≥ 0.85 |
-|--------|----------|--------------------------------|--------------------|
-| TF-IDF + SVM (C=1) | 0.3827 | 0.2975 ± 0.0000 | No cumple |
-| TF-IDF + LogReg (C=1.0) | 0.4074 | 0.2961 ± 0.0000 | No cumple |
-| Rasa NLU / DIET (e150, b64, d50) | 0.5506 | 0.4134 ± 0.0400 | No cumple |
+F1 macro en test, media ± DE sobre las semillas 10–50 (criterio: F1 ≥ 0.85).
 
-Salida completa y captura de cada ejecución en [`evidencias/`](evidencias/README.md);
-desviaciones del protocolo en [`incident_log.csv`](incident_log.csv).
+| Método | Corpus v1 (324) | Corpus v2 (648, actual) | Criterio |
+|--------|-----------------|-------------------------|----------|
+| TF-IDF + SVM | 0.2975 ± 0.0000 (C=1) | 0.5621 ± 0.0000 (C=0.1) | No cumple |
+| TF-IDF + LogReg (C=1.0) | 0.2961 ± 0.0000 | 0.5919 ± 0.0000 | No cumple |
+| Rasa NLU / DIET | 0.4134 ± 0.0400 (e150, b64, d50) | **0.6335 ± 0.0238** (e200, b128, d20) | No cumple |
+
+Los resultados de v2 tienen una fuga train/test conocida y grupos generados con
+plantillas compartidas (ver `incident_log.csv`). `logs/` contiene las corridas
+de v2; las de v1 están en `logs/v1_corpus324/`. Salida completa y captura de cada
+ejecución en [`evidencias/`](evidencias/README.md).
 
 ## Reproducibilidad
 

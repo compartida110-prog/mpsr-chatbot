@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-144716-late-studio
+assistant_id: 20261002-170238-radioactive-papaya

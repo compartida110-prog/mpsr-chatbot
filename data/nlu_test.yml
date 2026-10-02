@@ -3,14 +3,14 @@ version: "3.1"
 nlu:
 - intent: agradecimiento
   examples: |
-    - gracias por la informacion
-    - muchas gracias
-    - gracias me ayudo bastante
+    - ok gracias
+    - perfecto muchas gracias
+    - gracias por tu ayuda
 - intent: certificado_defensa_civil
   examples: |
-    - como obtengo el certificado de defensa civil
-    - necesito mi certificado de defensa civil para mi local
-    - que requisitos piden para certificado de defensa civil
+    - disculpe donde consigo informacion sobre el certificado de defensa civil
+    - oiga que hay sobre el certificado de defensa civil
+    - necesitaria orientacion sobre el certificado de defensa civil
 - intent: constancia_domiciliaria
   examples: |
     - como saco una constancia domiciliaria
@@ -18,14 +18,14 @@ nlu:
     - que requisitos piden para constancia domiciliaria
 - intent: consulta_deuda_predial
   examples: |
-    - como consulto mi deuda del impuesto predial
-    - quiero saber cuanto debo de predial
-    - donde veo mi estado de cuenta del impuesto predial
+    - buenas me podria explicar mi deuda del impuesto predial
+    - quisiera saber mi deuda del impuesto predial
+    - usted me puede ayudar con mi deuda del impuesto predial
 - intent: contacto_telefonico
   examples: |
-    - cual es el telefono de la municipalidad
-    - como llamo a la mpsr
-    - necesito el numero de contacto de la municipalidad
+    - tienen un whatsapp de atencion
+    - cual es el correo de la municipalidad
+    - como me comunico con la mpsr por telefono
 - intent: costos_generales
   examples: |
     - donde veo los costos de los tramites municipales
@@ -38,24 +38,24 @@ nlu:
     - nos vemos
 - intent: estado_tramite
   examples: |
-    - como consulto el estado de mi tramite
-    - quiero saber en que va mi expediente
-    - donde veo el avance de mi solicitud
+    - presente un documento como se si ya lo revisaron
+    - como rastreo mi expediente municipal
+    - necesito saber el estado de mi solicitud
 - intent: fuera_de_alcance
   examples: |
-    - cual es el clima en juliaca hoy
-    - que equipo de futbol es mejor
-    - cuentame un chiste
+    - cual es la capital de francia
+    - me ayudas con mi tarea
+    - que partido juega hoy
 - intent: horario_atencion_general
   examples: |
-    - la municipalidad atiende los fines de semana
-    - que dias atiende la municipalidad
-    - cual es el horario de atencion al publico
+    - disculpe donde consigo informacion sobre el horario de atencion de la municipalidad
+    - oiga que hay sobre el horario de atencion de la municipalidad
+    - necesitaria orientacion sobre el horario de atencion de la municipalidad
 - intent: horario_recojo_basura
   examples: |
-    - a que hora pasa el carro de la basura
-    - cual es el horario de recojo de basura en mi zona
-    - que dias recogen la basura
+    - el camion de basura no paso a que hora viene
+    - como se el horario de recoleccion de residuos
+    - que dias hay recojo de basura en mi barrio
 - intent: inspeccion_tecnica
   examples: |
     - cuanto demora la inspeccion tecnica de mi negocio
@@ -63,29 +63,29 @@ nlu:
     - como programo una visita de defensa civil
 - intent: licencia_edificacion_costo
   examples: |
-    - cuanto cuesta la licencia de edificacion
-    - cual es el costo de licencia de construccion
-    - cuanto debo pagar para licenciar mi obra
+    - buenas me podria explicar el costo de la licencia de edificacion
+    - quisiera saber el costo de la licencia de edificacion
+    - usted me puede ayudar con el costo de la licencia de edificacion
 - intent: licencia_funcionamiento_costo
   examples: |
-    - a cuanto sale sacar la licencia para mi tienda
-    - que precio tiene tramitar la licencia de funcionamiento
-    - quisiera saber el monto de la licencia de funcionamiento
+    - buenas me podria explicar el costo de la licencia de funcionamiento
+    - quisiera saber el costo de la licencia de funcionamiento
+    - usted me puede ayudar con el costo de la licencia de funcionamiento
 - intent: licencia_funcionamiento_requisitos
   examples: |
-    - que requisitos necesito para sacar mi licencia de funcionamiento
-    - quiero saber los requisitos para la licencia de funcionamiento
-    - que documentos piden para licencia de funcionamiento de mi tienda
+    - disculpe donde consigo informacion sobre los requisitos para la licencia de funcionamiento
+    - oiga que hay sobre los requisitos para la licencia de funcionamiento
+    - necesitaria orientacion sobre los requisitos para la licencia de funcionamiento
 - intent: mantenimiento_parques
   examples: |
-    - como reporto el mal estado de un parque
-    - el parque de mi barrio necesita mantenimiento
-    - donde solicito arreglo de un parque publico
+    - las areas verdes de mi zona estan descuidadas
+    - como pido que arreglen el parque de mi urbanizacion
+    - quiero reportar juegos rotos en el parque
 - intent: pago_arbitrios
   examples: |
-    - cuanto debo de arbitrios este año
-    - que son los arbitrios y como los pago
-    - donde consulto mi deuda de arbitrios
+    - buenas me podria explicar como pagar los arbitrios municipales
+    - quisiera saber como pagar los arbitrios municipales
+    - usted me puede ayudar con como pagar los arbitrios municipales
 - intent: partida_defuncion
   examples: |
     - como tramito una partida de defuncion
@@ -93,9 +93,9 @@ nlu:
     - que requisitos piden para partida de defuncion
 - intent: partida_nacimiento
   examples: |
-    - como saco una copia de mi partida de nacimiento
-    - necesito mi partida de nacimiento
-    - donde tramito mi partida de nacimiento
+    - disculpe donde consigo informacion sobre mi partida de nacimiento
+    - oiga que hay sobre mi partida de nacimiento
+    - necesitaria orientacion sobre mi partida de nacimiento
 - intent: presentar_reclamo
   examples: |
     - como presento un reclamo a la municipalidad
@@ -103,24 +103,24 @@ nlu:
     - donde registro una queja contra la municipalidad
 - intent: rectificacion_partida
   examples: |
-    - necesito corregir mi apellido en la partida
-    - donde solicito la rectificacion de una partida civil
-    - que requisitos piden para rectificar un acta
+    - disculpe donde consigo informacion sobre la rectificacion de una partida
+    - oiga que hay sobre la rectificacion de una partida
+    - necesitaria orientacion sobre la rectificacion de una partida
 - intent: renovacion_licencia
   examples: |
-    - como renuevo mi licencia de funcionamiento
-    - se me vencio mi licencia como la renuevo
-    - que tramite hago para renovar la licencia de mi negocio
+    - que necesito para renovar mi licencia vencida
+    - quiero actualizar mi licencia de funcionamiento como hago
+    - cuales son los pasos para renovar una licencia
 - intent: reporte_alumbrado_publico
   examples: |
-    - un poste de luz esta malogrado como reporto
-    - quiero reportar un foco publico que no enciende
-    - donde reporto una falla de alumbrado publico
+    - hay un cable suelto en un poste a quien aviso
+    - como reporto que una calle esta sin luz
+    - necesito reportar un poste de alumbrado dañado
 - intent: requisitos_generales
   examples: |
-    - que documento de identidad piden para hacer tramites
-    - necesito llevar mi dni para cualquier tramite
-    - que requisitos generales piden en la municipalidad
+    - disculpe donde consigo informacion sobre los requisitos generales para hacer un tramite
+    - oiga que hay sobre los requisitos generales para hacer un tramite
+    - necesitaria orientacion sobre los requisitos generales para hacer un tramite
 - intent: requisitos_mesa_partes
   examples: |
     - que requisitos piden en mesa de partes
@@ -128,9 +128,9 @@ nlu:
     - que papeles debo llevar a mesa de partes
 - intent: serenazgo_contacto
   examples: |
-    - serenazgo atiende las 24 horas
-    - donde queda la oficina de serenazgo
-    - como pido apoyo de serenazgo
+    - cual es el numero de serenazgo
+    - como contacto a serenazgo
+    - necesito el telefono de seguridad ciudadana
 - intent: ubicacion_oficinas
   examples: |
     - como llego a la municipalidad de san roman

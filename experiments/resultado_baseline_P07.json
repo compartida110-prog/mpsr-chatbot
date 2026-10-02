@@ -1,10 +1,10 @@
 {
   "experimento": "EXP_BASELINE_SVM_S42_2026",
   "fecha_ejecucion": "2026-10-01",
-  "corpus": "corpus_metadata.csv (324 utterances, 54 intenciones, 9 categorías)",
+  "corpus": "corpus_metadata.csv (648 utterances, 54 intenciones, 9 categorías)",
   "seed": 42,
   "split_sizes": {
-    "train": 162,
+    "train": 486,
     "validation": 81,
     "test": 81
   },
@@ -19,26 +19,26 @@
   "grilla_C": [
     {
       "C": 0.1,
-      "f1_macro_validation": 0.288
+      "f1_macro_validation": 0.6303
     },
     {
       "C": 1,
-      "f1_macro_validation": 0.2986
+      "f1_macro_validation": 0.6179
     },
     {
       "C": 10,
-      "f1_macro_validation": 0.2923
+      "f1_macro_validation": 0.5829
     }
   ],
-  "mejor_C_por_validacion": 1,
-  "f1_macro_validacion_mejor_modelo": 0.2986,
-  "alternativa_logreg_f1_macro_validacion": 0.3074,
+  "mejor_C_por_validacion": 0.1,
+  "f1_macro_validacion_mejor_modelo": 0.6303,
+  "alternativa_logreg_f1_macro_validacion": 0.5894,
   "metricas_test_final": {
-    "accuracy": 0.3827,
-    "precision_macro": 0.3559,
-    "recall_macro": 0.2793,
-    "f1_macro": 0.2975,
-    "balanced_accuracy": 0.3827
+    "accuracy": 0.642,
+    "precision_macro": 0.6631,
+    "recall_macro": 0.5417,
+    "f1_macro": 0.5614,
+    "balanced_accuracy": 0.642
   },
   "nota": "EJECUCIÓN REAL sobre el corpus de arranque (324 utterances). No es el corpus final de la tesis -- los valores de F1 reportados aquí son preliminares y se espera que mejoren al ampliar el corpus con más ejemplos reales por intención, según lo documentado en la Sección 2.4 del protocolo."
 }

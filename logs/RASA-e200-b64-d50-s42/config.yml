@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-144547-primordial-embed
+assistant_id: 20261002-165050-loyal-drill

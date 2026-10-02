@@ -1,0 +1,30 @@
+{
+  "experiment_id": "BASE-SVM-C0.1-s42",
+  "evaluated_on": "validation",
+  "seed": 42,
+  "metrics": {
+    "accuracy": 0.41975308641975306,
+    "precision_macro": 0.38484848484848483,
+    "recall_macro": 0.25757575757575757,
+    "f1_macro": 0.2852272727272727,
+    "balanced_accuracy": 0.41975308641975306
+  },
+  "n_evaluated": 81,
+  "config": {
+    "model": "svm",
+    "C": 0.1,
+    "vectorizer": {
+      "type": "TfidfVectorizer",
+      "max_features": 5000,
+      "ngram_range": [
+        1,
+        2
+      ]
+    }
+  },
+  "corpus_file": "corpus\\corpus_metadata.csv",
+  "corpus_sha256": "665e9e4c679669e50f69c64ba55862c78528b53c84d7d41e204cf237b2562470",
+  "git_commit": "7042312",
+  "timestamp": "2026-10-02T14:39:41",
+  "python": "3.10.11"
+}

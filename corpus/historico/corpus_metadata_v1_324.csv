@@ -1,0 +1,325 @@
+utterance_id,text,intent,category,source,base_phrase_id,split
+U0001,¿Qué requisitos necesito para sacar mi licencia de funcionamiento?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b1,test
+U0002,Quiero saber los requisitos para la licencia de funcionamiento,licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b1,test
+U0003,¿Qué documentos piden para licencia de funcionamiento de mi tienda?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b1,test
+U0004,"Voy a abrir un negocio, ¿qué necesito para la licencia?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b2,train
+U0005,"Para aperturar mi local, ¿qué papeles me piden?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b2,train
+U0006,¿Qué se necesita para licenciar un negocio nuevo?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_requisitos__b2,train
+U0007,¿Cuánto cuesta la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b1,train
+U0008,¿Cuál es el costo de la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b1,train
+U0009,¿Cuánto tengo que pagar por la licencia de mi negocio?,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b1,train
+U0010,¿A cuánto sale sacar la licencia para mi tienda?,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b2,test
+U0011,¿Qué precio tiene tramitar la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b2,test
+U0012,Quisiera saber el monto de la licencia de funcionamiento,licencia_funcionamiento_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_costo__b2,test
+U0013,¿En cuánto tiempo me dan la licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b1,validation
+U0014,¿Cuántos días demora el trámite de licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b1,validation
+U0015,¿Cuál es el plazo de atención para la licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b1,validation
+U0016,¿Cuándo estará lista mi licencia si la pido hoy?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b2,train
+U0017,¿Cuánto tarda en salir la licencia de mi negocio?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b2,train
+U0018,¿Cuántos días hábiles toma aprobar la licencia?,licencia_funcionamiento_plazo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_funcionamiento_plazo__b2,train
+U0019,¿Qué requisitos piden para la licencia de edificación?,licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b1,validation
+U0020,"Quiero construir, ¿qué necesito para la licencia de edificación?",licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b1,validation
+U0021,¿Qué documentos se necesitan para licencia de construcción?,licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b1,validation
+U0022,"Voy a ampliar mi casa, ¿qué papeles necesito?",licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b2,train
+U0023,¿Qué me piden para licenciar una construcción nueva?,licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b2,train
+U0024,"Para remodelar mi vivienda, ¿qué requisitos hay?",licencia_edificacion_requisitos,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_requisitos__b2,train
+U0025,¿Cuánto cuesta la licencia de edificación?,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b1,test
+U0026,¿Cuál es el costo de licencia de construcción?,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b1,test
+U0027,¿Cuánto debo pagar para licenciar mi obra?,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b1,test
+U0028,¿A cuánto sale el trámite de licencia de edificación?,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b2,train
+U0029,¿Qué precio tiene la licencia para construir?,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b2,train
+U0030,Quiero saber el monto de la licencia de obra,licencia_edificacion_costo,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),licencia_edificacion_costo__b2,train
+U0031,¿Cómo renuevo mi licencia de funcionamiento?,renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b1,test
+U0032,"Se me venció mi licencia, ¿cómo la renuevo?",renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b1,test
+U0033,¿Qué trámite hago para renovar la licencia de mi negocio?,renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b1,test
+U0034,¿Qué necesito para renovar mi licencia vencida?,renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b2,train
+U0035,"Quiero actualizar mi licencia de funcionamiento, ¿cómo hago?",renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b2,train
+U0036,¿Cuáles son los pasos para renovar una licencia?,renovacion_licencia,Licencias y autorizaciones,construcción manual (pendiente contrastar con TUPA oficial),renovacion_licencia__b2,train
+U0037,¿Cómo consulto mi deuda del impuesto predial?,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b1,test
+U0038,Quiero saber cuánto debo de predial,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b1,test
+U0039,¿Dónde veo mi estado de cuenta del impuesto predial?,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b1,test
+U0040,¿Tengo deuda pendiente de autoavalúo?,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b2,train
+U0041,¿Cómo sé si debo predial de este año?,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b2,train
+U0042,Quisiera revisar mi deuda de impuesto predial,consulta_deuda_predial,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),consulta_deuda_predial__b2,train
+U0043,¿Cómo pago mi impuesto predial?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b1,train
+U0044,¿Dónde puedo pagar el predial?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b1,train
+U0045,¿Qué formas de pago hay para el impuesto predial?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b1,train
+U0046,¿Puedo pagar mi predial por internet?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b2,validation
+U0047,¿Cómo cancelo el autoavalúo de mi casa?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b2,validation
+U0048,¿Qué opciones tengo para pagar predial?,pago_predial_como,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_predial_como__b2,validation
+U0049,¿Cómo pago los arbitrios municipales?,pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b1,train
+U0050,¿Dónde cancelo mis arbitrios de limpieza pública?,pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b1,train
+U0051,"Quiero pagar mis arbitrios, ¿cómo hago?",pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b1,train
+U0052,¿Cuánto debo de arbitrios este año?,pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b2,test
+U0053,¿Qué son los arbitrios y cómo los pago?,pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b2,test
+U0054,¿Dónde consulto mi deuda de arbitrios?,pago_arbitrios,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),pago_arbitrios__b2,test
+U0055,¿Qué es el impuesto de alcabala y cómo lo pago?,impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b1,train
+U0056,"Compré un terreno, ¿tengo que pagar alcabala?",impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b1,train
+U0057,¿Cómo tramito el pago de alcabala?,impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b1,train
+U0058,¿Cuánto es el impuesto de alcabala por mi compra?,impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b2,validation
+U0059,¿Dónde pago el impuesto de alcabala?,impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b2,validation
+U0060,Necesito información sobre el impuesto de alcabala,impuesto_alcabala,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),impuesto_alcabala__b2,validation
+U0061,¿Puedo fraccionar mi deuda tributaria?,fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b1,train
+U0062,"Quiero pagar mi deuda municipal en partes, ¿se puede?",fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b1,train
+U0063,¿Cómo hago un fraccionamiento de mi deuda predial?,fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b1,train
+U0064,"Debo varios años de predial, ¿puedo pagar en cuotas?",fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b2,validation
+U0065,¿Qué requisitos piden para fraccionar una deuda?,fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b2,validation
+U0066,¿Dónde solicito el fraccionamiento de mi deuda?,fraccionamiento_deuda,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),fraccionamiento_deuda__b2,validation
+U0067,¿Cómo saco mi constancia de no adeudo?,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b1,validation
+U0068,Necesito un certificado de que no debo nada a la municipalidad,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b1,validation
+U0069,¿Dónde tramito la constancia de no adeudo?,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b1,validation
+U0070,Quiero un documento que diga que estoy al día en mis pagos,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b2,train
+U0071,¿Cómo obtengo una constancia de no adeudo municipal?,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b2,train
+U0072,Necesito comprobar que no tengo deudas con la MPSR,constancia_no_adeudo,Tributos y pagos municipales,construcción manual (pendiente contrastar con TUPA oficial),constancia_no_adeudo__b2,train
+U0073,¿Qué requisitos piden en mesa de partes?,requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b1,test
+U0074,¿Qué necesito para presentar un documento en mesa de partes?,requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b1,test
+U0075,¿Qué papeles debo llevar a mesa de partes?,requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b1,test
+U0076,"Quiero presentar una solicitud, ¿qué necesito?",requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b2,train
+U0077,¿Cómo presento un documento a la municipalidad?,requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b2,train
+U0078,¿Qué formato debe tener mi solicitud para mesa de partes?,requisitos_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),requisitos_mesa_partes__b2,train
+U0079,¿Cómo consulto el estado de mi trámite?,estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b1,test
+U0080,Quiero saber en qué va mi expediente,estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b1,test
+U0081,¿Dónde veo el avance de mi solicitud?,estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b1,test
+U0082,"Presenté un documento, ¿cómo sé si ya lo revisaron?",estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b2,train
+U0083,¿Cómo rastreo mi expediente municipal?,estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b2,train
+U0084,Necesito saber el estado de mi solicitud,estado_tramite,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),estado_tramite__b2,train
+U0085,¿Cuál es el horario de atención de mesa de partes?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b1,validation
+U0086,¿A qué hora abre mesa de partes?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b1,validation
+U0087,¿Hasta qué hora atienden en mesa de partes?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b1,validation
+U0088,¿Mesa de partes atiende los sábados?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b2,train
+U0089,¿Qué días atiende mesa de partes?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b2,train
+U0090,¿Cuál es el horario para presentar documentos?,horario_mesa_partes,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),horario_mesa_partes__b2,train
+U0091,¿Cómo saco una copia certificada de mi expediente?,copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b1,validation
+U0092,Necesito una copia de un documento que presenté,copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b1,validation
+U0093,¿Dónde pido copias de mis trámites anteriores?,copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b1,validation
+U0094,"Perdí mi copia, ¿cómo consigo otra?",copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b2,train
+U0095,¿Puedo pedir copia certificada de una resolución?,copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b2,train
+U0096,¿Qué costo tiene una copia certificada?,copia_documento,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),copia_documento__b2,train
+U0097,¿Cómo tramito un certificado de posesión?,certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b1,validation
+U0098,Necesito un certificado de posesión de mi terreno,certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b1,validation
+U0099,¿Qué requisitos piden para certificado de posesión?,certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b1,validation
+U0100,"Quiero formalizar la posesión de mi lote, ¿qué hago?",certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b2,train
+U0101,¿Dónde solicito constancia de posesión?,certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b2,train
+U0102,¿Cuánto demora el certificado de posesión?,certificado_posesion,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),certificado_posesion__b2,train
+U0103,¿Cómo saco una constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b1,test
+U0104,Necesito un certificado de domicilio,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b1,test
+U0105,¿Qué requisitos piden para constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b1,test
+U0106,¿Dónde tramito mi constancia de residencia?,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b2,train
+U0107,Quiero un documento que acredite dónde vivo,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b2,train
+U0108,¿Cuánto cuesta la constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,construcción manual (pendiente contrastar con TUPA oficial),constancia_domiciliaria__b2,train
+U0109,¿Cómo obtengo el certificado de defensa civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b1,test
+U0110,Necesito mi certificado de Defensa Civil para mi local,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b1,test
+U0111,¿Qué requisitos piden para certificado de Defensa Civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b1,test
+U0112,Quiero sacar el ITSE para mi negocio,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b2,train
+U0113,¿Cómo tramito mi certificado de seguridad en edificación?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b2,train
+U0114,¿Dónde solicito la inspección de Defensa Civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),certificado_defensa_civil__b2,train
+U0115,¿Cómo solicito una inspección técnica de seguridad?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b1,train
+U0116,Necesito que vengan a inspeccionar mi local,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b1,train
+U0117,¿Qué pasos sigo para pedir una ITSE?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b1,train
+U0118,¿Cuánto demora la inspección técnica de mi negocio?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b2,test
+U0119,¿Quién hace la inspección de seguridad en edificaciones?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b2,test
+U0120,¿Cómo programo una visita de Defensa Civil?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),inspeccion_tecnica__b2,test
+U0121,¿Qué requisitos piden para defensa civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b1,train
+U0122,¿Qué documentos necesito para el certificado de Defensa Civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b1,train
+U0123,¿Qué me piden para la inspección de seguridad?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b1,train
+U0124,"Para mi local comercial, ¿qué necesito de Defensa Civil?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b2,validation
+U0125,¿Qué papeles debo presentar para ITSE?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b2,validation
+U0126,¿Cuáles son los requisitos de seguridad para mi tienda?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),requisitos_defensa_civil__b2,validation
+U0127,Quiero reportar un problema de seguridad en mi barrio,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b1,validation
+U0128,¿Cómo denuncio algo sospechoso a seguridad ciudadana?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b1,validation
+U0129,Necesito reportar un robo en mi zona,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b1,validation
+U0130,¿A quién llamo si veo algo raro en la calle?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b2,train
+U0131,Quiero hacer una denuncia de inseguridad,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b2,train
+U0132,¿Cómo contacto a serenazgo por un problema de seguridad?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),denuncia_seguridad_ciudadana__b2,train
+U0133,¿Cuál es el número de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b1,train
+U0134,¿Cómo contacto a serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b1,train
+U0135,Necesito el teléfono de seguridad ciudadana,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b1,train
+U0136,¿Serenazgo atiende las 24 horas?,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b2,test
+U0137,¿Dónde queda la oficina de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b2,test
+U0138,¿Cómo pido apoyo de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,construcción manual (pendiente contrastar con TUPA oficial),serenazgo_contacto__b2,test
+U0139,¿Cómo saco una copia de mi partida de nacimiento?,partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b1,test
+U0140,Necesito mi partida de nacimiento,partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b1,test
+U0141,¿Dónde tramito mi partida de nacimiento?,partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b1,test
+U0142,"Perdí mi partida de nacimiento, ¿cómo saco otra?",partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b2,train
+U0143,¿Qué requisitos piden para partida de nacimiento?,partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b2,train
+U0144,Quiero una copia certificada de mi partida de nacimiento,partida_nacimiento,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_nacimiento__b2,train
+U0145,¿Cómo obtengo mi partida de matrimonio?,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b1,train
+U0146,Necesito una copia de mi partida de matrimonio,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b1,train
+U0147,¿Dónde tramito mi partida de matrimonio?,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b1,train
+U0148,¿Qué requisitos piden para partida de matrimonio?,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b2,validation
+U0149,Quiero un certificado de mi matrimonio civil,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b2,validation
+U0150,¿Cuánto cuesta la partida de matrimonio?,partida_matrimonio,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_matrimonio__b2,validation
+U0151,¿Cómo tramito una partida de defunción?,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b1,test
+U0152,Necesito el certificado de defunción de un familiar,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b1,test
+U0153,¿Qué requisitos piden para partida de defunción?,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b1,test
+U0154,¿Dónde registro un fallecimiento?,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b2,train
+U0155,¿Cómo saco copia de una partida de defunción?,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b2,train
+U0156,¿Qué documentos necesito para inscribir una defunción?,partida_defuncion,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),partida_defuncion__b2,train
+U0157,¿Cómo rectifico un error en mi partida de nacimiento?,rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b1,train
+U0158,"Mi partida tiene un dato mal escrito, ¿cómo lo corrijo?",rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b1,train
+U0159,¿Qué trámite hago para rectificar una partida?,rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b1,train
+U0160,Necesito corregir mi apellido en la partida,rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b2,test
+U0161,¿Dónde solicito la rectificación de una partida civil?,rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b2,test
+U0162,¿Qué requisitos piden para rectificar un acta?,rectificacion_partida,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),rectificacion_partida__b2,test
+U0163,¿Qué requisitos piden para matrimonio civil?,requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b1,validation
+U0164,"Quiero casarme por civil, ¿qué necesito?",requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b1,validation
+U0165,¿Qué documentos piden para matrimonio municipal?,requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b1,validation
+U0166,¿Cuánto cuesta el matrimonio civil en la municipalidad?,requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b2,train
+U0167,¿Cómo programo mi matrimonio civil?,requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b2,train
+U0168,¿Qué pasos sigo para casarme en la MPSR?,requisitos_matrimonio_civil,Registro civil,construcción manual (pendiente contrastar con TUPA oficial),requisitos_matrimonio_civil__b2,train
+U0169,¿A qué hora pasa el carro de la basura?,horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b1,test
+U0170,¿Cuál es el horario de recojo de basura en mi zona?,horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b1,test
+U0171,¿Qué días recogen la basura?,horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b1,test
+U0172,"El camión de basura no pasó, ¿a qué hora viene?",horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b2,train
+U0173,¿Cómo sé el horario de recolección de residuos?,horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b2,train
+U0174,¿Qué días hay recojo de basura en mi barrio?,horario_recojo_basura,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),horario_recojo_basura__b2,train
+U0175,"Un poste de luz está malogrado, ¿cómo reporto?",reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b1,test
+U0176,Quiero reportar un foco público que no enciende,reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b1,test
+U0177,¿Dónde reporto una falla de alumbrado público?,reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b1,test
+U0178,"Hay un cable suelto en un poste, ¿a quién aviso?",reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b2,train
+U0179,¿Cómo reporto que una calle está sin luz?,reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b2,train
+U0180,Necesito reportar un poste de alumbrado dañado,reporte_alumbrado_publico,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),reporte_alumbrado_publico__b2,train
+U0181,¿Cómo reporto el mal estado de un parque?,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b1,test
+U0182,El parque de mi barrio necesita mantenimiento,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b1,test
+U0183,¿Dónde solicito arreglo de un parque público?,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b1,test
+U0184,Las áreas verdes de mi zona están descuidadas,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b2,train
+U0185,¿Cómo pido que arreglen el parque de mi urbanización?,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b2,train
+U0186,Quiero reportar juegos rotos en el parque,mantenimiento_parques,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),mantenimiento_parques__b2,train
+U0187,¿Cómo solicito la poda de un árbol?,poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b1,train
+U0188,Hay un árbol que necesita poda frente a mi casa,poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b1,train
+U0189,¿Dónde pido el servicio de poda de árboles?,poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b1,train
+U0190,"Un árbol está muy crecido y es peligroso, ¿cómo reporto?",poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b2,validation
+U0191,¿Cómo pido que corten las ramas de un árbol público?,poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b2,validation
+U0192,Necesito solicitar poda municipal,poda_arboles,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),poda_arboles__b2,validation
+U0193,¿Cómo solicito limpieza de una calle?,limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b1,train
+U0194,"Mi calle está muy sucia, ¿cómo reporto?",limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b1,train
+U0195,¿Dónde pido el servicio de barrido de calles?,limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b1,train
+U0196,"Hay basura acumulada en mi cuadra, ¿a quién aviso?",limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b2,validation
+U0197,¿Cómo pido limpieza pública para mi zona?,limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b2,validation
+U0198,Quiero reportar una vía pública descuidada,limpieza_via_publica,Servicios públicos,construcción manual (pendiente contrastar con TUPA oficial),limpieza_via_publica__b2,validation
+U0199,¿Cómo presento un reclamo a la municipalidad?,presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b1,test
+U0200,Quiero hacer un reclamo formal,presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b1,test
+U0201,¿Dónde registro una queja contra la municipalidad?,presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b1,test
+U0202,"No estoy conforme con un trámite, ¿cómo reclamo?",presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b2,train
+U0203,¿Qué requisitos piden para presentar un reclamo?,presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b2,train
+U0204,Necesito reclamar por un servicio municipal,presentar_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),presentar_reclamo__b2,train
+U0205,¿Cómo consulto el estado de mi reclamo?,estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b1,validation
+U0206,"Presenté un reclamo, ¿cómo sé si lo atendieron?",estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b1,validation
+U0207,¿Dónde veo la respuesta a mi queja?,estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b1,validation
+U0208,¿Cuánto demora en resolverse un reclamo?,estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b2,train
+U0209,¿Cómo le hago seguimiento a mi reclamo?,estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b2,train
+U0210,Quiero saber si ya respondieron mi queja,estado_reclamo,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),estado_reclamo__b2,train
+U0211,¿Dónde está el libro de reclamaciones?,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b1,train
+U0212,Quiero usar el libro de reclamaciones,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b1,train
+U0213,¿Cómo accedo al libro de reclamaciones virtual?,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b1,train
+U0214,¿Puedo reclamar por el libro de reclamaciones online?,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b2,validation
+U0215,¿Cómo lleno el libro de reclamaciones?,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b2,validation
+U0216,Necesito el libro de reclamaciones para una queja,libro_reclamaciones,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),libro_reclamaciones__b2,validation
+U0217,Quiero quejarme de la atención que recibí,queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b1,train
+U0218,"El personal me atendió mal, ¿cómo reporto?",queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b1,train
+U0219,Tengo una queja sobre el servicio de un trabajador,queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b1,train
+U0220,"No me atendieron bien en ventanilla, ¿a dónde reclamo?",queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b2,validation
+U0221,Quiero reportar mala atención en mesa de partes,queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b2,validation
+U0222,¿Cómo reporto una queja sobre un funcionario?,queja_atencion,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),queja_atencion__b2,validation
+U0223,Quiero dejar una sugerencia a la municipalidad,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b1,train
+U0224,¿Cómo puedo sugerir una mejora?,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b1,train
+U0225,Tengo una idea para mejorar la atención municipal,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b1,train
+U0226,¿Dónde dejo mis comentarios sobre el servicio?,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b2,validation
+U0227,Quiero proponer una mejora a un trámite,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b2,validation
+U0228,¿Cómo envío una sugerencia a la MPSR?,sugerencia,Reclamos y quejas,construcción manual (pendiente contrastar con TUPA oficial),sugerencia__b2,validation
+U0229,¿Cuál es el horario de atención de la municipalidad?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b1,train
+U0230,¿A qué hora abren la municipalidad?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b1,train
+U0231,¿Hasta qué hora atienden en la MPSR?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b1,train
+U0232,¿La municipalidad atiende los fines de semana?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b2,test
+U0233,¿Qué días atiende la municipalidad?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b2,test
+U0234,¿Cuál es el horario de atención al público?,horario_atencion_general,Información general,construcción manual (pendiente contrastar con TUPA oficial),horario_atencion_general__b2,test
+U0235,¿Dónde queda la municipalidad?,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b1,train
+U0236,¿Cuál es la dirección de la MPSR?,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b1,train
+U0237,¿Dónde están las oficinas de la municipalidad?,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b1,train
+U0238,¿Cómo llego a la municipalidad de San Román?,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b2,test
+U0239,¿En qué parte de Juliaca está la municipalidad?,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b2,test
+U0240,Necesito la ubicación exacta del palacio municipal,ubicacion_oficinas,Información general,construcción manual (pendiente contrastar con TUPA oficial),ubicacion_oficinas__b2,test
+U0241,¿Qué documento de identidad piden para hacer trámites?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b1,test
+U0242,¿Necesito llevar mi DNI para cualquier trámite?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b1,test
+U0243,¿Qué requisitos generales piden en la municipalidad?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b1,test
+U0244,¿Puedo hacer un trámite con copia de mi DNI?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b2,train
+U0245,¿Qué documentos básicos debo llevar siempre?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b2,train
+U0246,¿Necesito algo más aparte del DNI para trámites?,requisitos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),requisitos_generales__b2,train
+U0247,¿Dónde veo los costos de los trámites municipales?,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b1,test
+U0248,¿Cuánto cuestan los trámites en general?,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b1,test
+U0249,¿Dónde está el tupa con los precios de trámites?,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b1,test
+U0250,Quiero saber cuánto cuesta cada trámite,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b2,train
+U0251,¿Hay una lista de precios de trámites municipales?,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b2,train
+U0252,¿Dónde consulto las tasas municipales?,costos_generales,Información general,construcción manual (pendiente contrastar con TUPA oficial),costos_generales__b2,train
+U0253,¿Cuál es el teléfono de la municipalidad?,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b1,test
+U0254,¿Cómo llamo a la MPSR?,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b1,test
+U0255,Necesito el número de contacto de la municipalidad,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b1,test
+U0256,¿Tienen un WhatsApp de atención?,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b2,train
+U0257,¿Cuál es el correo de la municipalidad?,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b2,train
+U0258,¿Cómo me comunico con la MPSR por teléfono?,contacto_telefonico,Información general,construcción manual (pendiente contrastar con TUPA oficial),contacto_telefonico__b2,train
+U0259,¿Cuál es el Facebook de la municipalidad?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b1,validation
+U0260,¿Tienen redes sociales donde informan trámites?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b1,validation
+U0261,¿Dónde sigo las noticias de la MPSR?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b1,validation
+U0262,¿Cómo encuentro a la municipalidad en redes sociales?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b2,train
+U0263,¿Tienen página web oficial?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b2,train
+U0264,¿Dónde publican los comunicados oficiales?,redes_sociales_mpsr,Información general,construcción manual (pendiente contrastar con TUPA oficial),redes_sociales_mpsr__b2,train
+U0265,Hola,saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b1,train
+U0266,Buenos días,saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b1,train
+U0267,Qué tal,saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b1,train
+U0268,Buenas,saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b2,validation
+U0269,"Hola, buenas tardes",saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b2,validation
+U0270,"Hola, cómo estás",saludo,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),saludo__b2,validation
+U0271,"Chau, gracias",despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b1,test
+U0272,Hasta luego,despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b1,test
+U0273,Nos vemos,despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b1,test
+U0274,"Ya, gracias, me voy",despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b2,train
+U0275,Adiós,despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b2,train
+U0276,"Listo, hasta pronto",despedida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),despedida__b2,train
+U0277,Gracias por la información,agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b1,test
+U0278,Muchas gracias,agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b1,test
+U0279,"Gracias, me ayudó bastante",agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b1,test
+U0280,"Ok, gracias",agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b2,train
+U0281,"Perfecto, muchas gracias",agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b2,train
+U0282,Gracias por tu ayuda,agradecimiento,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),agradecimiento__b2,train
+U0283,Sí,afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b1,validation
+U0284,Claro que sí,afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b1,validation
+U0285,"Correcto, eso es",afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b1,validation
+U0286,Así es,afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b2,train
+U0287,"Sí, exacto",afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b2,train
+U0288,Eso mismo,afirmar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),afirmar__b2,train
+U0289,No,negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b1,train
+U0290,No es eso,negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b1,train
+U0291,Para nada,negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b1,train
+U0292,"No, gracias",negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b2,validation
+U0293,No es lo que busco,negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b2,validation
+U0294,"No, otra cosa",negar,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),negar__b2,validation
+U0295,¿Cuál es el clima en Juliaca hoy?,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b1,test
+U0296,¿Qué equipo de fútbol es mejor?,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b1,test
+U0297,Cuéntame un chiste,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b1,test
+U0298,¿Puedes ayudarme con mi tarea de matemáticas?,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b2,train
+U0299,¿Qué hora es en Lima?,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b2,train
+U0300,¿Me recomiendas un restaurante?,fuera_de_alcance,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),fuera_de_alcance__b2,train
+U0301,Quiero hablar con una persona,hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b1,train
+U0302,¿Me puedes pasar con un trabajador?,hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b1,train
+U0303,Necesito hablar con alguien de la municipalidad,hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b1,train
+U0304,"No quiero hablar con un robot, quiero un humano",hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b2,validation
+U0305,¿Hay alguien real que me pueda atender?,hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b2,validation
+U0306,"Pásame con un funcionario, por favor",hablar_con_persona,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),hablar_con_persona__b2,validation
+U0307,¿Qué puedes hacer?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b1,train
+U0308,¿En qué me puedes ayudar?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b1,train
+U0309,¿Qué tipo de consultas respondes?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b1,train
+U0310,¿Cómo te uso?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b2,validation
+U0311,¿Qué temas conoces?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b2,validation
+U0312,¿Para qué sirve este chat?,ayuda_chatbot,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),ayuda_chatbot__b2,validation
+U0313,No entendí tu respuesta,consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b1,train
+U0314,¿Puedes explicarlo de otra forma?,consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b1,train
+U0315,No me quedó claro lo que dijiste,consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b1,train
+U0316,¿Qué quisiste decir con eso?,consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b2,validation
+U0317,"No comprendí, ¿puedes repetir?",consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b2,validation
+U0318,"Explícamelo más simple, por favor",consulta_no_entendida,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),consulta_no_entendida__b2,validation
+U0319,¿Puedes repetir lo que dijiste?,repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b1,validation
+U0320,"Repíteme eso, por favor",repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b1,validation
+U0321,"No alcancé a leer, ¿puedes repetir?",repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b1,validation
+U0322,¿Me lo puedes volver a decir?,repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b2,train
+U0323,Vuelve a enviarme esa información,repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b2,train
+U0324,"Repite la respuesta anterior, porfa",repetir_informacion,Interacción conversacional,construcción manual (pendiente contrastar con TUPA oficial),repetir_informacion__b2,train

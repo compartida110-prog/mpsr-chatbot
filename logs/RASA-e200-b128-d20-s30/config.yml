@@ -1,0 +1,18 @@
+recipe: default.v1
+language: es
+pipeline:
+- name: WhitespaceTokenizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 200
+  batch_size: 128
+  embedding_dimension: 20
+  learning_rate: 0.001
+  constrain_similarities: true
+  random_seed: 30
+  entity_recognition: true
+assistant_id: 20261002-172008-bare-canister

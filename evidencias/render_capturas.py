@@ -1,22 +1,23 @@
 """Genera las capturas (PNG) de cada ejecución a partir de su salida de consola.
 
-Lee evidencias/salidas/*.txt (salida real y completa de cada comando, con fecha,
+Lee evidencias/<ejecucion>/salidas/*.txt (salida real y completa de cada comando, con fecha,
 comando y código de salida) y dibuja una imagen estilo terminal en
-evidencias/capturas/. Solo se omiten las advertencias de librerías
+evidencias/<ejecucion>/capturas/. Solo se omiten las advertencias de librerías
 (DeprecationWarning, UserWarning, etc.) para que la captura sea legible; el
 texto completo sin filtrar queda en el .txt correspondiente.
 
 Uso:
-    python evidencias/render_capturas.py
+    python evidencias/render_capturas.py                  # todas las ejecuciones
+    python evidencias/render_capturas.py v2_corpus648     # solo una
 """
 import re
+import sys
 import textwrap
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = Path(__file__).resolve().parent
-SRC, DST = HERE / "salidas", HERE / "capturas"
 
 ANSI = re.compile(r"\x1b\[[0-9;]*m|\[\d+(;\d+)*m")
 NOISE = re.compile(
@@ -50,7 +51,7 @@ def clean_lines(raw):
     return out
 
 
-def render(txt_path, font):
+def render(txt_path, font, dst):
     lines = clean_lines(txt_path.read_text(encoding="utf-8", errors="replace"))
     char_w = font.getbbox("M")[2]
     line_h = FONT_SIZE + 5
@@ -76,17 +77,20 @@ def render(txt_path, font):
             color = DIM
         d.text((PAD, y), line, fill=color, font=font)
         y += line_h
-    out = DST / f"{txt_path.stem}.png"
+    out = dst / f"{txt_path.stem}.png"
     img.save(out, optimize=True)
     return out, len(lines)
 
 
 def main():
-    DST.mkdir(exist_ok=True)
     font = load_font()
-    for txt in sorted(SRC.glob("*.txt")):
-        out, n = render(txt, font)
-        print(f"{out.relative_to(HERE.parent)}  ({n} líneas)")
+    runs = [HERE / a for a in sys.argv[1:]] or sorted(d for d in HERE.iterdir() if (d / "salidas").is_dir())
+    for run in runs:
+        dst = run / "capturas"
+        dst.mkdir(exist_ok=True)
+        for txt in sorted((run / "salidas").glob("*.txt")):
+            out, n = render(txt, font, dst)
+            print(f"{out.relative_to(HERE.parent)}  ({n} líneas)")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,12 @@
+2026-10-02 16:10:13
+$ venv/Scripts/python.exe experiments/expand_corpus.py
+Total utterances: 648  (antes: 324)
+Total grupos: 216  (antes: 108)
+Grupos con fuga (debe ser 0): 0
+Intenciones sin ejemplos en train (debe ser 0): 0
+Distribución: {'train': 486, 'validation': 81, 'test': 81}
+Promedio ejemplos de TRAIN por intención: 9.0
+
+Archivos actualizados: corpus/corpus_metadata.csv, corpus/dataset_split.csv, data/nlu_full.yml, data/nlu.yml (solo train), corpus/corpus_summary.json
+(domain.yml y rules.yml no cambian: mismas 54 intenciones)
+exit=0

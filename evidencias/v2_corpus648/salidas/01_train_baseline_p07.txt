@@ -1,0 +1,62 @@
+2026-10-02 16:11:23
+$ venv/Scripts/python.exe experiments/train_baseline_p07.py
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\sklearn\metrics\_classification.py:2006: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+train=486  validation=81  test=81
+SVM C=0.1: F1-macro (validation) = 0.6303
+SVM C=1: F1-macro (validation) = 0.6179
+SVM C=10: F1-macro (validation) = 0.5829
+
+>>> Mejor C según validación: 0.1 (F1-macro val=0.6303)
+Regresión logística (C=1.0): F1-macro (validation) = 0.5894
+
+=== MÉTRICAS FINALES SOBRE TEST (baseline TF-IDF+SVM, C=0.1) ===
+accuracy: 0.642
+precision_macro: 0.6631
+recall_macro: 0.5417
+f1_macro: 0.5614
+balanced_accuracy: 0.642
+
+--- Classification report (test) ---
+                                    precision    recall  f1-score   support
+
+                    agradecimiento       0.75      1.00      0.86         3
+                     ayuda_chatbot       0.00      0.00      0.00         0
+         certificado_defensa_civil       0.75      1.00      0.86         3
+              certificado_posesion       0.00      0.00      0.00         0
+           constancia_domiciliaria       1.00      0.67      0.80         3
+            consulta_deuda_predial       1.00      1.00      1.00         3
+               contacto_telefonico       0.00      0.00      0.00         3
+                  costos_generales       1.00      0.67      0.80         3
+                         despedida       1.00      0.33      0.50         3
+                    estado_tramite       1.00      0.33      0.50         3
+                  fuera_de_alcance       0.12      0.67      0.20         3
+                hablar_con_persona       0.00      0.00      0.00         0
+          horario_atencion_general       0.60      1.00      0.75         3
+             horario_recojo_basura       1.00      0.67      0.80         3
+                inspeccion_tecnica       1.00      0.67      0.80         3
+        licencia_edificacion_costo       1.00      1.00      1.00         3
+   licencia_edificacion_requisitos       0.00      0.00      0.00         0
+     licencia_funcionamiento_costo       1.00      1.00      1.00         3
+licencia_funcionamiento_requisitos       0.00      0.00      0.00         3
+             mantenimiento_parques       0.00      0.00      0.00         3
+                    pago_arbitrios       1.00      1.00      1.00         3
+                 partida_defuncion       1.00      0.67      0.80         3
+                partida_nacimiento       1.00      1.00      1.00         3
+                 presentar_reclamo       1.00      0.33      0.50         3
+                    queja_atencion       0.00      0.00      0.00         0
+             rectificacion_partida       1.00      1.00      1.00         3
+               renovacion_licencia       1.00      0.33      0.50         3
+         reporte_alumbrado_publico       0.00      0.00      0.00         3
+              requisitos_generales       1.00      1.00      1.00         3
+            requisitos_mesa_partes       1.00      1.00      1.00         3
+                serenazgo_contacto       1.00      0.33      0.50         3
+                ubicacion_oficinas       1.00      0.67      0.80         3
+
+                          accuracy                           0.64        81
+                         macro avg       0.66      0.54      0.56        81
+                      weighted avg       0.79      0.64      0.67        81
+
+
+Archivos guardados: resultado_baseline_P07.json, resultado_baseline_P07_classification_report.txt
+exit=0
