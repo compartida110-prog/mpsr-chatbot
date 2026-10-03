@@ -1,0 +1,27 @@
+# rasa_config_v3_fallback.yml -- configuración de Rasa/DIET + FallbackClassifier (umbral de confianza, protocolo V1.2).
+# PROVISIONAL: epochs/batch_size/embedding_dimension son los de la mejor combinación sobre el corpus sintético
+# (150/64/20) y threshold=0.50 es un valor de arranque. Ambos se fijan con la VALIDACIÓN REAL:
+#   python scripts/eval_real.py --fase seleccion      -> combinación ganadora
+#   python scripts/fallback_threshold.py              -> umbral t (criterio: aciertos - 2 x errores con respuesta)
+#   python scripts/fallback_threshold.py --escribir-config   -> reescribe este archivo con ambos valores
+# configs/rasa_config.yml sigue siendo la línea base vigente.
+recipe: default.v1
+language: es
+pipeline:
+- name: WhitespaceTokenizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 150
+  batch_size: 64
+  embedding_dimension: 20
+  learning_rate: 0.001
+  constrain_similarities: true
+  random_seed: 42
+  entity_recognition: true
+- name: FallbackClassifier
+  threshold: 0.5
+  ambiguity_threshold: 0.1

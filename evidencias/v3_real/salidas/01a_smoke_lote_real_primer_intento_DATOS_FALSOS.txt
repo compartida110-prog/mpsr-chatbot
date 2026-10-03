@@ -1,0 +1,91 @@
+inicio: 2026-10-03 06:31:38
+$ python tests/smoke_lote_real.py 
+Carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\lote_real_PRUEBA_k67b6cxv
+  [PASS] datos falsos: 56 situaciones, 20 participantes, respuestas = 224
+
+Ingesta: errores bloqueantes
+  [PASS] scenario_id inexistente -> bloquea (código 2) y no genera salidas
+  [PASS] form distinto del participante/situación -> bloquea
+  [PASS] dos respuestas del mismo participante a la misma situación -> bloquea
+  [PASS] participante inexistente -> bloquea
+
+Ingesta: advertencias
+  [PASS] con advertencias termina bien (código 0)
+  [PASS] respuesta en blanco: se omite y se informa
+  [PASS] texto de menos de 3 caracteres: 1
+  [PASS] posibles datos personales: 5 frases (DNI, celular, correo, URL, @usuario)
+  [PASS] duplicado exacto entre participantes distintos
+  [PASS] frase idéntica al corpus sintético
+  [PASS] cobertura: lista la intención con menos de 3 frases
+  [PASS] el texto con datos personales NO se borra automáticamente
+  [PASS] ids reales R0001... y source correcta
+
+Ingesta limpia y revisión de etiquetas
+  [PASS] ingesta limpia: código 0 y 224 frases validadas
+  [PASS] plantilla de revisión con columnas vacías
+  [PASS] --aplicar-revision con decisiones vacías -> bloquea
+  [PASS] --aplicar-revision: 222 frases finales (se excluyen las 2 DESCARTAR)
+  [PASS] CAMBIAR usa intent_revisada
+  [PASS] reporte con % cambiado, descartado y kappa (revisora 1 y 2)
+  [PASS] segunda revisora >= 20 % (sin aviso)
+
+Partición v3
+  [PASS] partición: código 0 y verificaciones impresas
+  [PASS] train = 708 sintéticas; validación y test = reales
+  [PASS] cada frase real es su propio grupo REAL_<real_id>
+  [PASS] ninguna frase real en entrenamiento
+  [PASS] 54 intenciones en train, validación y test
+  [PASS] n_val = max(1, n//2) por intención (intención de 4 frases -> 2 y 2)
+  [PASS] reproducible: misma partición con seed 42
+  [PASS] data/v3/nlu_train.yml generado y válido
+  [PASS] data/v3/nlu_validation.yml generado y válido
+  [PASS] data/v3/nlu_test.yml generado y válido
+  [PASS] frase real idéntica a una sintética -> error y sin salidas
+  [PASS] intención con 1 sola frase real -> error (falta en test)
+
+Evaluación (--smoke: 1 combinación de 3 épocas y 1 semilla; resultados NO válidos)
+  [PASS] selección (solo validación) corre y guarda seleccion_final.json
+  [PASS] test: corre, IC95 %, comparación y McNemar en el resumen
+  [PASS] registro del test: 1 evaluación por método
+  [PASS] repetir el test sin motivo -> se niega (regla 3.1)
+  [PASS] con --motivo-test-adicional se permite y queda registrado (svm = 2)
+  [PASS] el test no se evalúa sin seleccion_final.json previo
+  [PASS] archivos de resultados: confusiones, F1 por intención y predicciones con confianza
+
+Validación cruzada agrupada (secundaria; 2 épocas, solo prueba)
+  [PASS] crossval_agrupada.py: folds sin fuga y resumen para baseline y Rasa
+
+Umbral de confianza
+  [PASS] selección del umbral con la validación: congela t y no menciona el test
+  [PASS] tabla para t = 0.30 ... 0.80 y fila 'sin umbral'
+  [PASS] puntaje = aciertos − 2 × errores respondidos
+  [PASS] cobertura/abstenciones coherentes
+  [PASS] re-elegir con el umbral congelado se niega
+  [PASS] evaluación del umbral en test (una vez) con cobertura, errores atrapados y aciertos perdidos
+  [PASS] repetir el test del umbral sin motivo -> se niega
+  [PASS] --escribir-config pone el t congelado y ambiguity_threshold=0.1
+
+Dominio v3, reglas y FallbackClassifier
+  [PASS] rasa data validate con domain_v3.yml + rules_v3.yml + FallbackClassifier: sin conflictos
+  [PASS] entrena el modelo completo con domain_v3 + reglas + FallbackClassifier (3 épocas, solo prueba)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+[93mC:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\shared\utils\io.py:100: UserWarning: 'evaluate_every_number_of_epochs=20' is greater than 'epochs=3'. No evaluation will occur.
+[0mThe UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+  [PASS] un texto sin sentido recibe utter_no_entendi
+
+Integridad del repositorio
+  [FAIL] ningún archivo de docs/lote_real_1, corpus/real, corpus/v3_real, data/v3 ni logs/v3_real cambió
+
+RESULTADO: 52/53 comprobaciones PASS  <- HAY FALLAS
+Recordatorio: son datos FALSOS de prueba; nada de esto es un resultado.
+exit=1 
+fin: 2026-10-03 06:44:34

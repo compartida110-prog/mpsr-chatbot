@@ -1,0 +1,222 @@
+version: '3.1'
+rules:
+- rule: Responder afirmar
+  steps:
+  - intent: afirmar
+  - action: utter_afirmar
+- rule: Responder agradecimiento
+  steps:
+  - intent: agradecimiento
+  - action: utter_agradecimiento
+- rule: Responder ayuda_chatbot
+  steps:
+  - intent: ayuda_chatbot
+  - action: utter_ayuda_chatbot
+- rule: Responder certificado_defensa_civil
+  steps:
+  - intent: certificado_defensa_civil
+  - action: utter_certificado_defensa_civil
+- rule: Responder certificado_posesion
+  steps:
+  - intent: certificado_posesion
+  - action: utter_certificado_posesion
+- rule: Responder constancia_domiciliaria
+  steps:
+  - intent: constancia_domiciliaria
+  - action: utter_constancia_domiciliaria
+- rule: Responder constancia_no_adeudo
+  steps:
+  - intent: constancia_no_adeudo
+  - action: utter_constancia_no_adeudo
+- rule: Responder consulta_deuda_predial
+  steps:
+  - intent: consulta_deuda_predial
+  - action: utter_consulta_deuda_predial
+- rule: Responder consulta_no_entendida
+  steps:
+  - intent: consulta_no_entendida
+  - action: utter_consulta_no_entendida
+- rule: Responder contacto_telefonico
+  steps:
+  - intent: contacto_telefonico
+  - action: utter_contacto_telefonico
+- rule: Responder copia_documento
+  steps:
+  - intent: copia_documento
+  - action: utter_copia_documento
+- rule: Responder costos_generales
+  steps:
+  - intent: costos_generales
+  - action: utter_costos_generales
+- rule: Responder denuncia_seguridad_ciudadana
+  steps:
+  - intent: denuncia_seguridad_ciudadana
+  - action: utter_denuncia_seguridad_ciudadana
+- rule: Responder despedida
+  steps:
+  - intent: despedida
+  - action: utter_despedida
+- rule: Responder estado_reclamo
+  steps:
+  - intent: estado_reclamo
+  - action: utter_estado_reclamo
+- rule: Responder estado_tramite
+  steps:
+  - intent: estado_tramite
+  - action: utter_estado_tramite
+- rule: Responder fraccionamiento_deuda
+  steps:
+  - intent: fraccionamiento_deuda
+  - action: utter_fraccionamiento_deuda
+- rule: Responder fuera_de_alcance
+  steps:
+  - intent: fuera_de_alcance
+  - action: utter_fuera_de_alcance
+- rule: Responder hablar_con_persona
+  steps:
+  - intent: hablar_con_persona
+  - action: utter_hablar_con_persona
+- rule: Responder horario_atencion_general
+  steps:
+  - intent: horario_atencion_general
+  - action: utter_horario_atencion_general
+- rule: Responder horario_mesa_partes
+  steps:
+  - intent: horario_mesa_partes
+  - action: utter_horario_mesa_partes
+- rule: Responder horario_recojo_basura
+  steps:
+  - intent: horario_recojo_basura
+  - action: utter_horario_recojo_basura
+- rule: Responder impuesto_alcabala
+  steps:
+  - intent: impuesto_alcabala
+  - action: utter_impuesto_alcabala
+- rule: Responder inspeccion_tecnica
+  steps:
+  - intent: inspeccion_tecnica
+  - action: utter_inspeccion_tecnica
+- rule: Responder libro_reclamaciones
+  steps:
+  - intent: libro_reclamaciones
+  - action: utter_libro_reclamaciones
+- rule: Responder licencia_edificacion_costo
+  steps:
+  - intent: licencia_edificacion_costo
+  - action: utter_licencia_edificacion_costo
+- rule: Responder licencia_edificacion_requisitos
+  steps:
+  - intent: licencia_edificacion_requisitos
+  - action: utter_licencia_edificacion_requisitos
+- rule: Responder licencia_funcionamiento_costo
+  steps:
+  - intent: licencia_funcionamiento_costo
+  - action: utter_licencia_funcionamiento_costo
+- rule: Responder licencia_funcionamiento_plazo
+  steps:
+  - intent: licencia_funcionamiento_plazo
+  - action: utter_licencia_funcionamiento_plazo
+- rule: Responder licencia_funcionamiento_requisitos
+  steps:
+  - intent: licencia_funcionamiento_requisitos
+  - action: utter_licencia_funcionamiento_requisitos
+- rule: Responder limpieza_via_publica
+  steps:
+  - intent: limpieza_via_publica
+  - action: utter_limpieza_via_publica
+- rule: Responder mantenimiento_parques
+  steps:
+  - intent: mantenimiento_parques
+  - action: utter_mantenimiento_parques
+- rule: Responder negar
+  steps:
+  - intent: negar
+  - action: utter_negar
+- rule: Responder pago_arbitrios
+  steps:
+  - intent: pago_arbitrios
+  - action: utter_pago_arbitrios
+- rule: Responder pago_predial_como
+  steps:
+  - intent: pago_predial_como
+  - action: utter_pago_predial_como
+- rule: Responder partida_defuncion
+  steps:
+  - intent: partida_defuncion
+  - action: utter_partida_defuncion
+- rule: Responder partida_matrimonio
+  steps:
+  - intent: partida_matrimonio
+  - action: utter_partida_matrimonio
+- rule: Responder partida_nacimiento
+  steps:
+  - intent: partida_nacimiento
+  - action: utter_partida_nacimiento
+- rule: Responder poda_arboles
+  steps:
+  - intent: poda_arboles
+  - action: utter_poda_arboles
+- rule: Responder presentar_reclamo
+  steps:
+  - intent: presentar_reclamo
+  - action: utter_presentar_reclamo
+- rule: Responder queja_atencion
+  steps:
+  - intent: queja_atencion
+  - action: utter_queja_atencion
+- rule: Responder rectificacion_partida
+  steps:
+  - intent: rectificacion_partida
+  - action: utter_rectificacion_partida
+- rule: Responder redes_sociales_mpsr
+  steps:
+  - intent: redes_sociales_mpsr
+  - action: utter_redes_sociales_mpsr
+- rule: Responder renovacion_licencia
+  steps:
+  - intent: renovacion_licencia
+  - action: utter_renovacion_licencia
+- rule: Responder repetir_informacion
+  steps:
+  - intent: repetir_informacion
+  - action: utter_repetir_informacion
+- rule: Responder reporte_alumbrado_publico
+  steps:
+  - intent: reporte_alumbrado_publico
+  - action: utter_reporte_alumbrado_publico
+- rule: Responder requisitos_defensa_civil
+  steps:
+  - intent: requisitos_defensa_civil
+  - action: utter_requisitos_defensa_civil
+- rule: Responder requisitos_generales
+  steps:
+  - intent: requisitos_generales
+  - action: utter_requisitos_generales
+- rule: Responder requisitos_matrimonio_civil
+  steps:
+  - intent: requisitos_matrimonio_civil
+  - action: utter_requisitos_matrimonio_civil
+- rule: Responder requisitos_mesa_partes
+  steps:
+  - intent: requisitos_mesa_partes
+  - action: utter_requisitos_mesa_partes
+- rule: Responder saludo
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+- rule: Responder serenazgo_contacto
+  steps:
+  - intent: serenazgo_contacto
+  - action: utter_serenazgo_contacto
+- rule: Responder sugerencia
+  steps:
+  - intent: sugerencia
+  - action: utter_sugerencia
+- rule: Responder ubicacion_oficinas
+  steps:
+  - intent: ubicacion_oficinas
+  - action: utter_ubicacion_oficinas
+- rule: Responder nlu_fallback
+  steps:
+  - intent: nlu_fallback
+  - action: utter_no_entendi

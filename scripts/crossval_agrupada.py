@@ -54,8 +54,8 @@ def make_folds(df, n_folds, seed, plain):
     return folds
 
 
-def baseline_params():
-    v = pd.read_csv(LOGS / "baseline_validation.csv")
+def baseline_params(path):
+    v = pd.read_csv(path)
     svm = v[v["model"] == "svm"]
     return float(svm.loc[svm["f1_macro"].idxmax(), "C"])
 
@@ -122,6 +122,8 @@ def main():
     ap.add_argument("--epochs-override", type=int, default=0,
                     help="SOLO PARA PRUEBAS del script: reemplaza epochs de DIET (los resultados no son válidos)")
     ap.add_argument("--out-dir", default=str(OUT), help="carpeta de salida")
+    ap.add_argument("--baseline-validation", default=str(LOGS / "baseline_validation.csv"),
+                    help="tabla de validación del baseline de la que se toma el mejor C")
     ap.add_argument("--rasa-validation", default=str(LOGS / "rasa_validation.csv"),
                     help="tabla de validación de la grilla Rasa de la que se toma la mejor combinación")
     args = ap.parse_args()
@@ -148,7 +150,7 @@ def main():
     cfg_b = json.load(open(CONFIGS / "baseline_config.json", encoding="utf-8"))
     rows = []
     if "baseline" in models:
-        C = baseline_params()
+        C = baseline_params(args.baseline_validation)
         for kind_m, c in (("svm", C), ("logreg", cfg_b["alternative_classifier"]["C"])):
             r, p = run_baseline(df, folds, cfg_b, kind_m, c)
             rows += r

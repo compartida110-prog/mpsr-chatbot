@@ -1,0 +1,57 @@
+scenario_id,form,intent_esperada,category,situacion
+S01,A,,,Vas a abrir una tiendita en tu barrio y no sabes qué papeles te van a pedir en la municipalidad para poder atender legalmente.
+S02,B,,,Ya sabes que necesitas un permiso de la municipalidad para tu negocio y quieres saber cuánto tendrías que pagar por él.
+S03,C,,,Entregaste tus papeles para el permiso de tu negocio y quieres saber cuántos días demoran en dártelo.
+S04,D,,,Quieres construir un segundo piso en tu casa y quieres saber qué documentos tendrías que presentar antes de empezar la obra.
+S05,E,,,Vas a construir en tu terreno y quieres saber cuánto cobra la municipalidad por autorizar la obra.
+S06,A,,,El permiso de funcionamiento de tu negocio ya se venció y quieres saber qué tienes que hacer para dejarlo vigente otra vez.
+S07,B,,,"Quieres saber si debes impuestos por tu casa o terreno, y cuánto sería."
+S08,C,,,Ya sabes que debes pagar el impuesto de tu casa y quieres saber dónde o de qué forma puedes hacerlo.
+S09,D,,,"Te llegó un cobro por el recojo de basura, la limpieza de calles y el serenazgo, y quieres saber cómo pagarlo."
+S10,E,,,Acabas de comprar un terreno y te dijeron que hay un impuesto por esa compra; quieres saber de qué trata y cómo se paga.
+S11,A,,,Debes varios años de impuestos municipales y no puedes pagar todo de golpe; quieres saber si puedes pagarlo poco a poco.
+S12,B,,,Te piden un papel que demuestre que no tienes deudas con la municipalidad y quieres saber cómo conseguirlo.
+S13,C,,,Quieres entregar una solicitud por escrito en la municipalidad y no sabes qué tienes que llevar.
+S14,D,,,Dejaste unos papeles en la municipalidad hace semanas y quieres saber cómo va tu trámite.
+S15,E,,,Quieres ir a dejar un documento a la municipalidad y necesitas saber a qué hora y qué días puedes hacerlo.
+S16,A,,,Necesitas una copia sellada de un documento que presentaste antes y ya no la tienes.
+S17,B,,,Vives en un terreno que no tiene título y te piden un papel de la municipalidad que diga que tú lo ocupas; quieres saber cómo se consigue.
+S18,C,,,Te piden un documento que pruebe en qué dirección vives y quieres saber cómo sacarlo en la municipalidad.
+S19,D,,,Tu local necesita un certificado de seguridad para poder funcionar y quieres saber cómo se obtiene.
+S20,E,,,Quieres que un inspector vaya a revisar si tu local cumple las medidas de seguridad y quieres saber cómo se pide esa visita.
+S21,A,,,"Vas a pedir la revisión de seguridad de tu local y quieres saber qué cosas debes tener listas (equipos, planos, etc.)."
+S22,B,,,En tu cuadra hay gente sospechosa y quieres avisar a alguien de la municipalidad para que intervenga.
+S23,C,,,Necesitas comunicarte con el personal que patrulla el distrito y quieres saber cómo contactarlos.
+S24,D,,,Te piden el documento que prueba tu fecha y lugar de nacimiento y no sabes cómo conseguirlo.
+S25,E,,,Te piden un documento que pruebe que estás casado(a) y no encuentras el original.
+S26,A,,,Falleció un familiar y necesitas el documento oficial que lo acredite para hacer trámites; quieres saber cómo se consigue.
+S27,B,,,Tu documento de nacimiento tiene tu apellido mal escrito y quieres saber cómo se corrige.
+S28,C,,,Tu pareja y tú quieren casarse por lo civil en la municipalidad y quieren saber qué papeles necesitan.
+S29,D,,,El camión de la basura no pasó hoy por tu calle y quieres saber a qué hora suele pasar.
+S30,E,,,En tu calle un poste no prende de noche y quieres avisar a la municipalidad.
+S31,A,,,El parque cerca de tu casa está descuidado y con los juegos malogrados; quieres pedir que lo arreglen.
+S32,B,,,Un árbol de la vereda está tapando el paso y quieres que lo corten o lo recorten.
+S33,C,,,Tu cuadra tiene basura acumulada en la pista y quieres que la limpien.
+S34,D,,,No estás conforme con cómo te resolvieron un trámite y quieres hacer un reclamo formal.
+S35,E,,,Hiciste un reclamo hace unos días y quieres saber si ya lo respondieron.
+S36,A,,,Quieres dejar tu queja en el libro oficial de reclamos y no sabes dónde está ni cómo se usa.
+S37,B,,,Un trabajador te atendió de mala manera y quieres reportarlo.
+S38,C,,,Se te ocurrió una idea para mejorar la atención de la municipalidad y quieres comunicarla.
+S39,D,,,Quieres ir a la municipalidad para cualquier gestión y quieres saber desde qué hora hasta qué hora está abierta y si abre los sábados.
+S40,E,,,No conoces el local de la municipalidad y quieres saber dónde queda o cómo llegar.
+S41,A,,,Quieres hacer un trámite y quieres saber si basta con llevar tu DNI o necesitas algo más.
+S42,B,,,Quieres saber cuánto cuestan en general los trámites de la municipalidad y dónde puedes ver la lista de precios.
+S43,C,,,Prefieres llamar en vez de ir y quieres saber a qué número o por qué medio comunicarte con la municipalidad.
+S44,D,,,Quieres enterarte de los avisos oficiales de la municipalidad y quieres saber dónde seguirla por internet.
+S45,E,,,Acabas de abrir el chat del asistente de la municipalidad. ¿Cómo lo saludarías?
+S46,A,,,Ya conseguiste la información que necesitabas y quieres terminar la conversación. ¿Cómo te despedirías?
+S47,B,,,El asistente te dio justo la información que necesitabas. ¿Cómo se lo agradecerías?
+S48,C,,,El asistente te pregunta si entendió bien tu consulta y la respuesta es sí. ¿Cómo responderías?
+S49,D,,,El asistente te ofrece algo que no es lo que estabas buscando. ¿Cómo le dirías que no?
+S50,E,,,"Quieres preguntarle al asistente algo que no tiene nada que ver con la municipalidad (por ejemplo, del clima, deportes, cultura general o una curiosidad)."
+S51,A,,,"Quieres preguntarle algo sobre otra entidad o servicio (por ejemplo, la luz, el agua, la SUNAT, RENIEC o la policía) y no sobre la municipalidad."
+S52,B,,,"Quieres pedirle al asistente algo personal o fuera de lo normal (que cuente un chiste, que dé su opinión o que te haga la tarea)."
+S53,C,,,Prefieres que te atienda una persona y no un programa. ¿Qué le dirías al asistente?
+S54,D,,,No sabes para qué sirve este asistente ni qué cosas le puedes preguntar. ¿Qué le escribirías?
+S55,E,,,El asistente te respondió algo que no entendiste. ¿Qué le dirías?
+S56,A,,,El asistente te dio una información pero no alcanzaste a leerla ni a anotarla. ¿Cómo le pedirías que te la repita?

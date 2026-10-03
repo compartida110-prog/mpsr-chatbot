@@ -43,6 +43,7 @@ mpsr-chatbot/
 ├── requirements.txt           Dependencias directas de Python (versiones exactas)
 ├── requirements-lock.txt      `pip freeze` completo del entorno verificado
 ├── .gitignore
+├── domain_v3.yml              domain.yml + intención nlu_fallback + utter_no_entendi (umbral de confianza, V1.2; planificado)
 ├── domain.yml                 54 intenciones + 54 respuestas fijas (40 de las 44 de trámites llevan nota [Verificar], pendiente de contrastar con el TUPA real; ver evidencias/p09_domain/)
 ├── corpus/                    Corpus MPSR-Bot y sus registros de auditoría/partición
 │   ├── corpus_metadata.csv    Inventario de las 708 utterances, corpus v3 (P02)
@@ -51,27 +52,32 @@ mpsr-chatbot/
 │   ├── dataset_split.csv      Partición train/validation/test (P05)
 │   ├── corpus_summary.json    Resumen: totales, distribución, verificación de fuga
 │   ├── historico/             Corpus v1 (324) y v2 (648) con su partición; entradas de expand_corpus.py y apply_ampliacion_v3.py
+│   ├── real/                  Lote 1 de frases reales: plantillas vacías y archivos generados por ingest_real_lote.py (ver su README)
+│   ├── v3_real/               Partición v3 (V1.2): entrenamiento sintético, validación y test reales (planificado)
 │   └── Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx   Línea base P01 SIMULADA (n=120)
 ├── configs/                   Configuraciones fijadas ANTES de entrenar
 │   ├── baseline_config.json   TF-IDF + SVM / regresión logística (P07)
 │   ├── rasa_config.yml        Pipeline Rasa NLU con DIETClassifier (P08)
+│   ├── rasa_config_v3_fallback.yml   Rasa/DIET + FallbackClassifier (provisional: t y combinación se fijan con la validación real)
 │   └── jerga_local.csv        Diccionario de jerga local para la normalización (P06)
 ├── data/                      Archivos en formato Rasa
 │   ├── nlu.yml                SOLO el split "train" (lo que usa `rasa train`)
 │   ├── nlu_full.yml           Las 708 utterances completas (referencia/auditoría)
 │   ├── rules.yml              Mapeo 1 a 1 intención → respuesta (punto de partida)
-│   └── nlu_{train,validation,test}.yml   Generados por scripts/export_rasa_nlu.py (no editar)
+│   ├── nlu_{train,validation,test}.yml   Generados por scripts/export_rasa_nlu.py (no editar)
+│   └── v3/                    rules_v3.yml (regla nlu_fallback) y, tras la partición v3, nlu_{train,validation,test}.yml
 ├── scripts/                   Todo el código: pipeline del protocolo, pruebas y corridas preliminares
-├── tests/                     Consultas de los smoke tests (smoke_test_queries.csv = v1, smoke_test_queries_v2.csv = nuevas)
+├── tests/                     Consultas de los smoke tests (v1 y v2) y smoke_lote_real.py (prueba del flujo del lote real con datos FALSOS)
 ├── models/                    Modelos entrenados (no se versionan: pesados)
 ├── logs/                      Predicciones, métricas, configs y resúmenes por experimento (P10, P15)
 │   ├── EXP_BASELINE_SVM_S42_2026/   Resultado de scripts/train_baseline_p07.py (citado en el Informe)
 │   ├── simulaciones_P14/      Resultados SIMULADOS de P14
 │   ├── P11_1_*/               Smoke tests y validación cruzada de P11.1 (nativa y agrupada)
+│   ├── v3_real/               Resultados sobre lenguaje real (vacía hasta ejecutar la Parte B)
 │   ├── v1_corpus324/          Los mismos resultados para el corpus v1
 │   └── v2_corpus648/          Los mismos resultados para el corpus v2
-├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/, v3_corpus708/, p09_domain/, p11_1_pruebas/)
-├── docs/                      Protocolo V1.1, matriz, Ficha 2, Ficha de diagnóstico P01, Informe preliminar
+├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/, v3_corpus708/, v3_real/, p09_domain/, p11_1_pruebas/)
+├── docs/                      Protocolo V1.2 (PDF) y V1.1, nota de desviación, Ficha 2, Ficha P01, Informe preliminar, lote_real_1/ (formularios)
 └── incident_log.csv           Bitácora de incidencias y desviaciones del protocolo (P16)
 ```
 
@@ -194,6 +200,40 @@ responde la pregunta de control de la sección 3.2 del protocolo.
 50 intenciones puede tardar varias horas en CPU. La opción
 `--eval-examples N` activa el early stopping de la sección 2.10
 (`evaluate_on_number_of_examples`, tomados de train).
+
+## Lote 1 de lenguaje real (protocolo V1.2) — orden de ejecución
+
+Los scripts están listos y **probados con datos falsos** (`tests/smoke_lote_real.py`); **todavía no hay frases reales**.
+Reglas: las frases reales nunca entran al entrenamiento; toda selección (grilla, umbral) usa la validación real y el test real se
+evalúa **una sola vez** (`logs/v3_real/test_registro.json` cuenta cada evaluación y se niega a repetirla sin `--motivo-test-adicional`).
+
+| # | Comando | Qué hace |
+|---|---------|----------|
+| B1 | `python scripts/ingest_real_lote.py` | Valida (errores bloqueantes y advertencias) y genera `lote1_real_validado.csv` y la plantilla de revisión |
+| B2 | `python scripts/ingest_real_lote.py --aplicar-revision` | Aplica OK/CAMBIAR/DESCARTAR; % cambiado y kappa de Cohen |
+| B3 | `python scripts/split_corpus_v3.py` | Entrenamiento = sintético; validación y test = reales (seed 42); verifica 54 intenciones en las 3 particiones |
+| B4 | `python scripts/eval_real.py` | Grilla SVM y Rasa en validación; repeticiones (semillas 10–50) en test con IC95 %, McNemar y bootstrap pareado |
+| B5 | `python scripts/fallback_threshold.py` y `--fase test` | Umbral por puntaje = aciertos − 2 × errores en validación; evaluación única en test |
+
+## Estado real de cada resultado y cambio
+
+Cada resultado se etiqueta con su estado real: **Ejecutado**, **Planificado** o **Simulado** (nada simulado se presenta como real
+ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf` (V1.2).
+
+| Elemento | Estado | Evidencia |
+|---|---|---|
+| Corpus MPSR-Bot sintético (v1 324 → v2 648 → v3 708 frases) y su partición V1.1 | **Ejecutado** (sintético) | `corpus/`, `evidencias/v1…v3_corpus708/` |
+| Baseline TF-IDF+SVM y Rasa/DIET sobre el corpus sintético (F1 test 0.62–0.65) | **Ejecutado** (sintético; criterio no cumplido) | `logs/`, `evidencias/v3_corpus708/REPORTE_REEVALUACION.md` |
+| Pruebas técnicas internas P11.1 (0 conflictos; smoke test 44/54) | **Ejecutado** (criterio de salida no cumplido) | `evidencias/p11_1_pruebas/`, `evidencias/v3_corpus708/` |
+| Validación cruzada agrupada por `base_phrase_id` | **Ejecutado** (sintético) | `scripts/crossval_agrupada.py`, `logs/P11_1_crossval_agrupada/` |
+| Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
+| Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
+| Scripts del lote real (ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `evidencias/v3_real/` |
+| Recolección del lote 1 de frases reales | **Planificado** (formularios listos; falta colocar `situaciones_lote1_v1.csv`) | `docs/lote_real_1/` |
+| Partición v3 (entrenamiento sintético; validación y test reales) | **Planificado** (depende del lote 1) | `scripts/split_corpus_v3.py` |
+| Evaluación sobre lenguaje real con IC95 % y McNemar | **Planificado** | `scripts/eval_real.py` |
+| Umbral de confianza (FallbackClassifier) | **Planificado** (`domain_v3.yml`, reglas y config listos; t sin elegir) | `scripts/fallback_threshold.py` |
+| Pre-piloto P11.2a (lenguaje real y refinamiento) y P11.2b (formal, Alfa ≥ 0.70) | **Planificado** / **Pendiente** | protocolo V1.2 |
 
 ## Resultados preliminares (2026-10-02)
 
