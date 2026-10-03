@@ -1,0 +1,22 @@
+2026-10-02 20:09:27
+$ venv/Scripts/python.exe -m rasa data validate --data data/nlu.yml data/rules.yml --domain domain.yml --config configs/rasa_config.yml
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\shared\utils\validation.py:134: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  import pkg_resources
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\pkg_resources\__init__.py:3117: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('mpl_toolkits')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+  declare_namespace(pkg)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\pkg_resources\__init__.py:3117: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('ruamel')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+  declare_namespace(pkg)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.validator[0m  - Validating intents...
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.validator[0m  - Validating uniqueness of intents and stories...
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.validator[0m  - Validating utterances...
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.validator[0m  - Story structure validation...
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.core.training.story_conflict[0m  - Considering all preceding turns for conflict analysis.
+2026-10-02 20:09:34 [1;30mINFO    [0m [34mrasa.validator[0m  - No story structure conflicts found.
+[93mC:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\shared\utils\io.py:100: UserWarning: The config file is missing the 'assistant_id' mandatory key.
+[0mexit=0

@@ -3,7 +3,7 @@ U0031,"Buenas, ¿me podría explicar el plazo de atención de la licencia de fun
 U0032,Quisiera saber el plazo de atención de la licencia de funcionamiento.,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True
 U0033,¿Usted me puede ayudar con el plazo de atención de la licencia de funcionamiento?,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True
 U0037,¿Qué requisitos piden para la licencia de edificación?,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True
-U0038,"Quiero construir, ¿qué necesito para la licencia de edificación?",licencia_edificacion_requisitos,licencia_edificacion_costo,False
+U0038,"Quiero construir, ¿qué necesito para la licencia de edificación?",licencia_edificacion_requisitos,licencia_edificacion_requisitos,True
 U0039,¿Qué documentos se necesitan para licencia de construcción?,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True
 U0094,"Disculpe, ¿dónde consigo información sobre cómo pagar el impuesto predial?",pago_predial_como,pago_predial_como,True
 U0095,"Oiga, ¿qué hay sobre cómo pagar el impuesto predial?",pago_predial_como,pago_predial_como,True
@@ -12,17 +12,17 @@ U0109,¿Qué es el impuesto de alcabala y cómo lo pago?,impuesto_alcabala,impue
 U0110,"Compré un terreno, ¿tengo que pagar alcabala?",impuesto_alcabala,impuesto_alcabala,True
 U0111,¿Cómo tramito el pago de alcabala?,impuesto_alcabala,impuesto_alcabala,True
 U0121,¿Puedo fraccionar mi deuda tributaria?,fraccionamiento_deuda,fraccionamiento_deuda,True
-U0122,"Quiero pagar mi deuda municipal en partes, ¿se puede?",fraccionamiento_deuda,requisitos_mesa_partes,False
-U0123,¿Cómo hago un fraccionamiento de mi deuda predial?,fraccionamiento_deuda,consulta_deuda_predial,False
+U0122,"Quiero pagar mi deuda municipal en partes, ¿se puede?",fraccionamiento_deuda,fraccionamiento_deuda,True
+U0123,¿Cómo hago un fraccionamiento de mi deuda predial?,fraccionamiento_deuda,fraccionamiento_deuda,True
 U0142,"Disculpe, ¿dónde consigo información sobre la constancia de no adeudo?",constancia_no_adeudo,constancia_no_adeudo,True
 U0143,"Oiga, ¿qué hay sobre la constancia de no adeudo?",constancia_no_adeudo,constancia_no_adeudo,True
 U0144,Necesitaría orientación sobre la constancia de no adeudo.,constancia_no_adeudo,constancia_no_adeudo,True
 U0172,¿Mesa de partes atiende los sábados?,horario_mesa_partes,horario_mesa_partes,True
 U0173,¿Qué días atiende mesa de partes?,horario_mesa_partes,horario_mesa_partes,True
 U0174,¿Cuál es el horario para presentar documentos?,horario_mesa_partes,horario_mesa_partes,True
-U0181,¿Cómo saco una copia certificada de mi expediente?,copia_documento,estado_tramite,False
-U0182,Necesito una copia de un documento que presenté,copia_documento,requisitos_mesa_partes,False
-U0183,¿Dónde pido copias de mis trámites anteriores?,copia_documento,afirmar,False
+U0181,¿Cómo saco una copia certificada de mi expediente?,copia_documento,copia_documento,True
+U0182,Necesito una copia de un documento que presenté,copia_documento,copia_documento,True
+U0183,¿Dónde pido copias de mis trámites anteriores?,copia_documento,copia_documento,True
 U0193,¿Cómo tramito un certificado de posesión?,certificado_posesion,certificado_posesion,True
 U0194,Necesito un certificado de posesión de mi terreno,certificado_posesion,certificado_posesion,True
 U0195,¿Qué requisitos piden para certificado de posesión?,certificado_posesion,certificado_posesion,True
@@ -41,7 +41,7 @@ U0333,¿Usted me puede ayudar con los requisitos para matrimonio civil?,requisit
 U0379,"Buenas, ¿me podría explicar la poda de un árbol público?",poda_arboles,poda_arboles,True
 U0380,Quisiera saber la poda de un árbol público.,poda_arboles,poda_arboles,True
 U0381,¿Usted me puede ayudar con la poda de un árbol público?,poda_arboles,poda_arboles,True
-U0388,"Hay basura acumulada en mi cuadra, ¿a quién aviso?",limpieza_via_publica,horario_recojo_basura,False
+U0388,"Hay basura acumulada en mi cuadra, ¿a quién aviso?",limpieza_via_publica,reporte_alumbrado_publico,False
 U0389,¿Cómo pido limpieza pública para mi zona?,limpieza_via_publica,limpieza_via_publica,True
 U0390,Quiero reportar una vía pública descuidada,limpieza_via_publica,limpieza_via_publica,True
 U0415,"Buenas, ¿me podría explicar el estado de mi reclamo?",estado_reclamo,estado_reclamo,True
@@ -63,7 +63,7 @@ U0529,Hola,saludo,saludo,True
 U0530,Buenos días,saludo,saludo,True
 U0531,Qué tal,saludo,saludo,True
 U0565,Sí,afirmar,afirmar,True
-U0566,Claro que sí,afirmar,consulta_no_entendida,False
+U0566,Claro que sí,afirmar,afirmar,True
 U0567,"Correcto, eso es",afirmar,afirmar,True
 U0586,"No, otra cosa quería",negar,negar,True
 U0587,"No, disculpe",negar,negar,True
@@ -78,5 +78,5 @@ U0634,¿A qué te refieres?,consulta_no_entendida,hablar_con_persona,False
 U0635,No comprendí tu mensaje,consulta_no_entendida,consulta_no_entendida,True
 U0636,Explícalo de nuevo porfa,consulta_no_entendida,repetir_informacion,False
 U0643,¿Me repites por favor?,repetir_informacion,repetir_informacion,True
-U0644,"No leí bien, repite",repetir_informacion,repetir_informacion,True
+U0644,"No leí bien, repite",repetir_informacion,negar,False
 U0645,Otra vez porfa,repetir_informacion,repetir_informacion,True

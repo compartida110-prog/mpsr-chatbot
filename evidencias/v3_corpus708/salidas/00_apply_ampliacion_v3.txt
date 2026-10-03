@@ -1,0 +1,16 @@
+2026-10-02 20:09:22
+$ venv/Scripts/python.exe scripts/apply_ampliacion_v3.py
+Corpus v2: 648 utterances -> v3: 708 (+60 en 20 grupos nuevos)
+Distribución: {'train': 546, 'validation': 81, 'test': 81} | validation y test sin cambios respecto a v2
+Intenciones ampliadas:
+  afirmar                              +2 grupos (6 frases)  ->  18 frases en total
+  ayuda_chatbot                        +2 grupos (6 frases)  ->  18 frases en total
+  copia_documento                      +2 grupos (6 frases)  ->  18 frases en total
+  despedida                            +2 grupos (6 frases)  ->  18 frases en total
+  fuera_de_alcance                     +3 grupos (9 frases)  ->  21 frases en total
+  horario_mesa_partes                  +2 grupos (6 frases)  ->  18 frases en total
+  licencia_funcionamiento_requisitos   +3 grupos (9 frases)  ->  21 frases en total
+  reporte_alumbrado_publico            +2 grupos (6 frases)  ->  18 frases en total
+  requisitos_defensa_civil             +2 grupos (6 frases)  ->  18 frases en total
+Archivos: corpus/corpus_metadata.csv, corpus/dataset_split.csv, corpus/corpus_summary.json, data/nlu_full.yml, data/nlu.yml
+exit=0

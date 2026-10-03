@@ -1,0 +1,46 @@
+2026-10-02 21:56:17
+$ venv/Scripts/python.exe scripts/smoke_test.py --model models/smoke/smoke_test_model.tar.gz --queries tests/smoke_test_queries_v2.csv --out-dir logs/P11_1_smoke_test_v3_nuevas_modelo_v2
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: models/smoke/smoke_test_model.tar.gz
+Intención correcta:            47/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  39/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.704 | mínima: 0.145
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  certificado_posesion -> renovacion_licencia | 0.21 | renovacion_licencia=0.21; constancia_no_adeudo=0.08; certificado_posesion=0.06
+  fraccionamiento_deuda -> requisitos_mesa_partes | 0.38 | requisitos_mesa_partes=0.38; requisitos_defensa_civil=0.11; horario_mesa_partes=0.08
+  fuera_de_alcance -> certificado_posesion | 0.16 | certificado_posesion=0.16; ubicacion_oficinas=0.11; pago_predial_como=0.06
+  licencia_funcionamiento_requisitos -> requisitos_mesa_partes | 0.72 | requisitos_mesa_partes=0.72; requisitos_defensa_civil=0.18; pago_arbitrios=0.01
+  limpieza_via_publica -> horario_recojo_basura | 0.60 | horario_recojo_basura=0.60; constancia_no_adeudo=0.07; negar=0.06
+  reporte_alumbrado_publico -> hablar_con_persona | 0.27 | hablar_con_persona=0.27; horario_atencion_general=0.08; partida_defuncion=0.07
+  requisitos_matrimonio_civil -> licencia_edificacion_requisitos | 0.15 | licencia_edificacion_requisitos=0.15; saludo=0.12; requisitos_matrimonio_civil=0.12
+
+Aciertos con confianza < 0.50 (frágiles):
+  afirmar (0.24)
+  agradecimiento (0.36)
+  copia_documento (0.49)
+  costos_generales (0.39)
+  denuncia_seguridad_ciudadana (0.25)
+  estado_tramite (0.20)
+  inspeccion_tecnica (0.20)
+  licencia_edificacion_requisitos (0.47)
+  licencia_funcionamiento_costo (0.50)
+  mantenimiento_parques (0.44)
+  queja_atencion (0.34)
+  redes_sociales_mpsr (0.39)
+
+Detalle por consulta: logs\P11_1_smoke_test_v3_nuevas_modelo_v2\smoke_test_results.csv
+exit=0

@@ -1,0 +1,43 @@
+2026-10-02 21:55:41
+$ venv/Scripts/python.exe scripts/smoke_test.py --model models/smoke/smoke_test_model_v3.tar.gz --queries tests/smoke_test_queries_v2.csv --out-dir logs/P11_1_smoke_test_v3_nuevas
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: models/smoke/smoke_test_model_v3.tar.gz
+Intención correcta:            44/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  42/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.719 | mínima: 0.109
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  afirmar -> consulta_deuda_predial | 0.11 | consulta_deuda_predial=0.11; rectificacion_partida=0.08; afirmar=0.07
+  agradecimiento -> ubicacion_oficinas | 0.15 | ubicacion_oficinas=0.15; negar=0.11; hablar_con_persona=0.08
+  consulta_deuda_predial -> pago_predial_como | 0.47 | pago_predial_como=0.47; consulta_deuda_predial=0.44; impuesto_alcabala=0.01
+  denuncia_seguridad_ciudadana -> contacto_telefonico | 0.11 | contacto_telefonico=0.11; hablar_con_persona=0.09; denuncia_seguridad_ciudadana=0.08
+  fraccionamiento_deuda -> horario_mesa_partes | 0.43 | horario_mesa_partes=0.43; requisitos_mesa_partes=0.17; ayuda_chatbot=0.04
+  inspeccion_tecnica -> requisitos_defensa_civil | 0.37 | requisitos_defensa_civil=0.37; limpieza_via_publica=0.09; certificado_defensa_civil=0.07
+  licencia_edificacion_requisitos -> licencia_edificacion_costo | 0.57 | licencia_edificacion_costo=0.57; licencia_edificacion_requisitos=0.21; licencia_funcionamiento_requisitos=0.11
+  licencia_funcionamiento_plazo -> licencia_funcionamiento_costo | 0.49 | licencia_funcionamiento_costo=0.49; licencia_funcionamiento_plazo=0.36; renovacion_licencia=0.03
+  reporte_alumbrado_publico -> hablar_con_persona | 0.13 | hablar_con_persona=0.13; partida_defuncion=0.12; denuncia_seguridad_ciudadana=0.11
+  requisitos_matrimonio_civil -> licencia_edificacion_requisitos | 0.15 | licencia_edificacion_requisitos=0.15; licencia_funcionamiento_requisitos=0.14; despedida=0.14
+
+Aciertos con confianza < 0.50 (frágiles):
+  costos_generales (0.27)
+  fuera_de_alcance (0.37)
+  limpieza_via_publica (0.32)
+  mantenimiento_parques (0.40)
+  partida_defuncion (0.42)
+  queja_atencion (0.48)
+
+Detalle por consulta: logs\P11_1_smoke_test_v3_nuevas\smoke_test_results.csv
+exit=0

@@ -1,0 +1,82 @@
+utterance_id,text,intent,predicted,correct
+U0031,"Buenas, ¿me podría explicar el plazo de atención de la licencia de funcionamiento?",licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True
+U0032,Quisiera saber el plazo de atención de la licencia de funcionamiento.,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True
+U0033,¿Usted me puede ayudar con el plazo de atención de la licencia de funcionamiento?,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True
+U0037,¿Qué requisitos piden para la licencia de edificación?,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True
+U0038,"Quiero construir, ¿qué necesito para la licencia de edificación?",licencia_edificacion_requisitos,licencia_edificacion_costo,False
+U0039,¿Qué documentos se necesitan para licencia de construcción?,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True
+U0094,"Disculpe, ¿dónde consigo información sobre cómo pagar el impuesto predial?",pago_predial_como,pago_predial_como,True
+U0095,"Oiga, ¿qué hay sobre cómo pagar el impuesto predial?",pago_predial_como,pago_predial_como,True
+U0096,Necesitaría orientación sobre cómo pagar el impuesto predial.,pago_predial_como,pago_predial_como,True
+U0109,¿Qué es el impuesto de alcabala y cómo lo pago?,impuesto_alcabala,impuesto_alcabala,True
+U0110,"Compré un terreno, ¿tengo que pagar alcabala?",impuesto_alcabala,impuesto_alcabala,True
+U0111,¿Cómo tramito el pago de alcabala?,impuesto_alcabala,impuesto_alcabala,True
+U0121,¿Puedo fraccionar mi deuda tributaria?,fraccionamiento_deuda,fraccionamiento_deuda,True
+U0122,"Quiero pagar mi deuda municipal en partes, ¿se puede?",fraccionamiento_deuda,consulta_deuda_predial,False
+U0123,¿Cómo hago un fraccionamiento de mi deuda predial?,fraccionamiento_deuda,fraccionamiento_deuda,True
+U0142,"Disculpe, ¿dónde consigo información sobre la constancia de no adeudo?",constancia_no_adeudo,constancia_no_adeudo,True
+U0143,"Oiga, ¿qué hay sobre la constancia de no adeudo?",constancia_no_adeudo,constancia_no_adeudo,True
+U0144,Necesitaría orientación sobre la constancia de no adeudo.,constancia_no_adeudo,constancia_no_adeudo,True
+U0172,¿Mesa de partes atiende los sábados?,horario_mesa_partes,horario_mesa_partes,True
+U0173,¿Qué días atiende mesa de partes?,horario_mesa_partes,horario_mesa_partes,True
+U0174,¿Cuál es el horario para presentar documentos?,horario_mesa_partes,requisitos_mesa_partes,False
+U0181,¿Cómo saco una copia certificada de mi expediente?,copia_documento,copia_documento,True
+U0182,Necesito una copia de un documento que presenté,copia_documento,requisitos_mesa_partes,False
+U0183,¿Dónde pido copias de mis trámites anteriores?,copia_documento,repetir_informacion,False
+U0193,¿Cómo tramito un certificado de posesión?,certificado_posesion,certificado_posesion,True
+U0194,Necesito un certificado de posesión de mi terreno,certificado_posesion,certificado_posesion,True
+U0195,¿Qué requisitos piden para certificado de posesión?,certificado_posesion,certificado_posesion,True
+U0241,¿Qué requisitos piden para defensa civil?,requisitos_defensa_civil,requisitos_defensa_civil,True
+U0242,¿Qué documentos necesito para el certificado de Defensa Civil?,requisitos_defensa_civil,certificado_defensa_civil,False
+U0243,¿Qué me piden para la inspección de seguridad?,requisitos_defensa_civil,inspeccion_tecnica,False
+U0259,"Buenas, ¿me podría explicar cómo reportar un problema de seguridad ciudadana?",denuncia_seguridad_ciudadana,denuncia_seguridad_ciudadana,True
+U0260,Quisiera saber cómo reportar un problema de seguridad ciudadana.,denuncia_seguridad_ciudadana,denuncia_seguridad_ciudadana,True
+U0261,¿Usted me puede ayudar con cómo reportar un problema de seguridad ciudadana?,denuncia_seguridad_ciudadana,denuncia_seguridad_ciudadana,True
+U0298,"Disculpe, ¿dónde consigo información sobre mi partida de matrimonio?",partida_matrimonio,partida_matrimonio,True
+U0299,"Oiga, ¿qué hay sobre mi partida de matrimonio?",partida_matrimonio,partida_matrimonio,True
+U0300,Necesitaría orientación sobre mi partida de matrimonio.,partida_matrimonio,partida_matrimonio,True
+U0331,"Buenas, ¿me podría explicar los requisitos para matrimonio civil?",requisitos_matrimonio_civil,requisitos_matrimonio_civil,True
+U0332,Quisiera saber los requisitos para matrimonio civil.,requisitos_matrimonio_civil,requisitos_matrimonio_civil,True
+U0333,¿Usted me puede ayudar con los requisitos para matrimonio civil?,requisitos_matrimonio_civil,requisitos_matrimonio_civil,True
+U0379,"Buenas, ¿me podría explicar la poda de un árbol público?",poda_arboles,poda_arboles,True
+U0380,Quisiera saber la poda de un árbol público.,poda_arboles,poda_arboles,True
+U0381,¿Usted me puede ayudar con la poda de un árbol público?,poda_arboles,poda_arboles,True
+U0388,"Hay basura acumulada en mi cuadra, ¿a quién aviso?",limpieza_via_publica,horario_recojo_basura,False
+U0389,¿Cómo pido limpieza pública para mi zona?,limpieza_via_publica,limpieza_via_publica,True
+U0390,Quiero reportar una vía pública descuidada,limpieza_via_publica,limpieza_via_publica,True
+U0415,"Buenas, ¿me podría explicar el estado de mi reclamo?",estado_reclamo,estado_reclamo,True
+U0416,Quisiera saber el estado de mi reclamo.,estado_reclamo,estado_reclamo,True
+U0417,¿Usted me puede ayudar con el estado de mi reclamo?,estado_reclamo,estado_reclamo,True
+U0430,"Disculpe, ¿dónde consigo información sobre el libro de reclamaciones?",libro_reclamaciones,libro_reclamaciones,True
+U0431,"Oiga, ¿qué hay sobre el libro de reclamaciones?",libro_reclamaciones,libro_reclamaciones,True
+U0432,Necesitaría orientación sobre el libro de reclamaciones.,libro_reclamaciones,libro_reclamaciones,True
+U0439,"Buenas, ¿me podría explicar una queja sobre la atención recibida?",queja_atencion,queja_atencion,True
+U0440,Quisiera saber una queja sobre la atención recibida.,queja_atencion,queja_atencion,True
+U0441,¿Usted me puede ayudar con una queja sobre la atención recibida?,queja_atencion,queja_atencion,True
+U0448,¿Dónde dejo mis comentarios sobre el servicio?,sugerencia,requisitos_mesa_partes,False
+U0449,Quiero proponer una mejora a un trámite,sugerencia,estado_tramite,False
+U0450,¿Cómo envío una sugerencia a la MPSR?,sugerencia,sugerencia,True
+U0517,¿Cuál es el Facebook de la municipalidad?,redes_sociales_mpsr,ubicacion_oficinas,False
+U0518,¿Tienen redes sociales donde informan trámites?,redes_sociales_mpsr,redes_sociales_mpsr,True
+U0519,¿Dónde sigo las noticias de la MPSR?,redes_sociales_mpsr,ubicacion_oficinas,False
+U0529,Hola,saludo,saludo,True
+U0530,Buenos días,saludo,saludo,True
+U0531,Qué tal,saludo,saludo,True
+U0565,Sí,afirmar,afirmar,True
+U0566,Claro que sí,afirmar,consulta_no_entendida,False
+U0567,"Correcto, eso es",afirmar,afirmar,True
+U0586,"No, otra cosa quería",negar,negar,True
+U0587,"No, disculpe",negar,negar,True
+U0588,"No, para nada",negar,negar,True
+U0601,Quiero hablar con una persona,hablar_con_persona,hablar_con_persona,True
+U0602,¿Me puedes pasar con un trabajador?,hablar_con_persona,hablar_con_persona,True
+U0603,Necesito hablar con alguien de la municipalidad,hablar_con_persona,hablar_con_persona,True
+U0613,¿Qué puedes hacer?,ayuda_chatbot,ayuda_chatbot,True
+U0614,¿En qué me puedes ayudar?,ayuda_chatbot,ayuda_chatbot,True
+U0615,¿Qué tipo de consultas respondes?,ayuda_chatbot,ayuda_chatbot,True
+U0634,¿A qué te refieres?,consulta_no_entendida,hablar_con_persona,False
+U0635,No comprendí tu mensaje,consulta_no_entendida,consulta_no_entendida,True
+U0636,Explícalo de nuevo porfa,consulta_no_entendida,consulta_no_entendida,True
+U0643,¿Me repites por favor?,repetir_informacion,repetir_informacion,True
+U0644,"No leí bien, repite",repetir_informacion,repetir_informacion,True
+U0645,Otra vez porfa,repetir_informacion,negar,False

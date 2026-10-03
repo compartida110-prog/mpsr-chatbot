@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-161526-another-era
+assistant_id: 20261002-201431-rude-level

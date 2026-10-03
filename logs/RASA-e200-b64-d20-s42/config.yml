@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-164451-old-send
+assistant_id: 20261002-204628-recent-herring

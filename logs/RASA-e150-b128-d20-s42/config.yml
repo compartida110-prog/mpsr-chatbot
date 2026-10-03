@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-163530-nervous-participant
+assistant_id: 20261002-203640-molto-farad

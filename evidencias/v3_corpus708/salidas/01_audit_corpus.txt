@@ -1,0 +1,85 @@
+2026-10-02 20:09:24
+$ venv/Scripts/python.exe scripts/audit_corpus.py
+REPORTE DE AUDITORÍA — Corpus MPSR-Bot (P03/P04)
+Archivo: C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\corpus\corpus_metadata.csv
+SHA-256: 9e10876af2eea2fa1a4efb711ed478cda5f51daaffe7a4d60ea7af7a75ffb462
+Utterances: 708 | Intenciones: 54 (esperadas 50) | Categorías: 9 (esperadas 9) | Grupos base_phrase_id: 236
+Umbral casi-duplicados: 0.9 (Jaccard de tokens o Levenshtein normalizada, misma intención)
+
+Incidencias detectadas:
+  casi_duplicado_otro_grupo: 2
+  Pares casi-duplicados: 2
+
+
+Desbalance (máx/mín utterances por intención): 1.75
+Intenciones con menos de 3 grupos de frase base (no se pueden repartir en train/val/test): []
+
+Utterances por categoría:
+  Interacción conversacional: 147
+  Trámites documentarios: 84
+  Licencias y autorizaciones: 81
+  Tributos y pagos municipales: 72
+  Información general: 72
+  Defensa civil y seguridad ciudadana: 66
+  Servicios públicos: 66
+  Registro civil: 60
+  Reclamos y quejas: 60
+
+Utterances por intención:
+  licencia_funcionamiento_requisitos: 21 (7 grupos)
+  fuera_de_alcance: 21 (7 grupos)
+  afirmar: 18 (6 grupos)
+  requisitos_defensa_civil: 18 (6 grupos)
+  copia_documento: 18 (6 grupos)
+  reporte_alumbrado_publico: 18 (6 grupos)
+  despedida: 18 (6 grupos)
+  horario_mesa_partes: 18 (6 grupos)
+  ayuda_chatbot: 18 (6 grupos)
+  agradecimiento: 12 (4 grupos)
+  sugerencia: 12 (4 grupos)
+  poda_arboles: 12 (4 grupos)
+  limpieza_via_publica: 12 (4 grupos)
+  presentar_reclamo: 12 (4 grupos)
+  estado_reclamo: 12 (4 grupos)
+  libro_reclamaciones: 12 (4 grupos)
+  queja_atencion: 12 (4 grupos)
+  consulta_no_entendida: 12 (4 grupos)
+  horario_atencion_general: 12 (4 grupos)
+  negar: 12 (4 grupos)
+  ubicacion_oficinas: 12 (4 grupos)
+  requisitos_generales: 12 (4 grupos)
+  hablar_con_persona: 12 (4 grupos)
+  costos_generales: 12 (4 grupos)
+  contacto_telefonico: 12 (4 grupos)
+  redes_sociales_mpsr: 12 (4 grupos)
+  saludo: 12 (4 grupos)
+  mantenimiento_parques: 12 (4 grupos)
+  requisitos_matrimonio_civil: 12 (4 grupos)
+  horario_recojo_basura: 12 (4 grupos)
+  requisitos_mesa_partes: 12 (4 grupos)
+  licencia_funcionamiento_plazo: 12 (4 grupos)
+  licencia_edificacion_requisitos: 12 (4 grupos)
+  licencia_edificacion_costo: 12 (4 grupos)
+  renovacion_licencia: 12 (4 grupos)
+  consulta_deuda_predial: 12 (4 grupos)
+  pago_predial_como: 12 (4 grupos)
+  pago_arbitrios: 12 (4 grupos)
+  impuesto_alcabala: 12 (4 grupos)
+  fraccionamiento_deuda: 12 (4 grupos)
+  constancia_no_adeudo: 12 (4 grupos)
+  estado_tramite: 12 (4 grupos)
+  licencia_funcionamiento_costo: 12 (4 grupos)
+  certificado_posesion: 12 (4 grupos)
+  constancia_domiciliaria: 12 (4 grupos)
+  certificado_defensa_civil: 12 (4 grupos)
+  inspeccion_tecnica: 12 (4 grupos)
+  denuncia_seguridad_ciudadana: 12 (4 grupos)
+  serenazgo_contacto: 12 (4 grupos)
+  partida_nacimiento: 12 (4 grupos)
+  partida_matrimonio: 12 (4 grupos)
+  partida_defuncion: 12 (4 grupos)
+  rectificacion_partida: 12 (4 grupos)
+  repetir_informacion: 12 (4 grupos)
+
+Detalle en C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\corpus\corpus_audit.csv y logs/audit_report.txt
+exit=0

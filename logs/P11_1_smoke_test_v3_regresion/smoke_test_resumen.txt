@@ -1,0 +1,18 @@
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: models/smoke/smoke_test_model_v3.tar.gz
+Intención correcta:            52/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  41/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.813 | mínima: 0.117
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  denuncia_seguridad_ciudadana -> partida_defuncion | 0.12 | partida_defuncion=0.12; queja_atencion=0.10; reporte_alumbrado_publico=0.08
+  requisitos_mesa_partes -> horario_mesa_partes | 0.45 | horario_mesa_partes=0.45; requisitos_mesa_partes=0.41; requisitos_defensa_civil=0.02
+
+Aciertos con confianza < 0.50 (frágiles):
+  constancia_domiciliaria (0.47)
+  partida_defuncion (0.38)
+  presentar_reclamo (0.21)
+  repetir_informacion (0.18)
+  reporte_alumbrado_publico (0.43)

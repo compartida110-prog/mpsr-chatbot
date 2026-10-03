@@ -11,6 +11,12 @@ nlu:
     - Exacto, eso es
     - Sí señor/señorita
     - Así mismo es
+    - dale pues
+    - ya, adelante pues
+    - sí pues, claro
+    - ok, listo
+    - bueno, está bien
+    - eso mismo es, sí
 - intent: agradecimiento
   examples: |
     - Gracias por la información
@@ -33,6 +39,12 @@ nlu:
     - ¿Qué sabes responder?
     - Cuéntame qué puedes hacer
     - ¿Qué tipo de ayuda das?
+    - ¿en qué cosas me puedes ayudar?
+    - ¿cómo me puedes colaborar con mis trámites?
+    - ¿para qué cosas sirves?
+    - ¿qué trámites puedo consultar aquí?
+    - ¿qué puedo preguntarte?
+    - no sé qué preguntar, ¿qué haces tú?
 - intent: certificado_defensa_civil
   examples: |
     - ¿Cómo obtengo el certificado de defensa civil?
@@ -121,6 +133,12 @@ nlu:
     - Disculpe, ¿dónde consigo información sobre una copia certificada de un documento?
     - Oiga, ¿qué hay sobre una copia certificada de un documento?
     - Necesitaría orientación sobre una copia certificada de un documento.
+    - ¿me pueden dar una copia de mi expediente?
+    - quiero copia de un documento que ya presenté
+    - ¿cómo saco copia de lo que presenté antes?
+    - necesito que me den copia fedateada de un documento
+    - perdí el cargo de mi trámite, ¿me dan otra copia?
+    - una copia de una resolución municipal, ¿cómo la pido?
 - intent: costos_generales
   examples: |
     - Quiero saber cuánto cuesta cada trámite
@@ -154,6 +172,12 @@ nlu:
     - Vale, gracias, chau
     - Está bien, hasta otra
     - Gracias, que esté bien
+    - ya me despido, que le vaya bien
+    - bueno, me despido, cuídese mucho
+    - hasta luego pues, gracias
+    - chau pues, muchas gracias
+    - nos vemos, gracias por todo
+    - eso nomás, gracias, hasta pronto
 - intent: estado_reclamo
   examples: |
     - ¿Cómo consulto el estado de mi reclamo?
@@ -198,6 +222,15 @@ nlu:
     - ¿Sabes cocinar?
     - ¿Cuánto es 2 más 2?
     - Recomiéndame una película
+    - ¿cómo saco mi RUC en la SUNAT?
+    - ¿dónde tramito mi RUC para emitir facturas?
+    - necesito sacar mi clave SOL de la SUNAT
+    - ¿dónde puedo pagar mi recibo de luz?
+    - ¿hasta cuándo puedo pagar el agua sin que me corten?
+    - mi recibo de luz salió muy alto, ¿a quién le cuento?
+    - ¿cómo saco mi DNI nuevo en la RENIEC?
+    - ¿cómo tramito mi pasaporte?
+    - ¿cómo me afilio al seguro de EsSalud?
 - intent: hablar_con_persona
   examples: |
     - No quiero hablar con un robot, quiero un humano
@@ -231,6 +264,12 @@ nlu:
     - Disculpe, ¿dónde consigo información sobre el horario de atención de mesa de partes?
     - Oiga, ¿qué hay sobre el horario de atención de mesa de partes?
     - Necesitaría orientación sobre el horario de atención de mesa de partes.
+    - ¿hasta qué hora reciben papeles en mesa de partes?
+    - mesa de partes, ¿a qué hora cierra?
+    - ¿qué horario tiene mesa de partes para dejar un documento?
+    - ¿se puede presentar documentos en mesa de partes por la tarde?
+    - ¿atienden los sábados en mesa de partes?
+    - ¿a qué hora empieza a recibir mesa de partes?
 - intent: horario_recojo_basura
   examples: |
     - ¿A qué hora pasa el carro de la basura?
@@ -330,6 +369,15 @@ nlu:
     - Buenas, ¿me podría explicar los requisitos para la licencia de funcionamiento?
     - Quisiera saber los requisitos para la licencia de funcionamiento.
     - ¿Usted me puede ayudar con los requisitos para la licencia de funcionamiento?
+    - quiero abrir un restaurante, ¿qué necesito?
+    - voy a abrir un restaurante, ¿qué trámite debo hacer?
+    - para poner mi restaurante, ¿qué me exigen?
+    - voy a poner una tienda, ¿qué papeles me piden?
+    - quiero poner mi bodega, ¿qué documentos llevo a la municipalidad?
+    - voy a abrir una botica, ¿qué papeles necesito?
+    - ¿qué documentos pide la municipalidad para un negocio nuevo?
+    - mi negocio recién empieza, ¿qué permisos me piden?
+    - quiero poner una peluquería o un hostal, ¿qué requisitos hay?
 - intent: limpieza_via_publica
   examples: |
     - ¿Cómo solicito limpieza de una calle?
@@ -506,6 +554,12 @@ nlu:
     - Disculpe, ¿dónde consigo información sobre cómo reportar una falla de alumbrado público?
     - Oiga, ¿qué hay sobre cómo reportar una falla de alumbrado público?
     - Necesitaría orientación sobre cómo reportar una falla de alumbrado público.
+    - la luz del poste de mi cuadra está apagada
+    - en mi calle no hay luz, los postes no encienden
+    - se quemó un foco del alumbrado de mi barrio
+    - ¿a quién aviso que el alumbrado de mi calle está malogrado?
+    - hay un poste sin luz en la esquina, ¿cómo reporto?
+    - mi calle está a oscuras por falta de alumbrado
 - intent: requisitos_defensa_civil
   examples: |
     - Para mi local comercial, ¿qué necesito de Defensa Civil?
@@ -517,6 +571,12 @@ nlu:
     - Disculpe, ¿dónde consigo información sobre los requisitos de Defensa Civil?
     - Oiga, ¿qué hay sobre los requisitos de Defensa Civil?
     - Necesitaría orientación sobre los requisitos de Defensa Civil.
+    - ¿qué piden para la inspección de defensa civil de mi local?
+    - ¿qué necesito para pasar la revisión de seguridad de mi tienda?
+    - para defensa civil, ¿qué cosas me exigen?
+    - ¿qué debo tener en mi local para que defensa civil me apruebe?
+    - ¿cuáles son las exigencias de defensa civil para un negocio?
+    - ¿me piden extintores y señales para defensa civil?
 - intent: requisitos_generales
   examples: |
     - ¿Qué documento de identidad piden para hacer trámites?

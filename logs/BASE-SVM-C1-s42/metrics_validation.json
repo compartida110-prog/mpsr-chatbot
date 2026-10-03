@@ -3,11 +3,11 @@
   "evaluated_on": "validation",
   "seed": 42,
   "metrics": {
-    "accuracy": 0.7407407407407407,
-    "precision_macro": 0.6357142857142857,
-    "recall_macro": 0.5714285714285714,
-    "f1_macro": 0.5808163265306122,
-    "balanced_accuracy": 0.7407407407407406
+    "accuracy": 0.7777777777777778,
+    "precision_macro": 0.7602941176470589,
+    "recall_macro": 0.6176470588235294,
+    "f1_macro": 0.6531512605042016,
+    "balanced_accuracy": 0.7777777777777777
   },
   "n_evaluated": 81,
   "config": {
@@ -23,8 +23,8 @@
     }
   },
   "corpus_file": "corpus\\corpus_metadata.csv",
-  "corpus_sha256": "dc7bf550fb905275eef8314c267230d761756368a98ae8eb061589c0fc6a1ede",
-  "git_commit": "4f6dd9c",
-  "timestamp": "2026-10-02T16:10:55",
+  "corpus_sha256": "9e10876af2eea2fa1a4efb711ed478cda5f51daaffe7a4d60ea7af7a75ffb462",
+  "git_commit": "461ceb5-modificado",
+  "timestamp": "2026-10-02T20:09:45",
   "python": "3.10.11"
 }

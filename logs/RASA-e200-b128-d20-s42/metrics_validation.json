@@ -3,11 +3,11 @@
   "evaluated_on": "validation",
   "seed": 42,
   "metrics": {
-    "accuracy": 0.8148148148148148,
-    "precision_macro": 0.7259803921568627,
-    "recall_macro": 0.6470588235294118,
-    "f1_macro": 0.6717787114845939,
-    "balanced_accuracy": 0.8148148148148148
+    "accuracy": 0.8395061728395061,
+    "precision_macro": 0.7578431372549019,
+    "recall_macro": 0.6666666666666666,
+    "f1_macro": 0.6832633053221289,
+    "balanced_accuracy": 0.8395061728395061
   },
   "n_evaluated": 81,
   "config": {
@@ -18,10 +18,10 @@
     "pipeline_file": "logs/RASA-e200-b128-d20-s42/config.yml"
   },
   "corpus_file": "corpus\\corpus_metadata.csv",
-  "corpus_sha256": "dc7bf550fb905275eef8314c267230d761756368a98ae8eb061589c0fc6a1ede",
-  "git_commit": "4f6dd9c",
-  "timestamp": "2026-10-02T17:02:30",
+  "corpus_sha256": "9e10876af2eea2fa1a4efb711ed478cda5f51daaffe7a4d60ea7af7a75ffb462",
+  "git_commit": "461ceb5-modificado",
+  "timestamp": "2026-10-02T21:09:36",
   "python": "3.10.11",
   "model_file": "models\\rasa\\RASA-e200-b128-d20-s42.tar.gz",
-  "train_seconds": 338.1
+  "train_seconds": 370.0
 }

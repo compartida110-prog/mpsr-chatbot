@@ -1,0 +1,31 @@
+{
+  "experiment_id": "BASE-LOGREG-C1.0-s40",
+  "evaluated_on": "test",
+  "seed": 40,
+  "metrics": {
+    "accuracy": 0.7530864197530864,
+    "precision_macro": 0.6856481481481481,
+    "recall_macro": 0.5648148148148148,
+    "f1_macro": 0.5918650793650795,
+    "balanced_accuracy": 0.7530864197530863
+  },
+  "n_evaluated": 81,
+  "config": {
+    "model": "logreg",
+    "C": 1.0,
+    "vectorizer": {
+      "type": "TfidfVectorizer",
+      "max_features": 5000,
+      "ngram_range": [
+        1,
+        2
+      ]
+    },
+    "max_iter": 1000
+  },
+  "corpus_file": "corpus\\corpus_metadata.csv",
+  "corpus_sha256": "dc7bf550fb905275eef8314c267230d761756368a98ae8eb061589c0fc6a1ede",
+  "git_commit": "4f6dd9c",
+  "timestamp": "2026-10-02T16:10:58",
+  "python": "3.10.11"
+}

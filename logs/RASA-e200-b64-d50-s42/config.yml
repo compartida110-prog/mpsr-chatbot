@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-165050-loyal-drill
+assistant_id: 20261002-205426-woolen-meter

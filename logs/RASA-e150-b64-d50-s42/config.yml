@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-163042-wan-formation
+assistant_id: 20261002-203121-agile-groove

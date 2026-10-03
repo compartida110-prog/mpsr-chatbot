@@ -1,14 +1,28 @@
 {
-  "total_utterances": 648,
+  "version": "v3",
+  "total_utterances": 708,
   "total_intents": 54,
   "total_categories": 9,
-  "total_groups": 216,
+  "total_groups": 236,
   "split_counts": {
-    "train": 486,
+    "train": 546,
     "validation": 81,
     "test": 81
   },
   "leaks_detected": 0,
   "seed": 42,
-  "avg_train_examples_per_intent": 9.0
+  "avg_train_examples_per_intent": 10.11,
+  "nuevas_utterances": 60,
+  "nuevos_grupos": 20,
+  "intenciones_ampliadas": [
+    "afirmar",
+    "ayuda_chatbot",
+    "copia_documento",
+    "despedida",
+    "fuera_de_alcance",
+    "horario_mesa_partes",
+    "licencia_funcionamiento_requisitos",
+    "reporte_alumbrado_publico",
+    "requisitos_defensa_civil"
+  ]
 }

@@ -1,0 +1,30 @@
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: models/smoke/smoke_test_model.tar.gz
+Intención correcta:            47/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  39/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.704 | mínima: 0.145
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  certificado_posesion -> renovacion_licencia | 0.21 | renovacion_licencia=0.21; constancia_no_adeudo=0.08; certificado_posesion=0.06
+  fraccionamiento_deuda -> requisitos_mesa_partes | 0.38 | requisitos_mesa_partes=0.38; requisitos_defensa_civil=0.11; horario_mesa_partes=0.08
+  fuera_de_alcance -> certificado_posesion | 0.16 | certificado_posesion=0.16; ubicacion_oficinas=0.11; pago_predial_como=0.06
+  licencia_funcionamiento_requisitos -> requisitos_mesa_partes | 0.72 | requisitos_mesa_partes=0.72; requisitos_defensa_civil=0.18; pago_arbitrios=0.01
+  limpieza_via_publica -> horario_recojo_basura | 0.60 | horario_recojo_basura=0.60; constancia_no_adeudo=0.07; negar=0.06
+  reporte_alumbrado_publico -> hablar_con_persona | 0.27 | hablar_con_persona=0.27; horario_atencion_general=0.08; partida_defuncion=0.07
+  requisitos_matrimonio_civil -> licencia_edificacion_requisitos | 0.15 | licencia_edificacion_requisitos=0.15; saludo=0.12; requisitos_matrimonio_civil=0.12
+
+Aciertos con confianza < 0.50 (frágiles):
+  afirmar (0.24)
+  agradecimiento (0.36)
+  copia_documento (0.49)
+  costos_generales (0.39)
+  denuncia_seguridad_ciudadana (0.25)
+  estado_tramite (0.20)
+  inspeccion_tecnica (0.20)
+  licencia_edificacion_requisitos (0.47)
+  licencia_funcionamiento_costo (0.50)
+  mantenimiento_parques (0.44)
+  queja_atencion (0.34)
+  redes_sociales_mpsr (0.39)

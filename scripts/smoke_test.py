@@ -22,6 +22,7 @@ import asyncio
 import logging
 import re
 import sys
+from pathlib import Path
 
 import pandas as pd
 import yaml
@@ -78,6 +79,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--model", default=str(MODELS / "smoke" / "smoke_test_model.tar.gz"))
     ap.add_argument("--queries", default=str(ROOT / "tests" / "smoke_test_queries.csv"))
+    ap.add_argument("--out-dir", default=str(OUT), help="carpeta donde se guardan los resultados")
     args = ap.parse_args()
 
     queries = pd.read_csv(args.queries, dtype=str)
@@ -87,8 +89,9 @@ def main():
         sys.exit("ERROR: las consultas no cubren exactamente las 54 intenciones de domain.yml")
 
     df = asyncio.run(run(args.model, queries, responses))
-    OUT.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUT / "smoke_test_results.csv", index=False, encoding="utf-8")
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    df.to_csv(out / "smoke_test_results.csv", index=False, encoding="utf-8")
 
     n = len(df)
     bad = df[~df["intención_ok"]]
@@ -114,9 +117,9 @@ def main():
     if len(low):
         lines += ["", "Aciertos con confianza < 0.50 (frágiles):"] + [f"  {r.intent_esperada} ({r.confianza:.2f})" for r in low.itertuples()]
     text = "\n".join(lines)
-    (OUT / "smoke_test_resumen.txt").write_text(text + "\n", encoding="utf-8")
+    (out / "smoke_test_resumen.txt").write_text(text + "\n", encoding="utf-8")
     print(text)
-    print(f"\nDetalle por consulta: {OUT / 'smoke_test_results.csv'}")
+    print(f"\nDetalle por consulta: {out / 'smoke_test_results.csv'}")
 
 
 if __name__ == "__main__":

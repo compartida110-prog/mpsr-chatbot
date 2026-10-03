@@ -1,0 +1,27 @@
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: models/smoke/smoke_test_model_v3.tar.gz
+Intención correcta:            44/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  42/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.719 | mínima: 0.109
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  afirmar -> consulta_deuda_predial | 0.11 | consulta_deuda_predial=0.11; rectificacion_partida=0.08; afirmar=0.07
+  agradecimiento -> ubicacion_oficinas | 0.15 | ubicacion_oficinas=0.15; negar=0.11; hablar_con_persona=0.08
+  consulta_deuda_predial -> pago_predial_como | 0.47 | pago_predial_como=0.47; consulta_deuda_predial=0.44; impuesto_alcabala=0.01
+  denuncia_seguridad_ciudadana -> contacto_telefonico | 0.11 | contacto_telefonico=0.11; hablar_con_persona=0.09; denuncia_seguridad_ciudadana=0.08
+  fraccionamiento_deuda -> horario_mesa_partes | 0.43 | horario_mesa_partes=0.43; requisitos_mesa_partes=0.17; ayuda_chatbot=0.04
+  inspeccion_tecnica -> requisitos_defensa_civil | 0.37 | requisitos_defensa_civil=0.37; limpieza_via_publica=0.09; certificado_defensa_civil=0.07
+  licencia_edificacion_requisitos -> licencia_edificacion_costo | 0.57 | licencia_edificacion_costo=0.57; licencia_edificacion_requisitos=0.21; licencia_funcionamiento_requisitos=0.11
+  licencia_funcionamiento_plazo -> licencia_funcionamiento_costo | 0.49 | licencia_funcionamiento_costo=0.49; licencia_funcionamiento_plazo=0.36; renovacion_licencia=0.03
+  reporte_alumbrado_publico -> hablar_con_persona | 0.13 | hablar_con_persona=0.13; partida_defuncion=0.12; denuncia_seguridad_ciudadana=0.11
+  requisitos_matrimonio_civil -> licencia_edificacion_requisitos | 0.15 | licencia_edificacion_requisitos=0.15; licencia_funcionamiento_requisitos=0.14; despedida=0.14
+
+Aciertos con confianza < 0.50 (frágiles):
+  costos_generales (0.27)
+  fuera_de_alcance (0.37)
+  limpieza_via_publica (0.32)
+  mantenimiento_parques (0.40)
+  partida_defuncion (0.42)
+  queja_atencion (0.48)

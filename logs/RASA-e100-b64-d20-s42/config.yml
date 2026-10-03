@@ -15,4 +15,4 @@ pipeline:
   constrain_similarities: true
   random_seed: 42
   entity_recognition: true
-assistant_id: 20261002-161148-cold-romano
+assistant_id: 20261002-201010-frosty-enamel

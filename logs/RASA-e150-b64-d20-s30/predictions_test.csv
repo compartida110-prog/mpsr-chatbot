@@ -1,0 +1,82 @@
+utterance_id,text,intent,predicted,correct
+U0010,"Disculpe, ¿dónde consigo información sobre los requisitos para la licencia de funcionamiento?",licencia_funcionamiento_requisitos,licencia_funcionamiento_requisitos,True
+U0011,"Oiga, ¿qué hay sobre los requisitos para la licencia de funcionamiento?",licencia_funcionamiento_requisitos,licencia_funcionamiento_requisitos,True
+U0012,Necesitaría orientación sobre los requisitos para la licencia de funcionamiento.,licencia_funcionamiento_requisitos,licencia_funcionamiento_requisitos,True
+U0019,"Buenas, ¿me podría explicar el costo de la licencia de funcionamiento?",licencia_funcionamiento_costo,licencia_funcionamiento_costo,True
+U0020,Quisiera saber el costo de la licencia de funcionamiento.,licencia_funcionamiento_costo,licencia_funcionamiento_costo,True
+U0021,¿Usted me puede ayudar con el costo de la licencia de funcionamiento?,licencia_funcionamiento_costo,licencia_funcionamiento_costo,True
+U0055,"Buenas, ¿me podría explicar el costo de la licencia de edificación?",licencia_edificacion_costo,licencia_edificacion_costo,True
+U0056,Quisiera saber el costo de la licencia de edificación.,licencia_edificacion_costo,licencia_edificacion_costo,True
+U0057,¿Usted me puede ayudar con el costo de la licencia de edificación?,licencia_edificacion_costo,licencia_edificacion_costo,True
+U0064,¿Qué necesito para renovar mi licencia vencida?,renovacion_licencia,renovacion_licencia,True
+U0065,"Quiero actualizar mi licencia de funcionamiento, ¿cómo hago?",renovacion_licencia,licencia_funcionamiento_costo,False
+U0066,¿Cuáles son los pasos para renovar una licencia?,renovacion_licencia,renovacion_licencia,True
+U0079,"Buenas, ¿me podría explicar mi deuda del impuesto predial?",consulta_deuda_predial,consulta_deuda_predial,True
+U0080,Quisiera saber mi deuda del impuesto predial.,consulta_deuda_predial,consulta_deuda_predial,True
+U0081,¿Usted me puede ayudar con mi deuda del impuesto predial?,consulta_deuda_predial,consulta_deuda_predial,True
+U0103,"Buenas, ¿me podría explicar cómo pagar los arbitrios municipales?",pago_arbitrios,pago_arbitrios,True
+U0104,Quisiera saber cómo pagar los arbitrios municipales.,pago_arbitrios,pago_arbitrios,True
+U0105,¿Usted me puede ayudar con cómo pagar los arbitrios municipales?,pago_arbitrios,pago_arbitrios,True
+U0145,¿Qué requisitos piden en mesa de partes?,requisitos_mesa_partes,requisitos_mesa_partes,True
+U0146,¿Qué necesito para presentar un documento en mesa de partes?,requisitos_mesa_partes,horario_mesa_partes,False
+U0147,¿Qué papeles debo llevar a mesa de partes?,requisitos_mesa_partes,horario_mesa_partes,False
+U0160,"Presenté un documento, ¿cómo sé si ya lo revisaron?",estado_tramite,copia_documento,False
+U0161,¿Cómo rastreo mi expediente municipal?,estado_tramite,estado_tramite,True
+U0162,Necesito saber el estado de mi solicitud,estado_tramite,estado_tramite,True
+U0205,¿Cómo saco una constancia domiciliaria?,constancia_domiciliaria,constancia_domiciliaria,True
+U0206,Necesito un certificado de domicilio,constancia_domiciliaria,certificado_posesion,False
+U0207,¿Qué requisitos piden para constancia domiciliaria?,constancia_domiciliaria,constancia_domiciliaria,True
+U0226,"Disculpe, ¿dónde consigo información sobre el certificado de Defensa Civil?",certificado_defensa_civil,certificado_defensa_civil,True
+U0227,"Oiga, ¿qué hay sobre el certificado de Defensa Civil?",certificado_defensa_civil,certificado_defensa_civil,True
+U0228,Necesitaría orientación sobre el certificado de Defensa Civil.,certificado_defensa_civil,certificado_defensa_civil,True
+U0232,¿Cuánto demora la inspección técnica de mi negocio?,inspeccion_tecnica,licencia_funcionamiento_plazo,False
+U0233,¿Quién hace la inspección de seguridad en edificaciones?,inspeccion_tecnica,inspeccion_tecnica,True
+U0234,¿Cómo programo una visita de Defensa Civil?,inspeccion_tecnica,requisitos_defensa_civil,False
+U0265,¿Cuál es el número de serenazgo?,serenazgo_contacto,serenazgo_contacto,True
+U0266,¿Cómo contacto a serenazgo?,serenazgo_contacto,serenazgo_contacto,True
+U0267,Necesito el teléfono de seguridad ciudadana,serenazgo_contacto,contacto_telefonico,False
+U0286,"Disculpe, ¿dónde consigo información sobre mi partida de nacimiento?",partida_nacimiento,partida_nacimiento,True
+U0287,"Oiga, ¿qué hay sobre mi partida de nacimiento?",partida_nacimiento,partida_nacimiento,True
+U0288,Necesitaría orientación sobre mi partida de nacimiento.,partida_nacimiento,partida_nacimiento,True
+U0301,¿Cómo tramito una partida de defunción?,partida_defuncion,partida_defuncion,True
+U0302,Necesito el certificado de defunción de un familiar,partida_defuncion,constancia_no_adeudo,False
+U0303,¿Qué requisitos piden para partida de defunción?,partida_defuncion,partida_defuncion,True
+U0322,"Disculpe, ¿dónde consigo información sobre la rectificación de una partida?",rectificacion_partida,rectificacion_partida,True
+U0323,"Oiga, ¿qué hay sobre la rectificación de una partida?",rectificacion_partida,rectificacion_partida,True
+U0324,Necesitaría orientación sobre la rectificación de una partida.,rectificacion_partida,rectificacion_partida,True
+U0340,"El camión de basura no pasó, ¿a qué hora viene?",horario_recojo_basura,horario_recojo_basura,True
+U0341,¿Cómo sé el horario de recolección de residuos?,horario_recojo_basura,horario_mesa_partes,False
+U0342,¿Qué días hay recojo de basura en mi barrio?,horario_recojo_basura,horario_recojo_basura,True
+U0352,"Hay un cable suelto en un poste, ¿a quién aviso?",reporte_alumbrado_publico,reporte_alumbrado_publico,True
+U0353,¿Cómo reporto que una calle está sin luz?,reporte_alumbrado_publico,reporte_alumbrado_publico,True
+U0354,Necesito reportar un poste de alumbrado dañado,reporte_alumbrado_publico,reporte_alumbrado_publico,True
+U0364,Las áreas verdes de mi zona están descuidadas,mantenimiento_parques,denuncia_seguridad_ciudadana,False
+U0365,¿Cómo pido que arreglen el parque de mi urbanización?,mantenimiento_parques,mantenimiento_parques,True
+U0366,Quiero reportar juegos rotos en el parque,mantenimiento_parques,mantenimiento_parques,True
+U0397,¿Cómo presento un reclamo a la municipalidad?,presentar_reclamo,presentar_reclamo,True
+U0398,Quiero hacer un reclamo formal,presentar_reclamo,estado_reclamo,False
+U0399,¿Dónde registro una queja contra la municipalidad?,presentar_reclamo,partida_defuncion,False
+U0466,"Disculpe, ¿dónde consigo información sobre el horario de atención de la municipalidad?",horario_atencion_general,horario_atencion_general,True
+U0467,"Oiga, ¿qué hay sobre el horario de atención de la municipalidad?",horario_atencion_general,horario_atencion_general,True
+U0468,Necesitaría orientación sobre el horario de atención de la municipalidad.,horario_atencion_general,horario_atencion_general,True
+U0472,¿Cómo llego a la municipalidad de San Román?,ubicacion_oficinas,ubicacion_oficinas,True
+U0473,¿En qué parte de Juliaca está la municipalidad?,ubicacion_oficinas,fuera_de_alcance,False
+U0474,Necesito la ubicación exacta del palacio municipal,ubicacion_oficinas,ubicacion_oficinas,True
+U0490,"Disculpe, ¿dónde consigo información sobre los requisitos generales para hacer un trámite?",requisitos_generales,requisitos_generales,True
+U0491,"Oiga, ¿qué hay sobre los requisitos generales para hacer un trámite?",requisitos_generales,requisitos_generales,True
+U0492,Necesitaría orientación sobre los requisitos generales para hacer un trámite.,requisitos_generales,requisitos_generales,True
+U0493,¿Dónde veo los costos de los trámites municipales?,costos_generales,costos_generales,True
+U0494,¿Cuánto cuestan los trámites en general?,costos_generales,requisitos_generales,False
+U0495,¿Dónde está el tupa con los precios de trámites?,costos_generales,costos_generales,True
+U0508,¿Tienen un WhatsApp de atención?,contacto_telefonico,horario_atencion_general,False
+U0509,¿Cuál es el correo de la municipalidad?,contacto_telefonico,afirmar,False
+U0510,¿Cómo me comunico con la MPSR por teléfono?,contacto_telefonico,contacto_telefonico,True
+U0541,"Chau, gracias",despedida,despedida,True
+U0542,Hasta luego,despedida,despedida,True
+U0543,Nos vemos,despedida,despedida,True
+U0556,"Ok, gracias",agradecimiento,agradecimiento,True
+U0557,"Perfecto, muchas gracias",agradecimiento,agradecimiento,True
+U0558,Gracias por tu ayuda,agradecimiento,agradecimiento,True
+U0595,¿Cuál es la capital de Francia?,fuera_de_alcance,consulta_no_entendida,False
+U0596,¿Me ayudas con mi tarea?,fuera_de_alcance,fuera_de_alcance,True
+U0597,¿Qué partido juega hoy?,fuera_de_alcance,saludo,False
