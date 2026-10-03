@@ -1,3 +1,16 @@
+# domain_v2.yml -- P09 completado (54/54 respuestas, ya no hay [PENDIENTE]).
+#
+# IMPORTANTE: las 44 respuestas de tramites (todo lo que no es conversacional:
+# saludo, despedida, etc.) estan redactadas con informacion TIPICA de un TUPA
+# municipal peruano, no con el TUPA real de la MPSR. Cada linea marcada con
+# "[Verificar ...]" senala un dato que DEBE confirmarse con el TUPA oficial de
+# la MPSR antes de usarse en el pre-piloto (P11.2) o de reportarse en la tesis.
+# No se debe presentar este contenido como validado hasta hacer esa revision.
+#
+# Criterio de marcado: toda respuesta de tramite que afirma requisitos, tasas, plazos,
+# oficinas, canales o formas de pago lleva su propia nota [Verificar ...] al final.
+# Quedan sin nota solo 4 respuestas genericas o que remiten al TUPA: denuncia_seguridad_ciudadana,
+# horario_recojo_basura, requisitos_generales y costos_generales.
 version: '3.1'
 intents:
 - afirmar
@@ -55,94 +68,94 @@ intents:
 - sugerencia
 - ubicacion_oficinas
 responses:
-  utter_certificado_defensa_civil:
-  - text: '[PENDIENTE] Respuesta real para ''certificado_defensa_civil'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_certificado_posesion:
-  - text: '[PENDIENTE] Respuesta real para ''certificado_posesion'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_constancia_domiciliaria:
-  - text: '[PENDIENTE] Respuesta real para ''constancia_domiciliaria'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_constancia_no_adeudo:
-  - text: '[PENDIENTE] Respuesta real para ''constancia_no_adeudo'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_consulta_deuda_predial:
-  - text: '[PENDIENTE] Respuesta real para ''consulta_deuda_predial'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_contacto_telefonico:
-  - text: '[PENDIENTE] Respuesta real para ''contacto_telefonico'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_copia_documento:
-  - text: '[PENDIENTE] Respuesta real para ''copia_documento'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_costos_generales:
-  - text: '[PENDIENTE] Respuesta real para ''costos_generales'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_denuncia_seguridad_ciudadana:
-  - text: '[PENDIENTE] Respuesta real para ''denuncia_seguridad_ciudadana'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_estado_reclamo:
-  - text: '[PENDIENTE] Respuesta real para ''estado_reclamo'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_estado_tramite:
-  - text: '[PENDIENTE] Respuesta real para ''estado_tramite'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_fraccionamiento_deuda:
-  - text: '[PENDIENTE] Respuesta real para ''fraccionamiento_deuda'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_horario_atencion_general:
-  - text: '[PENDIENTE] Respuesta real para ''horario_atencion_general'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_horario_mesa_partes:
-  - text: '[PENDIENTE] Respuesta real para ''horario_mesa_partes'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_horario_recojo_basura:
-  - text: '[PENDIENTE] Respuesta real para ''horario_recojo_basura'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_impuesto_alcabala:
-  - text: '[PENDIENTE] Respuesta real para ''impuesto_alcabala'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_inspeccion_tecnica:
-  - text: '[PENDIENTE] Respuesta real para ''inspeccion_tecnica'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_libro_reclamaciones:
-  - text: '[PENDIENTE] Respuesta real para ''libro_reclamaciones'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_licencia_edificacion_costo:
-  - text: '[PENDIENTE] Respuesta real para ''licencia_edificacion_costo'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_licencia_edificacion_requisitos:
-  - text: '[PENDIENTE] Respuesta real para ''licencia_edificacion_requisitos'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_licencia_funcionamiento_costo:
-  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_costo'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_licencia_funcionamiento_plazo:
-  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_plazo'' — completar con el texto oficial del TUPA/MPSR.'
   utter_licencia_funcionamiento_requisitos:
-  - text: '[PENDIENTE] Respuesta real para ''licencia_funcionamiento_requisitos'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_limpieza_via_publica:
-  - text: '[PENDIENTE] Respuesta real para ''limpieza_via_publica'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_mantenimiento_parques:
-  - text: '[PENDIENTE] Respuesta real para ''mantenimiento_parques'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_pago_arbitrios:
-  - text: '[PENDIENTE] Respuesta real para ''pago_arbitrios'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_pago_predial_como:
-  - text: '[PENDIENTE] Respuesta real para ''pago_predial_como'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_partida_defuncion:
-  - text: '[PENDIENTE] Respuesta real para ''partida_defuncion'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_partida_matrimonio:
-  - text: '[PENDIENTE] Respuesta real para ''partida_matrimonio'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_partida_nacimiento:
-  - text: '[PENDIENTE] Respuesta real para ''partida_nacimiento'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_poda_arboles:
-  - text: '[PENDIENTE] Respuesta real para ''poda_arboles'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_presentar_reclamo:
-  - text: '[PENDIENTE] Respuesta real para ''presentar_reclamo'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_queja_atencion:
-  - text: '[PENDIENTE] Respuesta real para ''queja_atencion'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_rectificacion_partida:
-  - text: '[PENDIENTE] Respuesta real para ''rectificacion_partida'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_redes_sociales_mpsr:
-  - text: '[PENDIENTE] Respuesta real para ''redes_sociales_mpsr'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: 'Para la licencia de funcionamiento necesitas: copia de tu DNI, el certificado de compatibilidad de uso, el certificado de Defensa Civil (ITSE) y el recibo de pago de la tasa correspondiente. [Verificar lista exacta con el TUPA vigente de la MPSR].'
+  utter_licencia_funcionamiento_costo:
+  - text: El costo de la licencia de funcionamiento depende del giro del negocio y del área del local. Puedes consultar el monto exacto en el TUPA de la MPSR o acercarte a la Plataforma de Atención. [Verificar monto vigente].
+  utter_licencia_funcionamiento_plazo:
+  - text: El trámite de licencia de funcionamiento suele atenderse en un plazo de 10 a 15 días hábiles, según la complejidad del giro del negocio. [Verificar plazo exacto con el TUPA vigente].
+  utter_licencia_edificacion_requisitos:
+  - text: 'Para la licencia de edificación necesitas: título de propiedad o documento que acredite posesión, planos de arquitectura firmados por un profesional colegiado, y el pago de la tasa correspondiente. [Verificar lista exacta con el TUPA vigente].'
+  utter_licencia_edificacion_costo:
+  - text: El costo de la licencia de edificación varía según el tipo y tamaño de la obra. Puedes consultar el monto exacto en el TUPA de la MPSR. [Verificar monto vigente].
   utter_renovacion_licencia:
-  - text: '[PENDIENTE] Respuesta real para ''renovacion_licencia'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_reporte_alumbrado_publico:
-  - text: '[PENDIENTE] Respuesta real para ''reporte_alumbrado_publico'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_requisitos_defensa_civil:
-  - text: '[PENDIENTE] Respuesta real para ''requisitos_defensa_civil'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_requisitos_generales:
-  - text: '[PENDIENTE] Respuesta real para ''requisitos_generales'' — completar con el texto oficial del TUPA/MPSR.'
-  utter_requisitos_matrimonio_civil:
-  - text: '[PENDIENTE] Respuesta real para ''requisitos_matrimonio_civil'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: Para renovar tu licencia de funcionamiento debes presentar tu licencia anterior, DNI vigente y el pago de la tasa de renovación. El trámite se realiza en la Plataforma de Atención. [Verificar requisitos exactos].
+  utter_consulta_deuda_predial:
+  - text: Puedes consultar tu deuda de impuesto predial presentando tu DNI en la Plataforma de Atención, o a través del número de tu autoavalúo si lo tienes a la mano. [Verificar canal y procedimiento de consulta con el TUPA vigente de la MPSR].
+  utter_pago_predial_como:
+  - text: El impuesto predial se puede pagar en caja de la municipalidad o en los bancos autorizados que tengan convenio con la MPSR. [Verificar si existe opción de pago en línea].
+  utter_pago_arbitrios:
+  - text: Los arbitrios municipales (limpieza pública, parques y jardines, serenazgo) se pagan junto con el impuesto predial o de forma independiente en caja de la municipalidad. [Verificar forma y lugar de pago con el TUPA vigente de la MPSR].
+  utter_impuesto_alcabala:
+  - text: El impuesto de alcabala se paga cuando compras un inmueble, y corresponde al 3% del valor de transferencia (con un tramo inicial inafecto equivalente a 10 UIT). Se cancela dentro del mes siguiente a la compra. [Verificar tasa, monto inafecto y plazo de pago con el TUPA y la normativa vigentes].
+  utter_fraccionamiento_deuda:
+  - text: Para fraccionar una deuda tributaria debes presentar una solicitud en mesa de partes, adjuntando tu DNI y el detalle de la deuda. La municipalidad evaluará una cuota inicial y un cronograma de pagos. [Verificar requisitos y procedimiento con el TUPA vigente de la MPSR].
+  utter_constancia_no_adeudo:
+  - text: La constancia de no adeudo se tramita presentando tu DNI en la Plataforma de Atención; se emite una vez verificado que no tienes deudas pendientes por impuesto predial o arbitrios. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
   utter_requisitos_mesa_partes:
-  - text: '[PENDIENTE] Respuesta real para ''requisitos_mesa_partes'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: Para presentar un documento en mesa de partes necesitas tu solicitud (puede ser un formato simple), copia de tu DNI, y los anexos que sustenten tu pedido. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_estado_tramite:
+  - text: Puedes consultar el estado de tu trámite presentando tu número de expediente en mesa de partes o en la Plataforma de Atención. [Verificar canal de consulta con el TUPA vigente de la MPSR].
+  utter_horario_mesa_partes:
+  - text: Mesa de partes atiende de lunes a viernes en el horario de oficina de la municipalidad. [Verificar horario exacto vigente].
+  utter_copia_documento:
+  - text: Para obtener una copia certificada de un documento presentado anteriormente, debes solicitarlo en mesa de partes indicando el número de expediente, y abonar la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
+  utter_certificado_posesion:
+  - text: El certificado de posesión se tramita presentando una declaración jurada, croquis del predio y documentos que acrediten la posesión pacífica del terreno. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_constancia_domiciliaria:
+  - text: La constancia domiciliaria se tramita presentando tu DNI y un recibo de servicio (luz o agua) a tu nombre o de un familiar directo que viva contigo. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_certificado_defensa_civil:
+  - text: El certificado de Defensa Civil (ITSE) se tramita presentando el plano de distribución del local, el certificado de medidas de seguridad y el pago de la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
+  utter_inspeccion_tecnica:
+  - text: Para solicitar una inspección técnica de seguridad (ITSE) debes presentar tu solicitud en mesa de partes; un inspector de Defensa Civil coordinará una visita al local. [Verificar procedimiento con el TUPA vigente de la MPSR].
+  utter_requisitos_defensa_civil:
+  - text: 'Los requisitos de Defensa Civil incluyen: plano de distribución, certificado de medición eléctrica, extintores vigentes y señalización de seguridad, entre otros, según el tipo de establecimiento. [Verificar requisitos exactos con el TUPA vigente de la MPSR].'
+  utter_denuncia_seguridad_ciudadana:
+  - text: Para reportar un problema de seguridad ciudadana puedes comunicarte con serenazgo o acudir a la comisaría más cercana si se trata de una emergencia.
   utter_serenazgo_contacto:
-  - text: '[PENDIENTE] Respuesta real para ''serenazgo_contacto'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: Puedes comunicarte con serenazgo de la MPSR a través de su línea de atención. [Verificar número vigente con la municipalidad].
+  utter_partida_nacimiento:
+  - text: Puedes solicitar una copia de tu partida de nacimiento en la oficina de Registro Civil, presentando tu DNI y abonando la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
+  utter_partida_matrimonio:
+  - text: La partida de matrimonio se solicita en la oficina de Registro Civil, indicando los datos del matrimonio (fecha, nombres de los contrayentes) y presentando tu DNI. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_partida_defuncion:
+  - text: Para inscribir o solicitar una partida de defunción debes presentar el certificado médico de defunción y el DNI del fallecido, en la oficina de Registro Civil. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_rectificacion_partida:
+  - text: Para rectificar un dato en una partida debes presentar una solicitud en Registro Civil junto con los documentos que sustenten la corrección (DNI, partida original, entre otros). [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  utter_requisitos_matrimonio_civil:
+  - text: 'Para matrimonio civil se requiere: DNI de ambos contrayentes, certificados de nacimiento actualizados, y en algunos casos certificado médico prenupcial. [Verificar requisitos vigentes].'
+  utter_horario_recojo_basura:
+  - text: El horario de recojo de basura varía según el sector de la ciudad. Puedes consultar el cronograma vigente en la municipalidad o en sus redes sociales.
+  utter_reporte_alumbrado_publico:
+  - text: Para reportar una falla de alumbrado público puedes comunicarte con el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del poste o farola. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  utter_mantenimiento_parques:
+  - text: Puedes solicitar el mantenimiento de un parque presentando tu pedido en mesa de partes o comunicándote con el área de Servicios Públicos, indicando la ubicación del parque. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  utter_poda_arboles:
+  - text: La poda de árboles públicos se solicita ante el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del árbol. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  utter_limpieza_via_publica:
+  - text: Para solicitar limpieza de una vía pública puedes comunicarte con el área de limpieza pública de la MPSR, indicando la calle y cuadra exacta. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  utter_presentar_reclamo:
+  - text: Puedes presentar un reclamo en mesa de partes, mediante un escrito simple indicando los hechos y adjuntando tu DNI, o a través del libro de reclamaciones si corresponde. [Verificar procedimiento con el TUPA vigente de la MPSR].
+  utter_estado_reclamo:
+  - text: El estado de tu reclamo puede consultarse en mesa de partes indicando tu número de expediente. [Verificar canal de consulta con el TUPA vigente de la MPSR].
+  utter_libro_reclamaciones:
+  - text: El libro de reclamaciones está disponible en la Plataforma de Atención; también puede existir una versión virtual. [Verificar si la MPSR cuenta con libro de reclamaciones virtual].
+  utter_queja_atencion:
+  - text: Si tuviste un problema con la atención recibida, puedes presentar tu queja en mesa de partes o directamente en el libro de reclamaciones, detallando lo ocurrido. [Verificar procedimiento con el TUPA vigente de la MPSR].
   utter_sugerencia:
-  - text: '[PENDIENTE] Respuesta real para ''sugerencia'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: Puedes dejar tu sugerencia en mesa de partes mediante un documento simple, o a través de los canales de atención ciudadana de la MPSR. [Verificar canal de recepción con la MPSR].
+  utter_horario_atencion_general:
+  - text: La Municipalidad Provincial de San Román atiende de lunes a viernes en horario de oficina. [Verificar horario exacto vigente].
   utter_ubicacion_oficinas:
-  - text: '[PENDIENTE] Respuesta real para ''ubicacion_oficinas'' — completar con el texto oficial del TUPA/MPSR.'
+  - text: La Municipalidad Provincial de San Román se encuentra en la Plaza de Armas de Juliaca. [Verificar dirección exacta].
+  utter_requisitos_generales:
+  - text: Para la mayoría de trámites municipales necesitarás presentar tu DNI vigente; algunos trámites piden además documentos adicionales según el caso.
+  utter_costos_generales:
+  - text: Los costos de los trámites municipales están establecidos en el TUPA (Texto Único de Procedimientos Administrativos), disponible en la municipalidad.
+  utter_contacto_telefonico:
+  - text: Puedes comunicarte con la Municipalidad Provincial de San Román a través de su central telefónica. [Verificar número vigente].
+  utter_redes_sociales_mpsr:
+  - text: La Municipalidad Provincial de San Román publica información e trámites en su página web institucional y en sus redes sociales oficiales. [Verificar enlaces vigentes].
   utter_saludo:
   - text: ¡Hola! Soy el asistente virtual de la MPSR. ¿En qué trámite te puedo ayudar hoy?
   utter_despedida:

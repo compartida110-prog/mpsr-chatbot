@@ -13,6 +13,7 @@ versión del corpus. Dentro de cada una:
 |---------|--------|-------|------------------------------------------|
 | [`v1_corpus324/`](v1_corpus324/README.md) | v1: 324 utterances, 2 grupos/intención | 2026-10-02 | 0.2975 / 0.2961 / 0.4134 ± 0.0400 |
 | [`v2_corpus648/`](v2_corpus648/README.md) | v2: 648 utterances, 4 grupos/intención | 2026-10-02 | 0.5621 / 0.5919 / 0.6335 ± 0.0238 |
+| [`p09_domain/`](p09_domain/README.md) | domain.yml con 54 respuestas (P09) | 2026-10-02 | `rasa data validate` sin conflictos; respuestas no validadas con el TUPA real |
 
 Las desviaciones encontradas en cada ejecución están en `incident_log.csv`.
 

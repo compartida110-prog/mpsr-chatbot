@@ -1,0 +1,9 @@
+2026-10-02 19:18:26
+$ python (conteo de respuestas en domain.yml)
+intenciones: 54   respuestas utter_: 54
+respuestas con [PENDIENTE]: 0
+conversacionales: 10   de tramites: 44
+tramites con nota [Verificar ...]: 40 de 44
+tramites sin nota (genericas): denuncia_seguridad_ciudadana, horario_recojo_basura, requisitos_generales, costos_generales
+acciones personalizadas / formularios / slots: ninguno
+exit=0

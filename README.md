@@ -41,7 +41,7 @@ mpsr-chatbot/
 ├── requirements.txt           Dependencias directas de Python (versiones exactas)
 ├── requirements-lock.txt      `pip freeze` completo del entorno verificado
 ├── .gitignore
-├── domain.yml                 54 intenciones + respuestas (placeholders por completar con texto real del TUPA)
+├── domain.yml                 54 intenciones + 54 respuestas fijas (40 de las 44 de trámites llevan nota [Verificar], pendiente de contrastar con el TUPA real; ver evidencias/p09_domain/)
 ├── corpus/                    Corpus MPSR-Bot y sus registros de auditoría/partición
 │   ├── corpus_metadata.csv    Inventario de las 648 utterances, corpus v2 (P02)
 │   ├── corpus_audit.csv       Registro de auditoría: duplicados, desbalance (P03)
