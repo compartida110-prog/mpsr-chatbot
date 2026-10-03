@@ -1,14 +1,21 @@
 # Evidencias — preparación del lote real y de la partición v3 (Parte A, protocolo V1.2)
 
-> **Estado: SIMULADO.** Todo lo de esta carpeta se ejecutó con **datos falsos** ("prueba falsa …") en una carpeta temporal,
-> solo para comprobar que el flujo corre y detecta lo que debe. **No hay ningún resultado sobre lenguaje real**: la
-> recolección del lote 1 (Parte B) está **Planificada**. Los datos falsos no se guardan en el repositorio.
+> **Estado: SIMULADO** para las ejecuciones 01–03: se hicieron con **datos falsos** ("prueba falsa …") en una carpeta temporal, solo para
+> comprobar que el flujo corre y detecta lo que debe. **No hay ningún resultado sobre lenguaje real**: la recolección del lote 1 (Parte B)
+> está **Planificada**. Los datos falsos no se guardan en el repositorio. La ejecución 04 es una verificación **real** (estado Ejecutado)
+> de las rutas y cifras del protocolo contra los archivos del repositorio.
 
 | # | Comando | Resultado | Salida | Captura |
 |---|---------|-----------|--------|---------|
 | 01 | `python tests/smoke_lote_real.py` (catálogo falso) | **53/53 comprobaciones PASS** (5 min) | [txt](salidas/01_smoke_lote_real_DATOS_FALSOS.txt) | [png](capturas/01_smoke_lote_real_DATOS_FALSOS.png) |
 | 01a | primer intento del mismo arnés | 52/53: el fallo era un falso positivo (ver abajo) | [txt](salidas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.txt) | [png](capturas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.png) |
 | 02 | mismo arnés con el **catálogo real** del tesista (`situaciones_lote1_v1.csv`) y 6 comprobaciones nuevas | **59/59 comprobaciones PASS** (6 min) | [txt](salidas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.txt) | [png](capturas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.png) |
+| 03 | `python tests/smoke_conciliar.py` (seguimiento v3 + respuestas FALSAS) | **22/22 comprobaciones PASS**: detecta ausentes y blancos con respuesta, se niega con SIMULADO_v3/v2, exporta sin ocupación | [txt](salidas/03_smoke_conciliar_seguimiento_DATOS_FALSOS.txt) | [png](capturas/03_smoke_conciliar_seguimiento_DATOS_FALSOS.png) |
+| 04 | `python scripts/verificar_referencias.py` | 37 afirmaciones del protocolo V1.2 y la nota: 30 OK, 5 discrepancias (ver [verificacion_referencias.md](verificacion_referencias.md)) | [txt](salidas/04_verificar_referencias.txt) | [png](capturas/04_verificar_referencias.png) |
+
+
+
+Las ejecuciones 03 usan datos **falsos** (estado Simulado); la 04 es una verificación real sobre el repositorio (estado Ejecutado).
 
 **Qué comprueba el arnés** (`tests/smoke_lote_real.py`): ingesta (4 errores bloqueantes y las 6 advertencias: blanco, texto corto, datos
 personales —que no se borran solos—, duplicados, frase idéntica al corpus sintético y cobertura < 3), revisión de etiquetas

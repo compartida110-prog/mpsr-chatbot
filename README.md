@@ -52,7 +52,7 @@ mpsr-chatbot/
 │   ├── dataset_split.csv      Partición train/validation/test (P05)
 │   ├── corpus_summary.json    Resumen: totales, distribución, verificación de fuga
 │   ├── historico/             Corpus v1 (324) y v2 (648) con su partición; entradas de expand_corpus.py y apply_ampliacion_v3.py
-│   ├── real/                  Lote 1 de frases reales: plantillas vacías y archivos generados por ingest_real_lote.py (ver su README)
+│   ├── real/                  Lote 1 de frases reales: plantillas vacías y archivos generados por ingest_real_lote.py y conciliar_seguimiento.py (ver su README)
 │   ├── v3_real/               Partición v3 (V1.2): entrenamiento sintético, validación y test reales (planificado)
 │   └── Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx   Línea base P01 SIMULADA (n=120)
 ├── configs/                   Configuraciones fijadas ANTES de entrenar
@@ -77,7 +77,8 @@ mpsr-chatbot/
 │   ├── v1_corpus324/          Los mismos resultados para el corpus v1
 │   └── v2_corpus648/          Los mismos resultados para el corpus v2
 ├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/, v3_corpus708/, v3_real/, p09_domain/, p11_1_pruebas/)
-├── docs/                      Protocolo V1.2 (PDF) y V1.1, nota de desviación, Ficha 2, Ficha P01, Informe preliminar, lote_real_1/ (formularios)
+├── docs/                      Protocolo V1.2 (PDF) y V1.1, nota de desviación, Ficha 2, Ficha P01, Informe preliminar
+│   └── lote_real_1/           Formularios, catálogo de situaciones, instrucciones y seguimiento/ (plantilla v3, ejemplos simulados, histórico); privado/ NO se versiona
 └── incident_log.csv           Bitácora de incidencias y desviaciones del protocolo (P16)
 ```
 
@@ -209,6 +210,7 @@ evalúa **una sola vez** (`logs/v3_real/test_registro.json` cuenta cada evaluaci
 
 | # | Comando | Qué hace |
 |---|---------|----------|
+| B0 | `python scripts/conciliar_seguimiento.py --seguimiento docs/lote_real_1/privado/<tu_seguimiento>.xlsx` | Cruza el seguimiento (xlsx) con las respuestas transcritas: respuesta ausente que no es blanco, blanco con respuesta…; **se niega con archivos simulados**; exporta los participantes **sin ocupación** |
 | B1 | `python scripts/ingest_real_lote.py` | Valida (errores bloqueantes y advertencias) y genera `lote1_real_validado.csv` y la plantilla de revisión |
 | B2 | `python scripts/ingest_real_lote.py --aplicar-revision` | Aplica OK/CAMBIAR/DESCARTAR; % cambiado y kappa de Cohen |
 | B3 | `python scripts/split_corpus_v3.py` | Entrenamiento = sintético; validación y test = reales (seed 42); verifica 54 intenciones en las 3 particiones |
@@ -228,7 +230,10 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Validación cruzada agrupada por `base_phrase_id` | **Ejecutado** (sintético) | `scripts/crossval_agrupada.py`, `logs/P11_1_crossval_agrupada/` |
 | Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
 | Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
-| Scripts del lote real (ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `evidencias/v3_real/` |
+| Scripts del lote real (conciliación, ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `evidencias/v3_real/` |
+| Seguimiento del lote 1: plantilla v3 (vacía) | **Ejecutado** (herramienta lista; sin participantes reales) | `docs/lote_real_1/seguimiento/` |
+| Seguimiento simulado v3 y v2 | **Simulado** (ejemplos; no son evidencia) | `docs/lote_real_1/seguimiento/ejemplos_simulados/`, `historico/` |
+| Verificación de rutas y cifras del protocolo V1.2 contra el repositorio | **Ejecutado** (30 OK, 5 discrepancias documentadas) | `evidencias/v3_real/verificacion_referencias.md` |
 | Recolección del lote 1 de frases reales | **Planificado** (formularios y catálogo `situaciones_lote1_v1.csv` listos y verificados; faltan las respuestas de los participantes) | `docs/lote_real_1/` |
 | Partición v3 (entrenamiento sintético; validación y test reales) | **Planificado** (depende del lote 1) | `scripts/split_corpus_v3.py` |
 | Evaluación sobre lenguaje real con IC95 % y McNemar | **Planificado** | `scripts/eval_real.py` |

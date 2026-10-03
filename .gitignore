@@ -21,3 +21,10 @@ logs/**/train.log
 logs/rasa_phase2_full.txt
 logs/*.bak
 logs/**/train_fold*.log
+
+# Lote 1 real: el seguimiento lleno (ocupación, residencia) y los consentimientos NO se versionan
+docs/lote_real_1/privado/*
+!docs/lote_real_1/privado/LEEME.md
+corpus/real/consentimientos/
+Seguimiento_Lote1_Participantes_real*.xlsx
+~$*.xlsx
