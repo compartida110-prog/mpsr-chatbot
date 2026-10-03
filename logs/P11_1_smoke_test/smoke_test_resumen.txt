@@ -1,0 +1,22 @@
+SMOKE TEST P11.1 — 54 intenciones (1 consulta nueva por intención)
+Modelo: C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\models\smoke\smoke_test_model.tar.gz
+Intención correcta:            46/54
+Respuesta = texto de domain.yml: 54/54
+Respuestas con [Verificar ...]:  39/54
+Problemas de formato en el texto: 0/54
+Confianza media: 0.778 | mínima: 0.116
+
+Intenciones confundidas (esperada -> detectada | confianza | top3):
+  afirmar -> despedida | 0.12 | despedida=0.12; licencia_funcionamiento_plazo=0.11; licencia_edificacion_costo=0.08
+  ayuda_chatbot -> estado_reclamo | 0.20 | estado_reclamo=0.20; ayuda_chatbot=0.16; fraccionamiento_deuda=0.06
+  copia_documento -> despedida | 0.43 | despedida=0.43; fuera_de_alcance=0.15; copia_documento=0.11
+  despedida -> saludo | 0.56 | saludo=0.56; requisitos_matrimonio_civil=0.06; constancia_no_adeudo=0.04
+  horario_mesa_partes -> requisitos_mesa_partes | 0.51 | requisitos_mesa_partes=0.51; horario_mesa_partes=0.30; fuera_de_alcance=0.04
+  licencia_funcionamiento_requisitos -> fuera_de_alcance | 0.81 | fuera_de_alcance=0.81; licencia_funcionamiento_requisitos=0.06; licencia_edificacion_requisitos=0.02
+  reporte_alumbrado_publico -> limpieza_via_publica | 0.52 | limpieza_via_publica=0.52; renovacion_licencia=0.05; licencia_funcionamiento_costo=0.04
+  requisitos_defensa_civil -> certificado_defensa_civil | 0.46 | certificado_defensa_civil=0.46; requisitos_defensa_civil=0.22; requisitos_matrimonio_civil=0.04
+
+Aciertos con confianza < 0.50 (frágiles):
+  constancia_domiciliaria (0.22)
+  denuncia_seguridad_ciudadana (0.12)
+  licencia_edificacion_requisitos (0.41)

@@ -1,0 +1,1098 @@
+[
+  {
+    "text": "¿Qué funciones tienes?",
+    "intent": "ayuda_chatbot",
+    "intent_prediction": {
+      "name": "partida_defuncion",
+      "confidence": 0.26725926995277405
+    }
+  },
+  {
+    "text": "Necesito un certificado de que no debo nada a la municipalidad",
+    "intent": "constancia_no_adeudo",
+    "intent_prediction": {
+      "name": "ubicacion_oficinas",
+      "confidence": 0.1302805095911026
+    }
+  },
+  {
+    "text": "¿Tengo deuda pendiente de autoavalúo?",
+    "intent": "consulta_deuda_predial",
+    "intent_prediction": {
+      "name": "fraccionamiento_deuda",
+      "confidence": 0.8292242884635925
+    }
+  },
+  {
+    "text": "¿Qué quisiste decir con eso?",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "agradecimiento",
+      "confidence": 0.24091823399066925
+    }
+  },
+  {
+    "text": "No comprendí, ¿puedes repetir?",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "repetir_informacion",
+      "confidence": 0.6025210022926331
+    }
+  },
+  {
+    "text": "¿Tienen un WhatsApp de atención?",
+    "intent": "contacto_telefonico",
+    "intent_prediction": {
+      "name": "horario_atencion_general",
+      "confidence": 0.6589935421943665
+    }
+  },
+  {
+    "text": "¿Cuál es el correo de la municipalidad?",
+    "intent": "contacto_telefonico",
+    "intent_prediction": {
+      "name": "ubicacion_oficinas",
+      "confidence": 0.4656156599521637
+    }
+  },
+  {
+    "text": "Necesito una copia de un documento que presenté",
+    "intent": "copia_documento",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.4998272657394409
+    }
+  },
+  {
+    "text": "¿Cuánto cuestan los trámites en general?",
+    "intent": "costos_generales",
+    "intent_prediction": {
+      "name": "requisitos_generales",
+      "confidence": 0.9598667025566101
+    }
+  },
+  {
+    "text": "¿Cómo contacto a serenazgo por un problema de seguridad?",
+    "intent": "denuncia_seguridad_ciudadana",
+    "intent_prediction": {
+      "name": "serenazgo_contacto",
+      "confidence": 0.7033517956733704
+    }
+  },
+  {
+    "text": "Nos vemos",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "negar",
+      "confidence": 0.6743381023406982
+    }
+  },
+  {
+    "text": "Presenté un documento, ¿cómo sé si ya lo revisaron?",
+    "intent": "estado_tramite",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.4445878863334656
+    }
+  },
+  {
+    "text": "Cuéntame un chiste",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "ayuda_chatbot",
+      "confidence": 0.6278371214866638
+    }
+  },
+  {
+    "text": "¿Qué hora es en Lima?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "horario_mesa_partes",
+      "confidence": 0.2921226918697357
+    }
+  },
+  {
+    "text": "¿Cuál es el horario para presentar documentos?",
+    "intent": "horario_mesa_partes",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.46622103452682495
+    }
+  },
+  {
+    "text": "Necesito que vengan a inspeccionar mi local",
+    "intent": "inspeccion_tecnica",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_requisitos",
+      "confidence": 0.10429603606462479
+    }
+  },
+  {
+    "text": "Quisiera saber el monto de la licencia de funcionamiento",
+    "intent": "licencia_funcionamiento_costo",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_requisitos",
+      "confidence": 0.4093892276287079
+    }
+  },
+  {
+    "text": "¿Cuánto tarda en salir la licencia de mi negocio?",
+    "intent": "licencia_funcionamiento_plazo",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.9442513585090637
+    }
+  },
+  {
+    "text": "¿Dónde pido el servicio de barrido de calles?",
+    "intent": "limpieza_via_publica",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.099230095744133
+    }
+  },
+  {
+    "text": "Negativo",
+    "intent": "negar",
+    "intent_prediction": {
+      "name": "constancia_domiciliaria",
+      "confidence": 0.19412758946418762
+    }
+  },
+  {
+    "text": "¿Cómo cancelo el autoavalúo de mi casa?",
+    "intent": "pago_predial_como",
+    "intent_prediction": {
+      "name": "requisitos_matrimonio_civil",
+      "confidence": 0.1374949812889099
+    }
+  },
+  {
+    "text": "¿Dónde registro un fallecimiento?",
+    "intent": "partida_defuncion",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.36005932092666626
+    }
+  },
+  {
+    "text": "Tengo una queja sobre el servicio de un trabajador",
+    "intent": "queja_atencion",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.7358958721160889
+    }
+  },
+  {
+    "text": "¿Cuál es el Facebook de la municipalidad?",
+    "intent": "redes_sociales_mpsr",
+    "intent_prediction": {
+      "name": "ubicacion_oficinas",
+      "confidence": 0.5294015407562256
+    }
+  },
+  {
+    "text": "Vuelve a enviarme esa información",
+    "intent": "repetir_informacion",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.38312283158302307
+    }
+  },
+  {
+    "text": "Hay un cable suelto en un poste, ¿a quién aviso?",
+    "intent": "reporte_alumbrado_publico",
+    "intent_prediction": {
+      "name": "limpieza_via_publica",
+      "confidence": 0.13268214464187622
+    }
+  },
+  {
+    "text": "¿Necesito llevar mi DNI para cualquier trámite?",
+    "intent": "requisitos_generales",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.14633946120738983
+    }
+  },
+  {
+    "text": "¿Qué documentos básicos debo llevar siempre?",
+    "intent": "requisitos_generales",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.6876937747001648
+    }
+  },
+  {
+    "text": "¿Cuánto cuesta el matrimonio civil en la municipalidad?",
+    "intent": "requisitos_matrimonio_civil",
+    "intent_prediction": {
+      "name": "partida_matrimonio",
+      "confidence": 0.40471023321151733
+    }
+  },
+  {
+    "text": "Quiero sacar el ITSE para mi negocio",
+    "intent": "certificado_defensa_civil",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_requisitos",
+      "confidence": 0.1982220709323883
+    }
+  },
+  {
+    "text": "¿Dónde tramito mi constancia de residencia?",
+    "intent": "constancia_domiciliaria",
+    "intent_prediction": {
+      "name": "constancia_no_adeudo",
+      "confidence": 0.32128921151161194
+    }
+  },
+  {
+    "text": "¿Cómo llamo a la MPSR?",
+    "intent": "contacto_telefonico",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.5193870067596436
+    }
+  },
+  {
+    "text": "Gracias, que esté bien",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "agradecimiento",
+      "confidence": 0.940459668636322
+    }
+  },
+  {
+    "text": "Presenté un reclamo, ¿cómo sé si lo atendieron?",
+    "intent": "estado_reclamo",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.5413211584091187
+    }
+  },
+  {
+    "text": "Debo varios años de predial, ¿puedo pagar en cuotas?",
+    "intent": "fraccionamiento_deuda",
+    "intent_prediction": {
+      "name": "consulta_deuda_predial",
+      "confidence": 0.5544117093086243
+    }
+  },
+  {
+    "text": "¿Qué equipo de fútbol es mejor?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "sugerencia",
+      "confidence": 0.21387436985969543
+    }
+  },
+  {
+    "text": "¿Sabes cocinar?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "ayuda_chatbot",
+      "confidence": 0.5612973570823669
+    }
+  },
+  {
+    "text": "¿Qué pasos sigo para pedir una ITSE?",
+    "intent": "inspeccion_tecnica",
+    "intent_prediction": {
+      "name": "costos_generales",
+      "confidence": 0.12644533812999725
+    }
+  },
+  {
+    "text": "¿Qué precio tiene la licencia para construir?",
+    "intent": "licencia_edificacion_costo",
+    "intent_prediction": {
+      "name": "licencia_edificacion_requisitos",
+      "confidence": 0.6924469470977783
+    }
+  },
+  {
+    "text": "Hay basura acumulada en mi cuadra, ¿a quién aviso?",
+    "intent": "limpieza_via_publica",
+    "intent_prediction": {
+      "name": "horario_recojo_basura",
+      "confidence": 0.5552382469177246
+    }
+  },
+  {
+    "text": "Quiero reportar una vía pública descuidada",
+    "intent": "limpieza_via_publica",
+    "intent_prediction": {
+      "name": "reporte_alumbrado_publico",
+      "confidence": 0.3265933394432068
+    }
+  },
+  {
+    "text": "Quiero reportar juegos rotos en el parque",
+    "intent": "mantenimiento_parques",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.29533734917640686
+    }
+  },
+  {
+    "text": "El personal me atendió mal, ¿cómo reporto?",
+    "intent": "queja_atencion",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.16114217042922974
+    }
+  },
+  {
+    "text": "Mi partida tiene un dato mal escrito, ¿cómo lo corrijo?",
+    "intent": "rectificacion_partida",
+    "intent_prediction": {
+      "name": "mantenimiento_parques",
+      "confidence": 0.18730244040489197
+    }
+  },
+  {
+    "text": "¿Qué me piden para la inspección de seguridad?",
+    "intent": "requisitos_defensa_civil",
+    "intent_prediction": {
+      "name": "inspeccion_tecnica",
+      "confidence": 0.7591774463653564
+    }
+  },
+  {
+    "text": "¿Cómo presento un documento a la municipalidad?",
+    "intent": "requisitos_mesa_partes",
+    "intent_prediction": {
+      "name": "ubicacion_oficinas",
+      "confidence": 0.31988364458084106
+    }
+  },
+  {
+    "text": "Hola, cómo le va",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "estado_reclamo",
+      "confidence": 0.3927941918373108
+    }
+  },
+  {
+    "text": "Buenos días, disculpe la hora",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "horario_mesa_partes",
+      "confidence": 0.634981632232666
+    }
+  },
+  {
+    "text": "¿Dónde están las oficinas de la municipalidad?",
+    "intent": "ubicacion_oficinas",
+    "intent_prediction": {
+      "name": "redes_sociales_mpsr",
+      "confidence": 0.2881079912185669
+    }
+  },
+  {
+    "text": "¿En qué parte de Juliaca está la municipalidad?",
+    "intent": "ubicacion_oficinas",
+    "intent_prediction": {
+      "name": "fuera_de_alcance",
+      "confidence": 0.3138776123523712
+    }
+  },
+  {
+    "text": "Gracias, me ayudó bastante",
+    "intent": "agradecimiento",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.2799636423587799
+    }
+  },
+  {
+    "text": "Gracias, eso necesitaba",
+    "intent": "agradecimiento",
+    "intent_prediction": {
+      "name": "afirmar",
+      "confidence": 0.3336959481239319
+    }
+  },
+  {
+    "text": "Necesito mi certificado de Defensa Civil para mi local",
+    "intent": "certificado_defensa_civil",
+    "intent_prediction": {
+      "name": "requisitos_defensa_civil",
+      "confidence": 0.6825414896011353
+    }
+  },
+  {
+    "text": "¿Cómo tramito mi certificado de seguridad en edificación?",
+    "intent": "certificado_defensa_civil",
+    "intent_prediction": {
+      "name": "constancia_domiciliaria",
+      "confidence": 0.3125832974910736
+    }
+  },
+  {
+    "text": "Necesito comprobar que no tengo deudas con la MPSR",
+    "intent": "constancia_no_adeudo",
+    "intent_prediction": {
+      "name": "impuesto_alcabala",
+      "confidence": 0.1536262035369873
+    }
+  },
+  {
+    "text": "¿Puedes explicarlo de otra forma?",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "afirmar",
+      "confidence": 0.1116516962647438
+    }
+  },
+  {
+    "text": "¿A qué te refieres?",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "ayuda_chatbot",
+      "confidence": 0.8179507255554199
+    }
+  },
+  {
+    "text": "Explícalo de nuevo porfa",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "repetir_informacion",
+      "confidence": 0.5207530856132507
+    }
+  },
+  {
+    "text": "¿Dónde pido copias de mis trámites anteriores?",
+    "intent": "copia_documento",
+    "intent_prediction": {
+      "name": "horario_atencion_general",
+      "confidence": 0.595788300037384
+    }
+  },
+  {
+    "text": "¿A quién llamo si veo algo raro en la calle?",
+    "intent": "denuncia_seguridad_ciudadana",
+    "intent_prediction": {
+      "name": "reporte_alumbrado_publico",
+      "confidence": 0.45570918917655945
+    }
+  },
+  {
+    "text": "Bueno, me retiro, gracias",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.23176366090774536
+    }
+  },
+  {
+    "text": "¿Cuánto demora en resolverse un reclamo?",
+    "intent": "estado_reclamo",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.7413623929023743
+    }
+  },
+  {
+    "text": "¿Cómo rastreo mi expediente municipal?",
+    "intent": "estado_tramite",
+    "intent_prediction": {
+      "name": "contacto_telefonico",
+      "confidence": 0.36393123865127563
+    }
+  },
+  {
+    "text": "¿Cómo sé el horario de recolección de residuos?",
+    "intent": "horario_recojo_basura",
+    "intent_prediction": {
+      "name": "horario_atencion_general",
+      "confidence": 0.5000890493392944
+    }
+  },
+  {
+    "text": "¿Quién hace la inspección de seguridad en edificaciones?",
+    "intent": "inspeccion_tecnica",
+    "intent_prediction": {
+      "name": "requisitos_defensa_civil",
+      "confidence": 0.42540091276168823
+    }
+  },
+  {
+    "text": "¿En cuánto tiempo me dan la licencia de funcionamiento?",
+    "intent": "licencia_funcionamiento_plazo",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.6673430800437927
+    }
+  },
+  {
+    "text": "¿Cuándo estará lista mi licencia si la pido hoy?",
+    "intent": "licencia_funcionamiento_plazo",
+    "intent_prediction": {
+      "name": "licencia_edificacion_costo",
+      "confidence": 0.19438304007053375
+    }
+  },
+  {
+    "text": "Para aperturar mi local, ¿qué papeles me piden?",
+    "intent": "licencia_funcionamiento_requisitos",
+    "intent_prediction": {
+      "name": "requisitos_defensa_civil",
+      "confidence": 0.32313746213912964
+    }
+  },
+  {
+    "text": "Las áreas verdes de mi zona están descuidadas",
+    "intent": "mantenimiento_parques",
+    "intent_prediction": {
+      "name": "ubicacion_oficinas",
+      "confidence": 0.7236919403076172
+    }
+  },
+  {
+    "text": "¿Dónde registro una queja contra la municipalidad?",
+    "intent": "presentar_reclamo",
+    "intent_prediction": {
+      "name": "partida_defuncion",
+      "confidence": 0.3470475375652313
+    }
+  },
+  {
+    "text": "No me atendieron bien en ventanilla, ¿a dónde reclamo?",
+    "intent": "queja_atencion",
+    "intent_prediction": {
+      "name": "estado_reclamo",
+      "confidence": 0.41687238216400146
+    }
+  },
+  {
+    "text": "¿Cómo rectifico un error en mi partida de nacimiento?",
+    "intent": "rectificacion_partida",
+    "intent_prediction": {
+      "name": "partida_nacimiento",
+      "confidence": 0.720174252986908
+    }
+  },
+  {
+    "text": "Quiero actualizar mi licencia de funcionamiento, ¿cómo hago?",
+    "intent": "renovacion_licencia",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.2503124475479126
+    }
+  },
+  {
+    "text": "¿Qué documentos piden para matrimonio municipal?",
+    "intent": "requisitos_matrimonio_civil",
+    "intent_prediction": {
+      "name": "partida_matrimonio",
+      "confidence": 0.6095024943351746
+    }
+  },
+  {
+    "text": "¿Cómo programo mi matrimonio civil?",
+    "intent": "requisitos_matrimonio_civil",
+    "intent_prediction": {
+      "name": "partida_matrimonio",
+      "confidence": 0.711539626121521
+    }
+  },
+  {
+    "text": "Necesito el teléfono de seguridad ciudadana",
+    "intent": "serenazgo_contacto",
+    "intent_prediction": {
+      "name": "denuncia_seguridad_ciudadana",
+      "confidence": 0.8227401971817017
+    }
+  },
+  {
+    "text": "¿Cuál es la dirección de la MPSR?",
+    "intent": "ubicacion_oficinas",
+    "intent_prediction": {
+      "name": "contacto_telefonico",
+      "confidence": 0.18762044608592987
+    }
+  },
+  {
+    "text": "Confirmado",
+    "intent": "afirmar",
+    "intent_prediction": {
+      "name": "estado_tramite",
+      "confidence": 0.19105340540409088
+    }
+  },
+  {
+    "text": "Mil gracias",
+    "intent": "agradecimiento",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.5457411408424377
+    }
+  },
+  {
+    "text": "¿Dónde solicito la inspección de Defensa Civil?",
+    "intent": "certificado_defensa_civil",
+    "intent_prediction": {
+      "name": "requisitos_defensa_civil",
+      "confidence": 0.6156452298164368
+    }
+  },
+  {
+    "text": "¿Dónde solicito constancia de posesión?",
+    "intent": "certificado_posesion",
+    "intent_prediction": {
+      "name": "constancia_domiciliaria",
+      "confidence": 0.46648216247558594
+    }
+  },
+  {
+    "text": "No capté eso",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "negar",
+      "confidence": 0.9153137803077698
+    }
+  },
+  {
+    "text": "¿Cómo saco una copia certificada de mi expediente?",
+    "intent": "copia_documento",
+    "intent_prediction": {
+      "name": "certificado_posesion",
+      "confidence": 0.3736106753349304
+    }
+  },
+  {
+    "text": "Necesito reportar un robo en mi zona",
+    "intent": "denuncia_seguridad_ciudadana",
+    "intent_prediction": {
+      "name": "reporte_alumbrado_publico",
+      "confidence": 0.5675780773162842
+    }
+  },
+  {
+    "text": "Quiero hacer una denuncia de inseguridad",
+    "intent": "denuncia_seguridad_ciudadana",
+    "intent_prediction": {
+      "name": "requisitos_generales",
+      "confidence": 0.2550308108329773
+    }
+  },
+  {
+    "text": "Muchas gracias, hasta luego",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "agradecimiento",
+      "confidence": 0.5526278018951416
+    }
+  },
+  {
+    "text": "¿Dónde veo la respuesta a mi queja?",
+    "intent": "estado_reclamo",
+    "intent_prediction": {
+      "name": "queja_atencion",
+      "confidence": 0.2900289297103882
+    }
+  },
+  {
+    "text": "Quiero saber si ya respondieron mi queja",
+    "intent": "estado_reclamo",
+    "intent_prediction": {
+      "name": "estado_tramite",
+      "confidence": 0.6935743689537048
+    }
+  },
+  {
+    "text": "¿Cuánto es 2 más 2?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "serenazgo_contacto",
+      "confidence": 0.9698281288146973
+    }
+  },
+  {
+    "text": "Recomiéndame una película",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "rectificacion_partida",
+      "confidence": 0.20370696485042572
+    }
+  },
+  {
+    "text": "Necesito atención humana, no un bot",
+    "intent": "hablar_con_persona",
+    "intent_prediction": {
+      "name": "negar",
+      "confidence": 0.2891903519630432
+    }
+  },
+  {
+    "text": "Voy a ampliar mi casa, ¿qué papeles necesito?",
+    "intent": "licencia_edificacion_requisitos",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.25141215324401855
+    }
+  },
+  {
+    "text": "¿A cuánto sale sacar la licencia para mi tienda?",
+    "intent": "licencia_funcionamiento_costo",
+    "intent_prediction": {
+      "name": "licencia_edificacion_costo",
+      "confidence": 0.5044296383857727
+    }
+  },
+  {
+    "text": "¿Cuántos días demora el trámite de licencia de funcionamiento?",
+    "intent": "licencia_funcionamiento_plazo",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.8989253044128418
+    }
+  },
+  {
+    "text": "¿Qué se necesita para licenciar un negocio nuevo?",
+    "intent": "licencia_funcionamiento_requisitos",
+    "intent_prediction": {
+      "name": "renovacion_licencia",
+      "confidence": 0.22467577457427979
+    }
+  },
+  {
+    "text": "Mi calle está muy sucia, ¿cómo reporto?",
+    "intent": "limpieza_via_publica",
+    "intent_prediction": {
+      "name": "reporte_alumbrado_publico",
+      "confidence": 0.3670453131198883
+    }
+  },
+  {
+    "text": "¿Cómo reporto el mal estado de un parque?",
+    "intent": "mantenimiento_parques",
+    "intent_prediction": {
+      "name": "queja_atencion",
+      "confidence": 0.27288517355918884
+    }
+  },
+  {
+    "text": "Necesito el certificado de defunción de un familiar",
+    "intent": "partida_defuncion",
+    "intent_prediction": {
+      "name": "constancia_domiciliaria",
+      "confidence": 0.5167655944824219
+    }
+  },
+  {
+    "text": "Quiero un certificado de mi matrimonio civil",
+    "intent": "partida_matrimonio",
+    "intent_prediction": {
+      "name": "requisitos_matrimonio_civil",
+      "confidence": 0.8768801093101501
+    }
+  },
+  {
+    "text": "¿Dónde publican los comunicados oficiales?",
+    "intent": "redes_sociales_mpsr",
+    "intent_prediction": {
+      "name": "licencia_edificacion_costo",
+      "confidence": 0.1267334371805191
+    }
+  },
+  {
+    "text": "Otra vez porfa",
+    "intent": "repetir_informacion",
+    "intent_prediction": {
+      "name": "agradecimiento",
+      "confidence": 0.16693836450576782
+    }
+  },
+  {
+    "text": "Mándamelo de nuevo",
+    "intent": "repetir_informacion",
+    "intent_prediction": {
+      "name": "consulta_no_entendida",
+      "confidence": 0.691881537437439
+    }
+  },
+  {
+    "text": "¿Qué papeles debo presentar para ITSE?",
+    "intent": "requisitos_defensa_civil",
+    "intent_prediction": {
+      "name": "pago_arbitrios",
+      "confidence": 0.1757585108280182
+    }
+  },
+  {
+    "text": "¿Necesito algo más aparte del DNI para trámites?",
+    "intent": "requisitos_generales",
+    "intent_prediction": {
+      "name": "horario_mesa_partes",
+      "confidence": 0.17813228070735931
+    }
+  },
+  {
+    "text": "Quiero presentar una solicitud, ¿qué necesito?",
+    "intent": "requisitos_mesa_partes",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.207232266664505
+    }
+  },
+  {
+    "text": "Tengo una idea para mejorar la atención municipal",
+    "intent": "sugerencia",
+    "intent_prediction": {
+      "name": "horario_atencion_general",
+      "confidence": 0.21117745339870453
+    }
+  },
+  {
+    "text": "Claro que sí",
+    "intent": "afirmar",
+    "intent_prediction": {
+      "name": "consulta_no_entendida",
+      "confidence": 0.46122774481773376
+    }
+  },
+  {
+    "text": "Agradecido por la info",
+    "intent": "agradecimiento",
+    "intent_prediction": {
+      "name": "hablar_con_persona",
+      "confidence": 0.15828825533390045
+    }
+  },
+  {
+    "text": "¿Cómo te uso?",
+    "intent": "ayuda_chatbot",
+    "intent_prediction": {
+      "name": "consulta_no_entendida",
+      "confidence": 0.2826412618160248
+    }
+  },
+  {
+    "text": "Cuéntame qué puedes hacer",
+    "intent": "ayuda_chatbot",
+    "intent_prediction": {
+      "name": "fuera_de_alcance",
+      "confidence": 0.5520532727241516
+    }
+  },
+  {
+    "text": "Quiero un documento que acredite dónde vivo",
+    "intent": "constancia_domiciliaria",
+    "intent_prediction": {
+      "name": "estado_tramite",
+      "confidence": 0.4375428259372711
+    }
+  },
+  {
+    "text": "Quiero un documento que diga que estoy al día en mis pagos",
+    "intent": "constancia_no_adeudo",
+    "intent_prediction": {
+      "name": "mantenimiento_parques",
+      "confidence": 0.19859297573566437
+    }
+  },
+  {
+    "text": "Quiero saber cuánto debo de predial",
+    "intent": "consulta_deuda_predial",
+    "intent_prediction": {
+      "name": "pago_predial_como",
+      "confidence": 0.4020524322986603
+    }
+  },
+  {
+    "text": "Explícamelo más simple, por favor",
+    "intent": "consulta_no_entendida",
+    "intent_prediction": {
+      "name": "repetir_informacion",
+      "confidence": 0.5939788222312927
+    }
+  },
+  {
+    "text": "Quiero saber cuánto cuesta cada trámite",
+    "intent": "costos_generales",
+    "intent_prediction": {
+      "name": "estado_tramite",
+      "confidence": 0.3016417324542999
+    }
+  },
+  {
+    "text": "¿Dónde consulto las tasas municipales?",
+    "intent": "costos_generales",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.16063077747821808
+    }
+  },
+  {
+    "text": "Adiós",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.3148655295372009
+    }
+  },
+  {
+    "text": "¿Cómo le hago seguimiento a mi reclamo?",
+    "intent": "estado_reclamo",
+    "intent_prediction": {
+      "name": "presentar_reclamo",
+      "confidence": 0.2700098752975464
+    }
+  },
+  {
+    "text": "Quiero pagar mi deuda municipal en partes, ¿se puede?",
+    "intent": "fraccionamiento_deuda",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.36599239706993103
+    }
+  },
+  {
+    "text": "¿Cuál es el clima en Juliaca hoy?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "licencia_edificacion_costo",
+      "confidence": 0.27233001589775085
+    }
+  },
+  {
+    "text": "¿Cuál es la capital de Francia?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.16717810928821564
+    }
+  },
+  {
+    "text": "¿Qué partido juega hoy?",
+    "intent": "fuera_de_alcance",
+    "intent_prediction": {
+      "name": "partida_defuncion",
+      "confidence": 0.21380361914634705
+    }
+  },
+  {
+    "text": "¿Cómo programo una visita de Defensa Civil?",
+    "intent": "inspeccion_tecnica",
+    "intent_prediction": {
+      "name": "requisitos_defensa_civil",
+      "confidence": 0.6971395015716553
+    }
+  },
+  {
+    "text": "¿Cuánto tengo que pagar por la licencia de mi negocio?",
+    "intent": "licencia_funcionamiento_costo",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_plazo",
+      "confidence": 0.37372326850891113
+    }
+  },
+  {
+    "text": "¿Qué documentos piden para licencia de funcionamiento de mi tienda?",
+    "intent": "licencia_funcionamiento_requisitos",
+    "intent_prediction": {
+      "name": "licencia_funcionamiento_costo",
+      "confidence": 0.4773523807525635
+    }
+  },
+  {
+    "text": "No, gracias",
+    "intent": "negar",
+    "intent_prediction": {
+      "name": "agradecimiento",
+      "confidence": 0.9525725245475769
+    }
+  },
+  {
+    "text": "No es así",
+    "intent": "negar",
+    "intent_prediction": {
+      "name": "afirmar",
+      "confidence": 0.76662677526474
+    }
+  },
+  {
+    "text": "No estoy conforme con un trámite, ¿cómo reclamo?",
+    "intent": "presentar_reclamo",
+    "intent_prediction": {
+      "name": "estado_reclamo",
+      "confidence": 0.6206942200660706
+    }
+  },
+  {
+    "text": "Quiero reportar mala atención en mesa de partes",
+    "intent": "queja_atencion",
+    "intent_prediction": {
+      "name": "horario_mesa_partes",
+      "confidence": 0.49125462770462036
+    }
+  },
+  {
+    "text": "Necesito corregir mi apellido en la partida",
+    "intent": "rectificacion_partida",
+    "intent_prediction": {
+      "name": "partida_defuncion",
+      "confidence": 0.24648864567279816
+    }
+  },
+  {
+    "text": "¿Dónde sigo las noticias de la MPSR?",
+    "intent": "redes_sociales_mpsr",
+    "intent_prediction": {
+      "name": "contacto_telefonico",
+      "confidence": 0.1912822276353836
+    }
+  },
+  {
+    "text": "No leí bien, repite",
+    "intent": "repetir_informacion",
+    "intent_prediction": {
+      "name": "negar",
+      "confidence": 0.32416409254074097
+    }
+  },
+  {
+    "text": "¿Cómo reporto que una calle está sin luz?",
+    "intent": "reporte_alumbrado_publico",
+    "intent_prediction": {
+      "name": "limpieza_via_publica",
+      "confidence": 0.28589069843292236
+    }
+  },
+  {
+    "text": "¿Qué documentos necesito para el certificado de Defensa Civil?",
+    "intent": "requisitos_defensa_civil",
+    "intent_prediction": {
+      "name": "certificado_defensa_civil",
+      "confidence": 0.9556668996810913
+    }
+  },
+  {
+    "text": "¿Qué documento de identidad piden para hacer trámites?",
+    "intent": "requisitos_generales",
+    "intent_prediction": {
+      "name": "copia_documento",
+      "confidence": 0.371913343667984
+    }
+  },
+  {
+    "text": "¿Serenazgo atiende las 24 horas?",
+    "intent": "serenazgo_contacto",
+    "intent_prediction": {
+      "name": "fuera_de_alcance",
+      "confidence": 0.40194618701934814
+    }
+  },
+  {
+    "text": "¿Dónde dejo mis comentarios sobre el servicio?",
+    "intent": "sugerencia",
+    "intent_prediction": {
+      "name": "requisitos_mesa_partes",
+      "confidence": 0.2571195662021637
+    }
+  }
+]

@@ -43,7 +43,7 @@ def clean_lines(raw):
     out = []
     for line in raw.splitlines():
         line = ANSI.sub("", line).replace("\r", "")
-        if "\r" in line or "Epochs:" in line or "it/s]" in line:
+        if "\r" in line or "Epochs:" in line or "it/s" in line or re.search(r"\d+%\|", line):
             continue
         if NOISE.search(line):
             continue

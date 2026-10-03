@@ -1,0 +1,32 @@
+# Configuración fijada en el Protocolo V1.1, sección 2.10 / paso P08.
+# No modificar durante la ejecución; cualquier cambio se documenta en
+# incident_log.csv y se versiona como V1.2.
+#
+# Grilla evaluada en validación (se conserva la combinación con mejor F1 macro):
+#   epochs               ∈ {100, 150, 200}
+#   batch_size            ∈ {64, 128}
+#   embedding_dimension  ∈ {20, 50}
+# Valor fijo: learning_rate = 0.001, constrain_similarities = true, seed = 42
+
+recipe: default.v1
+language: es
+
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: CountVectorsFeaturizer
+  - name: DIETClassifier
+    epochs: 100          # valor base de la grilla; probar 150 y 200 en corridas separadas
+    batch_size: 64       # valor único por corrida; una lista [64, 128] haría crecer el lote de 64 a 128 durante el entrenamiento, no probaría ambos
+    embedding_dimension: 20   # valor base de la grilla; probar 50 en corridas separadas
+    learning_rate: 0.001
+    constrain_similarities: true
+    random_seed: 42
+    entity_recognition: true
+
+# Nota: Rasa no permite pasar múltiples valores de la grilla en un solo archivo.
+# scripts/run_rasa_grid.py genera un config por combinación y semilla a partir de
+# este archivo y lo guarda en logs/<experiment_id>/config.yml (matriz T06).

@@ -1,0 +1,532 @@
+{
+  "requisitos_generales": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 2,
+      "horario_mesa_partes": 1
+    }
+  },
+  "redes_sociales_mpsr": {
+    "precision": 0.9,
+    "recall": 0.75,
+    "f1-score": 0.8181818181818182,
+    "support": 12,
+    "confused_with": {
+      "ubicacion_oficinas": 1,
+      "contacto_telefonico": 1
+    }
+  },
+  "poda_arboles": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "ubicacion_oficinas": {
+    "precision": 0.6428571428571429,
+    "recall": 0.75,
+    "f1-score": 0.6923076923076924,
+    "support": 12,
+    "confused_with": {
+      "fuera_de_alcance": 1,
+      "contacto_telefonico": 1
+    }
+  },
+  "costos_generales": {
+    "precision": 0.9,
+    "recall": 0.75,
+    "f1-score": 0.8181818181818182,
+    "support": 12,
+    "confused_with": {
+      "saludo": 1,
+      "requisitos_generales": 1
+    }
+  },
+  "ayuda_chatbot": {
+    "precision": 0.75,
+    "recall": 0.75,
+    "f1-score": 0.75,
+    "support": 12,
+    "confused_with": {
+      "consulta_no_entendida": 1,
+      "fuera_de_alcance": 1
+    }
+  },
+  "requisitos_mesa_partes": {
+    "precision": 0.5555555555555556,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.6666666666666667,
+    "support": 12,
+    "confused_with": {
+      "ubicacion_oficinas": 1,
+      "presentar_reclamo": 1
+    }
+  },
+  "licencia_funcionamiento_plazo": {
+    "precision": 0.8888888888888888,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.761904761904762,
+    "support": 12,
+    "confused_with": {
+      "licencia_funcionamiento_costo": 3,
+      "licencia_edificacion_costo": 1
+    }
+  },
+  "pago_predial_como": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "requisitos_matrimonio_civil": 1
+    }
+  },
+  "horario_recojo_basura": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "horario_atencion_general": 1
+    }
+  },
+  "reporte_alumbrado_publico": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7692307692307692,
+    "support": 12,
+    "confused_with": {
+      "limpieza_via_publica": 2
+    }
+  },
+  "horario_atencion_general": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1-score": 0.8571428571428571,
+    "support": 12,
+    "confused_with": {}
+  },
+  "requisitos_defensa_civil": {
+    "precision": 0.6428571428571429,
+    "recall": 0.75,
+    "f1-score": 0.6923076923076924,
+    "support": 12,
+    "confused_with": {
+      "inspeccion_tecnica": 1,
+      "certificado_defensa_civil": 1
+    }
+  },
+  "libro_reclamaciones": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "contacto_telefonico": {
+    "precision": 0.75,
+    "recall": 0.75,
+    "f1-score": 0.75,
+    "support": 12,
+    "confused_with": {
+      "ubicacion_oficinas": 1,
+      "presentar_reclamo": 1
+    }
+  },
+  "estado_tramite": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7692307692307692,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 1,
+      "contacto_telefonico": 1
+    }
+  },
+  "licencia_funcionamiento_costo": {
+    "precision": 0.6,
+    "recall": 0.75,
+    "f1-score": 0.6666666666666665,
+    "support": 12,
+    "confused_with": {
+      "licencia_edificacion_costo": 1,
+      "licencia_funcionamiento_plazo": 1
+    }
+  },
+  "partida_nacimiento": {
+    "precision": 0.9230769230769231,
+    "recall": 1.0,
+    "f1-score": 0.9600000000000001,
+    "support": 12,
+    "confused_with": {}
+  },
+  "certificado_defensa_civil": {
+    "precision": 0.8888888888888888,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.761904761904762,
+    "support": 12,
+    "confused_with": {
+      "requisitos_defensa_civil": 2,
+      "licencia_funcionamiento_requisitos": 1
+    }
+  },
+  "saludo": {
+    "precision": 0.7692307692307693,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8,
+    "support": 12,
+    "confused_with": {
+      "horario_mesa_partes": 1,
+      "estado_reclamo": 1
+    }
+  },
+  "denuncia_seguridad_ciudadana": {
+    "precision": 0.8888888888888888,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.761904761904762,
+    "support": 12,
+    "confused_with": {
+      "reporte_alumbrado_publico": 2,
+      "serenazgo_contacto": 1
+    }
+  },
+  "fuera_de_alcance": {
+    "precision": 0.5,
+    "recall": 0.25,
+    "f1-score": 0.3333333333333333,
+    "support": 12,
+    "confused_with": {
+      "ayuda_chatbot": 2,
+      "serenazgo_contacto": 1
+    }
+  },
+  "limpieza_via_publica": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 12,
+    "confused_with": {
+      "reporte_alumbrado_publico": 2,
+      "presentar_reclamo": 1
+    }
+  },
+  "partida_defuncion": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7692307692307692,
+    "support": 12,
+    "confused_with": {
+      "presentar_reclamo": 1,
+      "constancia_domiciliaria": 1
+    }
+  },
+  "repetir_informacion": {
+    "precision": 0.7272727272727273,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.6956521739130435,
+    "support": 12,
+    "confused_with": {
+      "agradecimiento": 1,
+      "requisitos_mesa_partes": 1
+    }
+  },
+  "pago_arbitrios": {
+    "precision": 0.9230769230769231,
+    "recall": 1.0,
+    "f1-score": 0.9600000000000001,
+    "support": 12,
+    "confused_with": {}
+  },
+  "copia_documento": {
+    "precision": 0.9,
+    "recall": 0.75,
+    "f1-score": 0.8181818181818182,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 1,
+      "certificado_posesion": 1
+    }
+  },
+  "licencia_funcionamiento_requisitos": {
+    "precision": 0.75,
+    "recall": 0.75,
+    "f1-score": 0.75,
+    "support": 12,
+    "confused_with": {
+      "licencia_funcionamiento_costo": 1,
+      "requisitos_defensa_civil": 1
+    }
+  },
+  "renovacion_licencia": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "licencia_funcionamiento_costo": 1
+    }
+  },
+  "licencia_edificacion_costo": {
+    "precision": 0.7333333333333333,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.8148148148148148,
+    "support": 12,
+    "confused_with": {
+      "licencia_edificacion_requisitos": 1
+    }
+  },
+  "constancia_no_adeudo": {
+    "precision": 0.9,
+    "recall": 0.75,
+    "f1-score": 0.8181818181818182,
+    "support": 12,
+    "confused_with": {
+      "ubicacion_oficinas": 1,
+      "impuesto_alcabala": 1
+    }
+  },
+  "mantenimiento_parques": {
+    "precision": 0.8181818181818182,
+    "recall": 0.75,
+    "f1-score": 0.7826086956521738,
+    "support": 12,
+    "confused_with": {
+      "ubicacion_oficinas": 1,
+      "despedida": 1
+    }
+  },
+  "sugerencia": {
+    "precision": 0.9090909090909091,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8695652173913043,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 1,
+      "horario_atencion_general": 1
+    }
+  },
+  "serenazgo_contacto": {
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8333333333333334,
+    "support": 12,
+    "confused_with": {
+      "denuncia_seguridad_ciudadana": 1,
+      "fuera_de_alcance": 1
+    }
+  },
+  "horario_mesa_partes": {
+    "precision": 0.7333333333333333,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.8148148148148148,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 1
+    }
+  },
+  "despedida": {
+    "precision": 0.6363636363636364,
+    "recall": 0.5833333333333334,
+    "f1-score": 0.6086956521739131,
+    "support": 12,
+    "confused_with": {
+      "agradecimiento": 2,
+      "saludo": 2
+    }
+  },
+  "inspeccion_tecnica": {
+    "precision": 0.8888888888888888,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.761904761904762,
+    "support": 12,
+    "confused_with": {
+      "requisitos_defensa_civil": 2,
+      "licencia_funcionamiento_requisitos": 1
+    }
+  },
+  "partida_matrimonio": {
+    "precision": 0.7857142857142857,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.8461538461538461,
+    "support": 12,
+    "confused_with": {
+      "requisitos_matrimonio_civil": 1
+    }
+  },
+  "certificado_posesion": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "constancia_domiciliaria": 1
+    }
+  },
+  "negar": {
+    "precision": 0.6923076923076923,
+    "recall": 0.75,
+    "f1-score": 0.7199999999999999,
+    "support": 12,
+    "confused_with": {
+      "afirmar": 1,
+      "agradecimiento": 1
+    }
+  },
+  "presentar_reclamo": {
+    "precision": 0.5263157894736842,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.6451612903225806,
+    "support": 12,
+    "confused_with": {
+      "partida_defuncion": 1,
+      "estado_reclamo": 1
+    }
+  },
+  "impuesto_alcabala": {
+    "precision": 0.9230769230769231,
+    "recall": 1.0,
+    "f1-score": 0.9600000000000001,
+    "support": 12,
+    "confused_with": {}
+  },
+  "consulta_no_entendida": {
+    "precision": 0.625,
+    "recall": 0.4166666666666667,
+    "f1-score": 0.5,
+    "support": 12,
+    "confused_with": {
+      "repetir_informacion": 3,
+      "afirmar": 1
+    }
+  },
+  "requisitos_matrimonio_civil": {
+    "precision": 0.8181818181818182,
+    "recall": 0.75,
+    "f1-score": 0.7826086956521738,
+    "support": 12,
+    "confused_with": {
+      "partida_matrimonio": 3
+    }
+  },
+  "consulta_deuda_predial": {
+    "precision": 0.9090909090909091,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8695652173913043,
+    "support": 12,
+    "confused_with": {
+      "pago_predial_como": 1,
+      "fraccionamiento_deuda": 1
+    }
+  },
+  "hablar_con_persona": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "negar": 1
+    }
+  },
+  "rectificacion_partida": {
+    "precision": 0.9,
+    "recall": 0.75,
+    "f1-score": 0.8181818181818182,
+    "support": 12,
+    "confused_with": {
+      "mantenimiento_parques": 1,
+      "partida_defuncion": 1
+    }
+  },
+  "licencia_edificacion_requisitos": {
+    "precision": 0.9166666666666666,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9166666666666666,
+    "support": 12,
+    "confused_with": {
+      "despedida": 1
+    }
+  },
+  "queja_atencion": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 12,
+    "confused_with": {
+      "presentar_reclamo": 2,
+      "horario_mesa_partes": 1
+    }
+  },
+  "constancia_domiciliaria": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7692307692307692,
+    "support": 12,
+    "confused_with": {
+      "constancia_no_adeudo": 1,
+      "estado_tramite": 1
+    }
+  },
+  "estado_reclamo": {
+    "precision": 0.7,
+    "recall": 0.5833333333333334,
+    "f1-score": 0.6363636363636365,
+    "support": 12,
+    "confused_with": {
+      "presentar_reclamo": 3,
+      "estado_tramite": 1
+    }
+  },
+  "agradecimiento": {
+    "precision": 0.6153846153846154,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.64,
+    "support": 12,
+    "confused_with": {
+      "despedida": 2,
+      "afirmar": 1
+    }
+  },
+  "fraccionamiento_deuda": {
+    "precision": 0.9090909090909091,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8695652173913043,
+    "support": 12,
+    "confused_with": {
+      "requisitos_mesa_partes": 1,
+      "consulta_deuda_predial": 1
+    }
+  },
+  "afirmar": {
+    "precision": 0.7692307692307693,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8,
+    "support": 12,
+    "confused_with": {
+      "consulta_no_entendida": 1,
+      "estado_tramite": 1
+    }
+  },
+  "accuracy": 0.7885802469135802,
+  "macro avg": {
+    "precision": 0.7969195494780289,
+    "recall": 0.7885802469135803,
+    "f1-score": 0.786381424278936,
+    "support": 648
+  },
+  "weighted avg": {
+    "precision": 0.7969195494780291,
+    "recall": 0.7885802469135802,
+    "f1-score": 0.7863814242789361,
+    "support": 648
+  },
+  "micro avg": {
+    "precision": 0.7885802469135802,
+    "recall": 0.7885802469135802,
+    "f1-score": 0.7885802469135802,
+    "support": 648
+  }
+}
