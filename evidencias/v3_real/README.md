@@ -11,7 +11,7 @@
 | 01a | primer intento del mismo arnés | 52/53: el fallo era un falso positivo (ver abajo) | [txt](salidas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.txt) | [png](capturas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.png) |
 | 02 | mismo arnés con el **catálogo real** del tesista (`situaciones_lote1_v1.csv`) y 6 comprobaciones nuevas | **59/59 comprobaciones PASS** (6 min) | [txt](salidas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.txt) | [png](capturas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.png) |
 | 03 | `python tests/smoke_conciliar.py` (seguimiento v3 + respuestas FALSAS) | **22/22 comprobaciones PASS**: detecta ausentes y blancos con respuesta, se niega con SIMULADO_v3/v2, exporta sin ocupación | [txt](salidas/03_smoke_conciliar_seguimiento_DATOS_FALSOS.txt) | [png](capturas/03_smoke_conciliar_seguimiento_DATOS_FALSOS.png) |
-| 04 | `python scripts/verificar_referencias.py` | 37 afirmaciones del protocolo V1.2 y la nota: 30 OK, 5 discrepancias (ver [verificacion_referencias.md](verificacion_referencias.md)) | [txt](salidas/04_verificar_referencias.txt) | [png](capturas/04_verificar_referencias.png) |
+| 04 | `python scripts/verificar_referencias.py` | 37 afirmaciones del protocolo V1.2 y la nota: 30 OK, 5 discrepancias, cada una con su errata E1–E5 (ver [verificacion_referencias.md](verificacion_referencias.md) y [docs/ERRATAS_protocolo_V1.2.md](../../docs/ERRATAS_protocolo_V1.2.md)) | [txt](salidas/04_verificar_referencias.txt) | [png](capturas/04_verificar_referencias.png) |
 
 
 

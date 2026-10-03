@@ -152,9 +152,9 @@ print(f"Total utterances: {len(rows)}  (antes: 324)")
 print(f"Total grupos: {len(groups)}  (antes: 108)")
 
 # ---------------------------------------------------------------------------
-# Partición MEJORADA: proporción ~70/15/15 POR INTENCIÓN (no solo 1 grupo a
-# train). Con 4 grupos/intención: round(4*0.7)=3 a train, resto alterna
-# validation/test.
+# Partición MEJORADA por intención (no solo 1 grupo a train): nominal 70/15/15,
+# pero con 4 grupos/intención: round(4*0.7)=3 a train y el cuarto alterna
+# validation/test, lo que da 486/81/81 frases = 75/12.5/12.5 % (no 70/15/15).
 # ---------------------------------------------------------------------------
 intent_to_groups = {}
 for bpid, intent, category in groups:

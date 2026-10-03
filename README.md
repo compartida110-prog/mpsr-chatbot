@@ -168,7 +168,7 @@ Con el entorno activado y desde la raíz del repositorio:
 |---|---------|------|-------------|
 | 1 | `python scripts/audit_corpus.py` | P03 | `corpus/corpus_audit.csv`, `logs/audit_report.txt` |
 | 2 | `python scripts/audit_corpus.py --apply` | P04 | Fusiona en un mismo `base_phrase_id` los casi-duplicados (≥ 0.90) |
-| 3 | `python scripts/split_corpus.py` | P05 | `corpus/dataset_split.csv` y columna `split` (70/15/15, seed 42) |
+| 3 | `python scripts/split_corpus.py` | P05 | Alternativa: `corpus/dataset_split.csv` y columna `split` con proporción nominal 70/15/15 (seed 42). **La partición vigente (v2/v3) no sale de este script**: la generan `expand_corpus.py` y `apply_ampliacion_v3.py` (3 de 4 grupos por intención a entrenamiento = 75/12.5/12.5) |
 | 4 | `python scripts/train_baseline.py` | P07, P10, P11 | `logs/BASE-*`, `logs/baseline_validation.csv`, `logs/baseline_test.csv` |
 | 5 | `python scripts/run_rasa_grid.py --smoke` | — | Prueba rápida del flujo Rasa (≈1 min). **No es un resultado válido** |
 | 6 | `python scripts/run_rasa_grid.py` | P08, P10, P11 | `data/nlu_*.yml`, `logs/RASA-*`, `logs/rasa_validation.csv`, `logs/rasa_test.csv` |
@@ -217,6 +217,19 @@ evalúa **una sola vez** (`logs/v3_real/test_registro.json` cuenta cada evaluaci
 | B4 | `python scripts/eval_real.py` | Grilla SVM y Rasa en validación; repeticiones (semillas 10–50) en test con IC95 %, McNemar y bootstrap pareado |
 | B5 | `python scripts/fallback_threshold.py` y `--fase test` | Umbral por puntaje = aciertos − 2 × errores en validación; evaluación única en test |
 
+## Correspondencia con los nombres del protocolo V1.2
+
+El protocolo V1.2 y la nota citan algunos archivos con la versión de cuando se redactaron; hoy esos nombres contienen otra versión del corpus.
+Las correcciones al texto de los documentos están en [`docs/ERRATAS_protocolo_V1.2.md`](docs/ERRATAS_protocolo_V1.2.md).
+
+| El documento cita | Hoy en el repositorio |
+|---|---|
+| `corpus_metadata.csv (v2)` (T03) | `corpus/corpus_metadata.csv` es la **v3** (708 frases); la v2 (648) está en `corpus/historico/corpus_metadata_v2_648.csv`. Los F1 de P11.1 (0.624, 0.648, 0.655, 0.637) salen de la v3 |
+| `dataset_split.csv (V1.1)` (T05) | `corpus/dataset_split.csv` es la partición de la v3 (546/81/81); la V1.1 (486/81/81, 75/12.5/12.5 %) está en `corpus/historico/dataset_split_v2_648.csv` |
+| `dataset_split_v3.csv (V1.2)` (T05) | Todavía no existe (Planificado); lo generará `scripts/split_corpus_v3.py` en `corpus/v3_real/` |
+| `rules.yml`, `REPORTE_REEVALUACION.md` | `data/rules.yml`; `evidencias/v3_corpus708/REPORTE_REEVALUACION.md` |
+| «37 incidencias» | `incident_log.csv` es un registro vivo; el número exacto se calcula con `python scripts/verificar_referencias.py` |
+
 ## Estado real de cada resultado y cambio
 
 Cada resultado se etiqueta con su estado real: **Ejecutado**, **Planificado** o **Simulado** (nada simulado se presenta como real
@@ -233,7 +246,7 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Scripts del lote real (conciliación, ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `evidencias/v3_real/` |
 | Seguimiento del lote 1: plantilla v3 (vacía) | **Ejecutado** (herramienta lista; sin participantes reales) | `docs/lote_real_1/seguimiento/` |
 | Seguimiento simulado v3 y v2 | **Simulado** (ejemplos; no son evidencia) | `docs/lote_real_1/seguimiento/ejemplos_simulados/`, `historico/` |
-| Verificación de rutas y cifras del protocolo V1.2 contra el repositorio | **Ejecutado** (30 OK, 5 discrepancias documentadas) | `evidencias/v3_real/verificacion_referencias.md` |
+| Verificación de rutas y cifras del protocolo V1.2 contra el repositorio | **Ejecutado** (30 OK, 5 discrepancias con errata E1–E5; los documentos aún no se reemitieron) | `evidencias/v3_real/verificacion_referencias.md`, `docs/ERRATAS_protocolo_V1.2.md` |
 | Recolección del lote 1 de frases reales | **Planificado** (formularios y catálogo `situaciones_lote1_v1.csv` listos y verificados; faltan las respuestas de los participantes) | `docs/lote_real_1/` |
 | Partición v3 (entrenamiento sintético; validación y test reales) | **Planificado** (depende del lote 1) | `scripts/split_corpus_v3.py` |
 | Evaluación sobre lenguaje real con IC95 % y McNemar | **Planificado** | `scripts/eval_real.py` |

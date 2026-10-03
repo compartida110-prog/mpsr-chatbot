@@ -192,21 +192,36 @@ def main():
         "el tesista decidió ajustar la cifra una sola vez en la entrega final" if n_inc != 37 else "")
 
     # ============================================================ salida
+    ERRATAS = {"«corpus_metadata.csv (v2)»": "E1", "«dataset_split.csv (V1.1)»": "E2", "F1 test 0.634": "E3",
+               "partición V1.1 (ejecutada): 70 %": "E4", "37 incidencias registradas": "E5"}
+    ruta_err = ROOT / "docs" / "ERRATAS_protocolo_V1.2.md"
+    texto_err = ruta_err.read_text(encoding="utf-8") if ruta_err.exists() else ""
+
+    def errata_de(fila):
+        for clave, e in ERRATAS.items():
+            if clave in fila[1] and f"## {e} " in texto_err:
+                return e
+        return ""
+
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
+    disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
+    con_errata = sum(1 for f in disc if errata_de(f))
     L = ["# Verificación de referencias y cifras — protocolo V1.2 y Nota de Desviación", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
          "del protocolo V1.2 (PDF) y de la Nota (DOCX), que este script no modifica.", "",
-         f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}**", "",
-         "| # | Dónde se cita | El documento dice | Repositorio | Estado | Nota |", "|---|---|---|---|---|---|"]
-    for i, (d, dice, repo, est, nota) in enumerate(FILAS, 1):
-        L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {nota} |".replace("\n", " "))
+         f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
+         f"({con_errata} con errata registrada en `docs/ERRATAS_protocolo_V1.2.md`; los documentos aún no se reemitieron)", "",
+         "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
+    for i, f in enumerate(FILAS, 1):
+        d, dice, repo, est, nota = f
+        L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {errata_de(f) or '—'} | {nota} |".replace("\n", " "))
     L += ["", "## No verificable con el repositorio (no se comprobó)", "",
           "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: tamaño de muestra n = 120 y su fórmula, antecedentes (Vargas Ríos, 2022), "
           "línea base y post-test de P01 y P12–P14 (simulados), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
           "(planificados), y la redacción metodológica."]
-    disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     if disc:
-        L += ["", "## Discrepancias a resolver antes de la entrega", ""] + [f"- **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
+        L += ["", "## Discrepancias (cada una con su errata; los documentos están pendientes de reemitir)", ""] + [
+            f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
     out = ROOT / "evidencias" / "v3_real" / "verificacion_referencias.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
