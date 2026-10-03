@@ -6,8 +6,9 @@
 
 | # | Comando | Resultado | Salida | Captura |
 |---|---------|-----------|--------|---------|
-| 01 | `python tests/smoke_lote_real.py` | **53/53 comprobaciones PASS** (5 min) | [txt](salidas/01_smoke_lote_real_DATOS_FALSOS.txt) | [png](capturas/01_smoke_lote_real_DATOS_FALSOS.png) |
+| 01 | `python tests/smoke_lote_real.py` (catálogo falso) | **53/53 comprobaciones PASS** (5 min) | [txt](salidas/01_smoke_lote_real_DATOS_FALSOS.txt) | [png](capturas/01_smoke_lote_real_DATOS_FALSOS.png) |
 | 01a | primer intento del mismo arnés | 52/53: el fallo era un falso positivo (ver abajo) | [txt](salidas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.txt) | [png](capturas/01a_smoke_lote_real_primer_intento_DATOS_FALSOS.png) |
+| 02 | mismo arnés con el **catálogo real** del tesista (`situaciones_lote1_v1.csv`) y 6 comprobaciones nuevas | **59/59 comprobaciones PASS** (6 min) | [txt](salidas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.txt) | [png](capturas/02_smoke_lote_real_catalogo_real_DATOS_FALSOS.png) |
 
 **Qué comprueba el arnés** (`tests/smoke_lote_real.py`): ingesta (4 errores bloqueantes y las 6 advertencias: blanco, texto corto, datos
 personales —que no se borran solos—, duplicados, frase idéntica al corpus sintético y cobertura < 3), revisión de etiquetas
@@ -22,5 +23,6 @@ sin conflictos y un modelo con `FallbackClassifier` que responde `utter_no_enten
 (se comprobó por fecha de modificación: 06:32, dentro de la ventana de la prueba; los scripts no escribieron en el repositorio). Se mejoró el
 mensaje del arnés para listar qué archivos cambiaron y se repitió sin tocar esas carpetas: 53/53.
 
-**Pendiente (no es de esta etapa):** colocar `docs/lote_real_1/situaciones_lote1_v1.csv` (no estaba entre los archivos entregados; hay una plantilla
-con las 56 situaciones y la intención en blanco), recolectar el lote 1 y ejecutar la Parte B.
+**Catálogo real (ejecución 02).** El primer arnés usaba un catálogo falso porque `situaciones_lote1_v1.csv` no estaba entre los archivos entregados. Al recibirlo (columnas `scenario_id, form, categoria, intent_esperada, situacion`) se verificó que: tiene 56 situaciones, 54 intenciones (solo `fuera_de_alcance` x3) y 12/11/11/11/11 por formulario; sus intenciones coinciden con `domain.yml`; el texto y el formulario de cada situación son idénticos a los de los formularios (.docx, por ID) y aparecen literalmente en el PDF; y su `categoria` coincide con la del corpus en las 56 filas. `ingest_real_lote.py` ya leía las columnas que exige (`scenario_id`, `form`, `intent_esperada`); se adaptó para reconocer `categoria` (alias de `category`) y contrastarla con el corpus (advertencia [7]), sin tocar el archivo. Se reemplazó la plantilla por el catálogo y se repitió el arnés usándolo: 59/59 (6 comprobaciones nuevas: columnas y cobertura del catálogo real, alias `category`, intención en blanco -> bloquea, categoría distinta -> advertencia, y categorías del catálogo real = 0 diferencias).
+
+**Pendiente (no es de esta etapa):** recolectar el lote 1 y ejecutar la Parte B.

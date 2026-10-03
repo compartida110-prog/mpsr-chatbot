@@ -229,7 +229,7 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
 | Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
 | Scripts del lote real (ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `evidencias/v3_real/` |
-| Recolección del lote 1 de frases reales | **Planificado** (formularios listos; falta colocar `situaciones_lote1_v1.csv`) | `docs/lote_real_1/` |
+| Recolección del lote 1 de frases reales | **Planificado** (formularios y catálogo `situaciones_lote1_v1.csv` listos y verificados; faltan las respuestas de los participantes) | `docs/lote_real_1/` |
 | Partición v3 (entrenamiento sintético; validación y test reales) | **Planificado** (depende del lote 1) | `scripts/split_corpus_v3.py` |
 | Evaluación sobre lenguaje real con IC95 % y McNemar | **Planificado** | `scripts/eval_real.py` |
 | Umbral de confianza (FallbackClassifier) | **Planificado** (`domain_v3.yml`, reglas y config listos; t sin elegir) | `scripts/fallback_threshold.py` |

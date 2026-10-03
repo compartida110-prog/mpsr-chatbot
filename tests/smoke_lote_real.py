@@ -82,14 +82,14 @@ def main():
     exentas = {"saludo", "despedida", "agradecimiento", "afirmar", "negar"}
 
     # ------------------------------------------------------------------------------ datos falsos
-    esc = []
-    for i in range(1, 57):
-        intent = intents[i - 1] if i <= 54 else "fuera_de_alcance"
-        esc.append((f"S{i:02d}", "ABCDE"[(i - 1) % 5], intent, "", f"[PRUEBA] situación falsa {i}"))
+    cat = ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"  # catálogo REAL del tesista (solo se lee)
+    esc = [(r["scenario_id"], r["form"], r["intent_esperada"], r["categoria"], r["situacion"]) for r in read_csv(cat)]
     forma_sit = {s[0]: s[1] for s in esc}
     intent_sit = {s[0]: s[2] for s in esc}
-    cat = W / "situaciones.csv"
-    write_csv(cat, ["scenario_id", "form", "intent_esperada", "category", "situacion"], esc)
+    check("catálogo real: columnas scenario_id, form, categoria, intent_esperada, situacion", list(read_csv(cat)[0]) == ["scenario_id", "form", "categoria", "intent_esperada", "situacion"], list(read_csv(cat)[0]))
+    check("catálogo real: 54 intenciones del dominio (fuera_de_alcance x3) y 12/11/11/11/11 por formulario",
+          sorted({e[2] for e in esc}) == intents and sum(e[2] == "fuera_de_alcance" for e in esc) == 3
+          and [sum(e[1] == f for e in esc) for f in "ABCDE"] == [12, 11, 11, 11, 11])
     part = [(f"P{k:02d}", "ABCDE"[(k - 1) % 5], "18–29", "Sí", "Sí") for k in range(1, 21)]
     ptab = W / "participantes.csv"
     write_csv(ptab, ["participant_code", "form", "age_range", "vive_en_juliaca", "tramite_12m"], part)
@@ -123,6 +123,24 @@ def main():
     bad[0][0] = "P99"
     c, t = ingest(bad, "neg_part")
     check("participante inexistente -> bloquea", c == 2 and "participante inexistente" in t, t[:200])
+
+    print("\nCatálogo: alias de columna e intención en blanco")
+    cat_rows = read_csv(cat)
+    alias = W / "catalogo_alias.csv"
+    write_csv(alias, ["scenario_id", "form", "category", "intent_esperada", "situacion"], [[r["scenario_id"], r["form"], r["categoria"], r["intent_esperada"], r["situacion"]] for r in cat_rows])
+    write_csv(W / "alias_resp.csv", H, resp)
+    c, t = run("ingest_real_lote.py", "--situaciones", alias, "--participantes", ptab, "--respuestas", W / "alias_resp.csv", "--out-dir", W / "alias", "--log-dir", W / "alias" / "log")
+    check("catálogo con columna 'category' (alias) también se lee: 224 frases", c == 0 and len(read_csv(W / "alias" / "lote1_real_validado.csv")) == 224, t[:200])
+    en_blanco = W / "catalogo_en_blanco.csv"
+    write_csv(en_blanco, ["scenario_id", "form", "categoria", "intent_esperada", "situacion"], [[r["scenario_id"], r["form"], r["categoria"], "" if r["scenario_id"] == "S10" else r["intent_esperada"], r["situacion"]] for r in cat_rows])
+    c, t = run("ingest_real_lote.py", "--situaciones", en_blanco, "--participantes", ptab, "--respuestas", W / "alias_resp.csv", "--out-dir", W / "en_blanco", "--log-dir", W / "en_blanco" / "log")
+    check("catálogo con una intent_esperada vacía -> bloquea y no genera salidas", c == 2 and "sin intent_esperada" in t and not (W / "en_blanco" / "lote1_real_validado.csv").exists(), t[:200])
+    mala_cat = W / "catalogo_categoria_distinta.csv"
+    write_csv(mala_cat, ["scenario_id", "form", "categoria", "intent_esperada", "situacion"], [[r["scenario_id"], r["form"], "Otra categoría" if r["scenario_id"] == "S01" else r["categoria"], r["intent_esperada"], r["situacion"]] for r in cat_rows])
+    c, t = run("ingest_real_lote.py", "--situaciones", mala_cat, "--participantes", ptab, "--respuestas", W / "alias_resp.csv", "--out-dir", W / "cat_dist", "--log-dir", W / "cat_dist" / "log")
+    check("categoría del catálogo distinta a la del corpus -> advertencia [7] (no bloquea)", c == 0 and "[7] Categoría del catálogo distinta a la del corpus sintético: 1" in t, t[-300:])
+    c, t = ingest(resp, "real_cat")
+    check("con el catálogo real: advertencia [7] = 0 (categorías coinciden con el corpus)", c == 0 and "[7] Categoría del catálogo distinta a la del corpus sintético: 0" in t, t[-300:])
 
     # ------------------------------------------------------------------------------ advertencias
     print("\nIngesta: advertencias")

@@ -1,7 +1,7 @@
 """Lote 1 de lenguaje real — ingesta, validación y revisión de etiquetas (protocolo V1.2, P02/T03.1).
 
 Entradas (CSV con encabezado, UTF-8):
-  situaciones_lote1_v1.csv   scenario_id, form, intent_esperada [, category, situacion]
+  situaciones_lote1_v1.csv   scenario_id, form, intent_esperada [, categoria | category, situacion]
   lote1_participantes.csv    participant_code, form, age_range, vive_en_juliaca, tramite_12m
   lote1_respuestas.csv       participant_code, form, scenario_id, text
 
@@ -11,8 +11,8 @@ Modo ingesta (por defecto)
   misma situación, catálogo con intención vacía o inexistente.
   ADVERTENCIAS (van al reporte; nada se corrige solo): texto muy corto (< 3 caracteres, salvo saludo,
   despedida, agradecimiento, afirmar y negar), posibles datos personales (DNI, celular, correo, URL, @usuario),
-  duplicados exactos entre participantes distintos, frases idénticas a las del corpus sintético y
-  intenciones con menos de 3 frases. Las respuestas en blanco se omiten (la guía permite dejarlas) y se listan.
+  duplicados exactos entre participantes distintos, frases idénticas a las del corpus sintético,
+  intenciones con menos de 3 frases y categoría del catálogo distinta a la del corpus sintético. Las respuestas en blanco se omiten (la guía permite dejarlas) y se listan.
   Salidas: corpus/real/lote1_real_validado.csv, logs/v3_real/ingesta_reporte.txt y
   corpus/real/lote1_revision_etiquetas.csv (para revisión humana; no se sobrescribe si ya tiene decisiones).
 
@@ -74,6 +74,7 @@ def ingestar(a):
     res = leer(a.respuestas, ["participant_code", "form", "scenario_id", "text"], "la tabla de respuestas")
     jerga = load_jerga()
     errores, avisos = [], []
+    col_cat = next((c for c in ("categoria", "category") if c in cat.columns), None)  # el catálogo del tesista usa 'categoria'
 
     # ------------------------------------------------------------ errores bloqueantes
     if cat["scenario_id"].duplicated().any():
@@ -137,6 +138,7 @@ def ingestar(a):
     ident_sint = res[res["_norm"].isin(sint_norm)]
     cobertura = res.groupby("intent_esperada").size().reindex(intents, fill_value=0)
     pocas = cobertura[cobertura < MIN_FRASES]
+    dif_cat = cat[(cat[col_cat].str.strip() != "") & (cat[col_cat] != cat["intent_esperada"].map(cat_de))] if col_cat else cat.iloc[0:0]
 
     L = ["INGESTA DEL LOTE 1 — REPORTE", ""]
     L += [f"Participantes: {len(par)} | formularios: {par['form'].value_counts().sort_index().to_dict()}",
@@ -153,8 +155,9 @@ def ingestar(a):
         L.append(f"        {g['real_id'].tolist()} ({g['intent_esperada'].tolist()})")
     L.append(f"  [5] Frases idénticas a una del corpus sintético: {len(ident_sint)}" + (f" -> {ident_sint['real_id'].tolist()} (provocarían fuga si pasan a validación/test)" if len(ident_sint) else ""))
     L.append(f"  [6] Intenciones con menos de {MIN_FRASES} frases: {len(pocas)}" + (" -> " + ", ".join(f"{i} ({n})" for i, n in pocas.items()) if len(pocas) else ""))
+    L.append(f"  [7] Categoría del catálogo distinta a la del corpus sintético: {len(dif_cat)}" + (f" -> {dif_cat['scenario_id'].tolist()} (se usa la del corpus)" if len(dif_cat) else ""))
     L += ["", "Frases validadas por intención:"] + [f"  {i:<38}{int(n):>3}" for i, n in cobertura.items()]
-    n_adv = len(vacios) + len(cortos) + len(pii) + dup["_norm"].nunique() + len(ident_sint) + len(pocas)
+    n_adv = len(vacios) + len(cortos) + len(pii) + dup["_norm"].nunique() + len(ident_sint) + len(pocas) + len(dif_cat)
     L += ["", f"Total de advertencias: {n_adv}. Esta etapa no genera ni completa frases: si faltan, hay que recolectarlas."]
     rep_path.write_text("\n".join(L) + "\n", encoding="utf-8")
 

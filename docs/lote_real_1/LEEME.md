@@ -5,16 +5,16 @@
 | Archivo | Qué es |
 |---|---|
 | `Lote1_Formularios_lenguaje_real_v2.pdf` / `.docx` | Guía de aplicación (solo para el tesista) y los 5 formularios A–E con consentimiento informado. Cada participante responde a unas 11 situaciones con sus propias palabras |
-| `situaciones_lote1_v1_plantilla_sin_intenciones.csv` | Las 56 situaciones (S01–S56), su formulario y su texto, **extraídos del .docx**. La columna `intent_esperada` está **vacía a propósito**: la completa el tesista |
-| `situaciones_lote1_v1.csv` | **Catálogo definitivo, pendiente de colocar aquí.** Es el que usa `scripts/ingest_real_lote.py` |
+| `situaciones_lote1_v1.csv` | **Catálogo del tesista** (56 situaciones, 54 intenciones; 12/11/11/11/11 por formulario). Es el que usa `scripts/ingest_real_lote.py`. Se verificó que el texto y el formulario de cada situación coinciden con los formularios (.docx y .pdf) |
 
 ## Esquema del catálogo `situaciones_lote1_v1.csv`
 
-`scenario_id, form, intent_esperada [, category, situacion]`
+`scenario_id, form, categoria, intent_esperada, situacion`
 
 - `scenario_id`: S01–S56; `form`: A–E (rotación: S01→A, S02→B, …, S06→A); `intent_esperada`: una de las 54 intenciones de `domain.yml`
   (56 situaciones = una por intención y tres para `fuera_de_alcance`). La etiqueta es **provisional**: después se revisa frase por frase.
-- Si falta `category`, el script la toma del corpus sintético.
+- El script solo **exige** `scenario_id`, `form` e `intent_esperada`. La categoría de cada frase se toma del corpus sintético; si el catálogo trae
+  `categoria` (o `category`) se contrasta con ella y cualquier diferencia se informa como advertencia.
 
 ## Flujo (Parte B de `Instrucciones_ClaudeCode_lote_real_v2.md`; solo cuando haya respuestas reales transcritas)
 

@@ -8,4 +8,4 @@
 | `Ficha2_Registro_Correcciones_Protocolo.docx` | Registro de correcciones de la revisión por pares (V1.0 → V1.1) | Histórico |
 | `Ficha_Diagnostico_P01_OE1.docx` | Instrumento de diagnóstico de la atención presencial (OE1) | Vigente |
 | `Informe_Ejecucion_Preliminar.docx` | Informe de la ejecución preliminar (baseline P07 y simulaciones de P14) | Histórico |
-| `lote_real_1/` | Formularios y guía del lote 1 de lenguaje real (ver `lote_real_1/LEEME.md`) | Planificado |
+| `lote_real_1/` | Formularios, guía y catálogo de situaciones (`situaciones_lote1_v1.csv`) del lote 1 de lenguaje real (ver `lote_real_1/LEEME.md`) | Planificado (listo para aplicar) |
