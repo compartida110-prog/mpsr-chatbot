@@ -36,7 +36,7 @@ SALIDA = ROOT / "logs" / "v3_real" / "auditoria_diseno_120_vs_60.md"
 REGLAS_RUTA = [
     (r"^docs/historico/", "HISTÓRICO", "documento de una versión anterior del protocolo"),
     (r"^docs/(Ficha|Informe|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR\.docx|Nota_Desviacion_P11_1_v2|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2)", "HISTÓRICO", "documento de una versión anterior (V1.0–V1.2)"),
-    (r"^docs/(Nota_Desviacion_P11_1_v5|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v5)", "ACTUALIZADO", "documento V1.3 vigente: ya describe el diseño nuevo; el 120, WhatsApp o «pareado» aparecen como valor planificado de la V1.2 o como prueba pareada del piloto"),
+    (r"^docs/(Nota_Desviacion_P11_1_v6|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v6)", "ACTUALIZADO", "documento V1.3 vigente: ya describe el diseño nuevo; el 120, WhatsApp o «pareado» aparecen como valor planificado de la V1.2 o como prueba pareada del piloto"),
     (r"^docs/ERRATAS", "HISTÓRICO", "registro de erratas de la V1.2"),
     (r"^docs/piloto/Instrucciones_ClaudeCode_cambio_diseno_piloto", "ACTUALIZADO", "instrucciones del propio cambio: citan el 120 solo como el diseño anterior («Antes»)"),
     (r"^scripts/auditar_diseno_piloto\.py", "NO APLICA", "el script de auditoría contiene los términos que busca"),

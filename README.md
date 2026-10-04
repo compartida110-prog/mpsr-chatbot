@@ -238,7 +238,7 @@ Las correcciones al texto de los documentos están en [`docs/ERRATAS_protocolo_V
 
 ## Piloto exploratorio (V1.3)
 
-El protocolo vigente es la **V1.3** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v5.pdf`). Solo cambia el piloto: **estado Planificado**.
+El protocolo vigente es la **V1.3** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v6.pdf`). Solo cambia el piloto: **estado Planificado**.
 
 | | V1.2 (ahora solo planificada) | **V1.3 (vigente)** |
 |---|---|---|
@@ -257,8 +257,8 @@ encuesta de 9 ítems. (3) Con el registro lleno: `python scripts/analizar_piloto
 (tiempo pre/post con Shapiro-Wilk → t pareada o Wilcoxon; P10 contra el ítem 9; alfa de Cronbach; **prueba final única del modelo congelado** con bootstrap por conglomerados de sesión).
 **Las consultas de las sesiones no se usan para ajustar el modelo**: son el conjunto de prueba final y se evalúan una sola vez.
 
-**Archivos en `docs/piloto/`:** `Sesion_Asistida_Formulario_v1` (.docx/.pdf: guía, paquete por persona y 56 tarjetas) y `Registro_Sesiones_Piloto_v1.xlsx` (plantilla vacía; **pendientes de incorporar**),
-`Instrucciones_ClaudeCode_cambio_diseno_piloto_v1.md` y `privado/` (registro real lleno y hojas originales; **no se versiona**, está en `.gitignore`).
+**Archivos en `docs/piloto/`:** `Sesion_Asistida_Formulario_v1` (.docx/.pdf: guía, paquete por persona y 56 tarjetas) y `Registro_Sesiones_Piloto_v1.xlsx` (plantilla vacía; **no guardarla con openpyxl**),
+`Instrucciones_ClaudeCode_cambio_diseno_piloto_v1.md`, `Instrucciones_ClaudeCode_siguiente_paso_v1.md`, `ejemplos_simulados/` (registro de demostración **sintético**, para probar el código) y `privado/` (registro real lleno y hojas originales; **no se versiona**, está en `.gitignore`).
 Limitaciones declaradas: línea base recordada (sesgo de recuerdo y de novedad), el trámite frente a la consulta (OE3 habla de consultas), muestra de conveniencia y exploratorio, no confirmatorio.
 
 ## Estado real de cada resultado y cambio
@@ -275,9 +275,9 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
 | Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
 | Piloto exploratorio (sesión asistida, n = 60; V1.3) | **Planificado** (compuerta: F1 real ≥ 0,75 en la fecha de corte; si no, se presenta como planificado) | `docs/piloto/`, protocolo V1.3 |
-| Materiales del piloto (formulario de sesión y registro de sesiones) | **Ejecutado** (los elaboró el tesista); **los archivos aún no están en el repositorio** (falta adjuntar `Sesion_Asistida_Formulario_v1` y `Registro_Sesiones_Piloto_v1.xlsx`) | `docs/piloto/` |
+| Materiales del piloto (formulario de sesión y registro de sesiones) | **Ejecutado** (los elaboró el tesista); ya están en `docs/piloto/` | `docs/piloto/` |
 | Línea base P01 real con n = 120, WhatsApp y dos visitas (V1.2) | **Reemplazado por la V1.3** (el 120 queda solo como valor planificado de la V1.2) | `docs/historico/`, `logs/v3_real/auditoria_diseno_120_vs_60.md` |
-| Congelamiento del modelo y análisis del piloto (`scripts/congelar_modelo.py`, `scripts/analizar_piloto.py`) | **Ejecutado** (código) y probado con datos **Simulados**; el piloto real espera las sesiones | `scripts/`, `tests/smoke_piloto.py`, `evidencias/piloto/` |
+| Congelamiento del modelo y análisis del piloto (`scripts/congelar_modelo.py`, `scripts/analizar_piloto.py`) | **Ejecutado** (código; lee los encabezados exactos del registro) y probado con datos **Simulados**; el modelo **aún no se congeló** y el piloto real espera las sesiones | `scripts/`, `tests/smoke_piloto.py`, `evidencias/piloto/` |
 | Scripts del lote real (conciliación, ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `evidencias/v3_real/` |
 | Seguimiento del lote 1: plantilla v3 (vacía) | **Ejecutado** (herramienta lista; sin participantes reales) | `docs/lote_real_1/seguimiento/` |
 | Seguimiento simulado v3 y v2 | **Simulado** (ejemplos; no son evidencia) | `docs/lote_real_1/seguimiento/ejemplos_simulados/`, `historico/` |

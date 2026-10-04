@@ -12,12 +12,14 @@ Solo LEE el registro (openpyxl, data_only=True, sin guardar nunca el .xlsx). Usa
        umbral congelado, acuerdo con el juicio del aplicador y de la persona. SE EVALÚA UNA SOLA VEZ (logs/piloto/evaluaciones_prueba_final.log);
        repetirla exige --motivo.
 
-Rechazos: título de hoja con «SIMULADO» (salvo --permitir-simulado, que escribe solo en una carpeta temporal y rotula _SIMULADO), sin filas
-elegibles, fórmulas sin valor guardado («abre y guarda el archivo en Excel»), hash distinto del modelo.
+Rechazos: hoja, título (celda A1) o texto de consulta marcados como SIMULADO / SINTÉTICA / DEMO (salvo --permitir-simulado, que escribe solo en una
+carpeta temporal y rotula _SIMULADO), sin filas elegibles, fórmulas sin valor guardado («abre y guarda el archivo en Excel»), hash distinto del
+modelo, tarjeta asignada que no coincide con la fórmula del registro, minutos pre que no coinciden con la tabla de Parametros.
 
-SUPUESTO A REVISAR: el registro real no estaba en el repositorio al escribir este script. Los encabezados se reconocen por patrones razonables
-(ver COLUMNAS); si el registro usa otros nombres, indícalos con --mapa-columnas mapa.json  ({"min_pre": "Minutos antes", ...}). Al terminar, el
-script muestra qué encabezado usó para cada campo para que lo confirmes.
+Encabezados: la fuente de verdad es la fila 3 de la hoja Sesiones de Registro_Sesiones_Piloto_v1.xlsx. Se buscan por **encabezado exacto**
+(ENCABEZADOS); --mapa-columnas mapa.json ({"campo": "encabezado exacto"}) queda solo como respaldo. También lee las hojas Tarjetas (tarjeta ->
+intención esperada, contrastada con --catalogo), Parametros (rangos a minutos, modelo congelado) y Resumen (contraste de las cifras: avisa si
+difieren de las calculadas aquí).
 
 Todo resultado sale rotulado REAL (o SIMULADO) con el n efectivo. Es exploratorio, nunca confirmatorio.
 
@@ -53,22 +55,36 @@ LIMITACIONES = [
     "Muestra de conveniencia y piloto exploratorio: no confirmatorio, no generalizable.",
 ]
 
-# campo lógico -> patrones (regex sobre el encabezado normalizado: minúsculas, sin tildes, solo letras y números separados por espacio)
-COLUMNAS = {
-    "codigo": [r"^codigo( de sesion)?$", r"^sesion$", r"^id( de sesion)?$"],
-    "elegible": [r"^elegible( y completa)?$"],
-    "min_pre": [r"^minutos? pre$", r"^pre minutos?$", r"^minutos? antes$", r"^tiempo pre( min)?$", r"^pre$"],
-    "min_post": [r"^minutos? post$", r"^post minutos?$", r"^minutos? despues$", r"^tiempo post( min)?$", r"^post$"],
-    "p10": [r"^p ?10$", r"^p10 .*", r"^satisfaccion (previa|pre|actual)$"],
+# campo lógico -> encabezado EXACTO de la fila 3 de la hoja Sesiones (Registro_Sesiones_Piloto_v1.xlsx)
+ENCABEZADOS = {
+    "codigo": "Código de sesión",
+    "rango": "Tiempo presencial (rango)",
+    "p10": "Pre P10 satisfacción general",
+    "elegible": "Elegible y completa",
+    "min_pre": "Minutos pre (línea base)",
+    "min_post": "Minutos post (promedio de 3 consultas)",
+    "item1": "Post ítem 1: fácil de usar",
+    "item2": "Post ítem 2: tiempo adecuado",
+    "item3": "Post ítem 3: respuestas claras",
+    "item4": "Post ítem 4: resolvió mi consulta",
+    "item5": "Post ítem 5: confío en la información",
+    "item6": "Post ítem 6: prefiero usarlo antes que ir presencialmente",
+    "item7": "Post ítem 7: lo usaría de nuevo",
+    "item8": "Post ítem 8: lo recomendaría",
+    "item9": "Post ítem 9: satisfacción general (pareada con P10)",
 }
-for _i in range(1, 10):
-    COLUMNAS[f"item{_i}"] = [rf"^(item|i|p) ?{_i}$", rf"^(item|i|p) ?{_i} .*", rf"^p ?{_i}$"]
 for _k in range(1, 4):
-    COLUMNAS[f"t{_k}_tarjeta"] = [rf"^(tarjeta|escenario|situacion) ?{_k}$", rf"^t ?{_k} (tarjeta|escenario|id)$", rf"^tarjeta {_k} .*"]
-    COLUMNAS[f"t{_k}_consulta"] = [rf"^consulta ?{_k}$", rf"^t ?{_k} consulta$", rf"^texto consulta ?{_k}$", rf"^consulta {_k} .*"]
-    COLUMNAS[f"t{_k}_correcta"] = [rf"^(correcta|aplicador) ?{_k}$", rf"^t ?{_k} correcta$", rf"^correcta {_k} .*", rf"^t ?{_k} aplicador$"]
-    COLUMNAS[f"t{_k}_obtuvo"] = [rf"^obtuvo ?{_k}$", rf"^obtuvo lo que necesitaba ?{_k}$",rf"^t ?{_k} obtuvo$", rf"^obtuvo {_k} .*", rf"^t ?{_k} persona$"]
-NO_OBLIGATORIAS = {f"t{k}_{c}" for k in range(1, 4) for c in ("correcta", "obtuvo")}
+    ENCABEZADOS[f"t{_k}_tarjeta"] = f"Tarjeta {_k}"
+    ENCABEZADOS[f"t{_k}_consulta"] = f"Consulta {_k}: texto escrito"
+    ENCABEZADOS[f"t{_k}_seg"] = f"Consulta {_k}: tiempo hasta respuesta útil (s)"
+    ENCABEZADOS[f"t{_k}_msgs"] = f"Consulta {_k}: mensajes enviados"
+    ENCABEZADOS[f"t{_k}_obtuvo"] = f"Consulta {_k}: ¿la persona obtuvo lo que necesitaba?"
+    ENCABEZADOS[f"t{_k}_correcta"] = f"Consulta {_k}: ¿respuesta correcta? (aplicador)"
+    ENCABEZADOS[f"t{_k}_noentendi"] = f"Consulta {_k}: ¿dijo «no entendí»?"
+MARCAS_SIMULADO = re.compile(r"simulad|sintetic|demo|no son sesiones reales")  # títulos y nombres de hoja
+MARCA_TEXTO = re.compile(r"^\W*simulacion")  # texto de consulta que empieza con «[SIMULACIÓN …]»
+
+
 
 
 def norm(t):
@@ -81,45 +97,47 @@ def si(v):
 
 
 # --------------------------------------------------------------------------- lectura
+def _t(c):
+    return unicodedata.normalize("NFC", str(c)).strip() if c is not None else ""
+
+
+def _num(v):
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
 def leer_registro(ruta, mapa_usuario=None, permitir_simulado=False):
     from openpyxl import load_workbook
     wb = load_workbook(ruta, read_only=True, data_only=True)  # solo lectura: nunca se guarda
     try:
-        sim = [h for h in wb.sheetnames if "simulado" in h.lower()]
-        if sim and not permitir_simulado:
-            sys.exit(f"ERROR: el registro tiene hojas marcadas SIMULADO ({sim}). No se analiza como piloto real (usa --permitir-simulado solo para pruebas).")
+        marcadas = [h for h in wb.sheetnames if MARCAS_SIMULADO.search(norm(h))]
         if HOJA not in wb.sheetnames:
             sys.exit(f"ERROR: no hay hoja «{HOJA}» en el registro (hojas: {wb.sheetnames}).")
         filas = list(wb[HOJA].iter_rows(values_only=True))
-        resumen_b24 = None
-        if "Resumen" in wb.sheetnames:
-            r = list(wb["Resumen"].iter_rows(min_row=24, max_row=24, min_col=2, max_col=2, values_only=True))
-            resumen_b24 = r[0][0] if r else None
+        if filas and MARCAS_SIMULADO.search(norm(filas[0][0] or "")):
+            marcadas.append(f"título de {HOJA}!A1: «{str(filas[0][0])[:60]}»")
+        def hoja(nombre):
+            return list(wb[nombre].iter_rows(values_only=True)) if nombre in wb.sheetnames else None
+        h_tar, h_par, h_res = hoja("Tarjetas"), hoja("Parametros"), hoja("Resumen")
     finally:
         wb.close()
-    if len(filas) < FILA_ENCABEZADO:
-        sys.exit("ERROR: la hoja de sesiones no tiene la fila de encabezados (fila 3).")
-    enc = [("" if c is None else str(c).strip()) for c in filas[FILA_ENCABEZADO - 1]]
-    encn = [norm(c) for c in enc]
-    mapa, usados = {}, {}
-    for campo, pats in COLUMNAS.items():
-        if mapa_usuario and campo in mapa_usuario:
-            deseado = norm(mapa_usuario[campo])
-            if deseado not in encn:
-                sys.exit(f"ERROR: --mapa-columnas pide «{mapa_usuario[campo]}» para «{campo}», pero ese encabezado no existe. Encabezados: {enc}")
-            mapa[campo] = encn.index(deseado)
-            continue
-        for j, h in enumerate(encn):
-            if h and any(re.match(p, h) for p in pats):
-                mapa[campo] = j
-                break
-    faltan = [c for c in COLUMNAS if c not in mapa and c not in NO_OBLIGATORIAS]
+    # El encabezado está en la fila 3 de la plantilla; si alguien borró la fila de instrucciones queda en la 2: se busca «Código de sesión» en las primeras filas.
+    fila_enc = next((i for i, f in enumerate(filas[:8], 1) if f and _t(f[0]) == _t(ENCABEZADOS["codigo"])), None)
+    if fila_enc is None:
+        sys.exit(f"ERROR: no encuentro la fila de encabezados («{ENCABEZADOS['codigo']}» en la columna A, filas 1–8) de la hoja {HOJA}.")
+    enc = [_t(c) for c in filas[fila_enc - 1]]
+    pedidos = {**ENCABEZADOS, **(mapa_usuario or {})}
+    mapa, faltan = {}, []
+    for campo, nombre in pedidos.items():
+        nombre = _t(nombre)
+        if enc.count(nombre) == 1:
+            mapa[campo] = enc.index(nombre)
+        else:
+            faltan.append(f"{campo} -> «{nombre}»" + (" (duplicado)" if enc.count(nombre) > 1 else ""))
     if faltan:
-        sys.exit("ERROR: no reconozco estas columnas del registro: " + ", ".join(faltan) +
-                 f"\n  Encabezados de la fila {FILA_ENCABEZADO}: {enc}\n  Indica los nombres reales con --mapa-columnas mapa.json "
-                 '(por ejemplo {"min_pre": "Minutos antes"}).')
+        sys.exit(f"ERROR: estos encabezados exactos no están en la fila {fila_enc} de la hoja {HOJA}: " + "; ".join(faltan) +
+                 "\n  Si el registro cambió de nombres, usa --mapa-columnas (respaldo) o corrige ENCABEZADOS.")
     datos = []
-    for fila in filas[FILA_ENCABEZADO:]:
+    for fila in filas[fila_enc:]:
         cod = fila[mapa["codigo"]] if mapa["codigo"] < len(fila) else None
         if cod is None or not str(cod).strip():
             continue
@@ -128,14 +146,71 @@ def leer_registro(ruta, mapa_usuario=None, permitir_simulado=False):
     if df.empty:
         sys.exit("ERROR: el registro no tiene filas con código de sesión.")
     df["codigo"] = df["codigo"].astype(str).str.strip()
-    cand = df[df["codigo"].str.upper().str.startswith("SA")].copy()
+    cand = df[df["codigo"].str.upper().str.match(r"^SA\d")].copy()
+    if not cand.empty and any(MARCA_TEXTO.search(norm(x)) for k in (1, 2, 3) for x in cand[f"t{k}_consulta"].dropna().astype(str)):
+        marcadas.append("textos de consulta marcados como simulación")
+    if marcadas and not permitir_simulado:
+        sys.exit(f"ERROR: el registro está marcado como SIMULADO/SINTÉTICO ({'; '.join(marcadas)}). No se analiza como piloto real "
+                 "(usa --permitir-simulado solo para pruebas).")
+    if cand.empty:
+        sys.exit("ERROR: no hay filas con código SA…")
     if cand["elegible"].isna().all():
         sys.exit("ERROR: «Elegible y completa» no tiene valores guardados (las fórmulas no se calcularon): abre y guarda el archivo en Excel.")
     el = cand[cand["elegible"].map(si)].copy()
     if el.empty:
         sys.exit("ERROR: no hay filas elegibles (Elegible y completa = Sí con código SA…).")
+
+    tarjetas = {}
+    for r in (h_tar or []):
+        if r[0] and re.match(r"^S\d+$", str(r[0]).strip()):
+            tarjetas[str(r[0]).strip()] = str(r[1]).strip()
+    if not tarjetas:
+        sys.exit("ERROR: la hoja Tarjetas no tiene el catálogo (tarjeta -> intención esperada) desde la fila 4.")
+    conversion, modelo_param, fecha_param = {}, None, None
+    for r in (h_par or []):
+        a, b = (r + (None, None))[:2]
+        if isinstance(a, str) and _num(b) is not None and a.strip() in RANGOS_TIEMPO:
+            conversion[a.strip()] = _num(b)
+        if isinstance(a, str) and a.startswith("Modelo congelado"):
+            modelo_param = b
+        if isinstance(a, str) and a.startswith("Fecha de congelamiento"):
+            fecha_param = b
+    resumen = {}
+    for i in (14, 15, 16, 17, 20, 21, 23, 24, 28, 29, 30, 31):
+        if h_res and len(h_res) >= i and len(h_res[i - 1]) > 1:
+            resumen[f"B{i}"] = _num(h_res[i - 1][1])
+    ctx = {"tarjetas": tarjetas, "conversion": conversion, "modelo_param": modelo_param, "fecha_param": fecha_param, "resumen": resumen}
+    ctx["fila_encabezado"] = fila_enc
     cabeceras = {c: enc[j] for c, j in mapa.items()}
-    return el.reset_index(drop=True), cabeceras, resumen_b24, len(df) - len(cand)
+    return el.reset_index(drop=True), cabeceras, ctx, len(df) - len(cand)
+
+
+RANGOS_TIEMPO = {"Menos de 15 min", "15–30 min", "30–60 min", "1–2 horas", "2–4 horas", "Más de 4 horas / varios días"}
+
+
+def comprobar_registro(df, ctx):
+    """Coherencia interna del registro: tarjeta asignada y minutos pre. Devuelve los avisos; aborta si algo no cuadra."""
+    ids = list(ctx["tarjetas"])
+    for _, r in df.iterrows():
+        m = re.match(r"^SA(\d{2})", r["codigo"])
+        if not m:
+            continue
+        for k in (1, 2, 3):
+            esperada = ids[(3 * (int(m.group(1)) - 1) + (k - 1)) % len(ids)]
+            if str(r[f"t{k}_tarjeta"]).strip() != esperada:
+                sys.exit(f"ERROR: la tarjeta {k} de {r['codigo']} es «{r[f't{k}_tarjeta']}» y la fórmula del registro daría «{esperada}». "
+                         "El registro fue alterado o la fórmula no se calculó.")
+    if ctx["conversion"]:
+        for _, r in df.iterrows():
+            rango = r["rango"]
+            if rango is None or (isinstance(rango, float) and np.isnan(rango)) or not str(rango).strip():
+                continue
+            esperado = ctx["conversion"].get(str(rango).strip())
+            if esperado is None:
+                sys.exit(f"ERROR: el rango de tiempo «{rango}» de {r['codigo']} no está en la tabla de Parametros.")
+            if abs(float(r["min_pre"]) - esperado) > 1e-9:
+                sys.exit(f"ERROR: «Minutos pre» de {r['codigo']} ({r['min_pre']}) no coincide con la conversión de «{rango}» en Parametros ({esperado}).")
+    return []
 
 
 def numerico(df, cols, nombre, lo=None, hi=None):
@@ -225,8 +300,8 @@ def cargar_congelado(ruta):
     return fz, mp, avisos
 
 
-def prueba_final(df, catalogo, fz, predictor, rng):
-    cat = pd.read_csv(catalogo, dtype=str).set_index("scenario_id")["intent_esperada"].to_dict()
+def prueba_final(df, cat, fz, predictor, rng):
+    """cat: tarjeta -> intención esperada (hoja Tarjetas, ya contrastada con el catálogo)."""
     filas = []
     for _, r in df.iterrows():
         for k in (1, 2, 3):
@@ -237,7 +312,7 @@ def prueba_final(df, catalogo, fz, predictor, rng):
             if re.fullmatch(r"\d+(\.0)?", tid):
                 tid = f"S{int(float(tid)):02d}"
             if tid not in cat:
-                sys.exit(f"ERROR: la tarjeta «{tid}» de la sesión {r['codigo']} no está en el catálogo.")
+                sys.exit(f"ERROR: la tarjeta «{tid}» de la sesión {r['codigo']} no está en la hoja Tarjetas.")
             filas.append({"sesion": r["codigo"], "tarjeta": tid, "consulta": str(q).strip(), "esperada": cat[tid],
                           "correcta_aplicador": r.get(f"t{k}_correcta"), "obtuvo_persona": r.get(f"t{k}_obtuvo")})
     if not filas:
@@ -283,6 +358,62 @@ def prueba_final(df, catalogo, fz, predictor, rng):
                              "respondieron_si_pct": float(v.map(si).mean() * 100)}
     out["acuerdos"] = acuerdos
     return out, q
+
+
+def contrastar_catalogo(tarjetas, catalogo):
+    ruta = Path(catalogo)
+    if not ruta.exists():
+        return [f"no se encontró el catálogo {ruta}: no se contrastó la hoja Tarjetas"]
+    cat = pd.read_csv(ruta, dtype=str).set_index("scenario_id")["intent_esperada"].to_dict()
+    if cat != tarjetas:
+        dif = sorted(k for k in set(cat) | set(tarjetas) if cat.get(k) != tarjetas.get(k))
+        sys.exit(f"ERROR: la hoja Tarjetas del registro no coincide con el catálogo {ruta.name} en: {dif[:10]}")
+    return []
+
+
+def avisos_modelo_registro(ctx, fz):
+    out = []
+    nombre, fecha = ctx.get("modelo_param"), ctx.get("fecha_param")
+    if not nombre or not str(nombre).strip():
+        out.append("Parametros: no se anotó el nombre/versión del modelo congelado (hay que anotarlo antes de la primera sesión)")
+    elif str(nombre).strip() not in (fz.get("modelo_nombre", ""), fz["sha256"]["modelo"][:12]) and fz.get("modelo_nombre", "") not in str(nombre):
+        out.append(f"Parametros anota el modelo «{nombre}» y modelo_congelado.json dice «{fz.get('modelo_nombre')}»: confirma que es el mismo")
+    if not fecha or not str(fecha).strip():
+        out.append("Parametros: no se anotó la fecha de congelamiento del modelo")
+    return out
+
+
+def desempeno_registro(df):
+    """Cifras de desempeño que el propio registro también calcula (para contrastar con Resumen)."""
+    n3 = 3 * len(df)
+    def col(sufijo):
+        return pd.concat([df[f"t{k}_{sufijo}"] for k in (1, 2, 3)])
+    seg = col("seg").apply(pd.to_numeric, errors="coerce")
+    msg = col("msgs").apply(pd.to_numeric, errors="coerce")
+    return {"consultas": n3,
+            "respuesta_util_segun_persona": float(col("obtuvo").map(si).sum() / n3),
+            "respuesta_correcta_segun_aplicador": float(col("correcta").map(si).sum() / n3),
+            "respuesta_parcial_segun_aplicador": float((col("correcta").map(norm) == "parcial").sum() / n3),
+            "dijo_no_entendi": float(col("noentendi").map(si).sum() / n3),
+            "mensajes_promedio": float(msg.mean()), "segundos_media": float(seg.mean()), "segundos_mediana": float(seg.median())}
+
+
+def contrastar_resumen(res, tiempo, satis, des):
+    """Compara las cifras calculadas aquí con las de la hoja Resumen (el registro ya las calcula con fórmulas)."""
+    pares = [("B14", "tiempo medio pre", tiempo["media_pre"], 1e-6), ("B15", "tiempo medio post", tiempo["media_post"], 1e-6),
+             ("B16", "reducción del tiempo medio", tiempo["reduccion_medias"], 1e-6), ("B17", "reducción media individual", tiempo["media_reducciones_individuales"], 1e-6),
+             ("B20", "satisfacción P10", satis["media_p10"], 1e-6), ("B21", "satisfacción ítem 9", satis["media_item9"], 1e-6),
+             ("B23", "media ítems 1–8", satis["media_items_1_8"], 1e-6), ("B24", "alfa de Cronbach", satis["alfa_cronbach"], 0.01),
+             ("B28", "respuesta útil", des["respuesta_util_segun_persona"], 1e-6), ("B29", "respuesta correcta", des["respuesta_correcta_segun_aplicador"], 1e-6),
+             ("B30", "«no entendí»", des["dijo_no_entendi"], 1e-6), ("B31", "mensajes por consulta", des["mensajes_promedio"], 1e-6)]
+    out = []
+    for celda, nombre, mio, tol in pares:
+        v = res.get(celda)
+        if v is None:
+            out.append(f"Resumen!{celda} ({nombre}) no tiene valor guardado: no se pudo contrastar")
+        elif abs(v - mio) > tol:
+            out.append(f"Resumen!{celda} ({nombre}) = {v:.4f} y el análisis calcula {mio:.4f}: difieren")
+    return out
 
 
 # --------------------------------------------------------------------------- figuras e informe
@@ -345,6 +476,13 @@ def informe_md(R):
         L.append("- Sin umbral congelado.")
     for k, v in p["acuerdos"].items():
         L.append(f"- Acuerdo del modelo con {k.replace('_', ' ')}: {v['acuerdo_con_modelo_pct']:.1f} % (n = {v['n']}; respondieron «Sí»: {v['respondieron_si_pct']:.1f} %)")
+    d = R["desempeno_registro"]
+    L += ["", "## Desempeño según el registro (mismas cifras que calcula la hoja Resumen)", "",
+          f"- Respuesta útil según la persona: {d['respuesta_util_segun_persona'] * 100:.1f} % · correcta según el aplicador (solo «Sí»): {d['respuesta_correcta_segun_aplicador'] * 100:.1f} % "
+          f"(«Parcial»: {d['respuesta_parcial_segun_aplicador'] * 100:.1f} %) · dijo «no entendí»: {d['dijo_no_entendi'] * 100:.1f} %",
+          f"- Mensajes por consulta: {d['mensajes_promedio']:.2f} · tiempo hasta respuesta útil: media {d['segundos_media']:.0f} s, mediana {d['segundos_mediana']:.0f} s"]
+    if R["avisos"]:
+        L += ["", "## Avisos", ""] + [f"- {x}" for x in R["avisos"]]
     L += ["", "n por intención: " + ", ".join(f"{k} {v}" for k, v in sorted(p["n_por_intencion"].items())), "",
           "## Limitaciones", ""] + [f"- {x}" for x in LIMITACIONES] + ["",
           "## Columnas del registro usadas", "", "| Campo | Encabezado |", "|---|---|"] + [f"| {k} | {v} |" for k, v in R["columnas"].items()]
@@ -364,7 +502,9 @@ def main(argv=None, predictor=None):
     a = ap.parse_args(argv)
 
     mapa_usr = json.loads(Path(a.mapa_columnas).read_text(encoding="utf-8")) if a.mapa_columnas else None
-    df, cab, b24, excl = leer_registro(a.registro, mapa_usr, a.permitir_simulado)
+    df, cab, ctx, excl = leer_registro(a.registro, mapa_usr, a.permitir_simulado)
+    comprobar_registro(df, ctx)
+    avisos_reg = contrastar_catalogo(ctx["tarjetas"], a.catalogo)
     simulado = bool(a.permitir_simulado)
     sufijo = "_SIMULADO" if simulado else ""
     salida = Path(a.salida)
@@ -378,6 +518,7 @@ def main(argv=None, predictor=None):
     print(f"Sesiones elegibles: {n} (filas con código que no empieza por SA, p. ej. EJ01: {excl}) — {'exploratorio, n = ' + str(n) if n < N_OBJETIVO else 'n completo'}")
 
     fz, ruta_modelo, avisos = cargar_congelado(a.modelo_congelado)
+    avisos += avisos_reg + avisos_modelo_registro(ctx, fz)
     for av in avisos:
         print("AVISO:", av)
 
@@ -404,7 +545,7 @@ def main(argv=None, predictor=None):
     punt = i18.mean(axis=1)
     ci = stats.t.interval(0.95, n - 1, loc=punt.mean(), scale=punt.std(ddof=1) / np.sqrt(n))
     alfa = float(alfa_cronbach(i18))
-    b24n = float(b24) if isinstance(b24, (int, float)) else None
+    b24n = ctx["resumen"].get("B24")
     satis = {"media_p10": float(p10.mean()), "media_item9": float(i9.mean()), "contraste": contraste_pareado(i9, p10),
              "media_items_1_8": float(punt.mean()), "ic95_media_items_1_8": [float(ci[0]), float(ci[1])], "alfa_cronbach": alfa,
              "alfa_resumen_b24": b24n, "alfa_difiere": b24n is not None and abs(alfa - b24n) > 0.01}
@@ -412,12 +553,17 @@ def main(argv=None, predictor=None):
         print(f"AVISO: el alfa calculado ({alfa:.3f}) difiere de Resumen!B24 ({b24n:.3f}) en más de 0,01.")
 
     predictor = predictor or predictor_modelo(ruta_modelo)
-    pf, detalle = prueba_final(df, a.catalogo, fz, predictor, rng)
+    pf, detalle = prueba_final(df, ctx["tarjetas"], fz, predictor, rng)
+    desempeno = desempeno_registro(df)
+    nuevos = contrastar_resumen(ctx["resumen"], tiempo, satis, desempeno)
+    for av in nuevos:
+        print("AVISO:", av)
+    avisos += nuevos
 
     R = {"rotulo": "SIMULADO" if simulado else "REAL", "fecha": datetime.now().isoformat(timespec="seconds"), "n": n,
          "exploratorio": n < N_OBJETIVO, "sesiones_excluidas_no_SA": excl, "tiempo": tiempo, "satisfaccion": satis, "prueba_final": pf,
          "modelo_congelado": {"modelo_nombre": fz.get("modelo_nombre", Path(ruta_modelo).name), "sha256": fz["sha256"]["modelo"], "fecha": fz["fecha"]},
-         "limitaciones": LIMITACIONES, "columnas": cab}
+         "desempeno_registro": desempeno, "avisos": avisos, "limitaciones": LIMITACIONES, "columnas": cab}
     (salida / f"analisis_piloto{sufijo}.json").write_text(json.dumps(R, indent=2, ensure_ascii=False), encoding="utf-8")
     (salida / f"analisis_piloto{sufijo}.md").write_text(informe_md(R), encoding="utf-8")
     detalle.drop(columns=["consulta"]).to_csv(salida / f"prueba_final_detalle{sufijo}.csv", index=False, encoding="utf-8")  # sin el texto de las consultas

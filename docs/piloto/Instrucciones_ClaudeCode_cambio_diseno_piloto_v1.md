@@ -13,7 +13,7 @@ El protocolo vigente es la **V1.3**. Solo cambia el piloto. Todo lo demás sigue
 | Medición con el chatbot | Uso durante el piloto y luego encuesta | **3 tarjetas** de situación con cronómetro del aplicador, más encuesta de **9 ítems** en la misma visita |
 | Satisfacción pareada | Sin ítem de emparejamiento | **Ítem 9**, con la misma redacción que P10 |
 
-**No cambia:** el lote 1 de frases reales (15–25 personas; solo validación y test), la Parte B, el umbral de confianza, la compuerta F1 ≥ 0,75 sobre el conjunto real retenido, el alfa ≥ 0,70, el modelo congelado y las reglas anti-sesgo. El pre-piloto ahora ensaya el mismo procedimiento con 5 a 8 personas.
+**No cambia:** el lote 1 de frases reales (15–25 personas; solo validación y test), la Parte B, el umbral de confianza, la compuerta F1 ≥ 0,75 sobre el conjunto real retenido, el alfa ≥ 0,70, el modelo congelado y las reglas anti-sesgo. El pre-piloto ahora ensaya el mismo procedimiento con 5 a 15 personas (objetivo operativo 5–8, por el plazo del curso).
 
 El **120** sobrevive solo como valor planificado de la V1.2 (documentos históricos, fórmula de tamaño de muestra) y en archivos simulados. **No lo uses como meta.**
 

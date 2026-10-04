@@ -1,15 +1,17 @@
 """Prueba de humo de scripts/congelar_modelo.py y scripts/analizar_piloto.py — rótulo: SIMULADA (datos falsos, predictor falso).
 
-Crea en una carpeta temporal un modelo falso, un registro .xlsx FALSO (armado desde cero con openpyxl, nunca a partir de la plantilla real) y un
-predictor falso inyectado (NO se carga ningún modelo Rasa). Nada se guarda en el repositorio: la salida de consola va a evidencias/piloto/ y al final se
-verifica que incident_log.csv, logs/ y docs/piloto/ no cambiaron.
+Usa una carpeta temporal, un modelo falso y un predictor falso inyectado (NO se carga ningún modelo Rasa). Nada se guarda en el repositorio: la salida de
+consola va a evidencias/piloto/ y al final se verifica que incident_log.csv, logs/ y docs/piloto/ no cambiaron.
 
-Comprueba: el caso normal; diferencias no normales (-> Wilcoxon); el alfa frente a numpy (y el aviso si difiere de Resumen!B24); hash del modelo
-distinto (aborta); registro con «SIMULADO» (rechazado); segunda prueba final (se niega); fila EJ01 (excluida); n < 60 («exploratorio»); fórmulas sin
-valor guardado; y el congelamiento (no sobrescribe sin --forzar --motivo; con ellos registra la incidencia, aquí en un archivo temporal).
+Registros usados (todos falsos):
+  * armados desde cero con openpyxl, pero con los 63 encabezados EXACTOS leídos de la plantilla real (docs/piloto/Registro_Sesiones_Piloto_v1.xlsx);
+  * una COPIA de la plantilla real rellenada con datos falsos y valores calculados por Excel
+    (docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx), copiada a la carpeta temporal.
 
-Los encabezados del registro son SUPUESTOS (el registro real no estaba en el repositorio): esta prueba solo valida que el script los lee según ese
-supuesto, no que coincidan con el registro real.
+Comprueba: que todos los encabezados que usa el script existen en la plantilla real; el caso normal; diferencias no normales (-> Wilcoxon); el alfa
+frente a numpy; hash del modelo distinto (aborta); registros marcados SIMULADO/SINTÉTICO (rechazados); segunda prueba final (se niega); fila EJ01
+(excluida); n < 60 («exploratorio»); fórmulas sin valor guardado; encabezado renombrado y tarjeta alterada (abortan); la copia de la plantilla real
+(sus cifras coinciden con las de la hoja Resumen); y el congelamiento (no sobrescribe sin --forzar --motivo).
 
 Uso:
     python tests/smoke_piloto.py [--conservar]
@@ -28,7 +30,7 @@ from pathlib import Path
 warnings.filterwarnings("ignore")
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
-from openpyxl import Workbook  # noqa: E402
+from openpyxl import Workbook, load_workbook  # noqa: E402
 from scipy import stats  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -37,14 +39,23 @@ import analizar_piloto as ap  # noqa: E402
 import congelar_modelo as cm  # noqa: E402
 
 CATALOGO = ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"
-ENC = (["Código de sesión", "Elegible y completa", "Minutos pre", "Minutos post", "P10"] + [f"Ítem {i}" for i in range(1, 10)] +
-       [h for k in (1, 2, 3) for h in (f"Tarjeta {k}", f"Consulta {k}", f"¿Correcta? {k}", f"Obtuvo {k}")])
+PLANTILLA = ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v1.xlsx"
+DEMO = ROOT / "docs" / "piloto" / "ejemplos_simulados" / "Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx"
+H = ap.ENCABEZADOS
 RES = []
 
 
 def check(nombre, cond, detalle=""):
     RES.append(bool(cond))
     print(f"  [{'PASS' if cond else 'FAIL'}] {nombre}" + (f"  ({detalle})" if detalle and not cond else ""))
+
+
+def encabezados_plantilla():
+    wb = load_workbook(PLANTILLA, read_only=True, data_only=True)
+    try:
+        return [("" if c is None else str(c).strip()) for c in list(wb["Sesiones"].iter_rows(min_row=3, max_row=3, values_only=True))[0]]
+    finally:
+        wb.close()
 
 
 def alfa_numpy(m):
@@ -54,13 +65,12 @@ def alfa_numpy(m):
 
 
 def datos_falsos(n, normal=True, semilla=7):
+    """Filas como {encabezado exacto: valor}, con tarjetas asignadas igual que la fórmula del registro."""
     rng = np.random.default_rng(semilla)
     cat = pd.read_csv(CATALOGO, dtype=str)
+    ids, intents = cat["scenario_id"].tolist(), cat["intent_esperada"].tolist()
     pre = np.round(rng.normal(14, 3, n).clip(4), 1)
-    if normal:
-        dif = rng.normal(8, 2, n)
-    else:
-        dif = rng.exponential(1.0, n) ** 3 + 0.3  # muy asimétrica
+    dif = rng.normal(8, 2, n) if normal else rng.exponential(1.0, n) ** 3 + 0.3  # la segunda es muy asimétrica
     post = np.round(np.maximum(pre - dif, 0.5), 1)
     p10 = rng.integers(1, 5, n)
     base = rng.integers(2, 5, n)
@@ -68,42 +78,58 @@ def datos_falsos(n, normal=True, semilla=7):
     i9 = np.clip(p10 + 1, 1, 5)
     filas, pred = [], {}
     for s in range(n):
-        tar = rng.choice(len(cat), 3, replace=False)
-        fila = [f"SA{s + 1:02d}", "Sí", pre[s], post[s], int(p10[s])] + [int(x) for x in items[s]] + [int(i9[s])]
-        for k, t in enumerate(tar, 1):
+        f = {H["codigo"]: f"SA{s + 1:02d}", H["elegible"]: "Sí", H["min_pre"]: float(pre[s]), H["min_post"]: float(post[s]), H["p10"]: int(p10[s]), H["item9"]: int(i9[s])}
+        for i in range(8):
+            f[H[f"item{i + 1}"]] = int(items[s][i])
+        for k in (1, 2, 3):
+            t = (3 * s + (k - 1)) % len(ids)
             q = f"consulta falsa {s + 1}-{k}"
-            esperada = cat.loc[t, "intent_esperada"]
             ok = rng.random() < 0.75
-            pred[q] = (esperada if ok else "intencion_equivocada", float(rng.uniform(0.6, 0.95) if ok else rng.uniform(0.2, 0.7)), 0.1)
-            fila += [cat.loc[t, "scenario_id"], q, "Sí" if ok else "No", "Sí" if rng.random() < 0.8 else "No"]
-        filas.append(fila)
+            pred[q] = (intents[t] if ok else "intencion_equivocada", float(rng.uniform(0.6, 0.95) if ok else rng.uniform(0.2, 0.7)), 0.1)
+            f.update({H[f"t{k}_tarjeta"]: ids[t], H[f"t{k}_consulta"]: q, H[f"t{k}_seg"]: float(post[s] * 60), H[f"t{k}_msgs"]: 2,
+                      H[f"t{k}_correcta"]: "Sí" if ok else "No", H[f"t{k}_obtuvo"]: "Sí" if rng.random() < 0.8 else "No", H[f"t{k}_noentendi"]: "No"})
+        filas.append(f)
     return filas, pred, np.column_stack([items, i9]), (pre, post, p10)
 
 
-def escribir_registro(ruta, filas, b24, hojas_extra=(), formulas_sin_valor=False):
+def escribir_registro(ruta, filas, b24, hojas_extra=(), formulas_sin_valor=False, renombrar=None, titulo="REGISTRO FALSO DE PRUEBA", fila_extra=True):
+    orig = encabezados_plantilla()
+    enc = [renombrar[1] if renombrar and h == renombrar[0] else h for h in orig]
     wb = Workbook()
     ws = wb.active
     ws.title = "Sesiones"
-    ws["A1"] = "REGISTRO FALSO DE PRUEBA"
-    for j, h in enumerate(ENC, 1):
+    ws["A1"] = titulo
+    ws["A2"] = "instrucciones de la plantilla (falsas)"
+    for j, h in enumerate(enc, 1):
         ws.cell(3, j, h)
-    ejemplo = list(filas[0]); ejemplo[0] = "EJ01"
-    todas = [ejemplo] + [list(f) for f in filas] + [[None] * len(ENC)]
-    todas.append(["SA99", "No"] + list(filas[0][2:]))
-    for i, f in enumerate(todas, 4):
-        for j, v in enumerate(f, 1):
-            if formulas_sin_valor and j == 2:
+    extra = []
+    if fila_extra and filas:
+        ej = dict(filas[0]); ej[H["codigo"]] = "EJ01"
+        no_el = dict(filas[0]); no_el[H["codigo"]] = "SA99"; no_el[H["elegible"]] = "No"
+        extra = [ej, no_el]
+    for i, f in enumerate(extra[:1] + filas + extra[1:], 4):
+        for j, (h, ho) in enumerate(zip(enc, orig), 1):
+            v = f.get(ho)
+            if formulas_sin_valor and ho == H["elegible"]:
                 v = None
-            ws.cell(i, j, v)
+            if v is not None:
+                ws.cell(i, j, v)
     rs = wb.create_sheet("Resumen")
     rs["B24"] = b24
+    tj = wb.create_sheet("Tarjetas")
+    tj["A3"], tj["B3"] = "Tarjeta", "Intención esperada"
+    cat = pd.read_csv(CATALOGO, dtype=str)
+    for i, (a, b) in enumerate(zip(cat["scenario_id"], cat["intent_esperada"]), 4):
+        tj.cell(i, 1, a); tj.cell(i, 2, b)
+    pj = wb.create_sheet("Parametros")
+    pj["A20"], pj["B20"] = "Modelo congelado (nombre / versión)", "modelo_falso.tar.gz"
+    pj["A21"], pj["B21"] = "Fecha de congelamiento del modelo", "2026-01-01"
     for h in hojas_extra:
         wb.create_sheet(h)
     wb.save(ruta)
 
 
 def correr(argv, predictor=None):
-    """Ejecuta analizar_piloto.main en el mismo proceso. Devuelve (código, texto, resultado)."""
     buf = io.StringIO()
     try:
         with contextlib.redirect_stdout(buf):
@@ -114,7 +140,6 @@ def correr(argv, predictor=None):
 
 
 def congelar(argv):
-    import os
     buf = io.StringIO()
     viejo = sys.argv
     sys.argv = ["congelar_modelo.py"] + argv
@@ -145,6 +170,12 @@ def main():
     W = Path(tempfile.mkdtemp(prefix="piloto_PRUEBA_SIMULADA_"))
     print(f"SIMULADA — carpeta temporal (datos FALSOS, no se commitean): {W}")
     antes = snapshot()
+
+    print("\nEncabezados frente a la plantilla real")
+    enc = encabezados_plantilla()
+    faltan = [f"{c} -> {h}" for c, h in H.items() if enc.count(h) != 1]
+    check(f"los {len(H)} encabezados que usa analizar_piloto.py existen (una sola vez) en la fila 3 de Registro_Sesiones_Piloto_v1.xlsx", not faltan, "; ".join(faltan))
+    check("la plantilla real tiene las hojas Sesiones, Tarjetas, Parametros y Resumen", all(h in load_workbook(PLANTILLA, read_only=True).sheetnames for h in ("Sesiones", "Tarjetas", "Parametros", "Resumen")))
 
     modelo = W / "modelo_falso.tar.gz"
     modelo.write_bytes(b"modelo falso de prueba")
@@ -201,6 +232,7 @@ def main():
               and "consulta" not in pd.read_csv(out / "prueba_final_detalle.csv").columns)
         det = pd.read_csv(out / "prueba_final_detalle.csv")
         check("la fila de ejemplo EJ01 y la fila no elegible SA99 quedan excluidas", R["n"] == 60 and "EJ01" not in set(det["sesion"]) and "SA99" not in set(det["sesion"]) and R["sesiones_excluidas_no_SA"] == 1)
+        check("lee el nombre y la fecha del modelo desde Parametros y no avisa", not any("Parametros" in x for x in R["avisos"]), str(R["avisos"]))
 
     print("\nSegunda prueba final")
     c, t, _ = correr(["--registro", str(reg), "--modelo-congelado", str(fz), "--salida", str(out)], predictor)
@@ -228,34 +260,69 @@ def main():
 
     # ------------------------------------------------------------------ n < 60
     print("\nn < 60")
-    filas4 = filas[:45]
     reg4 = W / "registro_45.xlsx"
-    escribir_registro(reg4, filas4, alfa_numpy(items9[:45, :8]))
+    escribir_registro(reg4, filas[:45], alfa_numpy(items9[:45, :8]))
     c, t, R4 = correr(["--registro", str(reg4), "--modelo-congelado", str(fz), "--salida", str(W / "salida_45")], predictor)
     md = (W / "salida_45" / "analisis_piloto.md").read_text(encoding="utf-8") if c == 0 else ""
     check("con 45 sesiones queda rotulado «exploratorio, n = 45»", c == 0 and R4["exploratorio"] and "exploratorio, n = 45" in md and "exploratorio, n = 45" in t, t[-300:])
 
     # ------------------------------------------------------------------ rechazos
     print("\nRechazos")
-    reg5 = W / "registro_SIMULADO.xlsx"
+    reg5 = W / "registro_hoja_SIMULADO.xlsx"
     escribir_registro(reg5, filas, alfa_ref, hojas_extra=("Datos SIMULADO",))
     c, t, _ = correr(["--registro", str(reg5), "--modelo-congelado", str(fz), "--salida", str(W / "salida_sim")], predictor)
     check("un registro con una hoja «SIMULADO» se rechaza", c != 0 and "SIMULADO" in t and not (W / "salida_sim").exists(), t[-300:])
+    regt = W / "registro_titulo_demo.xlsx"
+    escribir_registro(regt, filas, alfa_ref, titulo="DEMO SINTÉTICA — NO SON SESIONES REALES")
+    c, t, _ = correr(["--registro", str(regt), "--modelo-congelado", str(fz), "--salida", str(W / "salida_titulo")], predictor)
+    check("un registro cuyo título (A1) dice «DEMO SINTÉTICA» se rechaza", c != 0 and "SINTÉTICO" in t and not (W / "salida_titulo").exists(), t[-300:])
     sim_out = W / "salida_sim2"
     c, t, R5 = correr(["--registro", str(reg5), "--modelo-congelado", str(fz), "--salida", str(sim_out), "--permitir-simulado"], predictor)
     check("con --permitir-simulado escribe solo en carpeta temporal y rotula _SIMULADO",
           c == 0 and R5 and R5["rotulo"] == "SIMULADO" and (sim_out / "analisis_piloto_SIMULADO.json").exists() and not (sim_out / "analisis_piloto.json").exists(), t[-300:])
-    fuera = W.parent / "carpeta_fuera_de_temp_no_usar"
     c, t, _ = correr(["--registro", str(reg5), "--modelo-congelado", str(fz), "--salida", str(ROOT / "logs" / "piloto"), "--permitir-simulado"], predictor)
     check("--permitir-simulado no escribe en el repositorio aunque se lo pidan", c == 0 and "carpeta temporal" in t and not (ROOT / "logs" / "piloto").exists(), t[:300])
     reg6 = W / "registro_sin_filas.xlsx"
-    escribir_registro(reg6, [["SA01", "No"] + list(filas[0][2:])], alfa_ref)
+    sin = dict(filas[0]); sin[H["elegible"]] = "No"
+    escribir_registro(reg6, [sin], alfa_ref, fila_extra=False)
     c, t, _ = correr(["--registro", str(reg6), "--modelo-congelado", str(fz), "--salida", str(W / "salida_sf")], predictor)
     check("sin filas elegibles sale con error", c != 0 and "no hay filas elegibles" in t, t[-300:])
     reg7 = W / "registro_formulas.xlsx"
     escribir_registro(reg7, filas, alfa_ref, formulas_sin_valor=True)
     c, t, _ = correr(["--registro", str(reg7), "--modelo-congelado", str(fz), "--salida", str(W / "salida_fx")], predictor)
     check("fórmulas sin valor guardado: «abre y guarda el archivo en Excel»", c != 0 and "abre y guarda el archivo en Excel" in t, t[-300:])
+    reg8 = W / "registro_encabezado.xlsx"
+    escribir_registro(reg8, filas, alfa_ref, renombrar=(H["min_pre"], "Minutos antes"))
+    c, t, _ = correr(["--registro", str(reg8), "--modelo-congelado", str(fz), "--salida", str(W / "salida_enc")], predictor)
+    check("un encabezado renombrado aborta y nombra el encabezado exacto que falta", c != 0 and "encabezados exactos" in t and H["min_pre"] in t, t[-300:])
+    (W / "mapa.json").write_text(json.dumps({"min_pre": "Minutos antes"}), encoding="utf-8")
+    c, t, R8 = correr(["--registro", str(reg8), "--modelo-congelado", str(fz), "--salida", str(W / "salida_enc2"), "--mapa-columnas", str(W / "mapa.json")], predictor)
+    check("--mapa-columnas sirve de respaldo para el encabezado renombrado", c == 0 and R8 and R8["n"] == 60, t[-300:])
+    filas9 = [dict(f) for f in filas]
+    filas9[4][H["t1_tarjeta"]] = "S56"  # la fórmula del registro daría otra tarjeta
+    reg9 = W / "registro_tarjeta.xlsx"
+    escribir_registro(reg9, filas9, alfa_ref)
+    c, t, _ = correr(["--registro", str(reg9), "--modelo-congelado", str(fz), "--salida", str(W / "salida_tar")], predictor)
+    check("una tarjeta que no coincide con la fórmula del registro aborta", c != 0 and "fórmula del registro" in t, t[-300:])
+
+    # ------------------------------------------------------------------ plantilla real
+    print("\nCopia de la plantilla real rellenada con datos falsos")
+    copia = W / "copia_plantilla_real_DEMO.xlsx"
+    shutil.copy(DEMO, copia)
+    c, t, _ = correr(["--registro", str(copia), "--modelo-congelado", str(fz), "--salida", str(W / "salida_demo0")], predictor)
+    check("la copia de la plantilla real, marcada «DEMO SINTÉTICA», se rechaza sin --permitir-simulado", c != 0 and "SINTÉTICO" in t, t[-300:])
+    c, t, RD = correr(["--registro", str(copia), "--modelo-congelado", str(fz), "--salida", str(W / "salida_demo"), "--permitir-simulado"],
+                      lambda x: [("intencion_x", 0.5, 0.1)] * len(x))
+    check("con --permitir-simulado la copia de la plantilla real se lee: 60 sesiones elegibles, EJ01 excluida, rótulo SIMULADO",
+          c == 0 and RD and RD["n"] == 60 and RD["rotulo"] == "SIMULADO" and RD["prueba_final"]["n_consultas"] == 180, t[-400:])
+    if RD:
+        check("las cifras calculadas coinciden con las que Excel guardó en la hoja Resumen (sin avisos de diferencia)", not [x for x in RD["avisos"] if "difieren" in x or "no tiene valor" in x], str(RD["avisos"]))
+        wb = load_workbook(copia, read_only=True, data_only=True)
+        b24 = list(wb["Resumen"].iter_rows(min_row=24, max_row=24, min_col=2, max_col=2, values_only=True))[0][0]
+        wb.close()
+        check("el alfa de la copia coincide con Resumen!B24 (valor de Excel)", abs(RD["satisfaccion"]["alfa_cronbach"] - b24) < 0.01, f"{RD['satisfaccion']['alfa_cronbach']} vs {b24}")
+    c, t, _ = correr(["--registro", str(PLANTILLA), "--modelo-congelado", str(fz), "--salida", str(W / "salida_vacia")], predictor)
+    check("la plantilla real vacía no produce resultados (sin filas elegibles o sin valores guardados)", c != 0 and not (W / "salida_vacia" / "analisis_piloto.json").exists(), t[-300:])
 
     print("\nHash del modelo distinto")
     modelo.write_bytes(b"modelo falso MODIFICADO")
@@ -268,7 +335,7 @@ def main():
     print("\nIntegridad del repositorio")
     despues = snapshot()
     cambios = sorted(k for k in set(antes) | set(despues) if antes.get(k) != despues.get(k))
-    check("incident_log.csv, logs/ y docs/piloto/ no cambiaron durante la prueba", not cambios, f"cambiaron: {cambios}")
+    check("incident_log.csv, logs/ y docs/piloto/ no cambiaron durante la prueba (la plantilla real no se tocó)", not cambios, f"cambiaron: {cambios}")
     ok = sum(RES)
     print(f"\nRESULTADO (SIMULADA): {ok}/{len(RES)} comprobaciones PASS" + ("" if ok == len(RES) else "  <- HAY FALLAS"))
     print("Recordatorio: datos FALSOS y predictor falso; nada de esto es un resultado del piloto.")

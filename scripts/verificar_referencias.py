@@ -1,15 +1,15 @@
-"""Verifica que las rutas y las cifras citadas en el protocolo V1.3 y en la Nota de Desviación (versiones _v5) existan y coincidan con el repositorio.
+"""Verifica que las rutas y las cifras citadas en el protocolo V1.3 y en la Nota de Desviación (versiones _v6) existan y coincidan con el repositorio.
 
 Parte 1: cada archivo o carpeta que cita el protocolo existe (y en qué ruta).
 Parte 2: cada cifra (intenciones, situaciones, F1, validación cruzada, smoke test, McNemar, incidencias, …) se RECALCULA desde los
          archivos del repositorio y se compara con lo que dicen los documentos. Ningún valor se escribe a mano en el resultado.
 
 Estados: OK · DISCREPANCIA (el documento y el repositorio difieren) · PLANIFICADO (aún no existe, coherente con su estado) · NOTA.
-Las afirmaciones se transcribieron del protocolo V1.3 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v5) y de la
-Nota_Desviacion_P11_1_v5; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas en la v5, así que las
+Las afirmaciones se transcribieron del protocolo V1.3 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v6) y de la
+Nota_Desviacion_P11_1_v6; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
 afirmaciones de esas filas se actualizaron; una diferencia nueva se informa, no se tapa.
 
-Escribe evidencias/piloto/verificacion_referencias_v5.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
+Escribe evidencias/piloto/verificacion_referencias_v6.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
 V1.2 y forma parte de la historia: no se edita).
 
 Uso:
@@ -195,8 +195,9 @@ def main():
         "OK" if (ev["test"], ev["validation"], sorted(set(fr))) == (27, 27, [3]) else "DISCREPANCIA")
     # incidencias
     n_inc = len(pd.read_csv(ROOT / "incident_log.csv"))
-    reg("Nota v5 (evidencias)", "41 incidencias registradas", f"{n_inc} incidencias en incident_log.csv", "OK" if n_inc == 41 else "DISCREPANCIA",
-        "" if n_inc == 41 else f"la(s) {n_inc - 41} incidencia(s) posterior(es) a la fecha de los documentos (p. ej. la fila «Piloto (diseño)» del cambio a la V1.3) no están en la cifra de la Nota")
+    reg("Protocolo y Nota v6 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
+        f"`incident_log.csv` existe y tiene {n_inc} filas (dato informativo: cambia con cada incidencia nueva)", "OK" if existe("incident_log.csv") and n_inc > 0 else "DISCREPANCIA",
+        f"informativo: {n_inc} incidencias registradas a la fecha de esta verificación")
 
 
     # ============================================================ V1.3: piloto exploratorio
@@ -257,23 +258,23 @@ def main():
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
     disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     con_errata = sum(1 for f in disc if errata_de(f))
-    L = ["# Verificación de referencias y cifras — protocolo V1.3 (v5) y Nota de Desviación (v5)", "",
+    L = ["# Verificación de referencias y cifras — protocolo V1.3 (v6) y Nota de Desviación (v6)", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
-         "del protocolo V1.3 (v5) y de la Nota (v5), que este script no modifica.", "",
+         "del protocolo V1.3 (v6) y de la Nota (v6), que este script no modifica.", "",
          f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
-         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5)", "",
+         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 y v6)", "",
          "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
     for i, f in enumerate(FILAS, 1):
         d, dice, repo, est, nota = f
         L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {errata_de(f) or '—'} | {nota} |".replace("\n", " "))
     L += ["", "## No verificable con el repositorio (no se comprobó)", "",
           "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), "
-          "línea base y post-test de P01 y P12–P14 (simulados), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente: el registro no está en el repositorio), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
+          "línea base y post-test de P01 y P12–P14 (simulados), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
           "(planificados), y la redacción metodológica."]
     if disc:
         L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
             f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
-    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v5.md"
+    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v6.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
