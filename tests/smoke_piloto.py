@@ -6,7 +6,7 @@ consola va a evidencias/piloto/ y al final se verifica que incident_log.csv, log
 Registros usados (todos falsos):
   * armados desde cero con openpyxl, pero con los 63 encabezados EXACTOS leídos de la plantilla real (docs/piloto/Registro_Sesiones_Piloto_v2.xlsx);
   * una COPIA de la plantilla real rellenada con datos falsos y valores calculados por Excel
-    (docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx), copiada a la carpeta temporal.
+    (docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_SIMULADO_v4.xlsx), copiada a la carpeta temporal.
 
 Comprueba: que todos los encabezados que usa el script existen en la plantilla real; el caso normal; diferencias no normales (-> Wilcoxon); el alfa
 frente a numpy; hash del modelo distinto (aborta); registros marcados SIMULADO/SINTÉTICO (rechazados); segunda prueba final (se niega); fila EJ01
@@ -40,7 +40,7 @@ import congelar_modelo as cm  # noqa: E402
 
 CATALOGO = ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"
 PLANTILLA = ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v2.xlsx"
-DEMO = ROOT / "docs" / "piloto" / "ejemplos_simulados" / "Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx"
+DEMO = ROOT / "docs" / "piloto" / "ejemplos_simulados" / "Registro_Sesiones_Piloto_SIMULADO_v4.xlsx"
 H = ap.ENCABEZADOS
 RES = []
 
@@ -329,10 +329,10 @@ def main():
 
     # ------------------------------------------------------------------ plantilla real
     print("\nCopia de la plantilla real rellenada con datos falsos")
-    copia = W / "copia_plantilla_real_DEMO.xlsx"
+    copia = W / "copia_demo_SIMULADO_v4.xlsx"
     shutil.copy(DEMO, copia)
     c, t, _ = correr(["--registro", str(copia), "--modelo-congelado", str(fz), "--salida", str(W / "salida_demo0")], predictor)
-    check("la copia de la plantilla real, marcada «DEMO SINTÉTICA», se rechaza sin --permitir-simulado", c != 0 and "SINTÉTICO" in t, t[-300:])
+    check("la copia de la plantilla real, v4 (título «DATOS SIMULADOS»), se rechaza sin --permitir-simulado", c != 0 and "SINTÉTICO" in t, t[-300:])
     c, t, RD = correr(["--registro", str(copia), "--modelo-congelado", str(fz), "--salida", str(W / "salida_demo"), "--permitir-simulado"],
                       lambda x: [("intencion_x", 0.5, 0.1)] * len(x))
     check("con --permitir-simulado la copia de la plantilla real se lee: 60 sesiones elegibles, EJ01 excluida, rótulo SIMULADO",
@@ -343,6 +343,13 @@ def main():
         b24 = list(wb["Resumen"].iter_rows(min_row=24, max_row=24, min_col=2, max_col=2, values_only=True))[0][0]
         wb.close()
         check("el alfa de la copia coincide con Resumen!B24 (valor de Excel)", abs(RD["satisfaccion"]["alfa_cronbach"] - b24) < 0.01, f"{RD['satisfaccion']['alfa_cronbach']} vs {b24}")
+        check("cifras guardadas del Resumen de la demo v4: alfa 0,5488 y 51,7 % de respuesta correcta según el aplicador",
+              round(RD["satisfaccion"]["alfa_cronbach"], 4) == 0.5488 and round(RD["desempeno_registro"]["respuesta_correcta_segun_aplicador"] * 100, 1) == 51.7,
+              f"{RD['satisfaccion']['alfa_cronbach']:.4f} y {RD['desempeno_registro']['respuesta_correcta_segun_aplicador'] * 100:.1f} %")
+        wb = load_workbook(copia, read_only=True, data_only=True)
+        fila2 = [c for c in list(wb["Sesiones"].iter_rows(min_row=2, max_row=2, values_only=True))[0] if c is not None]
+        wb.close()
+        check("la demo v4 tiene el encabezado en la fila 2 y se lee igual", fila2[0] == "Código de sesión" and RD["n"] == 60)
     c, t, _ = correr(["--registro", str(PLANTILLA), "--modelo-congelado", str(fz), "--salida", str(W / "salida_vacia")], predictor)
     check("la plantilla real vacía no produce resultados (sin filas elegibles o sin valores guardados)", c != 0 and not (W / "salida_vacia" / "analisis_piloto.json").exists(), t[-300:])
 

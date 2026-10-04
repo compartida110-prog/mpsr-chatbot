@@ -30,3 +30,10 @@ y el formulario y el registro ya están en `docs/piloto/`. Los archivos 01 y 02 
 |---|---|---|
 | `salidas/05_smoke_piloto_plantilla_v2_SIMULADA.txt` y `capturas/05_…png` | Prueba de humo (43/43) con la plantilla v2 y el caso nuevo: el mismo registro con el encabezado en la fila 3 y en la fila 2 da el mismo resultado | **Simulada** |
 | `salidas/06_verificar_referencias_v6_registro_v2.txt` y `capturas/06_…png` | `verificar_referencias.py` con los `_v6` y los archivos v2 de `docs/piloto/`; el informe `verificacion_referencias_v6.md` se regeneró | **Ejecutado** |
+
+## Cuarta tanda (demo simulada v4)
+
+| Archivo | Qué es | Estado |
+|---|---|---|
+| `salidas/07_smoke_piloto_demo_v4_SIMULADA.txt` y `capturas/07_…png` | Prueba de humo (45/45) con `ejemplos_simulados/Registro_Sesiones_Piloto_SIMULADO_v4.xlsx`: 60 sesiones, encabezado en la fila 2, rechazada sin `--permitir-simulado`, cifras iguales a las guardadas del Resumen (alfa 0,5488; 51,7 % de respuesta correcta) | **Simulada** |
+| `salidas/08_verificar_referencias_v6_demo_v4.txt` y `capturas/08_…png` | `verificar_referencias.py` con los `_v6`: 0 discrepancias | **Ejecutado** |

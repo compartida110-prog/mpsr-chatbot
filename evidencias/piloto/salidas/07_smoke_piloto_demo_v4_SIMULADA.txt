@@ -1,0 +1,76 @@
+inicio: 2026-10-04 10:04:34
+$ python tests/smoke_piloto.py   (SIMULADA; demo SIMULADO_v4 como archivo de prueba)
+SIMULADA — carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\piloto_PRUEBA_SIMULADA_m1mo7gmi
+
+Encabezados frente a la plantilla real
+  [PASS] los 36 encabezados que usa analizar_piloto.py existen (una sola vez) en la fila de encabezados de Registro_Sesiones_Piloto_v2.xlsx
+  [PASS] la plantilla real tiene las hojas Sesiones, Tarjetas, Parametros y Resumen
+
+Congelar el modelo
+  [PASS] congela el modelo falso y guarda sha256, versiones, fecha UTC y commit
+  [PASS] no sobrescribe un congelamiento existente
+  [PASS] --forzar sin --motivo también se niega
+  [PASS] --forzar --motivo rehace el congelamiento, conserva el anterior y registra la incidencia (archivo temporal)
+  [PASS] --verificar acepta el modelo intacto
+
+Caso normal (n = 60)
+  [PASS] el caso normal termina con código 0 y n = 60
+  [PASS] rotula REAL (n efectivo 60) y no marca «exploratorio» porque n = 60
+  [PASS] diferencias normales (Shapiro p > 0,05) -> t pareada
+  [PASS] la t pareada coincide con scipy
+  [PASS] reducción de medias y d_z coinciden con el cálculo directo
+  [PASS] P10 contra ítem 9: mismo procedimiento (H1: ítem 9 mayor)
+  [PASS] el alfa de Cronbach (ítems 1–8) coincide con numpy (matriz de covarianza)
+  [PASS] prueba final: 180 consultas de 60 sesiones, IC por bootstrap de sesiones y umbral ausente
+  [PASS] genera .json, .md, dos figuras y el detalle sin el texto de las consultas
+  [PASS] la fila de ejemplo EJ01 y la fila no elegible SA99 quedan excluidas
+  [PASS] lee el nombre y la fecha del modelo desde Parametros y no avisa
+
+Segunda prueba final
+  [PASS] repetir la prueba final se niega sin --motivo
+  [PASS] con --motivo se permite y queda en el log
+
+Diferencias no normales
+  [PASS] los datos falsos son realmente no normales (Shapiro p < 0,05)
+  [PASS] diferencias no normales -> Wilcoxon (igual a scipy)
+
+Alfa distinto del de Resumen
+  [PASS] avisa si el alfa difiere de Resumen!B24 en más de 0,01
+
+n < 60
+  [PASS] con 45 sesiones queda rotulado «exploratorio, n = 45»
+
+Rechazos
+  [PASS] un registro con una hoja «SIMULADO» se rechaza
+  [PASS] un registro cuyo título (A1) dice «DEMO SINTÉTICA» se rechaza
+  [PASS] con --permitir-simulado escribe solo en carpeta temporal y rotula _SIMULADO
+  [PASS] --permitir-simulado no escribe en el repositorio aunque se lo pidan
+  [PASS] sin filas elegibles sale con error
+  [PASS] fórmulas sin valor guardado: «abre y guarda el archivo en Excel»
+  [PASS] un encabezado renombrado aborta y nombra el encabezado exacto que falta
+  [PASS] --mapa-columnas sirve de respaldo para el encabezado renombrado
+  [PASS] una tarjeta que no coincide con la fórmula del registro aborta
+
+Fila del encabezado (3 frente a 2)
+  [PASS] el mismo registro con el encabezado en la fila 3 y en la fila 2 da exactamente el mismo resultado
+  [PASS] si no se encuentra «Código de sesión» en las primeras 10 filas, aborta con un mensaje claro
+
+Copia de la plantilla real rellenada con datos falsos
+  [PASS] la copia de la plantilla real, v4 (título «DATOS SIMULADOS»), se rechaza sin --permitir-simulado
+  [PASS] con --permitir-simulado la copia de la plantilla real se lee: 60 sesiones elegibles, EJ01 excluida, rótulo SIMULADO
+  [PASS] las cifras calculadas coinciden con las que Excel guardó en la hoja Resumen (sin avisos de diferencia)
+  [PASS] el alfa de la copia coincide con Resumen!B24 (valor de Excel)
+  [PASS] cifras guardadas del Resumen de la demo v4: alfa 0,5488 y 51,7 % de respuesta correcta según el aplicador
+  [PASS] la demo v4 tiene el encabezado en la fila 2 y se lee igual
+  [PASS] la plantilla real vacía no produce resultados (sin filas elegibles o sin valores guardados)
+
+Hash del modelo distinto
+  [PASS] si el hash del modelo cambia, la prueba final aborta
+  [PASS] --verificar detecta el cambio del modelo
+
+Integridad del repositorio
+  [PASS] incident_log.csv, logs/ y docs/piloto/ no cambiaron durante la prueba (la plantilla real no se tocó)
+
+RESULTADO (SIMULADA): 45/45 comprobaciones PASS
+Recordatorio: datos FALSOS y predictor falso; nada de esto es un resultado del piloto.
+fin: 2026-10-04 10:05:33
