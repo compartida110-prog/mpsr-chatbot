@@ -16,7 +16,7 @@ Rechazos: hoja, título (celda A1) o texto de consulta marcados como SIMULADO / 
 carpeta temporal y rotula _SIMULADO), sin filas elegibles, fórmulas sin valor guardado («abre y guarda el archivo en Excel»), hash distinto del
 modelo, tarjeta asignada que no coincide con la fórmula del registro, minutos pre que no coinciden con la tabla de Parametros.
 
-Encabezados: la fuente de verdad es la fila 3 de la hoja Sesiones de Registro_Sesiones_Piloto_v1.xlsx. Se buscan por **encabezado exacto**
+Encabezados: la fuente de verdad es la fila 3 de la hoja Sesiones de Registro_Sesiones_Piloto_v2.xlsx. Se buscan por **encabezado exacto**
 (ENCABEZADOS); --mapa-columnas mapa.json ({"campo": "encabezado exacto"}) queda solo como respaldo. También lee las hojas Tarjetas (tarjeta ->
 intención esperada, contrastada con --catalogo), Parametros (rangos a minutos, modelo congelado) y Resumen (contraste de las cifras: avisa si
 difieren de las calculadas aquí).
@@ -55,7 +55,7 @@ LIMITACIONES = [
     "Muestra de conveniencia y piloto exploratorio: no confirmatorio, no generalizable.",
 ]
 
-# campo lógico -> encabezado EXACTO de la fila 3 de la hoja Sesiones (Registro_Sesiones_Piloto_v1.xlsx)
+# campo lógico -> encabezado EXACTO de la fila 3 de la hoja Sesiones (Registro_Sesiones_Piloto_v2.xlsx)
 ENCABEZADOS = {
     "codigo": "Código de sesión",
     "rango": "Tiempo presencial (rango)",
@@ -121,9 +121,9 @@ def leer_registro(ruta, mapa_usuario=None, permitir_simulado=False):
     finally:
         wb.close()
     # El encabezado está en la fila 3 de la plantilla; si alguien borró la fila de instrucciones queda en la 2: se busca «Código de sesión» en las primeras filas.
-    fila_enc = next((i for i, f in enumerate(filas[:8], 1) if f and _t(f[0]) == _t(ENCABEZADOS["codigo"])), None)
+    fila_enc = next((i for i, f in enumerate(filas[:10], 1) if f and _t(f[0]) == _t(ENCABEZADOS["codigo"])), None)
     if fila_enc is None:
-        sys.exit(f"ERROR: no encuentro la fila de encabezados («{ENCABEZADOS['codigo']}» en la columna A, filas 1–8) de la hoja {HOJA}.")
+        sys.exit(f"ERROR: no encuentro la fila de encabezados («{ENCABEZADOS['codigo']}» en la columna A, filas 1–10) de la hoja {HOJA}.")
     enc = [_t(c) for c in filas[fila_enc - 1]]
     pedidos = {**ENCABEZADOS, **(mapa_usuario or {})}
     mapa, faltan = {}, []

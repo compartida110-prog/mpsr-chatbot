@@ -234,8 +234,8 @@ def main():
     reg("Protocolo 5.4 (V1.3)", "pruebas de humo con datos falsos (simuladas): 59/59 y 22/22",
         f"{r1[0]}/{r1[1] if r1 else '?'} y {r2[0]}/{r2[1] if r2 else '?'} (últimas salidas guardadas en evidencias/v3_real/salidas/)" if r1 and r2 else "no se encontraron las salidas",
         "OK" if r1 == (59, 59) and r2 == (22, 22) else "DISCREPANCIA")
-    pil = [f for f in ("Sesion_Asistida_Formulario_v1.docx", "Sesion_Asistida_Formulario_v1.pdf", "Registro_Sesiones_Piloto_v1.xlsx") if existe("docs/piloto/" + f)]
-    faltan = [f for f in ("Sesion_Asistida_Formulario_v1.docx", "Sesion_Asistida_Formulario_v1.pdf", "Registro_Sesiones_Piloto_v1.xlsx") if f not in pil]
+    pil = [f for f in ("Sesion_Asistida_Formulario_v2.docx", "Sesion_Asistida_Formulario_v2.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if existe("docs/piloto/" + f)]
+    faltan = [f for f in ("Sesion_Asistida_Formulario_v2.docx", "Sesion_Asistida_Formulario_v2.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if f not in pil]
     reg("Protocolo 5.5 (V1.3, fila de evidencias)", "docs/piloto/ contiene los materiales del piloto: formulario de sesión asistida (guía, paquete por persona y 56 tarjetas) y registro de sesiones",
         "docs/piloto/ existe, pero faltan: " + ", ".join(faltan) if faltan else "los tres archivos están en docs/piloto/",
         "DISCREPANCIA" if faltan else "OK", "el tesista debe aportar estos archivos; no se inventaron" if faltan else "")

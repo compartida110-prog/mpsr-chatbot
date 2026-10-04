@@ -4,7 +4,7 @@ Usa una carpeta temporal, un modelo falso y un predictor falso inyectado (NO se 
 consola va a evidencias/piloto/ y al final se verifica que incident_log.csv, logs/ y docs/piloto/ no cambiaron.
 
 Registros usados (todos falsos):
-  * armados desde cero con openpyxl, pero con los 63 encabezados EXACTOS leídos de la plantilla real (docs/piloto/Registro_Sesiones_Piloto_v1.xlsx);
+  * armados desde cero con openpyxl, pero con los 63 encabezados EXACTOS leídos de la plantilla real (docs/piloto/Registro_Sesiones_Piloto_v2.xlsx);
   * una COPIA de la plantilla real rellenada con datos falsos y valores calculados por Excel
     (docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx), copiada a la carpeta temporal.
 
@@ -39,7 +39,7 @@ import analizar_piloto as ap  # noqa: E402
 import congelar_modelo as cm  # noqa: E402
 
 CATALOGO = ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"
-PLANTILLA = ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v1.xlsx"
+PLANTILLA = ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v2.xlsx"
 DEMO = ROOT / "docs" / "piloto" / "ejemplos_simulados" / "Registro_Sesiones_Piloto_DEMO_SINTETICA.xlsx"
 H = ap.ENCABEZADOS
 RES = []
@@ -53,7 +53,10 @@ def check(nombre, cond, detalle=""):
 def encabezados_plantilla():
     wb = load_workbook(PLANTILLA, read_only=True, data_only=True)
     try:
-        return [("" if c is None else str(c).strip()) for c in list(wb["Sesiones"].iter_rows(min_row=3, max_row=3, values_only=True))[0]]
+        for fila in wb["Sesiones"].iter_rows(min_row=1, max_row=10, values_only=True):
+            if fila and fila[0] == "Código de sesión":
+                return [("" if c is None else str(c).strip()) for c in fila]
+        raise SystemExit("la plantilla no tiene la fila de encabezados en las primeras 10 filas")
     finally:
         wb.close()
 
@@ -92,22 +95,23 @@ def datos_falsos(n, normal=True, semilla=7):
     return filas, pred, np.column_stack([items, i9]), (pre, post, p10)
 
 
-def escribir_registro(ruta, filas, b24, hojas_extra=(), formulas_sin_valor=False, renombrar=None, titulo="REGISTRO FALSO DE PRUEBA", fila_extra=True):
+def escribir_registro(ruta, filas, b24, hojas_extra=(), formulas_sin_valor=False, renombrar=None, titulo="REGISTRO FALSO DE PRUEBA", fila_extra=True, fila_enc=3):
     orig = encabezados_plantilla()
     enc = [renombrar[1] if renombrar and h == renombrar[0] else h for h in orig]
     wb = Workbook()
     ws = wb.active
     ws.title = "Sesiones"
     ws["A1"] = titulo
-    ws["A2"] = "instrucciones de la plantilla (falsas)"
+    if fila_enc == 3:
+        ws["A2"] = "instrucciones de la plantilla (falsas)"  # con fila_enc = 2 se simula que se borró la fila de leyenda
     for j, h in enumerate(enc, 1):
-        ws.cell(3, j, h)
+        ws.cell(fila_enc, j, h)
     extra = []
     if fila_extra and filas:
         ej = dict(filas[0]); ej[H["codigo"]] = "EJ01"
         no_el = dict(filas[0]); no_el[H["codigo"]] = "SA99"; no_el[H["elegible"]] = "No"
         extra = [ej, no_el]
-    for i, f in enumerate(extra[:1] + filas + extra[1:], 4):
+    for i, f in enumerate(extra[:1] + filas + extra[1:], fila_enc + 1):
         for j, (h, ho) in enumerate(zip(enc, orig), 1):
             v = f.get(ho)
             if formulas_sin_valor and ho == H["elegible"]:
@@ -174,7 +178,7 @@ def main():
     print("\nEncabezados frente a la plantilla real")
     enc = encabezados_plantilla()
     faltan = [f"{c} -> {h}" for c, h in H.items() if enc.count(h) != 1]
-    check(f"los {len(H)} encabezados que usa analizar_piloto.py existen (una sola vez) en la fila 3 de Registro_Sesiones_Piloto_v1.xlsx", not faltan, "; ".join(faltan))
+    check(f"los {len(H)} encabezados que usa analizar_piloto.py existen (una sola vez) en la fila de encabezados de Registro_Sesiones_Piloto_v2.xlsx", not faltan, "; ".join(faltan))
     check("la plantilla real tiene las hojas Sesiones, Tarjetas, Parametros y Resumen", all(h in load_workbook(PLANTILLA, read_only=True).sheetnames for h in ("Sesiones", "Tarjetas", "Parametros", "Resumen")))
 
     modelo = W / "modelo_falso.tar.gz"
@@ -304,6 +308,24 @@ def main():
     escribir_registro(reg9, filas9, alfa_ref)
     c, t, _ = correr(["--registro", str(reg9), "--modelo-congelado", str(fz), "--salida", str(W / "salida_tar")], predictor)
     check("una tarjeta que no coincide con la fórmula del registro aborta", c != 0 and "fórmula del registro" in t, t[-300:])
+
+    # ------------------------------------------------------------------ fila del encabezado
+    print("\nFila del encabezado (3 frente a 2)")
+    res = {}
+    for fe in (3, 2):
+        rg = W / f"registro_enc_fila{fe}.xlsx"
+        escribir_registro(rg, filas, alfa_ref, fila_enc=fe)
+        c, t, Rf = correr(["--registro", str(rg), "--modelo-congelado", str(fz), "--salida", str(W / f"salida_fila{fe}")], predictor)
+        res[fe] = (c, Rf)
+    def huella(R):
+        return json.dumps({k: R[k] for k in ("n", "tiempo", "satisfaccion", "prueba_final", "sesiones_excluidas_no_SA")}, sort_keys=True, default=str)
+    check("el mismo registro con el encabezado en la fila 3 y en la fila 2 da exactamente el mismo resultado",
+          res[3][0] == 0 and res[2][0] == 0 and huella(res[3][1]) == huella(res[2][1]) and res[3][1]["n"] == 60, str(res[2][0]))
+    rg = W / "registro_sin_encabezado.xlsx"
+    escribir_registro(rg, filas, alfa_ref, fila_enc=11)
+    c, t, _ = correr(["--registro", str(rg), "--modelo-congelado", str(fz), "--salida", str(W / "salida_noenc")], predictor)
+    check("si no se encuentra «Código de sesión» en las primeras 10 filas, aborta con un mensaje claro",
+          c != 0 and "no encuentro la fila de encabezados" in t and "filas 1–10" in t and not (W / "salida_noenc" / "analisis_piloto.json").exists(), t[-300:])
 
     # ------------------------------------------------------------------ plantilla real
     print("\nCopia de la plantilla real rellenada con datos falsos")

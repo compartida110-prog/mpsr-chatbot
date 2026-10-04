@@ -23,3 +23,10 @@ La verificación de la V1.2 (`../v3_real/verificacion_referencias.md`) no se mod
 
 Las dos discrepancias de la primera tanda (arriba) quedaron resueltas: los documentos v6 ya no citan un número de incidencias (el verificador lo muestra solo como dato informativo)
 y el formulario y el registro ya están en `docs/piloto/`. Los archivos 01 y 02 se conservan tal como se generaron.
+
+## Tercera tanda (registro y formulario v2)
+
+| Archivo | Qué es | Estado |
+|---|---|---|
+| `salidas/05_smoke_piloto_plantilla_v2_SIMULADA.txt` y `capturas/05_…png` | Prueba de humo (43/43) con la plantilla v2 y el caso nuevo: el mismo registro con el encabezado en la fila 3 y en la fila 2 da el mismo resultado | **Simulada** |
+| `salidas/06_verificar_referencias_v6_registro_v2.txt` y `capturas/06_…png` | `verificar_referencias.py` con los `_v6` y los archivos v2 de `docs/piloto/`; el informe `verificacion_referencias_v6.md` se regeneró | **Ejecutado** |

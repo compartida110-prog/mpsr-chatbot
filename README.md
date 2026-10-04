@@ -257,8 +257,8 @@ encuesta de 9 ítems. (3) Con el registro lleno: `python scripts/analizar_piloto
 (tiempo pre/post con Shapiro-Wilk → t pareada o Wilcoxon; P10 contra el ítem 9; alfa de Cronbach; **prueba final única del modelo congelado** con bootstrap por conglomerados de sesión).
 **Las consultas de las sesiones no se usan para ajustar el modelo**: son el conjunto de prueba final y se evalúan una sola vez.
 
-**Archivos en `docs/piloto/`:** `Sesion_Asistida_Formulario_v1` (.docx/.pdf: guía, paquete por persona y 56 tarjetas) y `Registro_Sesiones_Piloto_v1.xlsx` (plantilla vacía; **no guardarla con openpyxl**),
-`Instrucciones_ClaudeCode_cambio_diseno_piloto_v1.md`, `Instrucciones_ClaudeCode_siguiente_paso_v1.md`, `ejemplos_simulados/` (registro de demostración **sintético**, para probar el código) y `privado/` (registro real lleno y hojas originales; **no se versiona**, está en `.gitignore`).
+**Archivos en `docs/piloto/`:** `Sesion_Asistida_Formulario_v2` (.docx/.pdf: guía, paquete por persona y 56 tarjetas) y `Registro_Sesiones_Piloto_v2.xlsx` (plantilla vacía; **no guardarla con openpyxl**),
+`historico/` (versiones v1 del formulario y del registro), `Instrucciones_ClaudeCode_*.md`, `ejemplos_simulados/` (registro de demostración **sintético**, para probar el código) y `privado/` (registro real lleno y hojas originales; **no se versiona**, está en `.gitignore`).
 Limitaciones declaradas: línea base recordada (sesgo de recuerdo y de novedad), el trámite frente a la consulta (OE3 habla de consultas), muestra de conveniencia y exploratorio, no confirmatorio.
 
 ## Estado real de cada resultado y cambio
