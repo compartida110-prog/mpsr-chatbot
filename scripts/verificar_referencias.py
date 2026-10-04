@@ -1,14 +1,16 @@
-"""Verifica que las rutas y las cifras citadas en el protocolo V1.2 y en la Nota de Desviación existan y coincidan con el repositorio.
+"""Verifica que las rutas y las cifras citadas en el protocolo V1.3 y en la Nota de Desviación (versiones _v5) existan y coincidan con el repositorio.
 
 Parte 1: cada archivo o carpeta que cita el protocolo existe (y en qué ruta).
 Parte 2: cada cifra (intenciones, situaciones, F1, validación cruzada, smoke test, McNemar, incidencias, …) se RECALCULA desde los
          archivos del repositorio y se compara con lo que dicen los documentos. Ningún valor se escribe a mano en el resultado.
 
 Estados: OK · DISCREPANCIA (el documento y el repositorio difieren) · PLANIFICADO (aún no existe, coherente con su estado) · NOTA.
-Las afirmaciones se transcribieron del protocolo V1.2 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf) y de la
-Nota_Desviacion_P11_1_v2; este script NO modifica esos documentos.
+Las afirmaciones se transcribieron del protocolo V1.3 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v5) y de la
+Nota_Desviacion_P11_1_v5; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas en la v5, así que las
+afirmaciones de esas filas se actualizaron; una diferencia nueva se informa, no se tapa.
 
-Escribe evidencias/v3_real/verificacion_referencias.md.
+Escribe evidencias/piloto/verificacion_referencias_v5.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
+V1.2 y forma parte de la historia: no se edita).
 
 Uso:
     python scripts/verificar_referencias.py
@@ -43,7 +45,7 @@ def media_f1(patron, col="f1_macro"):
 
 def main():
     # ============================================================ PARTE 1: rutas
-    cit = "Protocolo V1.2"
+    cit = "Protocolo V1.3"
     rutas = [
         ("README.md", "README.md", "OK"),
         ("corpus_audit.csv", "corpus/corpus_audit.csv", "OK"),
@@ -55,6 +57,10 @@ def main():
         ("evidencias/p09_domain/", "evidencias/p09_domain", "OK"),
         ("evidencias/p11_1_pruebas/", "evidencias/p11_1_pruebas", "OK"),
         ("REPORTE_REEVALUACION.md", "evidencias/v3_corpus708/REPORTE_REEVALUACION.md", "NOTA"),
+        ("evidencias/v3_real/", "evidencias/v3_real", "OK"),
+        ("evidencias/v3_real/verificacion_referencias.md", "evidencias/v3_real/verificacion_referencias.md", "OK"),
+        ("docs/ERRATAS_protocolo_V1.2.md", "docs/ERRATAS_protocolo_V1.2.md", "OK"),
+        ("docs/piloto/", "docs/piloto", "OK"),
     ]
     for citado, real, est in rutas:
         ok = existe(real)
@@ -75,10 +81,11 @@ def main():
     comun = sp_v11.merge(sp_act, on="utterance_id", suffixes=("_v11", "_act"))
     iguales = int((comun["split_v11"] == comun["split_act"]).sum())
     nota_split = f"el archivo actual asigna la misma partición que la V1.1 en {iguales} de las {len(comun)} frases comunes"                 + ("" if iguales == len(comun) else " (¡no coincide!)")
-    reg(cit + " (T03)", "«corpus_metadata.csv (v2)» es el corpus de 648 frases", f"corpus_metadata.csv tiene {n_corpus} frases (es la v3); la v2 está en corpus/historico/corpus_metadata_v2_648.csv",
-        "DISCREPANCIA" if n_corpus != 648 else "OK", "el documento cita la versión v2 con un nombre de archivo que hoy contiene la v3")
-    reg(cit + " (T05)", "«dataset_split.csv (V1.1)» es la partición V1.1 (ejecutada)", f"dataset_split.csv tiene {n_split} filas (partición de la v3); la V1.1 está en corpus/historico/dataset_split_v2_648.csv",
-        "DISCREPANCIA" if n_split != 648 else "OK", nota_split)
+    hist_ok = existe("corpus/historico/corpus_metadata_v2_648.csv") and existe("corpus/historico/dataset_split_v2_648.csv")
+    reg(cit + " (T03)", "«corpus_metadata.csv (v3, 708 frases; la v2 en corpus/historico/)»", f"corpus_metadata.csv tiene {n_corpus} frases; la v2 {'está' if hist_ok else 'NO está'} en corpus/historico/",
+        "OK" if n_corpus == 708 and hist_ok else "DISCREPANCIA")
+    reg(cit + " (T05)", "«dataset_split.csv (vigente, sobre el corpus v3)»; la V1.1 en corpus/historico/dataset_split_v2_648.csv", f"dataset_split.csv tiene {n_split} filas; la V1.1 {'está' if hist_ok else 'NO está'} en corpus/historico/",
+        "OK" if n_split == 708 and hist_ok else "DISCREPANCIA", nota_split)
     reg(cit + " (T05)", "«dataset_split_v3.csv (V1.2, planificado)»", "no existe todavía; lo generará scripts/split_corpus_v3.py en corpus/v3_real/",
         "PLANIFICADO" if not existe("corpus/v3_real/dataset_split_v3.csv") else "OK", "coherente con el estado Planificado")
     reg("Seguimiento (Notas) / guía", "existen `Lote1_Formularios_lenguaje_real_v2.pdf`, `situaciones_lote1_v1.csv` e `Instrucciones_ClaudeCode_lote_real_v2.md`",
@@ -164,15 +171,15 @@ def main():
     reg("Protocolo 5.3; Nota", "la ampliación corrigió las 8 fallas", f"{corr} de {len(fallas)} intenciones que fallaban en el 1.er smoke test ahora son correctas (consultas originales, contaminadas)",
         "OK" if (corr, len(fallas)) == (8, 8) else "DISCREPANCIA")
     v2f1 = media_f1("logs/v2_corpus648/rasa_test.csv")
-    reg("Protocolo 5.3; Nota", "F1 test 0.634 → 0.624 (Rasa/DIET, corpus v2 → v3)", f"{v2f1:.4f} → {f1_rasa:.4f}", "OK" if (round(v2f1, 3), round(f1_rasa, 3)) == (0.634, 0.624) else "DISCREPANCIA",
-        "" if round(v2f1, 3) == 0.634 else f"el valor exacto de v2 es {v2f1:.4f} (se redondea a {v2f1:.3f})")
+    reg("Protocolo 5.3; Nota", "F1 test 0.633 → 0.624 (Rasa/DIET, corpus v2 → v3)", f"{v2f1:.4f} → {f1_rasa:.4f}", "OK" if (round(v2f1, 3), round(f1_rasa, 3)) == (0.633, 0.624) else "DISCREPANCIA",
+        "" if round(v2f1, 3) == 0.633 else f"el valor exacto de v2 es {v2f1:.4f} (se redondea a {v2f1:.3f})")
     # partición V1.1
     sp = pd.read_csv(ROOT / "corpus" / "historico" / "dataset_split_v2_648.csv")
     t = sp["split"].value_counts()
     pct = {k: round(100 * t[k] / len(sp), 1) for k in ("train", "validation", "test")}
-    reg("Protocolo 2.8 / P05 / T05", "partición V1.1 (ejecutada): 70 % entrenamiento, 15 % validación y 15 % prueba",
-        f"{t['train']}/{t['validation']}/{t['test']} frases = {pct['train']}/{pct['validation']}/{pct['test']} %", "OK" if (pct["train"], pct["validation"], pct["test"]) == (70.0, 15.0, 15.0) else "DISCREPANCIA",
-        "con 4 grupos por intención la partición posible es 75/12.5/12.5; ya está registrado en incident_log.csv; el mecanismo descrito en 2.8 (3 grupos a train y 1 alternado) se verifica en la fila siguiente")
+    reg("Protocolo 2.8 / P05 / T05", "partición V1.1 (ejecutada): 486/81/81 = 75 % / 12,5 % / 12,5 % (el objetivo nominal era 70/15/15)",
+        f"{t['train']}/{t['validation']}/{t['test']} frases = {pct['train']}/{pct['validation']}/{pct['test']} %", "OK" if (pct["train"], pct["validation"], pct["test"]) == (75.0, 12.5, 12.5) and (t["train"], t["validation"], t["test"]) == (486, 81, 81) else "DISCREPANCIA",
+        "coincide con la V1.3 (errata E4 ya aplicada); el mecanismo descrito en 2.8 se verifica en la fila siguiente")
     v2m = pd.read_csv(ROOT / "corpus" / "historico" / "corpus_metadata_v2_648.csv", dtype=str, keep_default_na=False)
     g = v2m.drop_duplicates("base_phrase_id").groupby("intent")["split"].agg(lambda x: tuple(sorted(x.value_counts().items())))
     ok_mec = all(dict(v).get("train") == 3 and sum(dict(v).values()) == 4 for v in g)
@@ -188,8 +195,52 @@ def main():
         "OK" if (ev["test"], ev["validation"], sorted(set(fr))) == (27, 27, [3]) else "DISCREPANCIA")
     # incidencias
     n_inc = len(pd.read_csv(ROOT / "incident_log.csv"))
-    reg("Protocolo P16 / T15; Nota", "37 incidencias registradas", f"{n_inc} incidencias en incident_log.csv", "OK" if n_inc == 37 else "DISCREPANCIA",
-        "el tesista decidió ajustar la cifra una sola vez en la entrega final" if n_inc != 37 else "")
+    reg("Nota v5 (evidencias)", "41 incidencias registradas", f"{n_inc} incidencias en incident_log.csv", "OK" if n_inc == 41 else "DISCREPANCIA",
+        "" if n_inc == 41 else f"la(s) {n_inc - 41} incidencia(s) posterior(es) a la fecha de los documentos (p. ej. la fila «Piloto (diseño)» del cambio a la V1.3) no están en la cifra de la Nota")
+
+
+    # ============================================================ V1.3: piloto exploratorio
+    from math import sqrt
+
+    from scipy.optimize import brentq
+    from scipy.stats import nct, t as tdist
+
+    def margen(n, N=400, z=1.96, pq=0.25):
+        return z * sqrt(pq / n * (N - n) / (N - 1))
+
+    reg("Protocolo 2.4 (V1.3)", "margen de error de una proporción ≈ 11,7 % con n = 60 y ≈ 7,5 % con n = 120 (N ≈ 400, confianza 95 %)",
+        f"{margen(60) * 100:.1f} % con n = 60 y {margen(120) * 100:.1f} % con n = 120 (fórmula con corrección para población finita, p = q = 0,5)",
+        "OK" if (round(margen(60) * 100, 1), round(margen(120) * 100, 1)) == (11.7, 7.5) else "DISCREPANCIA")
+
+    def potencia(d, n=60, a=0.05):
+        c = tdist.ppf(1 - a / 2, n - 1)
+        nc = d * sqrt(n)
+        return 1 - nct.cdf(c, n - 1, nc) + nct.cdf(-c, n - 1, nc)
+
+    d80 = brentq(lambda d: potencia(d) - 0.80, 0.05, 1.5)
+    reg("Protocolo 2.4 (V1.3)", "con 60 pares, la t pareada detecta con 80 % de potencia (α = 0,05, dos colas) efectos de d ≈ 0,37 o mayores",
+        f"d mínimo con 80 % de potencia (t pareada, dos colas, n = 60) = {d80:.3f}", "OK" if round(d80, 2) == 0.37 else "DISCREPANCIA")
+
+    def ultimo_resultado(patron):
+        fs = sorted(glob.glob(str(ROOT / patron)))
+        if not fs:
+            return None
+        m = re.search(r"RESULTADO[^:]*: (\d+)/(\d+)", Path(fs[-1]).read_text(encoding="utf-8", errors="replace"))
+        return (int(m.group(1)), int(m.group(2))) if m else None
+
+    r1 = ultimo_resultado("evidencias/v3_real/salidas/0*smoke_lote_real*DATOS_FALSOS.txt")
+    r2 = ultimo_resultado("evidencias/v3_real/salidas/0*smoke_conciliar*DATOS_FALSOS.txt")
+    reg("Protocolo 5.4 (V1.3)", "pruebas de humo con datos falsos (simuladas): 59/59 y 22/22",
+        f"{r1[0]}/{r1[1] if r1 else '?'} y {r2[0]}/{r2[1] if r2 else '?'} (últimas salidas guardadas en evidencias/v3_real/salidas/)" if r1 and r2 else "no se encontraron las salidas",
+        "OK" if r1 == (59, 59) and r2 == (22, 22) else "DISCREPANCIA")
+    pil = [f for f in ("Sesion_Asistida_Formulario_v1.docx", "Sesion_Asistida_Formulario_v1.pdf", "Registro_Sesiones_Piloto_v1.xlsx") if existe("docs/piloto/" + f)]
+    faltan = [f for f in ("Sesion_Asistida_Formulario_v1.docx", "Sesion_Asistida_Formulario_v1.pdf", "Registro_Sesiones_Piloto_v1.xlsx") if f not in pil]
+    reg("Protocolo 5.5 (V1.3, fila de evidencias)", "docs/piloto/ contiene los materiales del piloto: formulario de sesión asistida (guía, paquete por persona y 56 tarjetas) y registro de sesiones",
+        "docs/piloto/ existe, pero faltan: " + ", ".join(faltan) if faltan else "los tres archivos están en docs/piloto/",
+        "DISCREPANCIA" if faltan else "OK", "el tesista debe aportar estos archivos; no se inventaron" if faltan else "")
+    reg("Protocolo 2.4 (V1.3)", "piloto exploratorio (sesión asistida, n = 60): estado Planificado", "no hay resultados reales: " + (
+        "falta logs/piloto/analisis_piloto.json" if not existe("logs/piloto/analisis_piloto.json") else "existe logs/piloto/analisis_piloto.json"),
+        "PLANIFICADO" if not existe("logs/piloto/analisis_piloto.json") else "NOTA", "coherente con el estado Planificado")
 
     # ============================================================ salida
     ERRATAS = {"«corpus_metadata.csv (v2)»": "E1", "«dataset_split.csv (V1.1)»": "E2", "F1 test 0.634": "E3",
@@ -206,23 +257,23 @@ def main():
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
     disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     con_errata = sum(1 for f in disc if errata_de(f))
-    L = ["# Verificación de referencias y cifras — protocolo V1.2 y Nota de Desviación", "",
+    L = ["# Verificación de referencias y cifras — protocolo V1.3 (v5) y Nota de Desviación (v5)", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
-         "del protocolo V1.2 (PDF) y de la Nota (DOCX), que este script no modifica.", "",
+         "del protocolo V1.3 (v5) y de la Nota (v5), que este script no modifica.", "",
          f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
-         f"({con_errata} con errata registrada en `docs/ERRATAS_protocolo_V1.2.md`; los documentos aún no se reemitieron)", "",
+         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5)", "",
          "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
     for i, f in enumerate(FILAS, 1):
         d, dice, repo, est, nota = f
         L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {errata_de(f) or '—'} | {nota} |".replace("\n", " "))
     L += ["", "## No verificable con el repositorio (no se comprobó)", "",
-          "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: tamaño de muestra n = 120 y su fórmula, antecedentes (Vargas Ríos, 2022), "
-          "línea base y post-test de P01 y P12–P14 (simulados), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
+          "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), "
+          "línea base y post-test de P01 y P12–P14 (simulados), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente: el registro no está en el repositorio), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
           "(planificados), y la redacción metodológica."]
     if disc:
-        L += ["", "## Discrepancias (cada una con su errata; los documentos están pendientes de reemitir)", ""] + [
+        L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
             f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
-    out = ROOT / "evidencias" / "v3_real" / "verificacion_referencias.md"
+    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v5.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

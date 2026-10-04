@@ -132,7 +132,7 @@ def cmd_likert(args):
 
     lines = [
         "OE4 — SATISFACCIÓN CIUDADANA, ESCALA LIKERT 1–5 (P13/P14)",
-        f"Archivo: {args.file}   encuestados válidos: {n} (objetivo n=120)   ítems: {len(item_cols)}",
+        f"Archivo: {args.file}   encuestados válidos: {n} (piloto V1.3: n=60; la V1.2 planificaba 120)   ítems: {len(item_cols)}",
         f"Puntaje promedio: {mean:.3f}  DE={sd:.3f}  IC95%=[{ci[0]:.3f}, {ci[1]:.3f}]",
         f"Alfa de Cronbach: {cronbach_alpha(items):.3f}",
         f"Meta ≥ {LIKERT_TARGET}: {'CUMPLE' if mean >= LIKERT_TARGET else 'NO CUMPLE'}",

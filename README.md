@@ -12,7 +12,7 @@ TramiFácil. Este repositorio implementa el Protocolo Experimental V1.1 (ver `do
 - **OE1**: Diagnosticar la situación actual de los canales de atención (presencial y TramiFácil).
 - **OE2**: Diseñar e implementar la arquitectura del chatbot (Rasa NLU / DIET classifier).
 - **OE3**: Medir la reducción del tiempo de respuesta tras la implementación del chatbot.
-- **OE4**: Evaluar el nivel de satisfacción ciudadana (encuesta Likert, n≈120).
+- **OE4**: Evaluar el nivel de satisfacción ciudadana (encuesta Likert de 9 ítems; piloto exploratorio de n = 60 sesiones, V1.3; el 120 fue el valor planificado de la V1.2).
 
 ## Estado actual del corpus (P02–P05 ✅ generado — starter)
 
@@ -78,7 +78,9 @@ mpsr-chatbot/
 │   └── v2_corpus648/          Los mismos resultados para el corpus v2
 ├── evidencias/                Salida de consola y captura de cada ejecución (v1_corpus324/, v2_corpus648/, v3_corpus708/, v3_real/, p09_domain/, p11_1_pruebas/)
 ├── docs/                      Protocolo V1.2 (PDF) y V1.1, nota de desviación, Ficha 2, Ficha P01, Informe preliminar
-│   └── lote_real_1/           Formularios, catálogo de situaciones, instrucciones y seguimiento/ (plantilla v3, ejemplos simulados, histórico); privado/ NO se versiona
+│   ├── lote_real_1/           Formularios, catálogo de situaciones, instrucciones y seguimiento/ (plantilla v3, ejemplos simulados, histórico); privado/ NO se versiona
+│   ├── piloto/                Piloto exploratorio V1.3 (sesión asistida, n = 60): formulario, registro, instrucciones; privado/ NO se versiona
+│   └── historico/             Versiones anteriores del protocolo y de la nota (V1.2)
 └── incident_log.csv           Bitácora de incidencias y desviaciones del protocolo (P16)
 ```
 
@@ -132,12 +134,16 @@ python -m rasa shell nlu                            # smoke test manual (P11.1)
 7. **Pre-piloto** (P11.2): 5–15 personas ajenas a la muestra final, guion de
    15–20 consultas, encuesta con Alfa de Cronbach ≥ 0.70. Criterio de salida:
    F1 ≥ 0.75 + Alfa ≥ 0.70.
-8. **Piloto y encuesta** (P12–P13): la MPSR no autorizó despliegue en su
-   plataforma ni acceso físico al local. El chatbot se despliega en un canal
-   propio (WhatsApp/Telegram/web) y el reclutamiento de los 120 participantes
-   (y de OE1) se hace en estudios contables/jurídicos de Juliaca que atienden
-   trámites municipales — ver incidencia registrada en `incident_log.csv` y la
-   limitación de muestreo (estratificado → por cuotas) a documentar en la discusión.
+8. **Piloto exploratorio** (P12–P13, V1.3): 60 sesiones elegibles en una sola visita
+   asistida de unos 15 minutos y con el modelo congelado: línea base recordada
+   (Parte 1), 3 tarjetas de situación con cronómetro del aplicador y encuesta de
+   9 ítems en la misma visita; sin seguimiento ni WhatsApp (solo un código de
+   sesión SA01, SA02…). Es exploratorio (margen de error ≈ 11,7 %), no
+   confirmatorio. La MPSR no autorizó el despliegue en su plataforma ni el acceso al
+   local, por lo que el reclutamiento es en estudios contables/jurídicos de Juliaca
+   (muestra de conveniencia, por cuotas). Si en la fecha de corte el F1 real es
+   menor que 0,75, el piloto se presenta como planificado. Ver «Piloto exploratorio
+   (V1.3)» más abajo e `incident_log.csv`.
 9. **Análisis estadístico** (P14): verificar normalidad (Shapiro-Wilk, α=0.05)
    antes de aplicar t de Student pareada; si no se cumple, usar Wilcoxon.
 10. **Incidencias** (P16): cualquier desviación del protocolo se registra en
@@ -230,6 +236,31 @@ Las correcciones al texto de los documentos están en [`docs/ERRATAS_protocolo_V
 | `rules.yml`, `REPORTE_REEVALUACION.md` | `data/rules.yml`; `evidencias/v3_corpus708/REPORTE_REEVALUACION.md` |
 | «37 incidencias» | `incident_log.csv` es un registro vivo; el número exacto se calcula con `python scripts/verificar_referencias.py` |
 
+## Piloto exploratorio (V1.3)
+
+El protocolo vigente es la **V1.3** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v5.pdf`). Solo cambia el piloto: **estado Planificado**.
+
+| | V1.2 (ahora solo planificada) | **V1.3 (vigente)** |
+|---|---|---|
+| Tamaño | 120 personas | **60 sesiones elegibles** (exploratorio: margen de error ≈ 11,7 %, potencia 80 % para d ≈ 0,37) |
+| Diseño | dos visitas: línea base, recontacto y post-test | **una sola sesión asistida** de unos 15 minutos |
+| Línea base | Ficha P01 aplicada antes | **Parte 1** del formulario de sesión (recordada; mismo contenido que la Ficha P01) |
+| Seguimiento | WhatsApp y código de emparejamiento | **ninguno**: solo código de sesión SA01, SA02… |
+| Medición con el chatbot | uso durante el piloto y luego encuesta | **3 tarjetas** de situación con cronómetro del aplicador y encuesta de **9 ítems** en la misma visita |
+| Satisfacción pareada | — | **ítem 9**, con la misma redacción que P10 |
+
+No cambia: el lote 1 (solo validación y test), la Parte B, el umbral de confianza, la compuerta F1 ≥ 0,75 sobre el conjunto real retenido, el alfa ≥ 0,70, el modelo congelado y las reglas anti-sesgo.
+
+**Procedimiento.** (1) Se congela el modelo (`python scripts/congelar_modelo.py --modelo … --config … --domain …` → `logs/v3_real/modelo_congelado.json`). (2) En cada sesión la persona
+responde la Parte 1 (línea base recordada), prueba el asistente con 3 tarjetas mientras el aplicador cronometra el tiempo hasta una respuesta útil (corte a los 180 s o a los 3 mensajes) y responde la
+encuesta de 9 ítems. (3) Con el registro lleno: `python scripts/analizar_piloto.py --registro … --modelo-congelado logs/v3_real/modelo_congelado.json --catalogo docs/lote_real_1/situaciones_lote1_v1.csv --salida logs/piloto/`
+(tiempo pre/post con Shapiro-Wilk → t pareada o Wilcoxon; P10 contra el ítem 9; alfa de Cronbach; **prueba final única del modelo congelado** con bootstrap por conglomerados de sesión).
+**Las consultas de las sesiones no se usan para ajustar el modelo**: son el conjunto de prueba final y se evalúan una sola vez.
+
+**Archivos en `docs/piloto/`:** `Sesion_Asistida_Formulario_v1` (.docx/.pdf: guía, paquete por persona y 56 tarjetas) y `Registro_Sesiones_Piloto_v1.xlsx` (plantilla vacía; **pendientes de incorporar**),
+`Instrucciones_ClaudeCode_cambio_diseno_piloto_v1.md` y `privado/` (registro real lleno y hojas originales; **no se versiona**, está en `.gitignore`).
+Limitaciones declaradas: línea base recordada (sesgo de recuerdo y de novedad), el trámite frente a la consulta (OE3 habla de consultas), muestra de conveniencia y exploratorio, no confirmatorio.
+
 ## Estado real de cada resultado y cambio
 
 Cada resultado se etiqueta con su estado real: **Ejecutado**, **Planificado** o **Simulado** (nada simulado se presenta como real
@@ -243,6 +274,10 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Validación cruzada agrupada por `base_phrase_id` | **Ejecutado** (sintético) | `scripts/crossval_agrupada.py`, `logs/P11_1_crossval_agrupada/` |
 | Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
 | Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
+| Piloto exploratorio (sesión asistida, n = 60; V1.3) | **Planificado** (compuerta: F1 real ≥ 0,75 en la fecha de corte; si no, se presenta como planificado) | `docs/piloto/`, protocolo V1.3 |
+| Materiales del piloto (formulario de sesión y registro de sesiones) | **Ejecutado** (los elaboró el tesista); **los archivos aún no están en el repositorio** (falta adjuntar `Sesion_Asistida_Formulario_v1` y `Registro_Sesiones_Piloto_v1.xlsx`) | `docs/piloto/` |
+| Línea base P01 real con n = 120, WhatsApp y dos visitas (V1.2) | **Reemplazado por la V1.3** (el 120 queda solo como valor planificado de la V1.2) | `docs/historico/`, `logs/v3_real/auditoria_diseno_120_vs_60.md` |
+| Congelamiento del modelo y análisis del piloto (`scripts/congelar_modelo.py`, `scripts/analizar_piloto.py`) | **Ejecutado** (código) y probado con datos **Simulados**; el piloto real espera las sesiones | `scripts/`, `tests/smoke_piloto.py`, `evidencias/piloto/` |
 | Scripts del lote real (conciliación, ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `evidencias/v3_real/` |
 | Seguimiento del lote 1: plantilla v3 (vacía) | **Ejecutado** (herramienta lista; sin participantes reales) | `docs/lote_real_1/seguimiento/` |
 | Seguimiento simulado v3 y v2 | **Simulado** (ejemplos; no son evidencia) | `docs/lote_real_1/seguimiento/ejemplos_simulados/`, `historico/` |

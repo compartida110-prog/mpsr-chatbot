@@ -28,3 +28,7 @@ docs/lote_real_1/privado/*
 corpus/real/consentimientos/
 Seguimiento_Lote1_Participantes_real*.xlsx
 ~$*.xlsx
+
+# Piloto exploratorio V1.3: el registro real lleno y las hojas originales NO se versionan
+docs/piloto/privado/*
+!docs/piloto/privado/LEEME.md
