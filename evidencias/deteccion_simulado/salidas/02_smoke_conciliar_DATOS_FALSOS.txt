@@ -1,0 +1,45 @@
+inicio: 2026-10-04 22:54:19
+$ python tests/smoke_conciliar.py   (DATOS FALSOS; incluye seguimientos simulados)
+Carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\conciliar_PRUEBA_q4hpfazm
+
+Caso consistente
+  [PASS] seguimiento y respuestas consistentes -> código 0
+  [PASS] [OK] en ausentes y en blancos con respuesta
+  [PASS] un blanco con fila vacía y otro sin fila se aceptan como consistentes
+  [PASS] cobertura real calculada y «Listo para la Parte B» = SÍ (20 transcritos, mínimo 3 por intención)
+  [PASS] exporta 20 participantes Transcritos con las 5 columnas de ingest_real_lote.py
+  [PASS] la exportación NO contiene ocupación, fecha ni observaciones
+  [PASS] el formulario exportado sigue la rotación A-E por código
+  [PASS] no exporta a los participantes Pendientes
+
+Discrepancias que debe detectar
+  [PASS] respuesta ausente que NO figura como blanco -> código 1 y nombra (P02, situación)
+  [PASS] blanco que SÍ tiene respuesta -> código 1 y nombra (P03, situación)
+  [PASS] participante Transcrito sin respuestas -> código 1
+  [PASS] respuestas de un participante que NO está Transcrito -> código 1
+  [PASS] respuestas de un código que no está en el seguimiento -> código 1
+  [PASS] blanco de una situación de otro formulario -> código 1 (Blancos inválidos)
+  [PASS] estado fuera de la lista -> código 1
+
+Seguimientos simulados: se niega
+  [PASS] SIMULADO_v3 (ejemplo del repositorio): se niega (código 2) y no genera salidas
+  [PASS] SIMULADO_v2 (histórico del repositorio): se niega (código 2) y no genera salidas
+  [PASS] un seguimiento cuyas observaciones dicen «SIMULADO» también se rechaza
+  [PASS] título limpio pero Observaciones «Dato sintético de prueba»: se rechaza (código 2) y no genera salidas
+  [PASS] Observaciones con «DEMO» también se rechaza
+  [PASS] «SINTETICO» sin tilde también se rechaza
+  [PASS] con --permitir-simulado se acepta, avisa y escribe solo en la carpeta temporal indicada
+  [PASS] --permitir-simulado con el seguimiento simulado no toca el repositorio (la integridad se verifica abajo)
+  [PASS] una observación corriente («demora») NO hace rechazar el seguimiento
+
+Plantilla vacía
+  [PASS] la plantilla vacía no es simulada: código 0, 0 transcritos, «Listo» = NO
+  [PASS] la plantilla vacía exporta 0 participantes (solo encabezado)
+  [PASS] la fila de ejemplo de la plantilla no se cuenta como participante
+
+Integridad del repositorio
+  [PASS] ningún archivo de docs/lote_real_1, corpus/real ni logs/v3_real cambió durante la prueba
+
+RESULTADO: 28/28 comprobaciones PASS
+Recordatorio: son datos FALSOS de prueba; nada de esto es un resultado.
+fin: 2026-10-04 22:55:09

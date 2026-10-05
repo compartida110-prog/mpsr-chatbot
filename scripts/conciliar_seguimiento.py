@@ -12,8 +12,9 @@ situación de su formulario, salvo las registradas en la hoja Blancos. Detecta:
 También informa la cobertura real por intención (meta y mínimo de la hoja Resumen) y si ya se cumple la condición
 para iniciar la Parte B.
 
-Se NIEGA a trabajar con un seguimiento simulado (título, observaciones o notas que digan «SIMULADO»): los datos
-simulados no son evidencia.
+Se NIEGA a trabajar con un seguimiento simulado o sintético (SIMULADO, SINTÉTICO, SINTETICO o DEMO en el título, en Participantes, en Blancos o en cualquier
+columna Observaciones): los datos simulados no son evidencia. Con --permitir-simulado lo lee solo para probar el código, escribe únicamente en una carpeta temporal
+y rotula las salidas como SIMULADO.
 
 Exporta corpus/real/lote1_participantes.csv (participant_code, form, age_range, vive_en_juliaca, tramite_12m) solo de
 los participantes Transcritos y SIN ocupación, fecha ni observaciones.
@@ -31,6 +32,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import deteccion_simulado as ds
 from common import LOGS, ROOT
 
 warnings.filterwarnings("ignore", message="Data Validation extension")
@@ -51,22 +53,8 @@ def texto(v):
 
 
 def es_simulado(wb):
-    """Devuelve el motivo si el libro parece simulado; si no, ''."""
-    for ws in wb.worksheets:
-        a1 = texto(ws["A1"].value)
-        if "SIMULADO" in a1.upper():
-            return f"el título de la hoja '{ws.title}' dice «{a1}»"
-    if "Participantes" in wb.sheetnames:
-        ws = wb["Participantes"]
-        for r in range(HDR_PART + 1, ws.max_row + 1):
-            if "SIMULADO" in texto(ws.cell(r, COL["obs"]).value).upper():
-                return f"la observación de la fila {r} de Participantes dice «{texto(ws.cell(r, COL['obs']).value)[:40]}»"
-    if "Blancos" in wb.sheetnames:
-        ws = wb["Blancos"]
-        for r in range(HDR_BLANC + 1, ws.max_row + 1):
-            if "SIMULADO" in texto(ws.cell(r, 7).value).upper():
-                return f"la nota de la fila {r} de Blancos dice «{texto(ws.cell(r, 7).value)[:40]}»"
-    return ""
+    """Devuelve el motivo si el libro parece simulado o sintético (SIMULADO, SINTÉTICO, SINTETICO o DEMO en hojas, títulos, Participantes, Blancos u Observaciones); si no, ''."""
+    return ds.revisar_libro(wb, hojas_datos=("Participantes", "Blancos"))
 
 
 def leer_seguimiento(wb):
@@ -104,6 +92,7 @@ def main():
     ap.add_argument("--respuestas", default=str(ROOT / "corpus" / "real" / "lote1_respuestas.csv"))
     ap.add_argument("--out-participantes", default=str(ROOT / "corpus" / "real" / "lote1_participantes.csv"))
     ap.add_argument("--log-dir", default=str(LOGS / "v3_real"))
+    ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta un libro simulado y escribe en una carpeta temporal")
     a = ap.parse_args()
 
     seg_path = Path(a.seguimiento)
@@ -111,7 +100,13 @@ def main():
         sys.exit(f"ERROR: no existe el seguimiento {seg_path}.")
     wb = openpyxl.load_workbook(seg_path, data_only=False)
     motivo = es_simulado(wb)
-    if motivo:
+    if motivo and a.permitir_simulado:
+        tmp = ds.destino_temporal(a.log_dir, "conciliar_simulado_")
+        a.log_dir = str(tmp)
+        if not ds.es_temporal(a.out_participantes):
+            a.out_participantes = str(tmp / "participantes_SIMULADO.csv")
+        print(f"AVISO (--permitir-simulado): libro SIMULADO ({motivo}). Las salidas van a la carpeta temporal {tmp} y no son evidencia.")
+    elif motivo:
         msg = (f"ME NIEGO a conciliar {seg_path.name}: parece un seguimiento SIMULADO ({motivo}).\n"
                "Los datos simulados no son evidencia. Usa el seguimiento de la aplicación real (partiendo de la plantilla vacía). "
                "No se generó ninguna salida.")

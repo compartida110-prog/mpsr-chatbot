@@ -308,6 +308,75 @@ def main():
         check("un texto sin sentido recibe utter_no_entendi", respuesta == esperado, respuesta)
 
     # ------------------------------------------------------------------------------ nada vigente cambió
+    # ------------------------------------------------------------------------------ datos simulados
+    print("\nDatos simulados: se rechazan salvo con --permitir-simulado")
+    sys.path.insert(0, str(SCRIPTS))
+    import deteccion_simulado as ds
+    check("el detector marca SIMULADO, SINTÉTICO, SINTETICO y DEMO (sin distinguir mayúsculas ni tildes)",
+          all(ds.marcado(x) for x in ("SIMULADO", "datos simulados", "SINTÉTICO", "Dato sintético de prueba", "SINTETICO", "DEMO", "Demo de prueba")))
+    check("el detector NO marca «demora», «demostración» ni frases corrientes", not any(ds.marcado(x) for x in ("demora mucho", "demostración", "cuanto cuesta la licencia", "=SIMULADO()")))
+    import warnings as _w
+    _w.filterwarnings("ignore")
+    from openpyxl import load_workbook
+    LIBRO = ROOT / "docs" / "lote_real_1" / "ejemplos_simulados" / "Lote1_Transcripcion_SIMULADO_v2.xlsx"
+    c, t = run("ingest_real_lote.py", "--libro", LIBRO, "--situaciones", cat, "--out-dir", W / "sim_libro", "--log-dir", W / "sim_libro" / "log")
+    check("Lote1_Transcripcion_SIMULADO_v2.xlsx (título «SIMULADO») se rechaza sin la opción y no genera salidas",
+          c != 0 and "ME NIEGO" in t and not (W / "sim_libro").exists(), t[:250])
+    # copia con TÍTULOS LIMPIOS pero Observaciones «Dato sintético de prueba» (el caso del libro que solo estaba marcado en Observaciones)
+    limpio = W / "Lote1_Transcripcion_titulos_limpios.xlsx"
+    wb = load_workbook(LIBRO)
+    for ws in wb.worksheets:
+        if isinstance(ws["A1"].value, str) and "SIMULADO" in ws["A1"].value.upper():
+            ws["A1"] = "Transcripción del lote 1 — " + ws.title
+    wb.save(limpio)
+    wb.close()
+    wbl = load_workbook(limpio, read_only=True)
+    titulos = [str(ws["A1"].value) if False else str(next(ws.iter_rows(max_row=1, values_only=True))[0]) for ws in wbl.worksheets]
+    wbl.close()
+    check("la copia de prueba tiene los títulos de las hojas limpios (sin SIMULADO, SINTÉTICO ni DEMO)", not any(ds.marcado(x) for x in titulos), str(titulos))
+    wbo = load_workbook(limpio, read_only=True, data_only=True)
+    obs = [r[12] for r in list(wbo["Participantes"].iter_rows(values_only=True))[3:] if r[12]]
+    wbo.close()
+    check("y sus Observaciones dicen «Dato sintético de prueba»", obs and all("Dato sintético de prueba" in str(o) for o in obs), str(obs[:2]))
+    c, t = run("ingest_real_lote.py", "--libro", limpio, "--situaciones", cat, "--out-dir", W / "sim_limpio", "--log-dir", W / "sim_limpio" / "log")
+    check("título limpio pero Observaciones «Dato sintético de prueba»: se rechaza sin la opción y no genera salidas",
+          c != 0 and "ME NIEGO" in t and "Dato sintético de prueba" in t and not (W / "sim_limpio").exists(), t[:300])
+    c, t = run("ingest_real_lote.py", "--libro", limpio, "--situaciones", cat, "--out-dir", W / "sim_limpio_ok", "--log-dir", W / "sim_limpio_ok" / "log", "--permitir-simulado")
+    check("con --permitir-simulado se acepta, avisa y escribe solo en la carpeta indicada (bajo la temporal)",
+          c == 0 and "--permitir-simulado" in t and (W / "sim_limpio_ok" / "lote1_real_validado.csv").exists(), t[:300])
+    c, t = run("ingest_real_lote.py", "--libro", LIBRO, "--situaciones", cat, "--permitir-simulado")
+    check("--permitir-simulado con las rutas por defecto NO escribe en el repositorio (va a una carpeta temporal)",
+          c == 0 and "carpeta temporal" in t and snapshot() == antes, t[:300])
+    # libro sin marcas: Observaciones vacías y títulos limpios -> se acepta sin la opción
+    wb = load_workbook(limpio)
+    wsp = wb["Participantes"]
+    for fila in wsp.iter_rows(min_row=4):
+        if isinstance(fila[12].value, str):
+            fila[12].value = None
+    wb.save(limpio.with_name("Lote1_Transcripcion_sin_marcas.xlsx"))
+    wb.close()
+    c, t = run("ingest_real_lote.py", "--libro", limpio.with_name("Lote1_Transcripcion_sin_marcas.xlsx"), "--situaciones", cat,
+               "--out-dir", W / "sin_marcas", "--log-dir", W / "sin_marcas" / "log")
+    check("un libro sin marcas de simulación (títulos y Observaciones limpios) se acepta sin la opción", c == 0 and "ME NIEGO" not in t and (W / "sin_marcas" / "lote1_real_validado.csv").exists(), t[:300])
+    # CSV
+    ptab_obs = W / "part_obs.csv"
+    filas_p = read_csv(ptab)
+    write_csv(ptab_obs, list(filas_p[0]) + ["Observaciones"], [list(r.values()) + ["Dato sintético de prueba"] for r in filas_p])
+    r1 = W / "resp_csv_sim.csv"
+    write_csv(r1, H, resp)
+    c, t = run("ingest_real_lote.py", "--situaciones", cat, "--participantes", ptab_obs, "--respuestas", r1, "--out-dir", W / "csv_obs", "--log-dir", W / "csv_obs" / "log")
+    check("CSV de participantes con Observaciones «Dato sintético de prueba»: se rechaza", c != 0 and "ME NIEGO" in t and not (W / "csv_obs").exists(), t[:250])
+    c, t = run("ingest_real_lote.py", "--situaciones", cat, "--participantes", ptab_obs, "--respuestas", r1, "--out-dir", W / "csv_obs_ok", "--log-dir", W / "csv_obs_ok" / "log", "--permitir-simulado")
+    check("el mismo CSV con --permitir-simulado se acepta", c == 0 and (W / "csv_obs_ok" / "lote1_real_validado.csv").exists(), t[:250])
+    resp_fp = [list(r) for r in resp]
+    resp_fp[0][3] = "esto es un demo y la demora es mucha"
+    c, t = ingest(resp_fp, "falso_positivo")
+    check("una frase real que dice «demo» o «demora» NO hace rechazar la ingesta (las frases solo se revisan con el marcador «[SIMULACIÓN…]»)", c == 0 and "ME NIEGO" not in t, t[:250])
+    resp_mk = [list(r) for r in resp]
+    resp_mk[0][3] = "[SIMULACIÓN — NO ES TRANSCRIPCIÓN] " + resp_mk[0][3]
+    c, t = ingest(resp_mk, "marcador_frase")
+    check("una frase que empieza con «[SIMULACIÓN …]» sí se rechaza", c != 0 and "ME NIEGO" in t and not (W / "marcador_frase").exists(), t[:250])
+
     print("\nIntegridad del repositorio")
     despues = snapshot()
     cambios = sorted(k for k in set(antes) | set(despues) if antes.get(k) != despues.get(k))

@@ -309,6 +309,27 @@ def main():
     c, t, _ = correr(["--registro", str(reg9), "--modelo-congelado", str(fz), "--salida", str(W / "salida_tar")], predictor)
     check("una tarjeta que no coincide con la fórmula del registro aborta", c != 0 and "fórmula del registro" in t, t[-300:])
 
+    # ------------------------------------------------------------------ marcas de simulación fuera del título
+    print("\nMarcas de simulación con el título limpio")
+    for palabra in ("Dato sintético de prueba", "SINTETICO", "Es un DEMO", "datos SIMULADOS"):
+        filas_s = [dict(f) for f in filas]
+        filas_s[3]["Incidencias técnicas"] = palabra
+        rgs = W / "registro_incidencia_marcada.xlsx"
+        escribir_registro(rgs, filas_s, alfa_ref)
+        c, t, _ = correr(["--registro", str(rgs), "--modelo-congelado", str(fz), "--salida", str(W / "salida_marca")], predictor)
+        check(f"título limpio pero una celda de Sesiones dice «{palabra}»: se rechaza sin la opción y no genera salidas",
+              c != 0 and "SIMULADO/SINTÉTICO" in t and not (W / "salida_marca").exists(), t[-300:])
+    c, t, Rm = correr(["--registro", str(rgs), "--modelo-congelado", str(fz), "--salida", str(W / "salida_marca2"), "--permitir-simulado"], predictor)
+    check("con --permitir-simulado se acepta y queda rotulado SIMULADO", c == 0 and Rm and Rm["rotulo"] == "SIMULADO", t[-300:])
+    filas_f = [dict(f) for f in filas]
+    q_real = "demora mucho esta demo del tramite"
+    filas_f[0][H["t1_consulta"]] = q_real
+    pred_f = dict(pred); pred_f[q_real] = ("intencion_x", 0.5, 0.1)
+    rgf = W / "registro_frase_con_demo.xlsx"
+    escribir_registro(rgf, filas_f, alfa_ref)
+    c, t, Rf = correr(["--registro", str(rgf), "--modelo-congelado", str(fz), "--salida", str(W / "salida_frase")], lambda x: [pred_f[q] for q in x])
+    check("una frase de consulta real que dice «demo» o «demora» NO hace rechazar el registro", c == 0 and Rf and Rf["rotulo"] == "REAL", t[-300:])
+
     # ------------------------------------------------------------------ fila del encabezado
     print("\nFila del encabezado (3 frente a 2)")
     res = {}

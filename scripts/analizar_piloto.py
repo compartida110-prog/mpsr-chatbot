@@ -12,7 +12,7 @@ Solo LEE el registro (openpyxl, data_only=True, sin guardar nunca el .xlsx). Usa
        umbral congelado, acuerdo con el juicio del aplicador y de la persona. SE EVALÚA UNA SOLA VEZ (logs/piloto/evaluaciones_prueba_final.log);
        repetirla exige --motivo.
 
-Rechazos: hoja, título (celda A1) o texto de consulta marcados como SIMULADO / SINTÉTICA / DEMO (salvo --permitir-simulado, que escribe solo en una
+Rechazos: SIMULADO / SINTÉTICO / SINTETICO / DEMO en el nombre o título de una hoja, en cualquier celda de texto de Sesiones o de una columna Observaciones, o «[SIMULACIÓN…]» al inicio de una consulta (ver deteccion_simulado.py) (salvo --permitir-simulado, que escribe solo en una
 carpeta temporal y rotula _SIMULADO), sin filas elegibles, fórmulas sin valor guardado («abre y guarda el archivo en Excel»), hash distinto del
 modelo, tarjeta asignada que no coincide con la fórmula del registro, minutos pre que no coinciden con la tabla de Parametros.
 
@@ -40,6 +40,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+import deteccion_simulado as ds
 from common import ROOT, file_sha256
 
 ALPHA = 0.05
@@ -109,12 +110,13 @@ def leer_registro(ruta, mapa_usuario=None, permitir_simulado=False):
     from openpyxl import load_workbook
     wb = load_workbook(ruta, read_only=True, data_only=True)  # solo lectura: nunca se guarda
     try:
-        marcadas = [h for h in wb.sheetnames if MARCAS_SIMULADO.search(norm(h))]
+        marcadas = []
+        motivo_libro = ds.revisar_libro(wb)  # nombres de hoja, títulos y celdas de texto (salvo las frases de las personas)
+        if motivo_libro:
+            marcadas.append(motivo_libro)
         if HOJA not in wb.sheetnames:
             sys.exit(f"ERROR: no hay hoja «{HOJA}» en el registro (hojas: {wb.sheetnames}).")
         filas = list(wb[HOJA].iter_rows(values_only=True))
-        if filas and MARCAS_SIMULADO.search(norm(filas[0][0] or "")):
-            marcadas.append(f"título de {HOJA}!A1: «{str(filas[0][0])[:60]}»")
         def hoja(nombre):
             return list(wb[nombre].iter_rows(values_only=True)) if nombre in wb.sheetnames else None
         h_tar, h_par, h_res = hoja("Tarjetas"), hoja("Parametros"), hoja("Resumen")

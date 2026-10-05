@@ -115,9 +115,9 @@ def main():
         write_csv(p, ["participant_code", "form", "scenario_id", "text"], filas)
         return p
 
-    def correr(seg, resp, sub, cat_path=CATALOGO):
+    def correr(seg, resp, sub, cat_path=CATALOGO, *extra):
         p = subprocess.run([sys.executable, str(SCRIPT), "--seguimiento", str(seg), "--respuestas", str(resp), "--situaciones", str(cat_path),
-                            "--out-participantes", str(W / sub / "participantes.csv"), "--log-dir", str(W / sub / "log")],
+                            "--out-participantes", str(W / sub / "participantes.csv"), "--log-dir", str(W / sub / "log"), *extra],
                            capture_output=True, text=True, encoding="utf-8", errors="replace", env=ENV, cwd=ROOT)
         return p.returncode, (p.stdout or "") + (p.stderr or "")
 
@@ -164,6 +164,21 @@ def main():
         check(f"{nombre}: se niega (código 2) y no genera salidas", c == 2 and "ME NIEGO" in t and not (W / sub / "participantes.csv").exists() and not (W / sub / "log").exists(), t[-300:])
     c, t = correr(tracker("seg_h.xlsx", obs="SIMULADO · prueba"), W / "resp_ok.csv", "sim_obs")
     check("un seguimiento cuyas observaciones dicen «SIMULADO» también se rechaza", c == 2 and "ME NIEGO" in t and not (W / "sim_obs" / "participantes.csv").exists(), t[-300:])
+
+    c, t = correr(tracker("seg_i.xlsx", obs="Dato sintético de prueba"), W / "resp_ok.csv", "sim_sint")
+    check("título limpio pero Observaciones «Dato sintético de prueba»: se rechaza (código 2) y no genera salidas",
+          c == 2 and "ME NIEGO" in t and not (W / "sim_sint" / "participantes.csv").exists() and not (W / "sim_sint" / "log").exists(), t[-300:])
+    c, t = correr(tracker("seg_j.xlsx", obs="Es un DEMO"), W / "resp_ok.csv", "sim_demo")
+    check("Observaciones con «DEMO» también se rechaza", c == 2 and "ME NIEGO" in t, t[-300:])
+    c, t = correr(tracker("seg_k.xlsx", obs="Dato sintetico de prueba"), W / "resp_ok.csv", "sim_sin_tilde")
+    check("«SINTETICO» sin tilde también se rechaza", c == 2 and "ME NIEGO" in t, t[-300:])
+    c, t = correr(tracker("seg_l.xlsx", obs="Dato sintético de prueba"), respuestas("resp_ok2.csv"), "sim_perm", CATALOGO, "--permitir-simulado")
+    check("con --permitir-simulado se acepta, avisa y escribe solo en la carpeta temporal indicada",
+          c in (0, 1) and "--permitir-simulado" in t and (W / "sim_perm" / "participantes.csv").exists(), t[-300:])
+    c, t = correr(tracker("seg_m.xlsx", obs="Dato sintético de prueba"), respuestas("resp_ok3.csv"), "sim_perm2", CATALOGO, "--permitir-simulado")
+    check("--permitir-simulado con el seguimiento simulado no toca el repositorio (la integridad se verifica abajo)", c in (0, 1), t[-200:])
+    c, t = correr(tracker("seg_n.xlsx", obs="Cliente con demora en el trámite"), respuestas("resp_ok4.csv"), "sin_marca")
+    check("una observación corriente («demora») NO hace rechazar el seguimiento", c == 0 and "ME NIEGO" not in t, t[-300:])
 
     # --------------------------------------------------------------- plantilla vacía
     print("\nPlantilla vacía")

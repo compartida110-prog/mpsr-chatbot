@@ -1,3 +1,5 @@
+inicio: 2026-10-04 23:13:10
+$ python scripts/verificar_referencias.py   (documentos _v6)
 # Verificación de referencias y cifras — protocolo V1.3 (v6) y Nota de Desviación (v6)
 
 Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron del protocolo V1.3 (v6) y de la Nota (v6), que este script no modifica.
@@ -56,3 +58,6 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 ## No verificable con el repositorio (no se comprobó)
 
 Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), línea base y post-test de P01 y P12–P14 (simulados), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza (planificados), y la redacción metodológica.
+
+Escrito en C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\evidencias\piloto\verificacion_referencias_v6.md
+fin: 2026-10-04 23:13:14

@@ -23,8 +23,13 @@ Modo --aplicar-revision
 
 Nunca genera ni completa frases reales: solo transforma lo que el tesista transcribió.
 
+Datos simulados: se NIEGA a ingerir un libro (--libro) o unos CSV con SIMULADO, SINTÉTICO, SINTETICO o DEMO en el título de una hoja, en cualquier celda de texto de
+Participantes o en una columna Observaciones (las frases de las personas solo se revisan con el marcador «[SIMULACIÓN …]»). Con --permitir-simulado los lee solo para
+probar el código y escribe únicamente en una carpeta temporal (ver deteccion_simulado.py).
+
 Uso:
     python scripts/ingest_real_lote.py
+    python scripts/ingest_real_lote.py --libro docs/lote_real_1/privado/Lote1_Transcripcion_real.xlsx
     python scripts/ingest_real_lote.py --aplicar-revision
 """
 import argparse
@@ -36,6 +41,7 @@ import pandas as pd
 import yaml
 from sklearn.metrics import cohen_kappa_score
 
+import deteccion_simulado as ds
 from common import CORPUS, LOGS, ROOT, load_jerga, normalize
 
 SOURCE_REAL = "lenguaje real (lote 1)"
@@ -239,6 +245,55 @@ def aplicar_revision(a):
     print(f"\nSalidas: {out / 'lote1_real_final.csv'}, {log}")
 
 
+def hoja_a_tabla(wb, nombre, columnas):
+    """Hoja del libro de transcripción -> DataFrame con las columnas pedidas (encabezado exacto buscado en las primeras 10 filas)."""
+    if nombre not in wb.sheetnames:
+        sys.exit(f"ERROR: el libro no tiene la hoja {nombre}.")
+    filas = list(wb[nombre].iter_rows(values_only=True))
+    fe = next((i for i, f in enumerate(filas[:10]) if f and f[0] == "participant_code"), None)
+    if fe is None:
+        sys.exit(f"ERROR: no encuentro el encabezado «participant_code» en las primeras 10 filas de la hoja {nombre}.")
+    enc = [("" if c is None else str(c).strip()) for c in filas[fe]]
+    faltan = [c for c in columnas if c not in enc]
+    if faltan:
+        sys.exit(f"ERROR: a la hoja {nombre} le faltan las columnas {faltan}.")
+    datos = [{c: ("" if f[enc.index(c)] is None else str(f[enc.index(c)]).strip()) for c in columnas} for f in filas[fe + 1:] if f and f[0] not in (None, "")]
+    return pd.DataFrame(datos, columns=columnas)
+
+
+def revisar_origen(a):
+    """Rechaza datos simulados (libro o CSV) salvo con --permitir-simulado; con el libro, lo convierte a dos CSV temporales (el libro solo se lee)."""
+    import tempfile
+
+    from openpyxl import load_workbook
+    motivo, tabla_part, tabla_resp = "", None, None
+    if a.libro:
+        wb = load_workbook(a.libro, read_only=True, data_only=True)
+        try:
+            motivo = ds.revisar_libro(wb, hojas_datos=("Participantes", "Respuestas"))
+            tabla_part = hoja_a_tabla(wb, "Participantes", ["participant_code", "form", "age_range", "vive_en_juliaca", "tramite_12m"])
+            tabla_resp = hoja_a_tabla(wb, "Respuestas", ["participant_code", "form", "scenario_id", "text"])
+        finally:
+            wb.close()
+    else:
+        for ruta, nombre in ((a.participantes, "participantes"), (a.respuestas, "respuestas")):
+            if Path(ruta).exists():
+                motivo = motivo or ds.revisar_tabla(pd.read_csv(ruta, dtype=str, keep_default_na=False, encoding="utf-8-sig"), nombre)
+    if motivo and not a.permitir_simulado:
+        sys.exit(f"ME NIEGO a ingerir estos datos: parecen SIMULADOS o SINTÉTICOS ({motivo}).\n"
+                 "Los datos simulados no son evidencia. Usa la transcripción real (partiendo de la plantilla vacía). No se generó ninguna salida. "
+                 "(--permitir-simulado solo sirve para probar el código y escribe en una carpeta temporal.)")
+    if motivo:
+        tmp = ds.destino_temporal(a.out_dir, "ingesta_simulada_")
+        a.out_dir, a.log_dir = str(tmp), str(tmp)
+        print(f"AVISO (--permitir-simulado): datos SIMULADOS ({motivo}). Las salidas van a la carpeta temporal {tmp} y no son evidencia.")
+    if a.libro:
+        tmp_csv = Path(tempfile.mkdtemp(prefix="lote1_libro_"))
+        tabla_part.to_csv(tmp_csv / "participantes.csv", index=False, encoding="utf-8")
+        tabla_resp.to_csv(tmp_csv / "respuestas.csv", index=False, encoding="utf-8")
+        a.participantes, a.respuestas = str(tmp_csv / "participantes.csv"), str(tmp_csv / "respuestas.csv")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--situaciones", default=str(ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"))
@@ -251,7 +306,11 @@ def main():
     ap.add_argument("--aplicar-revision", action="store_true", help="aplica lote1_revision_etiquetas.csv y genera lote1_real_final.csv")
     ap.add_argument("--revision", default="", help="ruta de la revisión (por defecto corpus/real/lote1_revision_etiquetas.csv)")
     ap.add_argument("--forzar-revision", action="store_true", help="sobrescribe la plantilla de revisión aunque ya tenga decisiones")
+    ap.add_argument("--libro", default="", help="libro de transcripción (hojas Participantes y Respuestas) en lugar de los dos CSV; solo se lee")
+    ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta datos simulados y escribe en una carpeta temporal")
     a = ap.parse_args()
+    if not a.aplicar_revision:
+        revisar_origen(a)
     aplicar_revision(a) if a.aplicar_revision else ingestar(a)
 
 
