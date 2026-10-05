@@ -141,8 +141,8 @@ python -m rasa shell nlu                            # smoke test manual (P11.1)
    sesión SA01, SA02…). Es exploratorio (margen de error ≈ 11,7 %), no
    confirmatorio. La MPSR no autorizó el despliegue en su plataforma ni el acceso al
    local, por lo que el reclutamiento es en estudios contables/jurídicos de Juliaca
-   (muestra de conveniencia, por cuotas). Si en la fecha de corte el F1 real es
-   menor que 0,75, el piloto se presenta como planificado. Ver «Piloto exploratorio
+   (muestra de conveniencia, por cuotas). Las etapas avanzan por
+   compuertas de avance (protocolo 2.14); si una no se cumple, el piloto se presenta como planificado. Ver «Piloto exploratorio
    (V1.3)» más abajo e `incident_log.csv`.
 9. **Análisis estadístico** (P14): verificar normalidad (Shapiro-Wilk, α=0.05)
    antes de aplicar t de Student pareada; si no se cumple, usar Wilcoxon.
@@ -238,7 +238,7 @@ Las correcciones al texto de los documentos están en [`docs/ERRATAS_protocolo_V
 
 ## Piloto exploratorio (V1.3)
 
-El protocolo vigente es la **V1.3** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v6.pdf`). Solo cambia el piloto: **estado Planificado**.
+El protocolo vigente es la **V1.4** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7.pdf`): mantiene el piloto de la V1.3 y reemplaza la «fecha de corte» por **compuertas de avance** (sección 2.14, G1 a G7; ver `logs/avance/estado_compuertas.md`). **Estado Planificado.**
 
 | | V1.2 (ahora solo planificada) | **V1.3 (vigente)** |
 |---|---|---|
@@ -274,12 +274,15 @@ ni nada planificado como ejecutado). Detalle en `docs/Planteamiento_Metodologia_
 | Validación cruzada agrupada por `base_phrase_id` | **Ejecutado** (sintético) | `scripts/crossval_agrupada.py`, `logs/P11_1_crossval_agrupada/` |
 | Respuestas de `domain.yml` (54/54; 40 de 44 con nota `[Verificar]`) | **Ejecutado** (texto); contenido sin validar con el TUPA real | `evidencias/p09_domain/` |
 | Línea base P01 (n=120), post-test y análisis P14 | **Simulado** (demostración del pipeline; no son hallazgos de campo) | `corpus/Encuestas_simuladas_…xlsx`, `logs/simulaciones_P14/` |
-| Piloto exploratorio (sesión asistida, n = 60; V1.3) | **Planificado** (compuerta: F1 real ≥ 0,75 en la fecha de corte; si no, se presenta como planificado) | `docs/piloto/`, protocolo V1.3 |
+| Piloto exploratorio (sesión asistida, n = 60; V1.3) | **Planificado** (las etapas avanzan por compuertas de avance, protocolo 2.14; si una no se cumple, se presenta como planificado) | `docs/piloto/`, protocolo V1.3 |
 | Materiales del piloto (formulario de sesión y registro de sesiones) | **Ejecutado** (los elaboró el tesista); ya están en `docs/piloto/` | `docs/piloto/` |
 | Línea base P01 real con n = 120, WhatsApp y dos visitas (V1.2) | **Reemplazado por la V1.3** (el 120 queda solo como valor planificado de la V1.2) | `docs/historico/`, `logs/v3_real/auditoria_diseno_120_vs_60.md` |
 | Congelamiento del modelo y análisis del piloto (`scripts/congelar_modelo.py`, `scripts/analizar_piloto.py`) | **Ejecutado** (código; lee los encabezados exactos del registro) y probado con datos **Simulados**; el modelo **aún no se congeló** y el piloto real espera las sesiones | `scripts/`, `tests/smoke_piloto.py`, `evidencias/piloto/` |
 | Rechazo de libros y datos simulados o sintéticos (`scripts/deteccion_simulado.py`, usada por `ingest_real_lote.py` (`--libro`), `conciliar_seguimiento.py` y `analizar_piloto.py`; `--permitir-simulado` solo para pruebas) | **Ejecutado** (código) y probado con datos **Simulados** | `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `tests/smoke_piloto.py`, `evidencias/deteccion_simulado/` |
 | Libro de transcripción del lote 1 (`docs/lote_real_1/Lote1_Transcripcion_v1.xlsx`, plantilla vacía) y su lectura directa (`ingest_real_lote.py --libro`; `conciliar_seguimiento.py --blancos-derivados`) | Plantilla: **Ejecutado** (elaborada por el tesista). Lectura: **Ejecutado** (código) y probada con datos **Simulados**. Transcripción real del lote 1: **Planificado** (aún no hay frases reales) | `docs/lote_real_1/`, `tests/smoke_transcripcion.py`, `evidencias/transcripcion_lote1/` |
+| Tablero de compuertas de avance (`scripts/estado_compuertas.py` → `logs/avance/estado_compuertas.md`; protocolo 2.14, G1 a G7) | **Ejecutado** (código y tablero), probado con datos **Simulados**. Compuertas cumplidas con datos reales: **0 de 7** | `scripts/estado_compuertas.py`, `tests/smoke_compuertas.py`, `logs/avance/`, `evidencias/compuertas/` |
+| Demostración simulada (`--demo-simulada` en `ingest_real_lote.py`, `analizar_piloto.py` y `congelar_modelo.py`; salidas en `evidencias/simulado_demostracion/`) | **Planificado**: el modo está implementado y probado; la demostración completa **no se ejecutó** (se hace cuando el tesista lo pida) | `scripts/deteccion_simulado.py`, `tests/smoke_compuertas.py` |
+| Hoja de verificación de las respuestas contra el TUPA (`docs/tupa/Verificacion_TUPA_v4.xlsx`; compuerta G4) | **Ejecutado** (hoja elaborada) y verificación **En curso**: 10 de 44 respuestas verificadas; faltan 23 de prioridad Alta y 10 sin confirmar | `docs/tupa/`, `logs/avance/estado_compuertas.md` |
 | Scripts del lote real (conciliación, ingesta, partición v3, evaluación, umbral) | **Ejecutado** (código) y probado con datos **Simulados** (falsos) | `scripts/`, `tests/smoke_lote_real.py`, `tests/smoke_conciliar.py`, `evidencias/v3_real/` |
 | Seguimiento del lote 1: plantilla v3 (vacía) | **Ejecutado** (herramienta lista; sin participantes reales) | `docs/lote_real_1/seguimiento/` |
 | Seguimiento simulado v3 y v2 | **Simulado** (ejemplos; no son evidencia) | `docs/lote_real_1/seguimiento/ejemplos_simulados/`, `historico/` |

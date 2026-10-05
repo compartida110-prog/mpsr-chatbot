@@ -35,6 +35,8 @@ Los CSV de corpus/real/ pueden traer frases de personas reales: revisa el report
 Datos simulados: se NIEGA a ingerir un libro (--libro) o unos CSV con SIMULADO, SINTÉTICO, SINTETICO o DEMO en el título de una hoja, en cualquier celda de texto de
 Participantes o en una columna Observaciones (las frases de las personas solo se revisan con el marcador «[SIMULACIÓN …]»). Con --permitir-simulado los lee solo para
 probar el código y escribe únicamente en una carpeta temporal (ver deteccion_simulado.py).
+Modo de demostración (--demo-simulada, implica --permitir-simulado; exige --libro con Lote1_Transcripcion_SIMULADO_v2.xlsx): escribe solo en
+evidencias/simulado_demostracion/<ejecución>/, marca cada archivo como SIMULADO y se niega a escribir en corpus/real/, logs/v3_real/ o las carpetas privadas.
 
 Uso:
     python scripts/ingest_real_lote.py
@@ -376,7 +378,9 @@ def revisar_origen(a):
         sys.exit(f"ME NIEGO a ingerir estos datos: parecen SIMULADOS o SINTÉTICOS ({motivo}).\n"
                  "Los datos simulados no son evidencia. Usa la transcripción real (partiendo de la plantilla vacía). No se generó ninguna salida. "
                  "(--permitir-simulado solo sirve para probar el código y escribe en una carpeta temporal.)")
-    if motivo:
+    if motivo and a.demo_simulada:
+        print(f"DEMOSTRACIÓN SIMULADA: datos SIMULADOS ({motivo}). Las salidas van a {a.out_dir} y no son hallazgos de campo.")
+    elif motivo:
         tmp = ds.destino_temporal(a.out_dir, "ingesta_simulada_")
         a.out_dir, a.log_dir = str(tmp), str(tmp)
         print(f"AVISO (--permitir-simulado): datos SIMULADOS ({motivo}). Las salidas van a la carpeta temporal {tmp} y no son evidencia.")
@@ -409,7 +413,19 @@ def main():
     ap.add_argument("--forzar-revision", action="store_true", help="sobrescribe la plantilla de revisión aunque ya tenga decisiones")
     ap.add_argument("--libro", default="", help="libro de transcripción (hojas Participantes y Respuestas) en lugar de los dos CSV; solo se lee")
     ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta datos simulados y escribe en una carpeta temporal")
+    ap.add_argument("--demo-simulada", action="store_true", help="demostración con datos simulados: escribe en evidencias/simulado_demostracion/<ejecución>/ con el marcador SIMULADO")
+    ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración (por defecto, fecha y hora)")
+    ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas: raíz alternativa del modo demostración
     a = ap.parse_args()
+    if a.demo_simulada:
+        if a.aplicar_revision:
+            sys.exit("ERROR: --demo-simulada no se combina con --aplicar-revision.")
+        if not a.libro:
+            sys.exit("ERROR: --demo-simulada necesita --libro con Lote1_Transcripcion_SIMULADO_v2.xlsx (de docs/lote_real_1/ejemplos_simulados/).")
+        pedidas = [v for v, k in ((a.out_dir, "out_dir"), (a.log_dir, "log_dir")) if v != ap.get_default(k)]
+        carpeta = ds.preparar_demo("ingest_real_lote", a.libro, a.demo_raiz or None, a.ejecucion, pedidas)
+        a.out_dir = a.log_dir = str(carpeta)
+        a.permitir_simulado = True
     if not a.aplicar_revision:
         revisar_origen(a)
     if a.aplicar_revision:
@@ -418,6 +434,9 @@ def main():
         ingestar(a)
         if getattr(a, "info_libro", None):
             publicar_exportaciones(a)
+        if a.demo_simulada:
+            marcados = ds.marcar_directorio(a.out_dir)
+            print(f"DEMOSTRACIÓN SIMULADA: {len(marcados)} archivos marcados «{ds.MARCA_ESTADO}» en {a.out_dir}")
 
 
 if __name__ == "__main__":

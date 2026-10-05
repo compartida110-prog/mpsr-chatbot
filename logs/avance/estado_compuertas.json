@@ -1,0 +1,92 @@
+{
+  "generado": "2026-10-05T06:25:31",
+  "compuertas_cumplidas_con_datos_reales": 0,
+  "compuertas_cumplidas_con_datos_simulados": 0,
+  "total": 7,
+  "compuertas": [
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "falta logs/v3_real/ingesta_reporte.txt",
+      "nota": "Ejecuta ingest_real_lote.py --libro con el libro de transcripción lleno.",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G1",
+      "nombre": "Lote 1 completo",
+      "criterio": "«Listo para la Parte B»: ≥ 15 transcritos, 0 sin consentimiento, cada intención ≥ 3 frases"
+    },
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "falta logs/v3_real/ingesta_reporte.txt",
+      "nota": "Primero la ingesta de la Parte B.",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G2",
+      "nombre": "Parte B ejecutada",
+      "criterio": "Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista"
+    },
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "faltan logs/avance/ciclos_refinamiento.csv y logs/v3_real/test_registro.json",
+      "nota": "Sin ciclos de refinamiento ni evaluación del test real.",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G3",
+      "nombre": "Calidad con lenguaje real",
+      "criterio": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75"
+    },
+    {
+      "estado": "En curso",
+      "evidencia": "docs/tupa/Verificacion_TUPA_v4.xlsx",
+      "nota": "Alta pendientes: 23; filas con alerta: 0; Corregir o Coincide sin confirmar: 10 (verificadas 10 de 44).",
+      "simulado": false,
+      "fecha": "2026-10-05T05:00:00+00:00",
+      "estado_base": "En curso",
+      "datos": "Real",
+      "id": "G4",
+      "nombre": "Respuestas verificadas",
+      "criterio": "TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin confirmar = 0"
+    },
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "falta logs/v3_real/modelo_congelado.json",
+      "nota": "Se congela solo después de G3 y G4, justo antes de la primera sesión.",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G5",
+      "nombre": "Modelo congelado",
+      "criterio": "Modelo congelado válido, después de G3 y G4"
+    },
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "falta docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx",
+      "nota": "Registro del pre-piloto (copia del registro de sesiones).",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G6",
+      "nombre": "Pre-piloto",
+      "criterio": "5–15 sesiones completas y alfa de Cronbach ≥ 0,70"
+    },
+    {
+      "estado": "Pendiente (sin evidencia)",
+      "evidencia": "falta docs/piloto/privado/Registro_Sesiones_Piloto*.xlsx",
+      "nota": "Registro de sesiones del piloto (copia llena del registro).",
+      "simulado": false,
+      "fecha": null,
+      "estado_base": "Pendiente (sin evidencia)",
+      "datos": "—",
+      "id": "G7",
+      "nombre": "Sesiones",
+      "criterio": "60 sesiones elegibles, o cierre declarado con ≥ 30"
+    }
+  ]
+}

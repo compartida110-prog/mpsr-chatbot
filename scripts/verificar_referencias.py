@@ -1,15 +1,15 @@
-"""Verifica que las rutas y las cifras citadas en el protocolo V1.3 y en la Nota de Desviación (versiones _v6) existan y coincidan con el repositorio.
+"""Verifica que las rutas y las cifras citadas en el protocolo V1.4 y en la Nota de Desviación (versiones _v7) existan y coincidan con el repositorio.
 
 Parte 1: cada archivo o carpeta que cita el protocolo existe (y en qué ruta).
 Parte 2: cada cifra (intenciones, situaciones, F1, validación cruzada, smoke test, McNemar, incidencias, …) se RECALCULA desde los
          archivos del repositorio y se compara con lo que dicen los documentos. Ningún valor se escribe a mano en el resultado.
 
 Estados: OK · DISCREPANCIA (el documento y el repositorio difieren) · PLANIFICADO (aún no existe, coherente con su estado) · NOTA.
-Las afirmaciones se transcribieron del protocolo V1.3 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v6) y de la
-Nota_Desviacion_P11_1_v6; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
+Las afirmaciones se transcribieron del protocolo V1.4 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7) y de la
+Nota_Desviacion_P11_1_v7; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
 afirmaciones de esas filas se actualizaron; una diferencia nueva se informa, no se tapa.
 
-Escribe evidencias/piloto/verificacion_referencias_v6.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
+Escribe evidencias/piloto/verificacion_referencias_v7.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
 V1.2 y forma parte de la historia: no se edita).
 
 Uso:
@@ -45,7 +45,7 @@ def media_f1(patron, col="f1_macro"):
 
 def main():
     # ============================================================ PARTE 1: rutas
-    cit = "Protocolo V1.3"
+    cit = "Protocolo V1.4"
     rutas = [
         ("README.md", "README.md", "OK"),
         ("corpus_audit.csv", "corpus/corpus_audit.csv", "OK"),
@@ -195,7 +195,7 @@ def main():
         "OK" if (ev["test"], ev["validation"], sorted(set(fr))) == (27, 27, [3]) else "DISCREPANCIA")
     # incidencias
     n_inc = len(pd.read_csv(ROOT / "incident_log.csv"))
-    reg("Protocolo y Nota v6 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
+    reg("Protocolo y Nota v7 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
         f"`incident_log.csv` existe y tiene {n_inc} filas (dato informativo: cambia con cada incidencia nueva)", "OK" if existe("incident_log.csv") and n_inc > 0 else "DISCREPANCIA",
         f"informativo: {n_inc} incidencias registradas a la fecha de esta verificación")
 
@@ -243,6 +243,49 @@ def main():
         "falta logs/piloto/analisis_piloto.json" if not existe("logs/piloto/analisis_piloto.json") else "existe logs/piloto/analisis_piloto.json"),
         "PLANIFICADO" if not existe("logs/piloto/analisis_piloto.json") else "NOTA", "coherente con el estado Planificado")
 
+    # ============================================================ V1.4: compuertas de avance (sección 2.14)
+    import estado_compuertas as ec
+    from openpyxl import load_workbook
+
+    def parametros(libro, hoja="Parametros"):
+        wb = load_workbook(libro, read_only=True, data_only=True)
+        try:
+            return {f[0].strip(): f[1] for f in wb[hoja].iter_rows(values_only=True) if f and isinstance(f[0], str) and f[1] is not None}
+        finally:
+            wb.close()
+    ids = [g for g, _ in ec.COMPUERTAS]
+    reg("Protocolo 2.14 (V1.4)", "siete compuertas de avance, G1 a G7, sin fechas", f"scripts/estado_compuertas.py evalúa {', '.join(ids)}" if existe("scripts/estado_compuertas.py") else "NO EXISTE scripts/estado_compuertas.py",
+        "OK" if ids == [f"G{i}" for i in range(1, 8)] and existe("scripts/estado_compuertas.py") else "DISCREPANCIA")
+    pl = parametros(ROOT / "docs" / "lote_real_1" / "Lote1_Transcripcion_v1.xlsx")
+    pm, pt = pl.get("Mínimo de participantes transcritos"), pl.get("Mínimo de frases reales por intención")
+    me = pl.get("Meta de frases reales por intención")
+    reg("Protocolo 2.14 (G1)", "al menos 15 participantes transcritos y cada intención con al menos 3 frases reales (meta de 4)",
+        f"libro de transcripción: mínimo {pm} participantes, mínimo {pt} frases, meta {me}; tablero: {ec.MIN_TRANSCRITOS} y {ec.MIN_FRASES}",
+        "OK" if (pm, pt, me) == (15, 3, 4) and (ec.MIN_TRANSCRITOS, ec.MIN_FRASES) == (15, 3) else "DISCREPANCIA")
+    src = (ROOT / "scripts" / "eval_real.py").read_text(encoding="utf-8")
+    reg("Protocolo 2.14 (G3)", "hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más",
+        f"tablero: {ec.CICLOS_MAX} ciclos, mejora mínima {ec.MEJORA_MIN}, F1 mínimo {ec.F1_MIN}; eval_real.py {'usa' if '>= 0.75' in src else 'NO usa'} el umbral 0.75 y guarda un registro de cada evaluación del test",
+        "OK" if (ec.CICLOS_MAX, ec.MEJORA_MIN, ec.F1_MIN) == (2, 0.02, 0.75) and ">= 0.75" in src and "test_registro" in src else "DISCREPANCIA")
+    tp = ROOT / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx"
+    etiquetas = ("Prioridad Alta pendientes", "Filas con alerta", "Corregir o Coincide sin confirmar por el tesista")
+    ok_tupa = tp.exists() and all(k in parametros(tp, "Resumen") or True for k in etiquetas)
+    if tp.exists():
+        wbt = load_workbook(tp, read_only=True, data_only=True)
+        rotulos = {f[0] for f in wbt["Resumen"].iter_rows(values_only=True) if f and isinstance(f[0], str)}
+        wbt.close()
+        ok_tupa = all(k in rotulos for k in etiquetas)
+    reg("Protocolo 2.14 (G4)", "la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar",
+        "docs/tupa/Verificacion_TUPA_v4.xlsx tiene esas tres cifras en su hoja Resumen" if ok_tupa else "falta docs/tupa/Verificacion_TUPA_v4.xlsx o alguna de las tres cifras", "OK" if ok_tupa else "DISCREPANCIA")
+    rg = parametros(ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v2.xlsx")
+    reg("Protocolo 2.14 (G6, G7)", "pre-piloto de 5 a 15 personas con alfa de Cronbach de 0.70 o más; sesiones: cierre en 60 elegibles o con un mínimo de 30 declarado por el tesista",
+        f"registro v2: alfa mínimo {rg.get('Alfa de Cronbach mínimo')}, meta {rg.get('Meta de sesiones elegibles y completas')} sesiones; tablero: {ec.PRE_MIN}–{ec.PRE_MAX} sesiones, alfa {ec.ALFA_MIN}, {ec.SESIONES_META} y cierre con {ec.SESIONES_CIERRE}",
+        "OK" if (rg.get("Alfa de Cronbach mínimo"), rg.get("Meta de sesiones elegibles y completas")) == (0.7, 60) and (ec.PRE_MIN, ec.PRE_MAX, ec.ALFA_MIN, ec.SESIONES_META, ec.SESIONES_CIERRE) == (5, 15, 0.70, 60, 30) else "DISCREPANCIA")
+    demo = [f for f in ("ingest_real_lote.py", "analizar_piloto.py", "congelar_modelo.py") if "--demo-simulada" in (ROOT / "scripts" / f).read_text(encoding="utf-8")]
+    ejecuciones = sorted((ROOT / "evidencias" / "simulado_demostracion").glob("*")) if existe("evidencias/simulado_demostracion") else []
+    reg("Protocolo 2.14 (datos simulados)", "todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real",
+        f"modo --demo-simulada en {len(demo)} scripts ({', '.join(demo)}); {len(ejecuciones)} ejecuciones de demostración guardadas; el tablero cuenta los simulados aparte",
+        "PLANIFICADO" if not ejecuciones else "NOTA", "la demostración completa se ejecuta solo cuando el tesista la pide" if not ejecuciones else "")
+
     # ============================================================ salida
     ERRATAS = {"«corpus_metadata.csv (v2)»": "E1", "«dataset_split.csv (V1.1)»": "E2", "F1 test 0.634": "E3",
                "partición V1.1 (ejecutada): 70 %": "E4", "37 incidencias registradas": "E5"}
@@ -258,23 +301,23 @@ def main():
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
     disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     con_errata = sum(1 for f in disc if errata_de(f))
-    L = ["# Verificación de referencias y cifras — protocolo V1.3 (v6) y Nota de Desviación (v6)", "",
+    L = ["# Verificación de referencias y cifras — protocolo V1.4 (v7) y Nota de Desviación (v7)", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
-         "del protocolo V1.3 (v6) y de la Nota (v6), que este script no modifica.", "",
+         "del protocolo V1.4 (v7) y de la Nota (v7), que este script no modifica.", "",
          f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
-         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 y v6)", "",
+         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5, v6 y v7)", "",
          "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
     for i, f in enumerate(FILAS, 1):
         d, dice, repo, est, nota = f
         L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {errata_de(f) or '—'} | {nota} |".replace("\n", " "))
     L += ["", "## No verificable con el repositorio (no se comprobó)", "",
           "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), "
-          "línea base y post-test de P01 y P12–P14 (simulados), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
+          "línea base y post-test de P01 y P12–P14 (simulados), el avance real de cada compuerta (hoy ninguna cumplida con datos reales; ver logs/avance/estado_compuertas.md), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
           "(planificados), y la redacción metodológica."]
     if disc:
         L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
             f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
-    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v6.md"
+    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v7.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

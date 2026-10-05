@@ -21,6 +21,10 @@ Encabezados: la fuente de verdad es la fila 3 de la hoja Sesiones de Registro_Se
 intención esperada, contrastada con --catalogo), Parametros (rangos a minutos, modelo congelado) y Resumen (contraste de las cifras: avisa si
 difieren de las calculadas aquí).
 
+Modo de demostración (--demo-simulada, implica --permitir-simulado; exige --registro con Registro_Sesiones_Piloto_SIMULADO_v4.xlsx): escribe solo en
+evidencias/simulado_demostracion/<ejecución>/, crea ahí un modelo de demostración y modelo_congelado_SIMULADO.json (no toca el modelo real) y usa un predictor SIMULADO;
+marca cada archivo como SIMULADO y se niega a escribir en las carpetas reales.
+
 Todo resultado sale rotulado REAL (o SIMULADO) con el n efectivo. Es exploratorio, nunca confirmatorio.
 
 Uso:
@@ -280,6 +284,27 @@ def predictor_modelo(ruta_modelo):
     return _pred
 
 
+def predictor_demostracion(catalogo):
+    """Predictor SIMULADO para --demo-simulada: reconoce la situación de la consulta «[SIMULACIÓN …] <texto de la tarjeta>» y acierta con probabilidad ~0,7 según un
+    valor reproducible del texto. No es un modelo ni un resultado."""
+    import hashlib
+    cat = pd.read_csv(catalogo, dtype=str)
+    por_texto = {" ".join(t.split()): i for t, i in zip(cat["situacion"], cat["intent_esperada"])}
+    otras = sorted(set(cat["intent_esperada"]))
+
+    def _pred(textos):
+        out = []
+        for t in textos:
+            limpio = " ".join(re.sub(r"^\W*\[[^\]]*\]\s*", "", str(t)).split())
+            h = int(hashlib.md5(limpio.encode("utf-8")).hexdigest(), 16)
+            real = por_texto.get(limpio)
+            acierta = real is not None and (h % 100) < 70
+            intent = real if acierta else otras[h % len(otras)]
+            out.append((intent, 0.55 + (h % 40) / 100, 0.10))
+        return out
+    return _pred
+
+
 def cargar_congelado(ruta):
     ruta = Path(ruta)
     if not ruta.exists():
@@ -501,7 +526,21 @@ def main(argv=None, predictor=None):
     ap.add_argument("--mapa-columnas", default="", help="JSON {campo: encabezado} para los nombres que no se reconocen solos")
     ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: escribe en una carpeta temporal y rotula _SIMULADO")
     ap.add_argument("--motivo", default="", help="obligatorio para repetir la prueba final")
+    ap.add_argument("--demo-simulada", action="store_true", help="demostración con datos simulados: escribe en evidencias/simulado_demostracion/<ejecución>/ con el marcador SIMULADO")
+    ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración (por defecto, fecha y hora)")
+    ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas
     a = ap.parse_args(argv)
+    demo = bool(a.demo_simulada)
+    if demo:
+        import congelar_modelo
+        if a.modelo_congelado != ap.get_default("modelo_congelado"):
+            sys.exit("ERROR: con --demo-simulada se usa un modelo de demostración propio; no se acepta --modelo-congelado (no se toca el modelo real).")
+        pedidas = [a.salida] if a.salida != ap.get_default("salida") else []
+        carpeta = ds.preparar_demo("analizar_piloto", a.registro, a.demo_raiz or None, a.ejecucion, pedidas)
+        a.salida = str(carpeta)
+        a.permitir_simulado = True
+        a.modelo_congelado = str(congelar_modelo.crear_demo(carpeta))
+        predictor = predictor or predictor_demostracion(a.catalogo)
 
     mapa_usr = json.loads(Path(a.mapa_columnas).read_text(encoding="utf-8")) if a.mapa_columnas else None
     df, cab, ctx, excl = leer_registro(a.registro, mapa_usr, a.permitir_simulado)
@@ -510,7 +549,7 @@ def main(argv=None, predictor=None):
     simulado = bool(a.permitir_simulado)
     sufijo = "_SIMULADO" if simulado else ""
     salida = Path(a.salida)
-    if simulado:
+    if simulado and not demo:
         tmp = Path(tempfile.gettempdir()).resolve()
         if tmp not in salida.resolve().parents and salida.resolve() != tmp:
             salida = Path(tempfile.mkdtemp(prefix="piloto_simulado_"))
@@ -575,6 +614,9 @@ def main(argv=None, predictor=None):
                             "motivo": a.motivo.strip(), "rotulo": R["rotulo"]}, ensure_ascii=False) + "\n")
     print(informe_md(R))
     print(f"Guardado en {salida}")
+    if demo:
+        marcados = ds.marcar_directorio(salida)
+        print(f"DEMOSTRACIÓN SIMULADA: {len(marcados)} archivos marcados «{ds.MARCA_ESTADO}» en {salida}")
     return R
 
 

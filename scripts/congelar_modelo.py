@@ -6,6 +6,8 @@ son el conjunto de prueba final del modelo congelado y NO se usan para ajustarlo
 
   * Si ya existe un congelamiento, el script se niega a sobrescribirlo. Para rehacerlo hay que pasar --forzar --motivo "<texto>"; el motivo se
     agrega a incident_log.csv (el congelamiento anterior se conserva como modelo_congelado_<fecha>.json).
+  * --demo-simulada no congela el modelo real: escribe un modelo de demostración (modelo_demostracion_SIMULADO.tar.gz, un texto, no un modelo Rasa) y
+    modelo_congelado_SIMULADO.json en evidencias/simulado_demostracion/<ejecución>/, nunca en logs/v3_real/.
   * --verificar recalcula las huellas y compara con el congelamiento (código de salida 1 si algo cambió). analizar_piloto.py lo usa antes de evaluar.
 
 Uso:
@@ -22,6 +24,7 @@ from datetime import date, datetime, timezone
 from importlib import metadata
 from pathlib import Path
 
+import deteccion_simulado as ds
 from common import ROOT, file_sha256, git_commit
 
 SALIDA = ROOT / "logs" / "v3_real" / "modelo_congelado.json"
@@ -92,6 +95,24 @@ def agregar_incidente(motivo, anterior, nuevo):
         w.writerow(fila)
 
 
+def crear_demo(carpeta):
+    """Modelo de DEMOSTRACIÓN (un texto con otro nombre de archivo) y su modelo_congelado_SIMULADO.json dentro de `carpeta`. No toca el modelo real ni logs/v3_real."""
+    carpeta = Path(carpeta)
+    modelo = carpeta / "modelo_demostracion_SIMULADO.tar.gz"
+    modelo.write_text(ds.MARCA_ESTADO + "\nModelo de demostración: no es un modelo Rasa entrenado.\n", encoding="utf-8")
+    config = ROOT / "configs" / "rasa_config_v3_fallback.yml"
+    dominio = ROOT / "domain_v3.yml"
+    fz = {"fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"), "zona_horaria": "UTC", "estado": "SIMULADO — modelo de demostración; NO es el modelo congelado del piloto",
+          "protocolo": "V1.4", "modelo_nombre": modelo.name, "python": platform.python_version(), "commit": git_commit(),
+          "archivos": {"modelo": str(modelo), "config": rel(config), "dominio": rel(dominio)},
+          "sha256": {"modelo": file_sha256(modelo), "config": file_sha256(config), "dominio": file_sha256(dominio)},
+          "versiones": versiones(), "umbral_t": None, "advertencia": "Demostración simulada: sin umbral de confianza.",
+          "nota": "Congelamiento de DEMOSTRACIÓN. El modelo real se congela solo después de G3 y G4 (protocolo 2.14)."}
+    ruta = carpeta / "modelo_congelado_SIMULADO.json"
+    ruta.write_text(json.dumps(fz, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return ruta
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--modelo", help="modelo Rasa entrenado (.tar.gz)")
@@ -103,7 +124,19 @@ def main():
     ap.add_argument("--forzar", action="store_true", help="rehacer un congelamiento existente (exige --motivo)")
     ap.add_argument("--motivo", default="")
     ap.add_argument("--verificar", action="store_true", help="solo comprueba que nada cambió desde el congelamiento")
+    ap.add_argument("--demo-simulada", action="store_true", help="congela un modelo de DEMOSTRACIÓN en evidencias/simulado_demostracion/<ejecución>/ (nunca el real)")
+    ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración")
+    ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)
     a = ap.parse_args()
+    if a.demo_simulada:
+        if a.verificar or a.forzar:
+            sys.exit("ERROR: --demo-simulada no se combina con --verificar ni --forzar.")
+        pedidas = [a.salida] if a.salida != ap.get_default("salida") else []
+        carpeta = ds.preparar_demo("congelar_modelo", None, a.demo_raiz or None, a.ejecucion, pedidas)
+        crear_demo(carpeta)
+        marcados = ds.marcar_directorio(carpeta)
+        print(f"DEMOSTRACIÓN SIMULADA: modelo de demostración y modelo_congelado_SIMULADO.json en {carpeta} ({len(marcados)} archivos marcados). No se tocó logs/v3_real.")
+        return
     salida = Path(a.salida)
 
     if a.verificar:

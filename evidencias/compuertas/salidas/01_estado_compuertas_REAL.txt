@@ -1,0 +1,29 @@
+inicio: 2026-10-05 06:25:29
+$ python scripts/estado_compuertas.py   (tablero REAL del repositorio)
+# Estado de las compuertas de avance (protocolo 2.14)
+
+**Compuertas cumplidas con datos reales: 0 de 7.** Cumplidas con datos simulados: 0 (no cuentan como reales).
+
+Generado el 2026-10-05 06:25 por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.
+
+| Compuerta | Criterio | Estado | Datos | Evidencia | Nota |
+|---|---|---|---|---|---|
+| **G1** Lote 1 completo | «Listo para la Parte B»: ≥ 15 transcritos, 0 sin consentimiento, cada intención ≥ 3 frases | **Pendiente (sin evidencia)** | — | falta logs/v3_real/ingesta_reporte.txt | Ejecuta ingest_real_lote.py --libro con el libro de transcripción lleno. |
+| **G2** Parte B ejecutada | Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista | **Pendiente (sin evidencia)** | — | falta logs/v3_real/ingesta_reporte.txt | Primero la ingesta de la Parte B. |
+| **G3** Calidad con lenguaje real | ≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75 | **Pendiente (sin evidencia)** | — | faltan logs/avance/ciclos_refinamiento.csv y logs/v3_real/test_registro.json | Sin ciclos de refinamiento ni evaluación del test real. |
+| **G4** Respuestas verificadas | TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin confirmar = 0 | **En curso** | Real | docs/tupa/Verificacion_TUPA_v4.xlsx | Alta pendientes: 23; filas con alerta: 0; Corregir o Coincide sin confirmar: 10 (verificadas 10 de 44). |
+| **G5** Modelo congelado | Modelo congelado válido, después de G3 y G4 | **Pendiente (sin evidencia)** | — | falta logs/v3_real/modelo_congelado.json | Se congela solo después de G3 y G4, justo antes de la primera sesión. |
+| **G6** Pre-piloto | 5–15 sesiones completas y alfa de Cronbach ≥ 0,70 | **Pendiente (sin evidencia)** | — | falta docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx | Registro del pre-piloto (copia del registro de sesiones). |
+| **G7** Sesiones | 60 sesiones elegibles, o cierre declarado con ≥ 30 | **Pendiente (sin evidencia)** | — | falta docs/piloto/privado/Registro_Sesiones_Piloto*.xlsx | Registro de sesiones del piloto (copia llena del registro). |
+
+## Cómo se alimenta (supuestos)
+
+- **G1/G2:** `logs/v3_real/ingesta_reporte.txt` (lo escribe `ingest_real_lote.py --libro`). La marca de revisión de datos personales la crea el tesista: `logs/avance/revision_pii.txt` (nombre y fecha).
+- **G3:** los ciclos de refinamiento medidos sobre validación van en `logs/avance/ciclos_refinamiento.csv` (columnas `ciclo,fecha,f1_macro_validacion`; los anota quien refina); la evaluación única del test real sale de `logs/v3_real/test_registro.json` y `eval_real_resumen.json` (los escribe `eval_real.py`).
+- **G4:** la versión más alta de `docs/tupa/Verificacion_TUPA_v*.xlsx` (hoja Resumen, valores guardados por Excel).
+- **G5:** `logs/v3_real/modelo_congelado.json` (`congelar_modelo.py`).
+- **G6/G7:** los registros llenos van en `docs/piloto/privado/` (fuera de Git) con los nombres `Registro_Sesiones_Prepiloto*.xlsx` y `Registro_Sesiones_Piloto*.xlsx`; el cierre declarado con ≥ 30 sesiones va en `logs/avance/cierre_piloto.txt`.
+- **Simulados:** solo se leen de `evidencias/simulado_demostracion/<ejecución>/` (archivos `*_SIMULADO`, modo `--demo-simulada`) y se muestran siempre como Simulado.
+
+Escrito en C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\logs\avance\estado_compuertas.md y .json
+fin: 2026-10-05 06:25:31

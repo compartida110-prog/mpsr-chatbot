@@ -78,7 +78,8 @@ def docx_parrafos(path):
     return [html.unescape(p).replace("\xa0", " ").strip() for p in ps]
 
 
-def buscar():
+def buscar(patron=None):
+    patron = patron or PATRON
     hits = []
     for r in RAICES:
         base = ROOT / r
@@ -94,7 +95,7 @@ def buscar():
             else:
                 continue  # los PDF repiten el contenido de su .docx; los .xlsx no se auditan por línea
             for i, t in enumerate(lineas, 1):
-                if PATRON.search(t):
+                if patron.search(t):
                     hits.append((rel, i, t.strip(), f.suffix.lower() == ".docx"))
     return hits
 

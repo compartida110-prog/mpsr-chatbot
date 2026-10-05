@@ -1,0 +1,107 @@
+inicio: 2026-10-05 06:25:32
+$ python tests/smoke_lote_real.py   (DATOS FALSOS)
+  from jax import xla_computation as _xla_computation
+  Base: DeclarativeMeta = declarative_base()
+  ).setParseAction(self._family)
+  self._parser.parseString(pattern)
+  self._parser.resetCache()
+[0mCarpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\lote_real_PRUEBA_mz1g83gy
+  [PASS] catálogo real: columnas scenario_id, form, categoria, intent_esperada, situacion
+  [PASS] catálogo real: 54 intenciones del dominio (fuera_de_alcance x3) y 12/11/11/11/11 por formulario
+  [PASS] datos falsos: 56 situaciones, 20 participantes, respuestas = 224
+
+Ingesta: errores bloqueantes
+  [PASS] scenario_id inexistente -> bloquea (código 2) y no genera salidas
+  [PASS] form distinto del participante/situación -> bloquea
+  [PASS] dos respuestas del mismo participante a la misma situación -> bloquea
+  [PASS] participante inexistente -> bloquea
+
+Catálogo: alias de columna e intención en blanco
+  [PASS] catálogo con columna 'category' (alias) también se lee: 224 frases
+  [PASS] catálogo con una intent_esperada vacía -> bloquea y no genera salidas
+  [PASS] categoría del catálogo distinta a la del corpus -> advertencia [7] (no bloquea)
+  [PASS] con el catálogo real: advertencia [7] = 0 (categorías coinciden con el corpus)
+
+Ingesta: advertencias
+  [PASS] con advertencias termina bien (código 0)
+  [PASS] respuesta en blanco: se omite y se informa
+  [PASS] texto de menos de 3 caracteres: 1
+  [PASS] posibles datos personales: 5 frases (DNI, celular, correo, URL, @usuario)
+  [PASS] duplicado exacto entre participantes distintos
+  [PASS] frase idéntica al corpus sintético
+  [PASS] cobertura: lista la intención con menos de 3 frases
+  [PASS] el texto con datos personales NO se borra automáticamente
+  [PASS] ids reales R0001... y source correcta
+
+Ingesta limpia y revisión de etiquetas
+  [PASS] ingesta limpia: código 0 y 224 frases validadas
+  [PASS] plantilla de revisión con columnas vacías
+  [PASS] --aplicar-revision con decisiones vacías -> bloquea
+  [PASS] --aplicar-revision: 222 frases finales (se excluyen las 2 DESCARTAR)
+  [PASS] CAMBIAR usa intent_revisada
+  [PASS] reporte con % cambiado, descartado y kappa (revisora 1 y 2)
+  [PASS] segunda revisora >= 20 % (sin aviso)
+
+Partición v3
+  [PASS] partición: código 0 y verificaciones impresas
+  [PASS] train = 708 sintéticas; validación y test = reales
+  [PASS] cada frase real es su propio grupo REAL_<real_id>
+  [PASS] ninguna frase real en entrenamiento
+  [PASS] 54 intenciones en train, validación y test
+  [PASS] n_val = max(1, n//2) por intención (intención de 4 frases -> 2 y 2)
+  [PASS] reproducible: misma partición con seed 42
+  [PASS] data/v3/nlu_train.yml generado y válido
+  [PASS] data/v3/nlu_validation.yml generado y válido
+  [PASS] data/v3/nlu_test.yml generado y válido
+  [PASS] frase real idéntica a una sintética -> error y sin salidas
+  [PASS] intención con 1 sola frase real -> error (falta en test)
+
+Evaluación (--smoke: 1 combinación de 3 épocas y 1 semilla; resultados NO válidos)
+  [PASS] selección (solo validación) corre y guarda seleccion_final.json
+  [PASS] test: corre, IC95 %, comparación y McNemar en el resumen
+  [PASS] registro del test: 1 evaluación por método
+  [PASS] repetir el test sin motivo -> se niega (regla 3.1)
+  [PASS] con --motivo-test-adicional se permite y queda registrado (svm = 2)
+  [PASS] el test no se evalúa sin seleccion_final.json previo
+  [PASS] archivos de resultados: confusiones, F1 por intención y predicciones con confianza
+
+Validación cruzada agrupada (secundaria; 2 épocas, solo prueba)
+  [PASS] crossval_agrupada.py: folds sin fuga y resumen para baseline y Rasa
+
+Umbral de confianza
+  [PASS] selección del umbral con la validación: congela t y no menciona el test
+  [PASS] tabla para t = 0.30 ... 0.80 y fila 'sin umbral'
+  [PASS] puntaje = aciertos − 2 × errores respondidos
+  [PASS] cobertura/abstenciones coherentes
+  [PASS] re-elegir con el umbral congelado se niega
+  [PASS] evaluación del umbral en test (una vez) con cobertura, errores atrapados y aciertos perdidos
+  [PASS] repetir el test del umbral sin motivo -> se niega
+  [PASS] --escribir-config pone el t congelado y ambiguity_threshold=0.1
+
+Dominio v3, reglas y FallbackClassifier
+  [PASS] rasa data validate con domain_v3.yml + rules_v3.yml + FallbackClassifier: sin conflictos
+  [PASS] entrena el modelo completo con domain_v3 + reglas + FallbackClassifier (3 épocas, solo prueba)
+The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+  [PASS] un texto sin sentido recibe utter_no_entendi
+
+Datos simulados: se rechazan salvo con --permitir-simulado
+  [PASS] el detector marca SIMULADO, SINTÉTICO, SINTETICO y DEMO (sin distinguir mayúsculas ni tildes)
+  [PASS] el detector NO marca «demora», «demostración» ni frases corrientes
+  [PASS] Lote1_Transcripcion_SIMULADO_v2.xlsx (título «SIMULADO») se rechaza sin la opción y no genera salidas
+  [PASS] la copia de prueba tiene los títulos de las hojas limpios (sin SIMULADO, SINTÉTICO ni DEMO)
+  [PASS] y sus Observaciones dicen «Dato sintético de prueba»
+  [PASS] título limpio pero Observaciones «Dato sintético de prueba»: se rechaza sin la opción y no genera salidas
+  [PASS] con --permitir-simulado se acepta, avisa y escribe solo en la carpeta indicada (bajo la temporal)
+  [PASS] --permitir-simulado con las rutas por defecto NO escribe en el repositorio (va a una carpeta temporal)
+  [PASS] un libro sin marcas de simulación (títulos y Observaciones limpios) se acepta sin la opción
+  [PASS] CSV de participantes con Observaciones «Dato sintético de prueba»: se rechaza
+  [PASS] el mismo CSV con --permitir-simulado se acepta
+  [PASS] una frase real que dice «demo» o «demora» NO hace rechazar la ingesta (las frases solo se revisan con el marcador «[SIMULACIÓN…]»)
+  [PASS] una frase que empieza con «[SIMULACIÓN …]» sí se rechaza
+
+Integridad del repositorio
+  [PASS] ningún archivo de docs/lote_real_1, corpus/real, corpus/v3_real, data/v3 ni logs/v3_real cambió durante la prueba
+
+RESULTADO: 72/72 comprobaciones PASS
+Recordatorio: son datos FALSOS de prueba; nada de esto es un resultado.
+fin: 2026-10-05 06:31:05
