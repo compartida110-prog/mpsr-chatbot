@@ -57,9 +57,10 @@ def es_simulado(wb):
     return ds.revisar_libro(wb, hojas_datos=("Participantes", "Blancos"))
 
 
-def leer_seguimiento(wb):
-    if not {"Participantes", "Blancos"} <= set(wb.sheetnames):
-        sys.exit("ERROR: el libro no tiene las hojas Participantes y Blancos (¿es la plantilla v3?).")
+def leer_seguimiento(wb, exigir_blancos=True):
+    if not ({"Participantes", "Blancos"} if exigir_blancos else {"Participantes"}) <= set(wb.sheetnames):
+        sys.exit("ERROR: el libro no tiene las hojas Participantes y Blancos (¿es la plantilla v3?). "
+                 "(Sin hoja Blancos hay que pasar --blancos-derivados con los blancos del libro de transcripción.)")
     ws = wb["Participantes"]
     if texto(ws.cell(HDR_PART, 1).value) != "Código":
         sys.exit(f"ERROR: se esperaba el encabezado 'Código' en la fila {HDR_PART} de Participantes (¿es la plantilla v3?).")
@@ -70,11 +71,12 @@ def leer_seguimiento(wb):
             break
         part.append({"codigo": c, "fila": r, "form": forma_de(c), **{k: texto(ws.cell(r, v).value) for k, v in COL.items() if k != "codigo"}})
     bl = []
-    wb_ = wb["Blancos"]
-    for r in range(HDR_BLANC + 1, wb_.max_row + 1):
-        c, s = texto(wb_.cell(r, 1).value), texto(wb_.cell(r, 2).value)
-        if c or s:
-            bl.append({"codigo": c, "sit": s, "fila": r})
+    if "Blancos" in wb.sheetnames:
+        wb_ = wb["Blancos"]
+        for r in range(HDR_BLANC + 1, wb_.max_row + 1):
+            c, s = texto(wb_.cell(r, 1).value), texto(wb_.cell(r, 2).value)
+            if c or s:
+                bl.append({"codigo": c, "sit": s, "fila": r})
     params = {"meta": 4, "minimo": 3, "min_part": 15}
     if "Resumen" in wb.sheetnames:
         rs = wb["Resumen"]
@@ -92,6 +94,8 @@ def main():
     ap.add_argument("--respuestas", default=str(ROOT / "corpus" / "real" / "lote1_respuestas.csv"))
     ap.add_argument("--out-participantes", default=str(ROOT / "corpus" / "real" / "lote1_participantes.csv"))
     ap.add_argument("--log-dir", default=str(LOGS / "v3_real"))
+    ap.add_argument("--blancos-derivados", default="", help="lote1_blancos_derivados.csv del libro de transcripción (ingest_real_lote.py --libro): fuente de los blancos; "
+                    "si el seguimiento también tiene hoja Blancos, se comparan e informan las diferencias")
     ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta un libro simulado y escribe en una carpeta temporal")
     a = ap.parse_args()
 
@@ -113,7 +117,20 @@ def main():
         print(msg)
         sys.exit(2)
 
-    part, bl, params = leer_seguimiento(wb)
+    part, bl, params = leer_seguimiento(wb, exigir_blancos=not a.blancos_derivados)
+    dif_blancos = []
+    if a.blancos_derivados:
+        if not Path(a.blancos_derivados).exists():
+            sys.exit(f"ERROR: no existe {a.blancos_derivados}.")
+        der = pd.read_csv(a.blancos_derivados, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+        if not {"participant_code", "scenario_id"} <= set(der.columns):
+            sys.exit(f"ERROR: a {a.blancos_derivados} le faltan las columnas participant_code y scenario_id.")
+        der_set = set(zip(der["participant_code"], der["scenario_id"]))
+        if len(bl):  # el seguimiento también trae hoja Blancos: se compara; no se edita ningún archivo
+            seg_set = set(zip(bl["codigo"], bl["sit"]))
+            dif_blancos = ([f"({c}, {s}): figura en la hoja Blancos del seguimiento pero el libro de transcripción NO lo tiene como blanco" for c, s in sorted(seg_set - der_set)]
+                           + [f"({c}, {s}): el libro de transcripción lo tiene en blanco pero NO figura en la hoja Blancos del seguimiento" for c, s in sorted(der_set - seg_set)])
+        bl = pd.DataFrame([{"codigo": c, "sit": s, "fila": i + 2} for i, (c, s) in enumerate(zip(der["participant_code"], der["scenario_id"]))], columns=["codigo", "sit", "fila"])
     cat = pd.read_csv(a.situaciones, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     resp = pd.read_csv(a.respuestas, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     for c in ("participant_code", "form", "scenario_id", "text"):
@@ -127,7 +144,7 @@ def main():
     form_part = dict(zip(part["codigo"], part["form"])) if len(part) else {}
     estado = dict(zip(part["codigo"], part["estado"])) if len(part) else {}
     D = {k: [] for k in ("ausente", "blanco_con_respuesta", "transcrito_sin_respuestas", "resp_sin_participante", "resp_no_transcrito",
-                         "blanco_invalido", "resp_situacion_invalida", "estado_invalido", "datos_incompletos", "blanco_duplicado")}
+                         "blanco_invalido", "resp_situacion_invalida", "estado_invalido", "datos_incompletos", "blanco_duplicado", "blancos_distintos")}
 
     # ---- participantes
     for p in part.itertuples():
@@ -192,7 +209,9 @@ def main():
                "transcrito_sin_respuestas": "Participante Transcrito sin respuestas", "resp_sin_participante": "Respuestas de participantes que no están en el seguimiento",
                "resp_no_transcrito": "Respuestas de participantes que no están en estado Transcrito", "blanco_invalido": "Blancos inválidos",
                "blanco_duplicado": "Blancos repetidos", "resp_situacion_invalida": "Respuestas a situaciones inválidas",
-               "estado_invalido": "Estados inválidos", "datos_incompletos": "Datos incompletos para exportar"}
+               "estado_invalido": "Estados inválidos", "datos_incompletos": "Datos incompletos para exportar",
+               "blancos_distintos": "Blancos del seguimiento distintos de los derivados del libro de transcripción"}
+    D["blancos_distintos"] = dif_blancos
     n_disc = sum(len(v) for v in D.values())
     L = [f"CONCILIACIÓN DEL SEGUIMIENTO — {seg_path.name}", "",
          f"Participantes en el seguimiento: {len(part)} | Transcritos: {n_transcritos} | blancos registrados: {len(bl)} | filas de respuestas: {len(resp)} ({len(con_texto)} con texto)",

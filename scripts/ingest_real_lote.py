@@ -23,6 +23,15 @@ Modo --aplicar-revision
 
 Nunca genera ni completa frases reales: solo transforma lo que el tesista transcribió.
 
+Libro de transcripción (--libro): se lee directamente el .xlsx (solo lectura; no se exporta a CSV desde Excel). Las columnas de entrada son valores escritos a mano:
+  Participantes: participant_code, form, Estado, age_range, vive_en_juliaca, tramite_12m, Consentimiento firmado
+  Respuestas:    participant_code, form, scenario_id, text      (el encabezado se busca por texto en las primeras 10 filas)
+Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P25,
+Estado fuera de la lista, o una pestaña Situaciones que no coincide con el catálogo (scenario_id, form, intención y texto). Un texto vacío o de solo espacios es un blanco:
+no se exporta como respuesta pero se registra como blanco derivado. Salidas en --out-dir (por defecto corpus/real): lote1_respuestas.csv, lote1_participantes.csv y
+lote1_blancos_derivados.csv (participant_code, scenario_id), UTF-8, coma, sin filas vacías; después sigue la ingesta de siempre. El reporte agrega «¿Listo para la Parte B?».
+Los CSV de corpus/real/ pueden traer frases de personas reales: revisa el reporte (datos personales) antes de subir nada a GitHub.
+
 Datos simulados: se NIEGA a ingerir un libro (--libro) o unos CSV con SIMULADO, SINTÉTICO, SINTETICO o DEMO en el título de una hoja, en cualquier celda de texto de
 Participantes o en una columna Observaciones (las frases de las personas solo se revisan con el marcador «[SIMULACIÓN …]»). Con --permitir-simulado los lee solo para
 probar el código y escribe únicamente en una carpeta temporal (ver deteccion_simulado.py).
@@ -34,7 +43,9 @@ Uso:
 """
 import argparse
 import re
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 import pandas as pd
@@ -151,6 +162,10 @@ def ingestar(a):
           f"Respuestas recibidas: {len(res) + len(vacios)} | en blanco (omitidas): {len(vacios)} | validadas: {len(res)}",
           f"Situaciones del catálogo: {len(cat)} | intenciones cubiertas: {int((cobertura > 0).sum())}/{len(intents)}", ""]
     L.append(f"ADVERTENCIAS (no se corrigen solas; resuélvelas en lote1_respuestas.csv y vuelve a ejecutar):")
+    info = getattr(a, "info_libro", None)
+    if info:
+        L.insert(2, f"Libro de transcripción: {info['transcritos']} participantes Transcritos (mínimo {info['min_part']}) | blancos derivados (vacíos o solo espacios, no exportados como respuesta): {info['blancos_derivados']}"
+                    + (f" | respuestas de participantes NO Transcritos ignoradas: {info['no_transcritos_con_texto']}" if info["no_transcritos_con_texto"] else ""))
     L.append(f"  [1] Respuestas en blanco omitidas: {len(vacios)}" + (f" -> {vacios['participant_code'].tolist()[:15]} / {vacios['scenario_id'].tolist()[:15]}" if len(vacios) else ""))
     L.append(f"  [2] Texto de menos de 3 caracteres (fuera de las intenciones exentas): {len(cortos)}" + (f" -> {cortos['real_id'].tolist()}" if len(cortos) else ""))
     L.append(f"  [3] Posibles datos personales: {len(pii)} frases" + (" — NO SUBIR A GITHUB hasta editarlas" if pii else ""))
@@ -165,6 +180,10 @@ def ingestar(a):
     L += ["", "Frases validadas por intención:"] + [f"  {i:<38}{int(n):>3}" for i, n in cobertura.items()]
     n_adv = len(vacios) + len(cortos) + len(pii) + dup["_norm"].nunique() + len(ident_sint) + len(pocas) + len(dif_cat)
     L += ["", f"Total de advertencias: {n_adv}. Esta etapa no genera ni completa frases: si faltan, hay que recolectarlas."]
+    if info:
+        listo = info["transcritos"] >= info["min_part"] and len(pocas) == 0
+        L.append(f"¿Listo para la Parte B? {'SÍ' if listo else 'NO'} (transcritos {info['transcritos']}/{info['min_part']}, intenciones con menos de {MIN_FRASES} frases: {len(pocas)}). "
+                 "No sigas a la Parte B sin que el tesista revise este reporte.")
     rep_path.write_text("\n".join(L) + "\n", encoding="utf-8")
 
     # ------------------------------------------------------------ salidas
@@ -245,14 +264,15 @@ def aplicar_revision(a):
     print(f"\nSalidas: {out / 'lote1_real_final.csv'}, {log}")
 
 
-def hoja_a_tabla(wb, nombre, columnas):
-    """Hoja del libro de transcripción -> DataFrame con las columnas pedidas (encabezado exacto buscado en las primeras 10 filas)."""
+def hoja_a_tabla(wb, nombre, columnas, ancla=None):
+    """Hoja del libro de transcripción -> DataFrame con las columnas pedidas (encabezado exacto buscado por texto en las primeras 10 filas)."""
     if nombre not in wb.sheetnames:
         sys.exit(f"ERROR: el libro no tiene la hoja {nombre}.")
+    ancla = ancla or columnas[0]
     filas = list(wb[nombre].iter_rows(values_only=True))
-    fe = next((i for i, f in enumerate(filas[:10]) if f and f[0] == "participant_code"), None)
+    fe = next((i for i, f in enumerate(filas[:10]) if f and f[0] == ancla), None)
     if fe is None:
-        sys.exit(f"ERROR: no encuentro el encabezado «participant_code» en las primeras 10 filas de la hoja {nombre}.")
+        sys.exit(f"ERROR: no encuentro el encabezado «{ancla}» en las primeras 10 filas de la hoja {nombre}.")
     enc = [("" if c is None else str(c).strip()) for c in filas[fe]]
     faltan = [c for c in columnas if c not in enc]
     if faltan:
@@ -261,20 +281,93 @@ def hoja_a_tabla(wb, nombre, columnas):
     return pd.DataFrame(datos, columns=columnas)
 
 
+ESTADOS_LIBRO = {"Pendiente", "Aplicado", "Transcrito"}
+CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2[0-5])$")
+COLS_PART = ["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado"]
+
+
+def procesar_libro(wb, a):
+    """Valida el libro, exporta los tres CSV y deja a.participantes / a.respuestas apuntando a ellos. Devuelve (errores, info)."""
+    part = hoja_a_tabla(wb, "Participantes", COLS_PART)
+    resp = hoja_a_tabla(wb, "Respuestas", ["participant_code", "form", "scenario_id", "text"])
+    sit = hoja_a_tabla(wb, "Situaciones", ["scenario_id", "form", "Intención esperada", "Situación"], ancla="scenario_id")
+    min_part = 15
+    if "Parametros" in wb.sheetnames:
+        for f in wb["Parametros"].iter_rows(values_only=True):
+            if f and isinstance(f[0], str) and f[0].startswith("Mínimo de participantes transcritos") and isinstance(f[1], (int, float)):
+                min_part = int(f[1])
+    errores = []
+    for nombre, tabla in (("Participantes", part), ("Respuestas", resp)):
+        malos = sorted({c for c in tabla["participant_code"] if not CODIGO_LIBRO.match(c)})
+        if malos:
+            errores.append(f"{nombre}: códigos fuera de P01–P25: {malos}")
+    malos = part[~part["Estado"].isin(ESTADOS_LIBRO)]
+    if len(malos):
+        errores.append(f"Participantes: Estado fuera de la lista {sorted(ESTADOS_LIBRO)}: {[(c, e) for c, e in zip(malos['participant_code'], malos['Estado'])][:10]}")
+    transcritos = part[part["Estado"] == "Transcrito"]
+    sin_consent = transcritos[transcritos["Consentimiento firmado"] != "Sí"]
+    for c in sin_consent["participant_code"]:
+        errores.append(f"{c}: está Transcrito pero «Consentimiento firmado» no es «Sí»")
+    # la pestaña Situaciones debe coincidir con el catálogo
+    if Path(a.situaciones).exists():
+        cat = pd.read_csv(a.situaciones, dtype=str, keep_default_na=False, encoding="utf-8-sig").set_index("scenario_id")
+        col_txt = next((c for c in ("situacion", "situación") if c in cat.columns), None)
+        lib = sit.set_index("scenario_id")
+        for sid in sorted(set(cat.index) | set(lib.index)):
+            if sid not in lib.index:
+                errores.append(f"Situaciones: falta {sid}, que está en el catálogo")
+            elif sid not in cat.index:
+                errores.append(f"Situaciones: {sid} no está en el catálogo")
+            else:
+                if lib.loc[sid, "form"] != cat.loc[sid, "form"]:
+                    errores.append(f"Situaciones {sid}: formulario '{lib.loc[sid, 'form']}' y el catálogo dice '{cat.loc[sid, 'form']}'")
+                if lib.loc[sid, "Intención esperada"] != cat.loc[sid, "intent_esperada"]:
+                    errores.append(f"Situaciones {sid}: intención '{lib.loc[sid, 'Intención esperada']}' y el catálogo dice '{cat.loc[sid, 'intent_esperada']}'")
+                if col_txt and " ".join(lib.loc[sid, "Situación"].split()) != " ".join(cat.loc[sid, col_txt].split()):
+                    errores.append(f"Situaciones {sid}: el texto de la situación difiere del catálogo")
+    info = {"transcritos": len(transcritos), "min_part": min_part, "no_transcritos_con_texto": 0}
+    if errores:
+        return errores, info
+    # ---- solo Transcrito; en blanco = vacío o solo espacios (ya recortado)
+    codigos = set(transcritos["participant_code"])
+    de_otros = resp[~resp["participant_code"].isin(codigos) & (resp["text"] != "")]
+    info["no_transcritos_con_texto"] = len(de_otros)
+    resp = resp[resp["participant_code"].isin(codigos)]
+    blancos = resp[resp["text"] == ""][["participant_code", "scenario_id"]].sort_values(["participant_code", "scenario_id"])
+    con_texto = resp[resp["text"] != ""][["participant_code", "form", "scenario_id", "text"]]
+    out = Path(tempfile.mkdtemp(prefix="lote1_libro_"))  # carpeta de paso: los CSV solo pasan a --out-dir si la ingesta termina sin errores bloqueantes
+    pp, rp, bp = out / "lote1_participantes.csv", out / "lote1_respuestas.csv", out / "lote1_blancos_derivados.csv"
+    transcritos[["participant_code", "form", "age_range", "vive_en_juliaca", "tramite_12m"]].sort_values("participant_code").to_csv(pp, index=False, encoding="utf-8")
+    con_texto.to_csv(rp, index=False, encoding="utf-8")
+    blancos.to_csv(bp, index=False, encoding="utf-8")
+    a.participantes, a.respuestas = str(pp), str(rp)
+    info["blancos_derivados"] = len(blancos)
+    info["paso"] = str(out)
+    return [], info
+
+
+def publicar_exportaciones(a):
+    """Copia los tres CSV del libro de la carpeta de paso a --out-dir (solo si la ingesta no encontró errores bloqueantes)."""
+    paso, out = Path(a.info_libro["paso"]), Path(a.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    for nombre in ("lote1_respuestas.csv", "lote1_participantes.csv", "lote1_blancos_derivados.csv"):
+        shutil.copyfile(paso / nombre, out / nombre)
+    shutil.rmtree(paso, ignore_errors=True)
+    print(f"Exportados desde el libro: {out / 'lote1_respuestas.csv'}, {out / 'lote1_participantes.csv'}, {out / 'lote1_blancos_derivados.csv'}")
+
+
 def revisar_origen(a):
     """Rechaza datos simulados (libro o CSV) salvo con --permitir-simulado; con el libro, lo convierte a dos CSV temporales (el libro solo se lee)."""
-    import tempfile
-
     from openpyxl import load_workbook
-    motivo, tabla_part, tabla_resp = "", None, None
+    motivo, pendiente_libro = "", None
     if a.libro:
         wb = load_workbook(a.libro, read_only=True, data_only=True)
         try:
             motivo = ds.revisar_libro(wb, hojas_datos=("Participantes", "Respuestas"))
-            tabla_part = hoja_a_tabla(wb, "Participantes", ["participant_code", "form", "age_range", "vive_en_juliaca", "tramite_12m"])
-            tabla_resp = hoja_a_tabla(wb, "Respuestas", ["participant_code", "form", "scenario_id", "text"])
+            if not (motivo and not a.permitir_simulado):
+                pendiente_libro = wb
         finally:
-            wb.close()
+            pass
     else:
         for ruta, nombre in ((a.participantes, "participantes"), (a.respuestas, "respuestas")):
             if Path(ruta).exists():
@@ -288,10 +381,18 @@ def revisar_origen(a):
         a.out_dir, a.log_dir = str(tmp), str(tmp)
         print(f"AVISO (--permitir-simulado): datos SIMULADOS ({motivo}). Las salidas van a la carpeta temporal {tmp} y no son evidencia.")
     if a.libro:
-        tmp_csv = Path(tempfile.mkdtemp(prefix="lote1_libro_"))
-        tabla_part.to_csv(tmp_csv / "participantes.csv", index=False, encoding="utf-8")
-        tabla_resp.to_csv(tmp_csv / "respuestas.csv", index=False, encoding="utf-8")
-        a.participantes, a.respuestas = str(tmp_csv / "participantes.csv"), str(tmp_csv / "respuestas.csv")
+        try:
+            errores, info = procesar_libro(pendiente_libro, a)
+        finally:
+            pendiente_libro.close()
+        a.info_libro = info
+        if errores:
+            log = Path(a.log_dir) / "ingesta_reporte.txt"
+            log.parent.mkdir(parents=True, exist_ok=True)
+            txt = ["INGESTA DEL LOTE 1 — ERRORES BLOQUEANTES DEL LIBRO (no se generó ninguna salida)", ""] + [f"  - {e}" for e in errores]
+            log.write_text("\n".join(txt) + "\n", encoding="utf-8")
+            print("\n".join(txt))
+            sys.exit(2)
 
 
 def main():
@@ -311,7 +412,12 @@ def main():
     a = ap.parse_args()
     if not a.aplicar_revision:
         revisar_origen(a)
-    aplicar_revision(a) if a.aplicar_revision else ingestar(a)
+    if a.aplicar_revision:
+        aplicar_revision(a)
+    else:
+        ingestar(a)
+        if getattr(a, "info_libro", None):
+            publicar_exportaciones(a)
 
 
 if __name__ == "__main__":
