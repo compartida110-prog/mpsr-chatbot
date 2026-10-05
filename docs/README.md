@@ -13,4 +13,4 @@
 | `ERRATAS_protocolo_V1.2.md` | 5 erratas (E1–E5) al protocolo V1.2 y a la nota, con el texto actual y el corregido, detectadas por `scripts/verificar_referencias.py` | Pendiente de aplicar en los documentos |
 | `lote_real_1/` | Formularios, guía y catálogo de situaciones (`situaciones_lote1_v1.csv`) del lote 1 de lenguaje real (ver `lote_real_1/LEEME.md`) | Planificado (listo para aplicar) |
 | `piloto/` | Piloto exploratorio V1.3 (sesión asistida, n = 60): formulario de sesión, registro de sesiones, instrucciones y `ejemplos_simulados/` (registro de demostración sintético) | Planificado |
-| `tupa/` | Hoja de verificación de las respuestas del chatbot contra el TUPA y otras fuentes oficiales (`Verificacion_TUPA_v4.xlsx`; `historico/` guarda la v3). Compuerta G4 | En curso |
+| `tupa/` | Hoja de verificación de las respuestas del chatbot contra el TUPA y otras fuentes oficiales (`Verificacion_TUPA_v5.xlsx`; `historico/` guarda la v3 y la v4). Compuerta G4 | En curso |

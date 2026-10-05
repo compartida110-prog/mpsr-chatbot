@@ -59,8 +59,8 @@ Quedan fuera de la búsqueda: los PDF (repiten el contenido de su .docx), los `.
 
 ## Resultado después de las correcciones
 
-Se volvió a ejecutar la búsqueda el 2026-10-05: 48 coincidencias · HISTÓRICO 17 · VIGENTE 1 · ACTUALIZADO 11 · NO APLICA 19 · SIN CLASIFICAR 0.
+Se volvió a ejecutar la búsqueda el 2026-10-05: 50 coincidencias · HISTÓRICO 18 · VIGENTE 0 · ACTUALIZADO 13 · NO APLICA 19 · SIN CLASIFICAR 0.
 
 Coincidencias VIGENTES que quedan:
 
-- `docs/piloto/Sesion_Asistida_Formulario_v2.docx`:5 (párrafo) — ☐ Compuerta: se cumplió el criterio del pre-piloto (F1 ≥ 0.75 sobre el conjunto real retenido y alfa ≥ 0.70) o consta la decisión de la fecha de corte. → Casilla de la lista de control del formulario (Word del tesista, no se re-guarda): queda PENDIENTE de reemitir el formulario con «compuertas de avance (protocolo 2.14)»
+- ninguna

@@ -234,8 +234,8 @@ def main():
     reg("Protocolo 5.4 (V1.3)", "pruebas de humo con datos falsos (simuladas): 59/59 y 22/22",
         f"{r1[0]}/{r1[1] if r1 else '?'} y {r2[0]}/{r2[1] if r2 else '?'} (últimas salidas guardadas en evidencias/v3_real/salidas/)" if r1 and r2 else "no se encontraron las salidas",
         "OK" if r1 == (59, 59) and r2 == (22, 22) else "DISCREPANCIA")
-    pil = [f for f in ("Sesion_Asistida_Formulario_v2.docx", "Sesion_Asistida_Formulario_v2.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if existe("docs/piloto/" + f)]
-    faltan = [f for f in ("Sesion_Asistida_Formulario_v2.docx", "Sesion_Asistida_Formulario_v2.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if f not in pil]
+    pil = [f for f in ("Sesion_Asistida_Formulario_v3.docx", "Sesion_Asistida_Formulario_v3.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if existe("docs/piloto/" + f)]
+    faltan = [f for f in ("Sesion_Asistida_Formulario_v3.docx", "Sesion_Asistida_Formulario_v3.pdf", "Registro_Sesiones_Piloto_v2.xlsx") if f not in pil]
     reg("Protocolo 5.5 (V1.3, fila de evidencias)", "docs/piloto/ contiene los materiales del piloto: formulario de sesión asistida (guía, paquete por persona y 56 tarjetas) y registro de sesiones",
         "docs/piloto/ existe, pero faltan: " + ", ".join(faltan) if faltan else "los tres archivos están en docs/piloto/",
         "DISCREPANCIA" if faltan else "OK", "el tesista debe aportar estos archivos; no se inventaron" if faltan else "")
@@ -266,7 +266,8 @@ def main():
     reg("Protocolo 2.14 (G3)", "hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más",
         f"tablero: {ec.CICLOS_MAX} ciclos, mejora mínima {ec.MEJORA_MIN}, F1 mínimo {ec.F1_MIN}; eval_real.py {'usa' if '>= 0.75' in src else 'NO usa'} el umbral 0.75 y guarda un registro de cada evaluación del test",
         "OK" if (ec.CICLOS_MAX, ec.MEJORA_MIN, ec.F1_MIN) == (2, 0.02, 0.75) and ">= 0.75" in src and "test_registro" in src else "DISCREPANCIA")
-    tp = ROOT / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx"
+    versiones_tupa = sorted((ROOT / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: int(f.stem.rsplit("_v", 1)[1]))
+    tp = versiones_tupa[-1] if versiones_tupa else ROOT / "docs" / "tupa" / "Verificacion_TUPA_v0.xlsx"
     etiquetas = ("Prioridad Alta pendientes", "Filas con alerta", "Corregir o Coincide sin confirmar por el tesista")
     ok_tupa = tp.exists() and all(k in parametros(tp, "Resumen") or True for k in etiquetas)
     if tp.exists():
@@ -275,7 +276,7 @@ def main():
         wbt.close()
         ok_tupa = all(k in rotulos for k in etiquetas)
     reg("Protocolo 2.14 (G4)", "la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar",
-        "docs/tupa/Verificacion_TUPA_v4.xlsx tiene esas tres cifras en su hoja Resumen" if ok_tupa else "falta docs/tupa/Verificacion_TUPA_v4.xlsx o alguna de las tres cifras", "OK" if ok_tupa else "DISCREPANCIA")
+        f"docs/tupa/{tp.name} (la versión más alta) tiene esas tres cifras en su hoja Resumen" if ok_tupa else "falta una hoja docs/tupa/Verificacion_TUPA_v*.xlsx o alguna de las tres cifras", "OK" if ok_tupa else "DISCREPANCIA")
     rg = parametros(ROOT / "docs" / "piloto" / "Registro_Sesiones_Piloto_v2.xlsx")
     reg("Protocolo 2.14 (G6, G7)", "pre-piloto de 5 a 15 personas con alfa de Cronbach de 0.70 o más; sesiones: cierre en 60 elegibles o con un mínimo de 30 declarado por el tesista",
         f"registro v2: alfa mínimo {rg.get('Alfa de Cronbach mínimo')}, meta {rg.get('Meta de sesiones elegibles y completas')} sesiones; tablero: {ec.PRE_MIN}–{ec.PRE_MAX} sesiones, alfa {ec.ALFA_MIN}, {ec.SESIONES_META} y cierre con {ec.SESIONES_CIERRE}",

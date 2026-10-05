@@ -226,8 +226,12 @@ def g4(W, previos):
     if any(not isinstance(x, (int, float)) for x in v.values()):
         return res(EN_CURSO, W.rel(f), "El Resumen no tiene valores guardados: abre y guarda el archivo en Excel.", sim)
     ok = v["alta"] == 0 and v["alertas"] == 0 and v["sinconf"] == 0
+    # v5 renombró «Verificadas (todo menos Pendiente)» a «Con resultado (propuesto o confirmado)» y agregó «Confirmadas por el tesista»: un resultado propuesto NO es una verificación confirmada
+    con_resultado = resumen.get("Con resultado (propuesto o confirmado)", resumen.get("Verificadas (todo menos Pendiente)"))
+    confirmadas = resumen.get("Confirmadas por el tesista")
     nota = (f"Alta pendientes: {int(v['alta'])}; filas con alerta: {int(v['alertas'])}; Corregir o Coincide sin confirmar: {int(v['sinconf'])}"
-            f" (verificadas {int(resumen.get('Verificadas (todo menos Pendiente)') or 0)} de {int(resumen.get('Respuestas a verificar') or 0)}).")
+            f" (con resultado, propuesto o confirmado: {int(con_resultado or 0)} de {int(resumen.get('Respuestas a verificar') or 0)}"
+            + (f"; confirmadas por el tesista: {int(confirmadas)}" if isinstance(confirmadas, (int, float)) else "") + ").")
     return res(CUMPLIDA if ok else EN_CURSO, W.rel(f), nota, sim, fecha)
 
 

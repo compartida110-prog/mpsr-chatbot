@@ -90,7 +90,7 @@ def snapshot_repo():
     return out
 
 
-def tupa_falso(ruta, alta, alertas, sinconf, fecha):
+def tupa_falso(ruta, alta, alertas, sinconf, fecha, antiguo=False, confirmadas=0):
     wb = Workbook()
     ws = wb.active
     ws.title = "Verificacion"
@@ -99,8 +99,11 @@ def tupa_falso(ruta, alta, alertas, sinconf, fecha):
         ws.cell(3, j, h)
     ws.cell(4, 1, 1); ws.cell(4, 16, fecha)
     rs = wb.create_sheet("Resumen")
-    for i, (k, v) in enumerate([("Respuestas a verificar", 44), ("Verificadas (todo menos Pendiente)", 44 - alta), ("Prioridad Alta pendientes", alta),
-                                ("Filas con alerta", alertas), ("Corregir o Coincide sin confirmar por el tesista", sinconf)], 5):
+    filas = [("Respuestas a verificar", 44), ("Verificadas (todo menos Pendiente)" if antiguo else "Con resultado (propuesto o confirmado)", 44 - alta)]
+    if not antiguo:
+        filas.append(("Confirmadas por el tesista", confirmadas))
+    filas += [("Prioridad Alta pendientes", alta), ("Filas con alerta", alertas), ("Corregir o Coincide sin confirmar por el tesista", sinconf)]
+    for i, (k, v) in enumerate(filas, 5):
         rs.cell(i, 1, k); rs.cell(i, 2, v)
     ruta.parent.mkdir(parents=True, exist_ok=True)
     wb.save(ruta)
@@ -211,20 +214,24 @@ def main():
     # ------------------------------------------------------------------ G4 y G5
     print("\nG4 y G5: respuestas verificadas y orden del congelamiento")
     rg4 = W / "t_g4"
-    tupa_falso(rg4 / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx", 0, 0, 0, "2026-03-01")
-    tupa_falso(rg4 / "docs" / "tupa" / "Verificacion_TUPA_v3.xlsx", 5, 0, 0, "2026-03-01")  # la versión más alta es la que cuenta
+    tupa_falso(rg4 / "docs" / "tupa" / "Verificacion_TUPA_v5.xlsx", 0, 0, 0, "2026-03-01", confirmadas=10)
+    tupa_falso(rg4 / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx", 5, 0, 0, "2026-03-01", antiguo=True)  # la versión más alta es la que cuenta
     c, t, g, _ = tablero(rg4)
-    check("G4 con Alta pendientes = 0, alertas = 0 y sin confirmar = 0 (versión más alta): «Cumplida»", g["G4"]["estado"] == "Cumplida" and "v4" in g["G4"]["evidencia"], str(g["G4"]))
+    check("G4 con Alta pendientes = 0, alertas = 0 y sin confirmar = 0 (versión más alta): «Cumplida»", g["G4"]["estado"] == "Cumplida" and "v5" in g["G4"]["evidencia"] and "confirmadas por el tesista: 10" in g["G4"]["nota"], str(g["G4"]))
     rg4b = W / "t_g4b"
-    tupa_falso(rg4b / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx", 23, 0, 10, "2026-03-01")
+    tupa_falso(rg4b / "docs" / "tupa" / "Verificacion_TUPA_v5.xlsx", 23, 0, 10, "2026-03-01")
     c, t, g, _ = tablero(rg4b)
-    check("G4 con 23 Alta pendientes y 10 sin confirmar: «En curso»", g["G4"]["estado"] == "En curso", str(g["G4"]))
+    check("G4 con 23 Alta pendientes y 10 sin confirmar: «En curso», y dice «con resultado» (propuesto), no «verificadas»", g["G4"]["estado"] == "En curso" and "con resultado, propuesto o confirmado: 21 de 44" in g["G4"]["nota"] and "verificadas" not in g["G4"]["nota"], str(g["G4"]))
+    rg4c = W / "t_g4c"
+    tupa_falso(rg4c / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx", 3, 0, 0, "2026-03-01", antiguo=True)
+    c, t, g, _ = tablero(rg4c)
+    check("una hoja con los rótulos de la v4 (respaldo) también se lee: «En curso» con 3 Alta pendientes", g["G4"]["estado"] == "En curso" and "con resultado, propuesto o confirmado: 41 de 44" in g["G4"]["nota"], str(g["G4"]))
 
     def arbol_g5(nombre, fecha_congelado, alterar=False, con_g3=True):
         r = W / nombre
         if con_g3:
             g3_falso(r, fecha="2026-02-01T10:00:00")
-        tupa_falso(r / "docs" / "tupa" / "Verificacion_TUPA_v4.xlsx", 0, 0, 0, "2026-03-01")
+        tupa_falso(r / "docs" / "tupa" / "Verificacion_TUPA_v5.xlsx", 0, 0, 0, "2026-03-01")
         congelado_falso(r, fecha_congelado, alterar)
         return r
     c, t, g, _ = tablero(arbol_g5("t_g5_antes_g4", "2026-01-01T09:00:00"))

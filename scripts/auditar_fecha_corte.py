@@ -7,7 +7,7 @@ de auditar_diseno_piloto.py.
 Clasificaciones
   HISTÓRICO   docs/historico/, docs/piloto/historico/ y copias de instrucciones anteriores: NO se edita (tampoco incident_log.csv ni evidencias/, que quedan fuera de la búsqueda).
   VIGENTE     texto actual que aún presenta una regla de fecha de corte: se reemplaza con el cambio mínimo por «compuertas de avance (protocolo 2.14)». Nunca se cambia la lógica de un script.
-              Si el texto está en un documento Word del tesista (no se re-guarda), queda anotado como pendiente de reemitir.
+              Si el texto está en un documento Word del tesista (no se re-guarda), queda anotado como pendiente de reemitir (el formulario v3 ya lo corrigió).
   ACTUALIZADO documento o texto ya coherente con la V1.4 (protocolo y nota v7, las instrucciones de este cambio, o el texto ya corregido).
   NO APLICA   «plazo» de un trámite (p. ej. licencia_funcionamiento_plazo) o el plazo del curso como motivo, no como regla de avance.
 
@@ -42,8 +42,7 @@ REGLAS_RUTA = [
 REGLAS_TEXTO = [
     ("README.md", "Si en la fecha de corte el F1 real es", "VIGENTE", "Reemplazar por «compuertas de avance (protocolo 2.14)»"),
     ("README.md", "compuerta: F1 real ≥ 0,75 en la fecha de corte", "VIGENTE", "Reemplazar por «compuertas de avance (protocolo 2.14)»"),
-    ("docs/piloto/Sesion_Asistida_Formulario_v2.docx", "fecha de corte", "VIGENTE",
-     "Casilla de la lista de control del formulario (Word del tesista, no se re-guarda): queda PENDIENTE de reemitir el formulario con «compuertas de avance (protocolo 2.14)»"),
+    ("docs/piloto/LEEME.md", "fecha de corte", "ACTUALIZADO", "Texto nuevo: explica que el formulario v3 reemplazó la casilla de la fecha de corte por las compuertas de avance"),
     ("docs/piloto/LEEME.md", "plazo del curso", "NO APLICA", "El plazo del curso explica el objetivo operativo 5–8 del pre-piloto; no es una regla de avance"),
     # texto ya corregido (aparece solo en la búsqueda posterior)
     ("README.md", "reemplaza la «fecha de corte»", "ACTUALIZADO", "Texto nuevo: explica que la fecha de corte se reemplazó por compuertas de avance"),

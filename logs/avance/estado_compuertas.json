@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-05T06:25:31",
+  "generado": "2026-10-05T10:17:06",
   "compuertas_cumplidas_con_datos_reales": 0,
   "compuertas_cumplidas_con_datos_simulados": 0,
   "total": 7,
@@ -42,8 +42,8 @@
     },
     {
       "estado": "En curso",
-      "evidencia": "docs/tupa/Verificacion_TUPA_v4.xlsx",
-      "nota": "Alta pendientes: 23; filas con alerta: 0; Corregir o Coincide sin confirmar: 10 (verificadas 10 de 44).",
+      "evidencia": "docs/tupa/Verificacion_TUPA_v5.xlsx",
+      "nota": "Alta pendientes: 23; filas con alerta: 0; Corregir o Coincide sin confirmar: 10 (con resultado, propuesto o confirmado: 10 de 44; confirmadas por el tesista: 0).",
       "simulado": false,
       "fecha": "2026-10-05T05:00:00+00:00",
       "estado_base": "En curso",

@@ -1,3 +1,5 @@
+inicio: 2026-10-05 10:17:05
+$ python scripts/estado_compuertas.py   (tablero REAL; TUPA v5, formulario v3)
 # Estado de las compuertas de avance (protocolo 2.14)
 
 **Compuertas cumplidas con datos reales: 0 de 7.** Cumplidas con datos simulados: 0 (no cuentan como reales).
@@ -22,3 +24,6 @@ Generado el 2026-10-05 10:17 por `scripts/estado_compuertas.py` (solo lee; escri
 - **G5:** `logs/v3_real/modelo_congelado.json` (`congelar_modelo.py`).
 - **G6/G7:** los registros llenos van en `docs/piloto/privado/` (fuera de Git) con los nombres `Registro_Sesiones_Prepiloto*.xlsx` y `Registro_Sesiones_Piloto*.xlsx`; el cierre declarado con ≥ 30 sesiones va en `logs/avance/cierre_piloto.txt`.
 - **Simulados:** solo se leen de `evidencias/simulado_demostracion/<ejecución>/` (archivos `*_SIMULADO`, modo `--demo-simulada`) y se muestran siempre como Simulado.
+
+Escrito en C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\logs\avance\estado_compuertas.md y .json
+fin: 2026-10-05 10:17:07
