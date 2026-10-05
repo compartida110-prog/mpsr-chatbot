@@ -1,0 +1,11 @@
+semilla,t,n_total,respondidas,aciertos_respondidos,errores_respondidos,abstenciones,correctas_perdidas,errores_atrapados,cobertura,precision_respondida,puntaje,ESTADO
+10,sin umbral,151,151,131,20,0,0,0,1.0,0.8675,91.0,SIMULADO — datos de prueba; no son hallazgos de campo
+10,0.5,151,132,120,12,19,11,8,0.8742,0.9091,96.0,SIMULADO — datos de prueba; no son hallazgos de campo
+20,sin umbral,151,151,124,27,0,0,0,1.0,0.8212,70.0,SIMULADO — datos de prueba; no son hallazgos de campo
+20,0.5,151,126,116,10,25,8,17,0.8344,0.9206,96.0,SIMULADO — datos de prueba; no son hallazgos de campo
+30,sin umbral,151,151,122,29,0,0,0,1.0,0.8079,64.0,SIMULADO — datos de prueba; no son hallazgos de campo
+30,0.5,151,129,117,12,22,5,17,0.8543,0.907,93.0,SIMULADO — datos de prueba; no son hallazgos de campo
+40,sin umbral,151,151,125,26,0,0,0,1.0,0.8278,73.0,SIMULADO — datos de prueba; no son hallazgos de campo
+40,0.5,151,122,111,11,29,14,15,0.8079,0.9098,89.0,SIMULADO — datos de prueba; no son hallazgos de campo
+50,sin umbral,151,151,126,25,0,0,0,1.0,0.8344,76.0,SIMULADO — datos de prueba; no son hallazgos de campo
+50,0.5,151,127,120,7,24,6,18,0.8411,0.9449,106.0,SIMULADO — datos de prueba; no son hallazgos de campo

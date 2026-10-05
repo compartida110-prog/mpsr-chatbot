@@ -71,8 +71,10 @@ FRICCIONES_BASE = [
      "Se advierte en este informe; no cuenta como real", "Limitación declarada"),
     ("La prueba final de las sesiones usa un predictor SIMULADO (el modelo congelado de demostración es un marcador de texto) y las consultas son el texto de las tarjetas", "por diseño",
      "Se rotula en este informe y en el análisis; su exactitud no evalúa ningún modelo", "Limitación declarada"),
-    ("El umbral de confianza se eligió solo con la validación y no se aplicó al test", "por instrucción",
-     "Es lo pedido; `fallback_threshold.py --fase test` queda disponible para otra demostración", "Declarada"),
+    ("`fallback_threshold.py --fase test` anotaba la aplicación del umbral como una evaluación más del test (`rasa_umbral`), lo que se leía como una segunda evaluación, y no comprobaba que las predicciones fueran las de la evaluación única ni que el umbral se hubiera congelado antes del test", "al verificar el flujo",
+     "La aplicación se anota aparte (`aplicaciones_de_umbral`) y no suma una evaluación; se comprueba que sean las mismas semillas, el mismo número de frases y la misma huella SHA-256, y que el umbral sea anterior al test; `eval_real.py --fase test` lo aplica en la misma pasada si ya hay un umbral congelado", "Resuelta"),
+    ("En esta primera pasada de la demostración el umbral se eligió solo con la validación y no se aplicó al test (por instrucción)", "por instrucción",
+     "Se aplicó después, sobre las predicciones ya guardadas y en la misma carpeta, con `fallback_threshold.py --fase test --demo-simulada` (1,7 s, sin reentrenar ni evaluar de nuevo; etapa 3d). Esas predicciones se guardaron antes de que se registraran huellas: la integridad se comprobó por semillas y número de frases, no por huella", "Resuelta (integridad por huella: limitación declarada)"),
 ]
 
 
@@ -204,13 +206,20 @@ def etapa_evaluacion(d):
     salida, s2 = d.correr("03b_umbral", "fallback_threshold.py", "--out-dir", out, "--fase", "seleccion")
     um = j(out / "umbral_congelado.json")
     d.registrar("3b. Umbral de confianza elegido sobre validación (fallback_threshold.py)", "Ejecutada",
-                f"t = {um['t']}; puntaje en validación {um.get('puntaje_validacion')} (sin umbral: {um.get('puntaje_sin_umbral_validacion')})", s2, "Se eligió y se congeló solo con la validación; no se aplicó al test en esta demostración.")
+                f"t = {um['t']}; puntaje en validación {um.get('puntaje_validacion')} (sin umbral: {um.get('puntaje_sin_umbral_validacion')})", s2, "Se eligió y se congeló solo con la validación, antes de evaluar el test; se aplica al test en la misma pasada de 3c (etapa 3d).")
     salida, s3 = d.correr("03c_test", "eval_real.py", *comun, "--fase", "test")
     res, reg = j(out / "eval_real_resumen.json"), j(out / "test_registro.json")
     rasa, svm = res["metodos"]["rasa"]["f1_macro"], res["metodos"]["svm"]["f1_macro"]
     d.registrar("3c. Evaluación del test, UNA sola vez (eval_real.py --fase test)", "Ejecutada",
                 f"Rasa/DIET F1 macro test = {rasa[0]:.4f} (IC95 % [{rasa[1]:.4f}, {rasa[2]:.4f}]); SVM = {svm[0]:.4f} (IC95 % [{svm[1]:.4f}, {svm[2]:.4f}]). Veces evaluado: {reg['veces_evaluado_por_metodo']}", s3,
                 "Cifras sobre frases generadas: no miden lenguaje real.")
+    if (out / "umbral_test_reporte.txt").exists():  # eval_real.py aplicó el umbral congelado a las predicciones que acababa de guardar
+        ut = pd.read_csv(out / "umbral_test.csv")
+        con, sin = ut[ut["t"] != "sin umbral"], ut[ut["t"] == "sin umbral"]
+        d.registrar("3d. Umbral aplicado a las predicciones guardadas del test (misma pasada de 3c)", "Ejecutada",
+                    f"t = {um['t']}: cobertura {con['cobertura'].mean():.1%}, precisión de lo respondido {con['precision_respondida'].mean():.1%} (sin umbral {sin['precision_respondida'].mean():.1%}), "
+                    f"errores atrapados {con['errores_atrapados'].mean():.1f} y respuestas correctas perdidas {con['correctas_perdidas'].mean():.1f} por semilla", 0,
+                    "No se reentrenó ni se evaluó el test otra vez: se reutilizaron las predicciones de 3c (verificadas por su huella SHA-256).")
     return {"rasa_f1": rasa[0], "svm_f1": svm[0], "t": um["t"]}
 
 

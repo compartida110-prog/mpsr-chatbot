@@ -27,6 +27,10 @@
 2. (Con los CSV ya escritos a mano, sin libro: `python scripts/ingest_real_lote.py`.) La ingesta produce `corpus/real/lote1_real_validado.csv`, `logs/v3_real/ingesta_reporte.txt` y la plantilla de revisión.
 3. Revisar las etiquetas frase por frase (`OK` / `CAMBIAR` / `DESCARTAR`) y `python scripts/ingest_real_lote.py --aplicar-revision`.
 4. `python scripts/split_corpus_v3.py` → partición v3 (entrenamiento sintético; validación y test reales).
-5. `python scripts/eval_real.py` y `python scripts/fallback_threshold.py` (selección en validación; el test se evalúa una sola vez).
+5. Evaluación y umbral, en este orden: `python scripts/eval_real.py --fase seleccion` → `python scripts/fallback_threshold.py` (elige y congela el umbral con la validación) →
+   `python scripts/eval_real.py --fase test`, que evalúa el test **una sola vez** y, en la misma pasada, aplica el umbral congelado a las predicciones que acaba de guardar.
+   Si el test ya se evaluó (con el umbral congelado antes), `python scripts/fallback_threshold.py --fase test` aplica el umbral a las **predicciones ya guardadas**: no entrena, no carga ningún modelo y
+   no evalúa el test otra vez; la aplicación se anota aparte (`aplicaciones_de_umbral` en `test_registro.json`) y no suma una evaluación. Se niega si las predicciones no son las de la evaluación
+   registrada (semillas, número de frases, huella SHA-256), si el umbral se congeló **después** del test, o si ya se aplicó (para repetirlo hace falta `--motivo-test-adicional`, que queda registrado).
 
 **Las frases las deben escribir los participantes.** Si las redactan el tesista o una IA son sintéticas y no sirven para este lote.

@@ -1,0 +1,44 @@
+inicio: 2026-10-05 11:57:52
+$ python tests/smoke_transcripcion.py   (SIMULADA)
+SIMULADA — carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\transcripcion_PRUEBA_SIMULADA_svcy_7xx
+
+Caso normal
+  [PASS] el libro de prueba, con --permitir-simulado, se ingiere (código 0)
+  [PASS] sin la opción, el mismo libro se rechaza y no genera salidas
+  [PASS] 25 transcritos, 273 respuestas con texto y 7 blancos derivados (contados aparte desde el libro)
+  [PASS] el reporte dice «¿Listo para la Parte B? SÍ» y muestra los blancos derivados
+
+Los tres CSV de salida
+  [PASS] lote1_respuestas.csv: UTF-8, coma como delimitador, encabezado participant_code,form,scenario_id,text y sin filas vacías
+  [PASS] lote1_participantes.csv: UTF-8, coma como delimitador, encabezado participant_code,form,age_range,vive_en_juliaca,tramite_12m y sin filas vacías
+  [PASS] lote1_blancos_derivados.csv: UTF-8, coma como delimitador, encabezado participant_code,scenario_id y sin filas vacías
+  [PASS] lote1_participantes.csv no trae consentimiento, estado, fecha ni observaciones
+
+Errores bloqueantes (no dejan salidas)
+  [PASS] un transcrito sin consentimiento «Sí» bloquea (código 2) y no deja ningún CSV
+  [PASS] una fila de Respuestas con una situación de otro formulario bloquea y no deja ningún CSV
+  [PASS] la pestaña Situaciones distinta del catálogo bloquea
+  [PASS] un código fuera de P01–P25 bloquea
+  [PASS] un Estado fuera de la lista bloquea
+
+Blancos y cobertura
+  [PASS] un texto de solo espacios se trata como blanco: no se exporta como respuesta y queda como blanco derivado
+  [PASS] una intención con menos de 3 frases se informa ([6]) e impide pasar a la Parte B («¿Listo? NO»)
+
+Encabezado en la fila 2
+  [PASS] con el encabezado en la fila 2 se acepta y exporta exactamente lo mismo que con el encabezado en la fila 3
+  [PASS] si no encuentra el encabezado en las primeras 10 filas, aborta con un mensaje claro
+
+Conciliación con los blancos derivados
+  [PASS] sin hoja Blancos, los blancos derivados bastan: conciliado (código 0)
+  [PASS] con hoja Blancos igual a los derivados: conciliado y sin diferencias de blancos
+  [PASS] con una hoja Blancos distinta: informa la diferencia (código 1)
+  [PASS] la conciliación no edita ningún archivo (seguimientos, respuestas ni blancos derivados)
+  [PASS] sin hoja Blancos y sin --blancos-derivados sigue exigiendo la hoja (error claro)
+
+Integridad del repositorio
+  [PASS] docs/lote_real_1, corpus/real, corpus/v3_real y logs/v3_real no cambiaron durante la prueba
+
+RESULTADO (SIMULADA): 23/23 comprobaciones PASS
+Recordatorio: datos FALSOS de prueba; nada de esto es un resultado del lote 1.
+fin: 2026-10-05 11:58:35

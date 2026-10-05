@@ -247,6 +247,7 @@ def main():
     check("selección (solo validación) corre y guarda seleccion_final.json", c == 0 and sel.exists(), t[-500:])
     c, t = run("eval_real.py", *ev, "--fase", "test", "--metodos", "svm,rasa")
     check("test: corre, IC95 %, comparación y McNemar en el resumen", c == 0 and "IC95 %" in t and "McNemar exacto" in t and "Criterio F1 >= 0.75" in t, t[-800:])
+    check("sin umbral congelado, eval_real.py --fase test lo dice y no aplica ninguno (el umbral se elige antes, con la validación)", "No hay umbral congelado: no se aplica ninguno" in t, t[-600:])
     reg = json.loads((W / "logs" / "SMOKE-test_registro.json").read_text(encoding="utf-8")) if (W / "logs" / "SMOKE-test_registro.json").exists() else {}
     check("registro del test: 1 evaluación por método", reg.get("veces_evaluado_por_metodo") == {"svm": 1, "rasa": 1}, reg)
     c, t = run("eval_real.py", *ev, "--fase", "test", "--metodos", "svm")
@@ -279,9 +280,35 @@ def main():
     c, t = run("fallback_threshold.py", *fb)
     check("re-elegir con el umbral congelado se niega", c != 0 and "congelado" in t, t[-200:])
     c, t = run("fallback_threshold.py", *fb, "--fase", "test")
-    check("evaluación del umbral en test (una vez) con cobertura, errores atrapados y aciertos perdidos", c == 0 and "errores atrapados" in t and "cobertura" in t, t[-500:])
+    check("aplicar un umbral congelado DESPUÉS de la evaluación del test se niega (el test solo se evalúa con un umbral elegido antes)", c != 0 and "DESPUÉS de la evaluación única" in t, t[-300:])
+    c, t = run("fallback_threshold.py", *fb, "--fase", "test", "--motivo-test-adicional", "prueba del flujo: en esta prueba el umbral se elige después del test")
+    reg_u = json.loads((W / "logs" / "SMOKE-test_registro.json").read_text(encoding="utf-8"))
+    check("con --motivo-test-adicional el umbral se aplica a las predicciones YA guardadas (cobertura, errores atrapados y aciertos perdidos), sin reentrenar ni evaluar de nuevo",
+          c == 0 and "errores atrapados" in t and "cobertura" in t and "No se reentrenó ni se volvió a evaluar el test" in t and len(reg_u["aplicaciones_de_umbral"]) == 1, t[-500:])
+    check("la aplicación no suma una evaluación del test (veces evaluado: rasa = 1)", reg_u["veces_evaluado_por_metodo"].get("rasa") == 1 and sum(1 for x in reg_u["evaluaciones"] if x["metodo"] == "rasa") == 1, reg_u["veces_evaluado_por_metodo"])
+    c, t = run("fallback_threshold.py", *fb, "--fase", "test", "--motivo-test-adicional", "prueba del flujo: en esta prueba el umbral se elige después del test")
     c, t = run("fallback_threshold.py", *fb, "--fase", "test")
-    check("repetir el test del umbral sin motivo -> se niega", c != 0 and "ya se evaluó" in t, t[-200:])
+    check("repetir la aplicación del umbral sin motivo -> se niega", c != 0 and "ya se aplicó" in t, t[-200:])
+    print("\nUmbral aplicado en la misma pasada de la evaluación única (eval_real.py --fase test con un umbral ya congelado)")
+    L2 = W / "logs_pasada"
+    L2.mkdir()
+    shutil.copy(W / "logs" / "SMOKE-seleccion_final.json", L2)
+    shutil.copy(fz, L2)  # el umbral congelado antes de esta evaluación
+    c, t = run("eval_real.py", "--corpus-v3", W / "v3" / "corpus_metadata_v3.csv", "--nlu-dir", W / "v3nlu", "--out-dir", L2, "--models-dir", W / "models2", "--smoke", "--fase", "test", "--metodos", "rasa")
+    reg2 = json.loads((L2 / "SMOKE-test_registro.json").read_text(encoding="utf-8")) if (L2 / "SMOKE-test_registro.json").exists() else {}
+    ap2 = (reg2.get("aplicaciones_de_umbral") or [{}])[0]
+    check("eval_real.py --fase test con el umbral ya congelado lo aplica en la misma pasada: una evaluación, una aplicación, sin entrenar otra vez",
+          c == 0 and "misma pasada" in t and ap2.get("misma_pasada") is True and reg2.get("veces_evaluado_por_metodo") == {"rasa": 1} and (L2 / "SMOKE-umbral_test_reporte.txt").exists()
+          and len(list(L2.glob("SMOKE-RASA-*"))) == 1, t[-700:])
+    check("esa aplicación verificó las predicciones por su huella SHA-256 y el umbral era anterior a la evaluación", ap2.get("predicciones_verificadas_por_huella") is True and ap2.get("umbral_congelado_despues_de_la_evaluacion") is False, ap2)
+    L3 = W / "logs_sin_umbral"
+    L3.mkdir()
+    shutil.copy(W / "logs" / "SMOKE-seleccion_final.json", L3)
+    shutil.copy(fz, L3)
+    c, t = run("eval_real.py", "--corpus-v3", W / "v3" / "corpus_metadata_v3.csv", "--nlu-dir", W / "v3nlu", "--out-dir", L3, "--models-dir", W / "models3", "--smoke", "--fase", "test", "--metodos", "rasa", "--sin-umbral")
+    reg3 = json.loads((L3 / "SMOKE-test_registro.json").read_text(encoding="utf-8")) if (L3 / "SMOKE-test_registro.json").exists() else {}
+    check("eval_real.py --sin-umbral evalúa el test y NO aplica el umbral aunque esté congelado", c == 0 and reg3.get("veces_evaluado_por_metodo") == {"rasa": 1} and not reg3.get("aplicaciones_de_umbral")
+          and not (L3 / "SMOKE-umbral_test_reporte.txt").exists() and "misma pasada" not in t, t[-400:])
     cfg_tmp = W / "rasa_config_v3_fallback.yml"
     shutil.copy(ROOT / "configs" / "rasa_config_v3_fallback.yml", cfg_tmp)
     c, t = run("fallback_threshold.py", *fb, "--escribir-config", "--config-salida", cfg_tmp)

@@ -221,7 +221,7 @@ evalúa **una sola vez** (`logs/v3_real/test_registro.json` cuenta cada evaluaci
 | B2 | `python scripts/ingest_real_lote.py --aplicar-revision` | Aplica OK/CAMBIAR/DESCARTAR; % cambiado y kappa de Cohen |
 | B3 | `python scripts/split_corpus_v3.py` | Entrenamiento = sintético; validación y test = reales (seed 42); verifica 54 intenciones en las 3 particiones |
 | B4 | `python scripts/eval_real.py` | Grilla SVM y Rasa en validación; repeticiones (semillas 10–50) en test con IC95 %, McNemar y bootstrap pareado |
-| B5 | `python scripts/fallback_threshold.py` y `--fase test` | Umbral por puntaje = aciertos − 2 × errores en validación; evaluación única en test |
+| B5 | `python scripts/fallback_threshold.py` y `--fase test` | Umbral por puntaje = aciertos − 2 × errores en validación (se congela antes del test). `--fase test` **no evalúa**: aplica el umbral a las predicciones del test ya guardadas por B4 (sin reentrenar; `eval_real.py --fase test` lo hace solo en la misma pasada si ya hay umbral congelado) |
 
 ## Correspondencia con los nombres del protocolo V1.2
 

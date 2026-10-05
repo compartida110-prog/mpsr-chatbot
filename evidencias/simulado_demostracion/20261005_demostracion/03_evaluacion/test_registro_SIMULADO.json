@@ -67,5 +67,30 @@
   "veces_evaluado_por_metodo": {
     "rasa": 1,
     "svm": 1
-  }
+  },
+  "aplicaciones_de_umbral": [
+    {
+      "fecha": "2026-10-05T11:52:57",
+      "t": 0.5,
+      "ambiguity_threshold": 0.1,
+      "semillas": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "evaluacion_de_origen": {
+        "fecha": "2026-10-05T11:21:17",
+        "metodo": "rasa",
+        "n_frases_test": 151
+      },
+      "reutiliza_predicciones_guardadas": true,
+      "reentrena_o_evalua_de_nuevo": false,
+      "misma_pasada": false,
+      "predicciones_verificadas_por_huella": false,
+      "umbral_congelado_despues_de_la_evaluacion": false,
+      "motivo": "aplicación del umbral congelado en validación a las predicciones guardadas de la evaluación única del test (sin reentrenar ni evaluar de nuevo)"
+    }
+  ]
 }

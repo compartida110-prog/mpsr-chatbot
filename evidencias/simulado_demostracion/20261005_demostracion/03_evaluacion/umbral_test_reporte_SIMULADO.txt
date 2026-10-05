@@ -1,0 +1,9 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+UMBRAL DE CONFIANZA APLICADO A LAS PREDICCIONES DEL TEST YA GUARDADAS (t = 0.50 congelado el 2026-10-05T10:37:31; semillas [10, 20, 30, 40, 50]; promedio)
+
+No se reentrenó ni se volvió a evaluar el test: se usaron las predicciones de la evaluación única del 2026-10-05T11:21:17 (151 frases por semilla).
+
+Sin umbral: respondidas 151.0 | aciertos 125.6 | errores 25.4 | abstenciones 0.0 (correctas perdidas 0.0, errores atrapados 0.0) | cobertura 100.0% | precisión respondida 83.2% | puntaje 74.8
+Con umbral t=0.50: respondidas 127.2 | aciertos 116.8 | errores 10.4 | abstenciones 23.8 (correctas perdidas 8.8, errores atrapados 15.0) | cobertura 84.2% | precisión respondida 91.8% | puntaje 96.0
+
+Veces que se evaluó el test: {'rasa': 1, 'svm': 1} (esta aplicación no suma una evaluación); aplicaciones del umbral: 1

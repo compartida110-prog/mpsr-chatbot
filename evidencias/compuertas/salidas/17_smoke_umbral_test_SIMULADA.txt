@@ -1,0 +1,41 @@
+inicio: 2026-10-05 11:55:05
+$ python tests/smoke_umbral_test.py   (SIMULADA: predicciones falsas)
+SIMULADA — carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\umbral_test_PRUEBA_SIMULADA_syuz8ldk
+
+Aplicación a las predicciones guardadas
+  [PASS] --fase test con un umbral congelado ANTES de la evaluación única: termina bien
+  [PASS] el reporte dice que no se reentrenó ni se volvió a evaluar el test y que usa la evaluación única registrada
+  [PASS] no crea carpetas de entrenamiento ni modelos: solo agrega umbral_test.csv y umbral_test_reporte.txt
+  [PASS] deja intactas las predicciones guardadas (SHA-256)
+  [PASS] el registro la anota aparte y NO suma una evaluación: evaluaciones = 1, veces evaluado = {rasa: 1}
+  [PASS] la aplicación consta como: reutiliza predicciones, sin reentrenar ni evaluar de nuevo, verificada por huella, umbral anterior a la evaluación
+  [PASS] la fase de test no importa Rasa ni TensorFlow (solo lee CSV)
+  [PASS] las cifras coinciden con un cálculo independiente (respondidas, errores atrapados, correctas perdidas)
+
+El tablero de compuertas sigue viendo UNA evaluación (G3)
+  [PASS] con el umbral ya aplicado, G3 lee una sola evaluación del test (no «se evaluó 2 veces»)
+
+Repetir la aplicación
+  [PASS] repetirla sin motivo se niega
+  [PASS] con --motivo-test-adicional se permite y queda registrada (2 aplicaciones; sigue 1 evaluación)
+  [PASS] una aplicación del formato anterior (metodo «rasa_umbral») también cuenta como ya aplicada
+
+Se niega cuando no corresponde
+  [PASS] sin una evaluación registrada del test: se niega y explica que esta fase no evalúa
+  [PASS] con el umbral congelado DESPUÉS de la evaluación del test: se niega
+  [PASS] con --motivo-test-adicional se aplica y queda marcado «umbral congelado después de la evaluación» con un AVISO
+  [PASS] predicciones de otras semillas que las de la evaluación registrada: se niega
+  [PASS] predicciones con otro número de frases que el registrado: se niega
+  [PASS] si las predicciones cambiaron desde la evaluación (huella SHA-256 distinta): se niega
+  [PASS] un registro sin huellas (de una evaluación anterior) se acepta comprobando semillas y número de frases
+  [PASS] sin umbral congelado: se niega
+
+Carpeta de demostración simulada (archivos ya marcados)
+  [PASS] --demo-simulada aplica el umbral a la carpeta ya marcada, en la misma carpeta, y marca las salidas (columna ESTADO y marcador SIMULADO)
+  [PASS] --demo-simulada se NIEGA a trabajar en logs/v3_real
+  [PASS] --demo-simulada se NIEGA a trabajar fuera de evidencias/simulado_demostracion/
+  [PASS] --demo-simulada solo existe para --fase test
+
+RESULTADO (SIMULADA): 24/24 comprobaciones PASS
+Recordatorio: predicciones FALSAS de prueba; nada de esto es un resultado.
+fin: 2026-10-05 11:55:45

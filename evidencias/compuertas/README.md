@@ -34,3 +34,13 @@ La demostración en sí está en `evidencias/simulado_demostracion/20261005_demo
 | `salidas/12_…`, `13_…`, `14_…` y capturas | Transcripción (23/23), conciliación (28/28) y piloto (51/51), repetidas | **Simulada** |
 | `salidas/15_smoke_lote_real_DATOS_FALSOS.txt` y `capturas/15_…png` | Lote real (72/72), repetida | **Simulada** |
 | `salidas/16_verificar_referencias_v7.txt` y `capturas/16_…png` | `verificar_referencias.py`: 54 afirmaciones, 51 OK, 1 nota, 2 planificadas y 0 discrepancias (incluye el marcado y el aislamiento de la demostración) | **Ejecutado** |
+
+## Cuarta tanda (umbral aplicado a las predicciones guardadas del test)
+
+| Archivo | Qué es | Estado |
+|---|---|---|
+| `salidas/17_smoke_umbral_test_SIMULADA.txt` y `capturas/17_…png` | Prueba de humo nueva (24/24) con predicciones falsas: el umbral se aplica sin reentrenar ni importar Rasa, no suma una evaluación del test, y se niega si cambian semillas, frases o huella, si el umbral se congeló después del test o si ya se aplicó | **Simulada** |
+| `salidas/18_…` a `21_…` y capturas | Compuertas (67/67), transcripción (23/23), conciliación (28/28) y piloto (51/51), repetidas | **Simulada** |
+| `salidas/22_smoke_lote_real_DATOS_FALSOS.txt` y `capturas/22_…png` | Lote real (78/78): ahora comprueba que aplicar un umbral congelado después del test se niega y cubre la aplicación en la misma pasada (con y sin `--sin-umbral`) | **Simulada** |
+| `salidas/23_verificar_referencias_v7.txt` y `capturas/23_…png` | `verificar_referencias.py`: 0 discrepancias | **Ejecutado** |
+| `salidas/24_umbral_aplicado_demostracion_SIMULADO.txt` y `capturas/24_…png` | Reporte de la etapa 3d de la demostración: el umbral aplicado a las predicciones del test ya guardadas, en la misma carpeta, sin repetir la demostración | **Simulado** |

@@ -12,9 +12,16 @@ se muestra como referencia y no participa en la elección.
 
 Fases
   --fase seleccion  (por defecto)  usa SOLO la validación real; no lee ningún archivo de test.
-  --fase test       exige el umbral congelado, aplica t a las predicciones de test con confianza ya generadas por
-                    eval_real.py (semillas 10-50) y registra la evaluación en test_registro.json; repetirla exige
-                    --motivo-test-adicional.
+  --fase test       NO evalúa el test: aplica el umbral congelado a las predicciones de test con confianza que eval_real.py ya
+                    guardó en su evaluación única (semillas 10-50), sin reentrenar, sin cargar ningún modelo y sin volver a
+                    evaluar. Exige: una evaluación registrada del test (rasa), que las predicciones sean las de esa evaluación
+                    (mismas semillas, mismo número de frases y, si se registró, la misma huella SHA-256) y que el umbral se
+                    haya congelado ANTES de esa evaluación. La aplicación se registra aparte en test_registro.json
+                    («aplicaciones_de_umbral»): no suma una evaluación del test. Repetirla, o aplicar un umbral congelado después
+                    del test, exige --motivo-test-adicional. Con eval_real.py --fase test y un umbral ya congelado esto ocurre
+                    solo, en la misma pasada.
+  --demo-simulada   (solo --fase test) aplica el umbral a una carpeta de demostración simulada ya marcada (archivos *_SIMULADO):
+                    --out-dir debe estar en evidencias/simulado_demostracion/; las salidas se marcan como SIMULADO.
   --escribir-config reescribe configs/rasa_config_v3_fallback.yml con la combinación ganadora y el t congelado.
 
 Uso:
@@ -31,6 +38,7 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+import deteccion_simulado as ds
 from common import CONFIGS, LOGS, file_sha256
 
 T_GRID = [0.30, 0.40, 0.50, 0.60, 0.70, 0.80]
@@ -68,6 +76,79 @@ def tabla_txt(tb):
     return t.to_string(index=False)
 
 
+def _fecha(x):
+    try:
+        return datetime.fromisoformat(str(x))
+    except ValueError:
+        return None
+
+
+def aplicar_a_test(out, pref, sel, fz, motivo="", suf="", misma_pasada=False):
+    """Aplica el umbral congelado a las predicciones de test YA guardadas por eval_real.py. No entrena, no carga modelos y no evalúa el test: lee CSV.
+    Devuelve el texto del reporte (y lo guarda). `suf` = «_SIMULADO» para una carpeta de demostración ya marcada."""
+    out = Path(out)
+    reg_path = out / f"{pref}test_registro{suf}.json"
+    reg = json.loads(reg_path.read_text(encoding="utf-8")) if reg_path.exists() else {"evaluaciones": []}
+    evs = [x for x in reg.get("evaluaciones", []) if x.get("metodo") == "rasa"]
+    if not evs:
+        sys.exit("ERROR: no hay una evaluación registrada del test (rasa) en test_registro.json. Esta fase NO evalúa el test: aplica el umbral a las predicciones que "
+                 "eval_real.py --fase test ya guardó; ejecútalo primero.")
+    ev = evs[-1]
+    previas = list(reg.get("aplicaciones_de_umbral", [])) + [x for x in reg["evaluaciones"] if x.get("metodo") == "rasa_umbral"]  # las segundas, del formato anterior
+    if previas and not motivo:
+        sys.exit(f"ERROR: el umbral ya se aplicó a las predicciones del test ({len(previas)} vez/veces). Repetirlo exige --motivo-test-adicional.")
+    f_umbral, f_eval = _fecha(fz.get("fecha")), _fecha(ev.get("fecha"))
+    despues = bool(f_umbral and f_eval and f_umbral > f_eval)
+    if despues and not motivo:
+        sys.exit(f"ERROR: el umbral se congeló el {fz.get('fecha')}, DESPUÉS de la evaluación única del test ({ev.get('fecha')}): el test solo se evalúa con un umbral elegido antes en "
+                 "validación. Si es solo una prueba del flujo, usa --motivo-test-adicional (queda registrado).")
+    r = sel["rasa"]
+    archivos = sorted(out.glob(f"{pref}RASA-e{r['epochs']}-b{r['batch_size']}-d{r['embedding_dimension']}-s*/predictions_test_conf{suf}.csv"))
+    if not archivos:
+        sys.exit("ERROR: no hay predicciones de test con confianza; ejecuta eval_real.py --fase test.")
+    seeds = sorted(int(p.parent.name.rsplit("-s", 1)[1]) for p in archivos)
+    if seeds != sorted(ev.get("semillas", [])):
+        sys.exit(f"ERROR: las predicciones guardadas (semillas {seeds}) no son las de la evaluación registrada (semillas {ev.get('semillas')}); no se aplica el umbral a otras predicciones.")
+    huellas = ev.get("predicciones_sha256")
+    filas = []
+    for p in archivos:
+        s_ = int(p.parent.name.rsplit("-s", 1)[1])
+        if huellas and not suf and file_sha256(p) != huellas.get(str(s_)):
+            sys.exit(f"ERROR: las predicciones de la semilla {s_} cambiaron desde la evaluación única (huella SHA-256 distinta): no se aplica el umbral.")
+        df = pd.read_csv(p, dtype={"intent": str, "predicted": str}, encoding="utf-8")
+        if ev.get("n_frases_test") is not None and len(df) != ev["n_frases_test"]:
+            sys.exit(f"ERROR: las predicciones de la semilla {s_} tienen {len(df)} frases y la evaluación registrada, {ev['n_frases_test']}.")
+        for t in (None, fz["t"]):
+            filas.append({"semilla": s_, **metricas(df, t)})
+    res = pd.DataFrame(filas)
+    res.to_csv(out / f"{pref}umbral_test{suf}.csv", index=False, encoding="utf-8")
+    num = ["respondidas", "aciertos_respondidos", "errores_respondidos", "abstenciones", "correctas_perdidas",
+           "errores_atrapados", "cobertura", "precision_respondida", "puntaje"]
+    med = {"sin umbral": res[res["t"] == "sin umbral"][num].mean(), "con umbral": res[res["t"] != "sin umbral"][num].mean()}
+    reg.setdefault("aplicaciones_de_umbral", []).append({
+        "fecha": datetime.now().isoformat(timespec="seconds"), "t": fz["t"], "ambiguity_threshold": AMBIGUITY, "semillas": seeds,
+        "evaluacion_de_origen": {"fecha": ev.get("fecha"), "metodo": "rasa", "n_frases_test": ev.get("n_frases_test")},
+        "reutiliza_predicciones_guardadas": True, "reentrena_o_evalua_de_nuevo": False, "misma_pasada": bool(misma_pasada),
+        "predicciones_verificadas_por_huella": bool(huellas and not suf), "umbral_congelado_despues_de_la_evaluacion": despues,
+        "motivo": motivo or "aplicación del umbral congelado en validación a las predicciones guardadas de la evaluación única del test (sin reentrenar ni evaluar de nuevo)"})
+    reg_path.write_text(json.dumps(reg, indent=2, ensure_ascii=False), encoding="utf-8")
+    veces = reg.get("veces_evaluado_por_metodo", {m: sum(1 for x in reg["evaluaciones"] if x["metodo"] == m) for m in {x["metodo"] for x in reg["evaluaciones"]}})
+    L = [f"UMBRAL DE CONFIANZA APLICADO A LAS PREDICCIONES DEL TEST YA GUARDADAS (t = {fz['t']:.2f} congelado el {fz['fecha']}; semillas {seeds}; promedio)", "",
+         f"No se reentrenó ni se volvió a evaluar el test: se usaron las predicciones de la evaluación única del {ev.get('fecha')} ({ev.get('n_frases_test')} frases por semilla)"
+         + ("; aplicado en la misma pasada de esa evaluación" if misma_pasada else "") + ".", ""]
+    for k, nombre in (("sin umbral", "Sin umbral"), ("con umbral", f"Con umbral t={fz['t']:.2f}")):
+        m = med[k]
+        L.append(f"{nombre}: respondidas {m['respondidas']:.1f} | aciertos {m['aciertos_respondidos']:.1f} | errores {m['errores_respondidos']:.1f} | "
+                 f"abstenciones {m['abstenciones']:.1f} (correctas perdidas {m['correctas_perdidas']:.1f}, errores atrapados {m['errores_atrapados']:.1f}) | "
+                 f"cobertura {m['cobertura']:.1%} | precisión respondida {m['precision_respondida']:.1%} | puntaje {m['puntaje']:.1f}")
+    L += ["", f"Veces que se evaluó el test: {veces} (esta aplicación no suma una evaluación); aplicaciones del umbral: {len(reg['aplicaciones_de_umbral'])}"]
+    if despues:
+        L.append(f"AVISO: el umbral se congeló DESPUÉS de la evaluación del test; se aplicó solo por --motivo-test-adicional: {motivo}")
+    texto = "\n".join(L)
+    (out / f"{pref}umbral_test_reporte{suf}.txt").write_text(texto + "\n", encoding="utf-8")
+    return texto
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out-dir", default=str(LOGS / "v3_real"))
@@ -78,9 +159,16 @@ def main():
     ap.add_argument("--motivo-test-adicional", default="")
     ap.add_argument("--escribir-config", action="store_true")
     ap.add_argument("--config-salida", default=str(CONFIGS / "rasa_config_v3_fallback.yml"))
+    ap.add_argument("--demo-simulada", action="store_true", help="(solo --fase test) aplica el umbral a una carpeta de demostración simulada ya marcada (archivos *_SIMULADO)")
+    ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas
     a = ap.parse_args()
+    suf = "_SIMULADO" if a.demo_simulada else ""
+    if a.demo_simulada:
+        if a.fase != "test" or a.escribir_config or a.rehacer:
+            sys.exit("ERROR: con --demo-simulada solo existe --fase test (la selección del umbral ya se hizo en la demostración).")
+        ds.exigir_en_demo(a.out_dir, a.demo_raiz or None)
     out, pref = Path(a.out_dir), a.prefijo
-    sel_path, frozen = out / f"{pref}seleccion_final.json", out / f"{pref}umbral_congelado.json"
+    sel_path, frozen = out / f"{pref}seleccion_final{suf}.json", out / f"{pref}umbral_congelado{suf}.json"
     if not sel_path.exists():
         sys.exit(f"ERROR: falta {sel_path}; ejecuta antes eval_real.py --fase seleccion.")
     sel = json.loads(sel_path.read_text(encoding="utf-8"))
@@ -134,45 +222,14 @@ def main():
         print("\n".join(L))
         return
 
-    # ------------------------------------------------------------------ TEST (una sola vez)
+    # ------------------------------------------------------------------ TEST: aplicar el umbral a las predicciones YA guardadas (no evalúa el test)
     if not frozen.exists():
         sys.exit("ERROR: no hay umbral congelado; el test solo se evalúa con un umbral elegido antes en validación.")
     fz = json.loads(frozen.read_text(encoding="utf-8"))
-    reg_path = out / f"{pref}test_registro.json"
-    reg = json.loads(reg_path.read_text(encoding="utf-8")) if reg_path.exists() else {"evaluaciones": []}
-    previas = [x for x in reg["evaluaciones"] if x["metodo"] == "rasa_umbral"]
-    if previas and not a.motivo_test_adicional:
-        sys.exit(f"ERROR: el umbral ya se evaluó en test ({len(previas)} vez/veces). Repetirlo exige --motivo-test-adicional.")
-    r = sel["rasa"]
-    filas, seeds = [], []
-    patron = f"{pref}RASA-e{r['epochs']}-b{r['batch_size']}-d{r['embedding_dimension']}-s*/predictions_test_conf.csv"
-    for p in sorted(out.glob(patron)):
-        seeds.append(int(p.parent.name.rsplit("-s", 1)[1]))
-        df = pd.read_csv(p, dtype={"intent": str, "predicted": str}, encoding="utf-8")
-        for t in (None, fz["t"]):
-            filas.append({"semilla": seeds[-1], **metricas(df, t)})
-    if not filas:
-        sys.exit("ERROR: no hay predicciones de test con confianza; ejecuta eval_real.py --fase test.")
-    res = pd.DataFrame(filas)
-    res.to_csv(out / f"{pref}umbral_test.csv", index=False, encoding="utf-8")
-    num = ["respondidas", "aciertos_respondidos", "errores_respondidos", "abstenciones", "correctas_perdidas",
-           "errores_atrapados", "cobertura", "precision_respondida", "puntaje"]
-    med = {"sin umbral": res[res["t"] == "sin umbral"][num].mean(), "con umbral": res[res["t"] != "sin umbral"][num].mean()}
-    reg["evaluaciones"].append({"fecha": datetime.now().isoformat(timespec="seconds"), "metodo": "rasa_umbral", "semillas": seeds,
-                                "configuracion": {"t": fz["t"], "ambiguity_threshold": AMBIGUITY},
-                                "motivo": a.motivo_test_adicional or "evaluación única del umbral congelado en validación"})
-    reg["veces_evaluado_por_metodo"] = {m: sum(1 for x in reg["evaluaciones"] if x["metodo"] == m) for m in {x["metodo"] for x in reg["evaluaciones"]}}
-    reg_path.write_text(json.dumps(reg, indent=2, ensure_ascii=False), encoding="utf-8")
-    L = [f"UMBRAL DE CONFIANZA — TEST REAL (t = {fz['t']:.2f} congelado el {fz['fecha']}; semillas {seeds}; promedio)", ""]
-    for k, nombre in (("sin umbral", "Sin umbral"), ("con umbral", f"Con umbral t={fz['t']:.2f}")):
-        m = med[k]
-        L.append(f"{nombre}: respondidas {m['respondidas']:.1f} | aciertos {m['aciertos_respondidos']:.1f} | errores {m['errores_respondidos']:.1f} | "
-                 f"abstenciones {m['abstenciones']:.1f} (correctas perdidas {m['correctas_perdidas']:.1f}, errores atrapados {m['errores_atrapados']:.1f}) | "
-                 f"cobertura {m['cobertura']:.1%} | precisión respondida {m['precision_respondida']:.1%} | puntaje {m['puntaje']:.1f}")
-    L += ["", f"Veces que se evaluó el test: {reg['veces_evaluado_por_metodo']}"]
-    (out / f"{pref}umbral_test_reporte.txt").write_text("\n".join(L) + "\n", encoding="utf-8")
-    print("\n".join(L))
-
+    print(aplicar_a_test(out, pref, sel, fz, a.motivo_test_adicional, suf))
+    if a.demo_simulada:
+        marcados = ds.marcar_directorio(out)
+        print(f"DEMOSTRACIÓN SIMULADA: salidas marcadas «{ds.MARCA_ESTADO}» en {out}")
 
 if __name__ == "__main__":
     main()

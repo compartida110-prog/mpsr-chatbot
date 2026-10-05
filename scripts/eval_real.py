@@ -144,6 +144,7 @@ def main():
     ap.add_argument("--con-cv-sintetica", action="store_true", help="agrega la validación cruzada agrupada sintética (secundaria)")
     ap.add_argument("--smoke", action="store_true", help="prueba del flujo: 1 combinación Rasa de 3 épocas y 1 semilla. NO es un resultado")
     ap.add_argument("--configuracion-fija", default="", help="«épocas,lote,dimensión» (p. ej. 150,64,20): evalúa en validación solo esa combinación de Rasa/DIET en vez de recorrer la grilla")
+    ap.add_argument("--sin-umbral", action="store_true", help="no aplica el umbral congelado a las predicciones del test al terminar la evaluación (por defecto, si hay un umbral congelado, se aplica en la misma pasada)")
     ap.add_argument("--svm-c", type=float, default=0.0, help="evalúa en validación solo ese C del SVM en vez de recorrer C_GRID")
     a = ap.parse_args()
 
@@ -270,9 +271,13 @@ def main():
             preds["rasa"].append(np.array(p))
     # el registro se actualiza en cuanto se evaluó el test, antes de calcular nada más
     for m in sorted(metodos):
-        reg["evaluaciones"].append({"fecha": datetime.now().isoformat(timespec="seconds"), "metodo": m, "semillas": seeds,
-                                    "configuracion": seleccion[m], "n_frases_test": int(len(te)),
-                                    "motivo": a.motivo_test_adicional or "evaluación final única de la configuración elegida en validación"})
+        entrada = {"fecha": datetime.now().isoformat(timespec="seconds"), "metodo": m, "semillas": seeds,
+                   "configuracion": seleccion[m], "n_frases_test": int(len(te)),
+                   "motivo": a.motivo_test_adicional or "evaluación final única de la configuración elegida en validación"}
+        if m == "rasa":  # huella de las predicciones guardadas: fallback_threshold.py --fase test comprueba que son estas mismas antes de aplicar el umbral
+            rr = seleccion["rasa"]
+            entrada["predicciones_sha256"] = {str(s_): file_sha256(out / f"{pref}RASA-e{rr['epochs']}-b{rr['batch_size']}-d{rr['embedding_dimension']}-s{s_}" / "predictions_test_conf.csv") for s_ in seeds}
+        reg["evaluaciones"].append(entrada)
     reg["veces_evaluado_por_metodo"] = dict(Counter(x["metodo"] for x in reg["evaluaciones"]))
     reg_path.write_text(json.dumps(reg, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -320,6 +325,16 @@ def main():
     (out / f"{pref}eval_real_resumen.txt").write_text(txt + "\n", encoding="utf-8")
     (out / f"{pref}eval_real_resumen.json").write_text(json.dumps(resumen, indent=2, ensure_ascii=False), encoding="utf-8")
     print("\n" + txt)
+
+    if "rasa" in metodos and not a.sin_umbral:
+        congelado = out / f"{pref}umbral_congelado.json"
+        if congelado.exists():
+            import fallback_threshold as ft
+            print("\nUmbral congelado: se aplica a las predicciones que se acaban de guardar (misma pasada; no se evalúa el test otra vez ni se reentrena):")
+            print(ft.aplicar_a_test(out, pref, seleccion, json.loads(congelado.read_text(encoding="utf-8")), "", misma_pasada=True))
+        else:
+            print("\nNo hay umbral congelado: no se aplica ninguno. Se elige con la validación (fallback_threshold.py) ANTES de evaluar el test; si ya lo evaluaste sin umbral, "
+                  "aplícalo después con fallback_threshold.py --fase test (reutiliza estas predicciones; exige que el umbral se haya congelado antes del test).")
 
     if a.con_cv_sintetica:
         cmd = [sys.executable, str(ROOT / "scripts" / "crossval_agrupada.py"), "--out-dir", str(out / "cv_sintetica_agrupada"),
