@@ -1,0 +1,42 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "fecha": "2026-10-05T10:29:45",
+  "smoke": false,
+  "corpus_sha256": "900a76f5136261c10055202f0212dd51f22519df0e1d7d59c0aa007e54ff5219",
+  "svm": {
+    "C": 10.0,
+    "f1_macro_validacion": 0.7475308641975308,
+    "validacion_ic95": {
+      "f1_macro": [
+        0.7475308641975308,
+        0.6281888338196022,
+        0.7866745454545455
+      ],
+      "accuracy": [
+        0.7636363636363637,
+        0.6818181818181818,
+        0.8454545454545455
+      ]
+    }
+  },
+  "rasa": {
+    "epochs": 150,
+    "batch_size": 64,
+    "embedding_dimension": 20,
+    "exp_id": "RASA-e150-b64-d20-s42",
+    "f1_macro_validacion": 0.8436372269705601,
+    "predicciones_validacion_con_confianza": "RASA-e150-b64-d20-s42/predictions_validation_conf.csv",
+    "validacion_ic95": {
+      "f1_macro": [
+        0.8436372269705601,
+        0.7394285290796162,
+        0.8777818627450981
+      ],
+      "accuracy": [
+        0.8545454545454545,
+        0.7818181818181819,
+        0.9181818181818182
+      ]
+    }
+  }
+}

@@ -143,6 +143,8 @@ def main():
     ap.add_argument("--motivo-test-adicional", default="", help="obligatorio para evaluar de nuevo el test de un método ya evaluado")
     ap.add_argument("--con-cv-sintetica", action="store_true", help="agrega la validación cruzada agrupada sintética (secundaria)")
     ap.add_argument("--smoke", action="store_true", help="prueba del flujo: 1 combinación Rasa de 3 épocas y 1 semilla. NO es un resultado")
+    ap.add_argument("--configuracion-fija", default="", help="«épocas,lote,dimensión» (p. ej. 150,64,20): evalúa en validación solo esa combinación de Rasa/DIET en vez de recorrer la grilla")
+    ap.add_argument("--svm-c", type=float, default=0.0, help="evalúa en validación solo ese C del SVM en vez de recorrer C_GRID")
     a = ap.parse_args()
 
     out, models = Path(a.out_dir), Path(a.models_dir)
@@ -153,6 +155,8 @@ def main():
     metodos = {m.strip() for m in a.metodos.split(",")}
     seeds = REPETITION_SEEDS[:1] if a.smoke else REPETITION_SEEDS
     grid = [(3, 64, 20)] if a.smoke else list(itertools.product(rg.GRID["epochs"], rg.GRID["batch_size"], rg.GRID["embedding_dimension"]))
+    if a.configuracion_fija:
+        grid = [tuple(int(x) for x in a.configuracion_fija.split(","))]  # configuración ya elegida: no se repite la grilla completa
     pref = "SMOKE-" if a.smoke else ""
 
     df = pd.read_csv(a.corpus_v3, dtype=str, keep_default_na=False, encoding="utf-8")
@@ -175,7 +179,7 @@ def main():
         if "svm" in metodos:
             print("\nSVM — selección en validación real (seed 42):")
             mejor = (-1.0, None)
-            for C in C_GRID:
+            for C in ([a.svm_c] if a.svm_c else C_GRID):
                 exp_id = f"{pref}BASE-SVM-C{C}-s{BASE_SEED}"
                 pipe = tb.build_pipeline(cfg_b, "svm", C, BASE_SEED).fit(tr["_norm"], tr["intent"])
                 m = save_run(exp_id, "validation", va, list(pipe.predict(va["_norm"])), {"model": "svm", "C": C}, BASE_SEED, a.corpus_v3)

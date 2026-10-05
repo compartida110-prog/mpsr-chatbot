@@ -1,0 +1,71 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "evaluaciones": [
+    {
+      "fecha": "2026-10-05T11:21:17",
+      "metodo": "rasa",
+      "semillas": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "configuracion": {
+        "epochs": 150,
+        "batch_size": 64,
+        "embedding_dimension": 20,
+        "exp_id": "RASA-e150-b64-d20-s42",
+        "f1_macro_validacion": 0.8436372269705601,
+        "predicciones_validacion_con_confianza": "RASA-e150-b64-d20-s42/predictions_validation_conf.csv",
+        "validacion_ic95": {
+          "f1_macro": [
+            0.8436372269705601,
+            0.7394285290796162,
+            0.8777818627450981
+          ],
+          "accuracy": [
+            0.8545454545454545,
+            0.7818181818181819,
+            0.9181818181818182
+          ]
+        }
+      },
+      "n_frases_test": 151,
+      "motivo": "evaluación final única de la configuración elegida en validación"
+    },
+    {
+      "fecha": "2026-10-05T11:21:17",
+      "metodo": "svm",
+      "semillas": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "configuracion": {
+        "C": 10.0,
+        "f1_macro_validacion": 0.7475308641975308,
+        "validacion_ic95": {
+          "f1_macro": [
+            0.7475308641975308,
+            0.6281888338196022,
+            0.7866745454545455
+          ],
+          "accuracy": [
+            0.7636363636363637,
+            0.6818181818181818,
+            0.8454545454545455
+          ]
+        }
+      },
+      "n_frases_test": 151,
+      "motivo": "evaluación final única de la configuración elegida en validación"
+    }
+  ],
+  "veces_evaluado_por_metodo": {
+    "rasa": 1,
+    "svm": 1
+  }
+}

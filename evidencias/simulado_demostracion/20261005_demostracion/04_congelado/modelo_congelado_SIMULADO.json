@@ -1,0 +1,40 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "fecha": "2026-10-05T16:21:49+00:00",
+  "zona_horaria": "UTC",
+  "estado": "SIMULADO — modelo de demostración; NO es el modelo congelado del piloto",
+  "protocolo": "V1.4",
+  "modelo_nombre": "modelo_demostracion_SIMULADO.tar.gz",
+  "python": "3.10.11",
+  "commit": "08a9740-modificado",
+  "archivos": {
+    "modelo": "evidencias\\simulado_demostracion\\20261005_demostracion\\04_congelado\\modelo_demostracion_SIMULADO.tar.gz",
+    "config": "configs/rasa_config_v3_fallback.yml",
+    "dominio": "domain_v3.yml"
+  },
+  "sha256": {
+    "modelo": "024eaa6df47813099315ef61b7504d6ffb2b48cd94f1070e57cd5dd44ec8ecdb",
+    "config": "999c6a7fd68fffaa637ebac6be457931af64d26c869dbfbb6848d2af4a0c1caf",
+    "dominio": "33ccd4948ad84aaf931575aad630692dfeeb8deadcd5a2d2ce3be41150c7b853"
+  },
+  "versiones": {
+    "rasa": "3.6.21",
+    "scikit-learn": "1.1.3",
+    "pandas": "2.0.3",
+    "numpy": "1.23.5",
+    "scipy": "1.10.1",
+    "tensorflow": "2.12.0"
+  },
+  "umbral_t": 0.5,
+  "nota": "Congelamiento de DEMOSTRACIÓN. El modelo real se congela solo después de G3 y G4 (protocolo 2.14).",
+  "umbral_detalle": {
+    "t": 0.5,
+    "ambiguity_threshold": 0.1,
+    "lambda": 2.0,
+    "puntaje_validacion": 76.0,
+    "puntaje_sin_umbral_validacion": 62.0,
+    "fecha": "2026-10-05T10:37:31",
+    "predicciones_validacion": "evidencias\\simulado_demostracion\\20261005_demostracion\\03_evaluacion\\RASA-e150-b64-d20-s42\\predictions_validation_conf.csv",
+    "predicciones_validacion_sha256": "ee52368ec915a1dd4a64bbbe4824c1087c6e4b192b7b8fc323eaa281e7201560"
+  }
+}

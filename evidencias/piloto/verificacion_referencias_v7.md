@@ -2,7 +2,7 @@
 
 Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron del protocolo V1.4 (v7) y de la Nota (v7), que este script no modifica.
 
-**Resumen:** 52 afirmaciones · OK 48 · NOTA 1 · PLANIFICADO 3 · **DISCREPANCIA 0** (las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5, v6 y v7)
+**Resumen:** 54 afirmaciones · OK 51 · NOTA 1 · PLANIFICADO 2 · **DISCREPANCIA 0** (las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5, v6 y v7)
 
 | # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |
 |---|---|---|---|---|---|---|
@@ -46,7 +46,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 38 | Protocolo 2.8 / P05 / T05 | partición V1.1 (ejecutada): 486/81/81 = 75 % / 12,5 % / 12,5 % (el objetivo nominal era 70/15/15) | 486/81/81 frases = 75.0/12.5/12.5 % | **OK** | — | coincide con la V1.3 (errata E4 ya aplicada); el mecanismo descrito en 2.8 se verifica en la fila siguiente |
 | 39 | Protocolo 2.8 | con 4 grupos por intención, 3 pasan a entrenamiento y el cuarto se asigna alternadamente a validación o a prueba | las 54 intenciones tienen 4 grupos, 3 en entrenamiento; el cuarto: 27 grupos a validación y 27 a prueba | **OK** | — |  |
 | 40 | Protocolo 2.8 / 5.2; Nota | el test mide 27 de las 54 intenciones (3 frases cada una) y la validación las otras 27 | test: 27 intenciones con [3] frases; validación: 27 intenciones; sin solape: True | **OK** | — |  |
-| 41 | Protocolo y Nota v7 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 49 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 49 incidencias registradas a la fecha de esta verificación |
+| 41 | Protocolo y Nota v7 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 50 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 50 incidencias registradas a la fecha de esta verificación |
 | 42 | Protocolo 2.4 (V1.3) | margen de error de una proporción ≈ 11,7 % con n = 60 y ≈ 7,5 % con n = 120 (N ≈ 400, confianza 95 %) | 11.7 % con n = 60 y 7.5 % con n = 120 (fórmula con corrección para población finita, p = q = 0,5) | **OK** | — |  |
 | 43 | Protocolo 2.4 (V1.3) | con 60 pares, la t pareada detecta con 80 % de potencia (α = 0,05, dos colas) efectos de d ≈ 0,37 o mayores | d mínimo con 80 % de potencia (t pareada, dos colas, n = 60) = 0.368 | **OK** | — |  |
 | 44 | Protocolo 5.4 (V1.3) | pruebas de humo con datos falsos (simuladas): 59/59 y 22/22 | 59/59 y 22/22 (últimas salidas guardadas en evidencias/v3_real/salidas/) | **OK** | — |  |
@@ -57,7 +57,9 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 49 | Protocolo 2.14 (G3) | hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más | tablero: 2 ciclos, mejora mínima 0.02, F1 mínimo 0.75; eval_real.py usa el umbral 0.75 y guarda un registro de cada evaluación del test | **OK** | — |  |
 | 50 | Protocolo 2.14 (G4) | la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar | docs/tupa/Verificacion_TUPA_v5.xlsx (la versión más alta) tiene esas tres cifras en su hoja Resumen | **OK** | — |  |
 | 51 | Protocolo 2.14 (G6, G7) | pre-piloto de 5 a 15 personas con alfa de Cronbach de 0.70 o más; sesiones: cierre en 60 elegibles o con un mínimo de 30 declarado por el tesista | registro v2: alfa mínimo 0.7, meta 60 sesiones; tablero: 5–15 sesiones, alfa 0.7, 60 y cierre con 30 | **OK** | — |  |
-| 52 | Protocolo 2.14 (datos simulados) | todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real | modo --demo-simulada en 3 scripts (ingest_real_lote.py, analizar_piloto.py, congelar_modelo.py); 0 ejecuciones de demostración guardadas; el tablero cuenta los simulados aparte | **PLANIFICADO** | — | la demostración completa se ejecuta solo cuando el tesista la pide |
+| 52 | Protocolo 2.14 (datos simulados) | todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real | modo --demo-simulada en 3 scripts (ingest_real_lote.py, analizar_piloto.py, congelar_modelo.py) y orquestador scripts/demostracion_simulada.py; 1 ejecución(es) de demostración guardada(s); el tablero cuenta los simulados aparte | **OK** | — | la demostración se ejecutó; todos sus resultados son Simulado (ver INFORME_DEMOSTRACION_SIMULADA.md) |
+| 53 | Protocolo 2.14 (datos simulados): marcado | cada archivo generado por la demostración lleva el marcador «ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo» y el sufijo _SIMULADO | 103 archivos revisados en evidencias/simulado_demostracion/; sin marcador o sufijo: 0 | **OK** | — |  |
+| 54 | Protocolo 2.14 (datos simulados): aislamiento | la demostración no deja modelos entrenados ni el modelo real congelado, y no guarda rutas absolutas del equipo | modelos .tar.gz de más de 1 KB en la carpeta: 0; existe logs/v3_real/modelo_congelado.json: no; archivos con rutas de usuario: 0 | **OK** | — |  |
 
 ## No verificable con el repositorio (no se comprobó)
 

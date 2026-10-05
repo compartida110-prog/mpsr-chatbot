@@ -334,6 +334,65 @@ def main():
     check("con --permitir-simulado sigue escribiendo solo donde se le indica (carpeta temporal) y sin el marcador de demostración",
           c == 0 and (W / "perm" / "lote1_respuestas.csv").exists() and not any(rd2.rglob("*")) and "ESTADO" not in (W / "perm" / "lote1_respuestas.csv").read_text(encoding="utf-8").splitlines()[0], t[-300:])
 
+    # ------------------------------------------------------------------ piezas de la demostración completa
+    print("\nPiezas de la demostración completa (congelado con umbral, análisis, tablero de una ejecución)")
+    bd = rd / "evidencias" / "simulado_demostracion"
+    c4 = bd / "c4"
+    c4.mkdir(parents=True)
+    (c4 / "umbral_congelado.json").write_text(json.dumps({"t": 0.5, "ambiguity_threshold": 0.1}), encoding="utf-8")
+    c, t = run("congelar_modelo.py", "--demo-simulada", "--demo-sin-marcar", "--demo-raiz", rd, "--salida", c4, "--umbral", c4 / "umbral_congelado.json")
+    fz4 = json.loads((c4 / "modelo_congelado_SIMULADO.json").read_text(encoding="utf-8")) if c == 0 else {}
+    check("congelar --demo-simulada acepta una carpeta de demostración y el umbral elegido allí (se copia adentro; no se referencia el archivo)",
+          c == 0 and fz4.get("umbral_t") == 0.5 and "umbral" not in fz4.get("archivos", {}) and "advertencia" not in fz4, t[-300:])
+    check("con la opción interna --demo-sin-marcar los archivos quedan sin marcar (el orquestador marca una sola vez al final)", "ESTADO" not in fz4 and not ds.MARCA_ESTADO in (c4 / "modelo_demostracion_SIMULADO.tar.gz").read_text(encoding="utf-8")[:0] and c == 0)
+    c, t = run("congelar_modelo.py", "--demo-simulada", "--demo-raiz", rd, "--salida", c4, "--umbral", W / "umbral_de_afuera.json")
+    check("un --umbral fuera de evidencias/simulado_demostracion/ se rechaza en la demostración", c != 0 and "ME NIEGO" in t, t[-200:])
+    c, t = run("congelar_modelo.py", "--demo-simulada", "--demo-raiz", rd, "--salida", bd / "c5" / "modelo_congelado_SIMULADO.json")
+    check("--salida con un archivo .json de la carpeta de demostración se interpreta como esa carpeta (no crea una carpeta con el nombre del archivo)",
+          c == 0 and (bd / "c5" / "modelo_congelado_SIMULADO.json").is_file(), t[-200:])
+    c, t = run("analizar_piloto.py", "--registro", registro_demo, "--demo-simulada", "--demo-sin-marcar", "--demo-raiz", rd, "--salida", bd / "c6", "--modelo-congelado", c4 / "modelo_congelado_SIMULADO.json")
+    r6 = json.loads((bd / "c6" / "analisis_piloto_SIMULADO.json").read_text(encoding="utf-8")) if c == 0 else {}
+    check("analizar_piloto.py --demo-simulada acepta el congelamiento de demostración de otra etapa y usa su umbral (t = 0,5)", c == 0 and (r6.get("prueba_final", {}).get("umbral") or {}).get("t") == 0.5, t[-300:])
+    copia_fz = W / "modelo_congelado_SIMULADO.json"
+    shutil.copy(c4 / "modelo_congelado_SIMULADO.json", copia_fz)
+    c, t = run("analizar_piloto.py", "--registro", registro_demo, "--demo-simulada", "--demo-raiz", rd, "--salida", bd / "c7", "--modelo-congelado", copia_fz)
+    check("un congelamiento de fuera de la carpeta de demostración se rechaza (nunca el real)", c != 0 and "ME NIEGO" in t and not (bd / "c7" / "analisis_piloto_SIMULADO.json").exists(), t[-200:])
+    ds.marcar_directorio(c4)
+    # tablero de una ejecución de demostración: lee solo los *_SIMULADO de esa carpeta; el mundo real no se evalúa
+    rt = W / "raiz_tablero_demo"
+    ej = rt / "evidencias" / "simulado_demostracion" / "ej_tablero"
+    escribir(rt, "evidencias/simulado_demostracion/ej_tablero/01_ingesta/ingesta_reporte_SIMULADO.txt", ds.MARCA_ESTADO + "\nINGESTA DEL LOTE 1 — REPORTE\n" + LISTO_SI + "\n")
+    escribir(rt, "logs/v3_real/ingesta_reporte.txt", "INGESTA DEL LOTE 1 — REPORTE\n" + LISTO_NO + "\n")  # evidencia «real» que no debe mezclarse
+    c, t = run("estado_compuertas.py", "--raiz", rt, "--demo-simulada", "--ejecucion", "ej_tablero")
+    jt = json.loads((ej / "06_tablero" / "estado_compuertas_SIMULADO.json").read_text(encoding="utf-8")) if c == 0 else {}
+    gt = {x["id"]: x for x in jt.get("compuertas", [])}
+    check("tablero --demo-simulada: escribe solo en <ejecución>/06_tablero/, con sufijo _SIMULADO y marcador, y G1 sale «Cumplida (Simulado)»",
+          c == 0 and gt.get("G1", {}).get("estado") == "Cumplida (Simulado)" and (ej / "06_tablero" / "estado_compuertas_SIMULADO.md").read_text(encoding="utf-8").splitlines()[0] == ds.MARCA_ESTADO
+          and "ESTADO" in jt and not (rt / "logs" / "avance").exists(), t[-300:])
+    check("en ese tablero el mundo real no se evalúa (la evidencia real de G1 no se mezcla) y las reales siguen en 0",
+          jt.get("compuertas_cumplidas_con_datos_reales") == 0 and "TABLERO DE LA DEMOSTRACIÓN SIMULADA" in (ej / "06_tablero" / "estado_compuertas_SIMULADO.md").read_text(encoding="utf-8")
+          and all(x["datos"] in ("Simulado", "—") for x in gt.values()), str({k: (v["estado"], v["datos"]) for k, v in gt.items()}))
+    c, t = run("estado_compuertas.py", "--raiz", rt, "--demo-simulada", "--ejecucion", "no_existe")
+    check("el tablero de demostración con una ejecución inexistente se rechaza", c != 0 and "no existe" in t, t[-200:])
+    c, t = run("estado_compuertas.py", "--raiz", rt, "--demo-simulada")
+    check("el tablero de demostración exige --ejecucion", c != 0 and "--ejecucion" in t, t[-200:])
+    c, t = run("estado_compuertas.py", "--raiz", rt, "--demo-simulada", "--ejecucion", "ej_tablero", "--salida", rt / "logs" / "avance")
+    check("el tablero de demostración se niega a escribir en logs/avance/ (solo en la carpeta de la ejecución)", c != 0 and "ME NIEGO" in t, t[-200:])
+    # marcado: YAML con comentario, el informe conserva su nombre y es idempotente
+    mk = bd / "mk"
+    mk.mkdir()
+    (mk / "config.yml").write_text("language: es\n", encoding="utf-8")
+    (mk / "INFORME_DEMOSTRACION_SIMULADA.md").write_text("# Informe\n", encoding="utf-8")
+    ds.marcar_directorio(mk)
+    primera = {f.name: f.read_text(encoding="utf-8") for f in mk.iterdir()}
+    ds.marcar_directorio(mk)
+    segunda = {f.name: f.read_text(encoding="utf-8") for f in mk.iterdir()}
+    check("marcar_directorio: el YAML lleva el marcador como comentario, el INFORME_… conserva su nombre y marcar dos veces no cambia nada",
+          primera == segunda and primera.get("config_SIMULADO.yml", "").startswith("# " + ds.MARCA_ESTADO) and "INFORME_DEMOSTRACION_SIMULADA.md" in primera
+          and primera["INFORME_DEMOSTRACION_SIMULADA.md"].splitlines()[0] == ds.MARCA_ESTADO, str(sorted(primera)))
+    c, t = run("demostracion_simulada.py")
+    check("demostracion_simulada.py sin --demo-simulada se niega y no crea nada", c != 0 and "ME NIEGO" in t, t[-200:])
+
     # ------------------------------------------------------------------ integridad
     print("\nIntegridad del repositorio")
     despues = snapshot_repo()

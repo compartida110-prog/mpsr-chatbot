@@ -95,7 +95,7 @@ def agregar_incidente(motivo, anterior, nuevo):
         w.writerow(fila)
 
 
-def crear_demo(carpeta):
+def crear_demo(carpeta, umbral=None):
     """Modelo de DEMOSTRACIÓN (un texto con otro nombre de archivo) y su modelo_congelado_SIMULADO.json dentro de `carpeta`. No toca el modelo real ni logs/v3_real."""
     carpeta = Path(carpeta)
     modelo = carpeta / "modelo_demostracion_SIMULADO.tar.gz"
@@ -108,6 +108,10 @@ def crear_demo(carpeta):
           "sha256": {"modelo": file_sha256(modelo), "config": file_sha256(config), "dominio": file_sha256(dominio)},
           "versiones": versiones(), "umbral_t": None, "advertencia": "Demostración simulada: sin umbral de confianza.",
           "nota": "Congelamiento de DEMOSTRACIÓN. El modelo real se congela solo después de G3 y G4 (protocolo 2.14)."}
+    if umbral and Path(umbral).exists():  # el umbral elegido en la VALIDACIÓN de la demostración; se copia adentro (no se referencia el archivo, que se marca después)
+        det = json.loads(Path(umbral).read_text(encoding="utf-8"))
+        fz["umbral_detalle"], fz["umbral_t"] = det, det.get("t")
+        fz.pop("advertencia", None)
     ruta = carpeta / "modelo_congelado_SIMULADO.json"
     ruta.write_text(json.dumps(fz, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return ruta
@@ -126,15 +130,21 @@ def main():
     ap.add_argument("--verificar", action="store_true", help="solo comprueba que nada cambió desde el congelamiento")
     ap.add_argument("--demo-simulada", action="store_true", help="congela un modelo de DEMOSTRACIÓN en evidencias/simulado_demostracion/<ejecución>/ (nunca el real)")
     ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración")
+    ap.add_argument("--demo-sin-marcar", action="store_true", help=argparse.SUPPRESS)  # lo usa el orquestador
     ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)
     a = ap.parse_args()
     if a.demo_simulada:
         if a.verificar or a.forzar:
             sys.exit("ERROR: --demo-simulada no se combina con --verificar ni --forzar.")
-        pedidas = [a.salida] if a.salida != ap.get_default("salida") else []
+        # --salida puede ser una carpeta o un archivo .json: en la demostración solo importa la carpeta, que debe estar en evidencias/simulado_demostracion/
+        pedidas = [Path(a.salida).parent if a.salida.lower().endswith(".json") else Path(a.salida)] if a.salida != ap.get_default("salida") else []
+        umbral = None
+        if a.umbral != ap.get_default("umbral"):
+            ds.exigir_en_demo(a.umbral, a.demo_raiz or None)
+            umbral = a.umbral
         carpeta = ds.preparar_demo("congelar_modelo", None, a.demo_raiz or None, a.ejecucion, pedidas)
-        crear_demo(carpeta)
-        marcados = ds.marcar_directorio(carpeta)
+        crear_demo(carpeta, umbral)
+        marcados = [] if a.demo_sin_marcar else ds.marcar_directorio(carpeta)
         print(f"DEMOSTRACIÓN SIMULADA: modelo de demostración y modelo_congelado_SIMULADO.json en {carpeta} ({len(marcados)} archivos marcados). No se tocó logs/v3_real.")
         return
     salida = Path(a.salida)

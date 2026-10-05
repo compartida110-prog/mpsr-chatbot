@@ -282,10 +282,44 @@ def main():
         f"registro v2: alfa mínimo {rg.get('Alfa de Cronbach mínimo')}, meta {rg.get('Meta de sesiones elegibles y completas')} sesiones; tablero: {ec.PRE_MIN}–{ec.PRE_MAX} sesiones, alfa {ec.ALFA_MIN}, {ec.SESIONES_META} y cierre con {ec.SESIONES_CIERRE}",
         "OK" if (rg.get("Alfa de Cronbach mínimo"), rg.get("Meta de sesiones elegibles y completas")) == (0.7, 60) and (ec.PRE_MIN, ec.PRE_MAX, ec.ALFA_MIN, ec.SESIONES_META, ec.SESIONES_CIERRE) == (5, 15, 0.70, 60, 30) else "DISCREPANCIA")
     demo = [f for f in ("ingest_real_lote.py", "analizar_piloto.py", "congelar_modelo.py") if "--demo-simulada" in (ROOT / "scripts" / f).read_text(encoding="utf-8")]
-    ejecuciones = sorted((ROOT / "evidencias" / "simulado_demostracion").glob("*")) if existe("evidencias/simulado_demostracion") else []
+    import json as _json
+
+    import deteccion_simulado as _ds
+    base_demo = ROOT / "evidencias" / "simulado_demostracion"
+    ejecuciones = sorted(e for e in base_demo.glob("*") if e.is_dir()) if base_demo.exists() else []
     reg("Protocolo 2.14 (datos simulados)", "todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real",
-        f"modo --demo-simulada en {len(demo)} scripts ({', '.join(demo)}); {len(ejecuciones)} ejecuciones de demostración guardadas; el tablero cuenta los simulados aparte",
-        "PLANIFICADO" if not ejecuciones else "NOTA", "la demostración completa se ejecuta solo cuando el tesista la pide" if not ejecuciones else "")
+        f"modo --demo-simulada en {len(demo)} scripts ({', '.join(demo)}) y orquestador scripts/demostracion_simulada.py; {len(ejecuciones)} ejecución(es) de demostración guardada(s); el tablero cuenta los simulados aparte",
+        "PLANIFICADO" if not ejecuciones else "OK", "la demostración completa se ejecuta solo cuando el tesista la pide" if not ejecuciones else "la demostración se ejecutó; todos sus resultados son Simulado (ver INFORME_DEMOSTRACION_SIMULADA.md)")
+
+    def marcado(f):
+        n, suf = f.name, f.suffix.lower()
+        if n.startswith("INFORME_"):
+            return f.read_text(encoding="utf-8").splitlines()[0] == _ds.MARCA_ESTADO
+        if "_SIMULADO" not in n:
+            return False
+        if suf == ".csv":
+            return f.read_text(encoding="utf-8").splitlines()[0].endswith(",ESTADO")
+        if suf in (".txt", ".md", ".log"):
+            return f.read_text(encoding="utf-8").splitlines()[0] == _ds.MARCA_ESTADO
+        if suf in (".yml", ".yaml"):
+            return f.read_text(encoding="utf-8").splitlines()[0] == "# " + _ds.MARCA_ESTADO
+        if suf == ".json":
+            return "ESTADO" in _json.loads(f.read_text(encoding="utf-8"))
+        if suf == ".png":
+            from PIL import Image
+            with Image.open(f) as im:
+                return str(im.text.get("ESTADO", "")).startswith("SIMULADO")
+        return b"SIMULADO" in f.read_bytes()
+    if ejecuciones:
+        archivos = [f for e in ejecuciones for f in e.rglob("*") if f.is_file()]
+        sin_marca = [f.relative_to(ROOT).as_posix() for f in archivos if not marcado(f)]
+        pesados = [f.name for f in archivos if f.name.endswith(".tar.gz") and f.stat().st_size > 1024]
+        con_usuario = [f.relative_to(ROOT).as_posix() for f in archivos if f.suffix.lower() in (".log", ".txt", ".json", ".yml", ".md", ".csv") and "\\Users\\" in f.read_text(encoding="utf-8", errors="replace").replace("/", "\\")]
+        reg("Protocolo 2.14 (datos simulados): marcado", "cada archivo generado por la demostración lleva el marcador «ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo» y el sufijo _SIMULADO",
+            f"{len(archivos)} archivos revisados en evidencias/simulado_demostracion/; sin marcador o sufijo: {len(sin_marca)}" + (f" ({sin_marca[:3]})" if sin_marca else ""), "OK" if archivos and not sin_marca else "DISCREPANCIA")
+        reg("Protocolo 2.14 (datos simulados): aislamiento", "la demostración no deja modelos entrenados ni el modelo real congelado, y no guarda rutas absolutas del equipo",
+            f"modelos .tar.gz de más de 1 KB en la carpeta: {len(pesados)}; existe logs/v3_real/modelo_congelado.json: {'sí' if existe('logs/v3_real/modelo_congelado.json') else 'no'}; archivos con rutas de usuario: {len(con_usuario)}",
+            "OK" if not pesados and not existe("logs/v3_real/modelo_congelado.json") and not con_usuario else "DISCREPANCIA")
 
     # ============================================================ salida
     ERRATAS = {"«corpus_metadata.csv (v2)»": "E1", "«dataset_split.csv (V1.1)»": "E2", "F1 test 0.634": "E3",

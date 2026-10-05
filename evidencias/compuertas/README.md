@@ -23,3 +23,14 @@ Los datos de las pruebas son falsos y no se guardan en el repositorio.
 | `salidas/10_verificar_referencias_v7.txt` y `capturas/10_…png` | `verificar_referencias.py`: 52 afirmaciones, 48 OK, 1 nota, 3 planificadas y 0 discrepancias | **Ejecutado** |
 
 Los archivos 01 a 07 se conservan tal como se generaron. El formulario v3 resolvió el único pendiente VIGENTE de la auditoría de «fecha de corte» (ahora 0 vigentes).
+
+## Tercera tanda (demostración simulada completa)
+
+La demostración en sí está en `evidencias/simulado_demostracion/20261005_demostracion/` (ver `INFORME_DEMOSTRACION_SIMULADA.md`). Aquí quedan las pruebas repetidas después de ella:
+
+| Archivo | Qué es | Estado |
+|---|---|---|
+| `salidas/11_smoke_compuertas_SIMULADA.txt` y `capturas/11_…png` | Prueba de humo de compuertas (67/67), con las piezas nuevas de la demostración: congelado con umbral, análisis con congelado de demostración, tablero de una ejecución, marcado | **Simulada** |
+| `salidas/12_…`, `13_…`, `14_…` y capturas | Transcripción (23/23), conciliación (28/28) y piloto (51/51), repetidas | **Simulada** |
+| `salidas/15_smoke_lote_real_DATOS_FALSOS.txt` y `capturas/15_…png` | Lote real (72/72), repetida | **Simulada** |
+| `salidas/16_verificar_referencias_v7.txt` y `capturas/16_…png` | `verificar_referencias.py`: 54 afirmaciones, 51 OK, 1 nota, 2 planificadas y 0 discrepancias (incluye el marcado y el aislamiento de la demostración) | **Ejecutado** |

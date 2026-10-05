@@ -1,0 +1,25 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/eval_real.py --corpus-v3 evidencias\simulado_demostracion\20261005_demostracion\02_particion\corpus_metadata_v3.csv --nlu-dir evidencias\simulado_demostracion\20261005_demostracion\02_particion\nlu --out-dir evidencias\simulado_demostracion\20261005_demostracion\03_evaluacion --models-dir <usuario>\AppData\Local\Temp\demo_modelos_rasa__yy_2u1s --fase seleccion --configuracion-fija 150,64,20 --svm-c 10.0
+salida: 0  (466 s)
+
+corpus v3: train=708 (sintético) | validation=110 (real) | test=151 (real) | intenciones=54
+
+SVM — selección en validación real (seed 42):
+  BASE-SVM-C10.0-s42                 accuracy=0.7636  precision_macro=0.8018  recall_macro=0.7566  f1_macro=0.7475  balanced_accuracy=0.7566
+  => C seleccionado: 10.0 (F1 macro validación = 0.7475)
+
+Rasa/DIET — selección en validación real (1 combinaciones, seed 42):
+  RASA-e150-b64-d20-s42 (439s)       accuracy=0.8545  precision_macro=0.8765  recall_macro=0.8585  f1_macro=0.8436  balanced_accuracy=0.8585
+  => combinación seleccionada: epochs=150 batch_size=64 embedding_dimension=20 (F1 macro validación = 0.8436)
+
+Selección guardada en evidencias\simulado_demostracion\20261005_demostracion\03_evaluacion\seleccion_final.json
+venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()

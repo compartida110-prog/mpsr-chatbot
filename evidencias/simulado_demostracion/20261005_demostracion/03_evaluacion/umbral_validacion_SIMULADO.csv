@@ -1,0 +1,8 @@
+t,n_total,respondidas,aciertos_respondidos,errores_respondidos,abstenciones,correctas_perdidas,errores_atrapados,cobertura,precision_respondida,puntaje,ESTADO
+sin umbral,110,110,94,16,0,0,0,1.0,0.8545,62.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.3,110,104,93,11,6,1,5,0.9455,0.8942,71.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.4,110,97,89,8,13,5,8,0.8818,0.9175,73.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.5,110,94,88,6,16,6,10,0.8545,0.9362,76.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.6,110,92,86,6,18,8,10,0.8364,0.9348,74.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.7,110,87,83,4,23,11,12,0.7909,0.954,75.0,SIMULADO — datos de prueba; no son hallazgos de campo
+0.8,110,84,80,4,26,14,12,0.7636,0.9524,72.0,SIMULADO — datos de prueba; no son hallazgos de campo

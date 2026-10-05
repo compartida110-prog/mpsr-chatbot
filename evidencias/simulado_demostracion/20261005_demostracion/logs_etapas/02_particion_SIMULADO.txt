@@ -1,0 +1,64 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/split_corpus_v3.py --real evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_real_final.csv --out-dir evidencias\simulado_demostracion\20261005_demostracion\02_particion --nlu-dir evidencias\simulado_demostracion\20261005_demostracion\02_particion\nlu
+salida: 0  (2 s)
+
+Partición v3 (seed 42): train=708 (sintético) | validation=110 (real) | test=151 (real)
+Verificado: 54 intenciones en las tres particiones | ninguna frase repetida entre particiones | ningún grupo en dos particiones | ninguna frase real en entrenamiento
+
+intención                               train  valid.  test
+afirmar                                    18       1     1
+agradecimiento                             12       2     3
+ayuda_chatbot                              18       2     3
+certificado_defensa_civil                  12       2     3
+certificado_posesion                       12       2     3
+constancia_domiciliaria                    12       2     3
+constancia_no_adeudo                       12       2     3
+consulta_deuda_predial                     12       2     3
+consulta_no_entendida                      12       2     3
+contacto_telefonico                        12       2     3
+copia_documento                            18       2     3
+costos_generales                           12       2     3
+denuncia_seguridad_ciudadana               12       2     2
+despedida                                  18       2     3
+estado_reclamo                             12       2     3
+estado_tramite                             12       2     3
+fraccionamiento_deuda                      12       2     2
+fuera_de_alcance                           21       7     7
+hablar_con_persona                         12       2     2
+horario_atencion_general                   12       2     3
+horario_mesa_partes                        18       2     3
+horario_recojo_basura                      12       2     3
+impuesto_alcabala                          12       2     2
+inspeccion_tecnica                         12       2     3
+libro_reclamaciones                        12       2     2
+licencia_edificacion_costo                 12       2     2
+licencia_edificacion_requisitos            12       2     3
+licencia_funcionamiento_costo              12       2     3
+licencia_funcionamiento_plazo              12       2     3
+licencia_funcionamiento_requisitos         21       2     3
+limpieza_via_publica                       12       2     2
+mantenimiento_parques                      12       2     3
+negar                                      12       1     2
+pago_arbitrios                             12       2     3
+pago_predial_como                          12       2     2
+partida_defuncion                          12       2     3
+partida_matrimonio                         12       2     3
+partida_nacimiento                         12       2     3
+poda_arboles                               12       2     3
+presentar_reclamo                          12       2     3
+queja_atencion                             12       2     3
+rectificacion_partida                      12       2     2
+redes_sociales_mpsr                        12       2     3
+renovacion_licencia                        12       2     3
+repetir_informacion                        12       2     3
+reporte_alumbrado_publico                  18       2     3
+requisitos_defensa_civil                   18       2     3
+requisitos_generales                       12       2     3
+requisitos_matrimonio_civil                12       2     3
+requisitos_mesa_partes                     12       2     3
+saludo                                     12       1     1
+serenazgo_contacto                         12       2     3
+sugerencia                                 12       2     3
+ubicacion_oficinas                         12       2     2
+
+Salidas: evidencias\simulado_demostracion\20261005_demostracion\02_particion/corpus_metadata_v3.csv, dataset_split_v3.csv, resumen_v3.json y evidencias\simulado_demostracion\20261005_demostracion\02_particion\nlu/nlu_(train|validation|test).yml

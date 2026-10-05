@@ -1,0 +1,11 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "t": 0.5,
+  "ambiguity_threshold": 0.1,
+  "lambda": 2.0,
+  "puntaje_validacion": 76.0,
+  "puntaje_sin_umbral_validacion": 62.0,
+  "fecha": "2026-10-05T10:37:31",
+  "predicciones_validacion": "evidencias\\simulado_demostracion\\20261005_demostracion\\03_evaluacion\\RASA-e150-b64-d20-s42\\predictions_validation_conf.csv",
+  "predicciones_validacion_sha256": "ee52368ec915a1dd4a64bbbe4824c1087c6e4b192b7b8fc323eaa281e7201560"
+}

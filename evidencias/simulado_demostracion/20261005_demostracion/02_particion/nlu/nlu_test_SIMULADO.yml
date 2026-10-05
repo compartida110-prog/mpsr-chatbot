@@ -1,0 +1,263 @@
+# ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+version: "3.1"
+
+nlu:
+- intent: afirmar
+  examples: |
+    - aja si
+- intent: agradecimiento
+  examples: |
+    - gracias
+    - mil gracias me ayudo bastante
+    - ok grasias
+- intent: ayuda_chatbot
+  examples: |
+    - q puedes hacer
+    - para q sirve este asistente
+    - hola q cosas puedo preguntarte
+- intent: certificado_defensa_civil
+  examples: |
+    - como se saca el certificado de defensa civil
+    - hola para q funcione mi negocio piden defensa civil como se tramita
+    - certificado de seguridad en edificaciones como lo saco
+- intent: certificado_posesion
+  examples: |
+    - como saco certificado de posesion
+    - vivo en un terreno sin titulo y me piden un certificado de posesion como se tramita
+    - donde tramito el certificado de posesion
+- intent: constancia_domiciliaria
+  examples: |
+    - me piden un documento q pruebe donde vivo q hago
+    - donde se saca la constancia domiciliaria
+    - necesito constancia de domicilio como la tramito en la muni
+- intent: constancia_no_adeudo
+  examples: |
+    - me piden un papel q diga q no debo nada a la muni como lo consigo
+    - q necesito para la constancia de no adeudo
+    - hola donde se tramita la constancia de no tener deudas
+- intent: consulta_deuda_predial
+  examples: |
+    - quiero saber si debo predial
+    - como puedo ver cuanto debo de impuesto predial de mi casa
+    - tengo deuda de mi terreno en la muni cuanto seria
+- intent: consulta_no_entendida
+  examples: |
+    - no entendi puedes explicar de nuevo
+    - q quieres decir con eso
+    - explicame otra vez no entendi nada
+- intent: contacto_telefonico
+  examples: |
+    - a q numero puedo llamar a la municipalidad
+    - tienen telefono o whatsapp para consultas
+    - buenas cual es el numero de la municipalidad
+- intent: copia_documento
+  examples: |
+    - perdi la copia de mi documento q presente como la recupero
+    - necesito una copia sellada de un documento q presente antes
+    - como pido copia de mi cargo de un tramite
+- intent: costos_generales
+  examples: |
+    - cuanto cuestan los tramites
+    - hay un tarifario de la municipalidad
+    - hola cuanto se paga en general por los tramites
+- intent: denuncia_seguridad_ciudadana
+  examples: |
+    - hay gente sospechosa en mi cuadra a quien aviso
+    - buenas hay personas sospechosas cerca de mi casa q hago
+- intent: despedida
+  examples: |
+    - listo eso era todo adios
+    - chau
+    - bueno gracias q tenga buen dia
+- intent: estado_reclamo
+  examples: |
+    - ya respondieron mi reclamo
+    - como veo el estado de mi reclamo
+    - quiero saber si ya me contestaron el reclamo q puse
+- intent: estado_tramite
+  examples: |
+    - como va mi tramite q deje hace semanas
+    - deje unos papeles hace tiempo y no me dicen nada como consulto
+    - buenas como puedo hacer seguimiento a mi tramite
+- intent: fraccionamiento_deuda
+  examples: |
+    - debo varios años de predial y no puedo pagar todo junto hay facilidades
+    - buenas quisiera pagar mi deuda poco a poco se puede
+- intent: fuera_de_alcance
+  examples: |
+    - como saco mi dni en reniec
+    - hazme mi tarea de matematicas
+    - quien gano el partido de ayer
+    - donde reclamo x el agua q no llega
+    - q hace frio hoy no va a llover
+    - ayudame a resolver mi tarea de historia
+    - cuantos habitantes tiene puno
+- intent: hablar_con_persona
+  examples: |
+    - me puede atender una persona real
+    - no quiero hablar con un programa quiero una persona
+- intent: horario_atencion_general
+  examples: |
+    - q horario de atencion tiene la muni y abren los sabados
+    - horario de atencion
+    - la municipalidad abre sabado
+- intent: horario_mesa_partes
+  examples: |
+    - hasta q hora atiende mesa de partes
+    - q dias y horas puedo ir a dejar un documento
+    - a q hora puedo ir a dejar mis papeles
+- intent: horario_recojo_basura
+  examples: |
+    - a q hora pasa el camion de basura
+    - horario del recojo de basura
+    - buenas el camion no paso hoy cuando pasa
+- intent: impuesto_alcabala
+  examples: |
+    - compre un terreno y me dicen q hay q pagar alcabala q es eso
+    - hola acabo de comprar un lote y debo pagar un impuesto como es
+- intent: inspeccion_tecnica
+  examples: |
+    - como pido q vengan a inspeccionar mi local
+    - buenas como solicito q un inspector revise mi local
+    - q tengo q hacer para q vengan a revisar mi tienda
+- intent: libro_reclamaciones
+  examples: |
+    - quiero dejar mi queja en el libro de reclamos como se usa
+    - como uso el libro de reclamaciones de la muni
+- intent: licencia_edificacion_costo
+  examples: |
+    - cuanto tengo q pagar a la muni para construir mi casa
+    - cuanto me cobran para autorizar la construccion de mi terreno
+- intent: licencia_edificacion_requisitos
+  examples: |
+    - q documentos necesito para construir un segundo piso
+    - quiero hacer el segundo piso de mi casa que tengo q presentar
+    - requisitos para licencia de construccion
+- intent: licencia_funcionamiento_costo
+  examples: |
+    - cuanto cuesta la licencia pa mi tienda
+    - cuanto cobran por sacar licencia de funcionamiento de un restaurant pequeño
+    - precio de la licencia de funcionamiento
+- intent: licencia_funcionamiento_plazo
+  examples: |
+    - ya entregue mis documentos y cuanto tiempo se demoran en darme el permiso
+    - en cuanto tiempo me dan mi licencia
+    - buenas cuantos dias tarda para q me entreguen la licencia de mi negocio
+- intent: licencia_funcionamiento_requisitos
+  examples: |
+    - q requisitos piden pa poner una tiendita
+    - para abrir mi negocio q tengo q llevar a la muni
+    - que papeles me piden para la licencia de mi tienda en juliaca
+- intent: limpieza_via_publica
+  examples: |
+    - buenas mi calle esta llena de basura quien la recoge
+    - reporte de basura acumulada en la via
+- intent: mantenimiento_parques
+  examples: |
+    - el parque esta abandonado y los juegos malogrados quiero q lo arreglen
+    - el parque cerca de mi casa esta descuidado a donde reclamo
+    - buenas los juegos del parque estan rotos pueden arreglarlos
+- intent: negar
+  examples: |
+    - no eso no queria
+    - no es lo q busco
+- intent: pago_arbitrios
+  examples: |
+    - me llego un cobro de limpieza y serenazgo donde lo pago
+    - buenas como pago el recojo de basura y serenazgo q me llego
+    - quiero pagar mis arbitrios como se hace
+- intent: pago_predial_como
+  examples: |
+    - q formas de pago hay para el predial
+    - puedo pagar mi predial en el banco o solo en la municipalidad
+- intent: partida_defuncion
+  examples: |
+    - murio mi tio y necesito el acta de defuncion como se saca
+    - q requisitos piden para el acta de defuncion
+    - donde se saca el certificado de defuncion
+- intent: partida_matrimonio
+  examples: |
+    - perdi mi acta de matrimonio como saco otra
+    - me piden partida de matrimonio y no encuentro el original
+    - q hago si no tengo mi partida de matrimonio
+- intent: partida_nacimiento
+  examples: |
+    - como saco mi partida de nacimiento
+    - me piden partida de nacimiento y no se donde sacarla
+    - donde se tramita el acta de nacimiento
+- intent: poda_arboles
+  examples: |
+    - un arbol tapa la vereda quiero q lo corten
+    - hola necesito q recorten un arbol de la vereda
+    - poda de arboles como se pide
+- intent: presentar_reclamo
+  examples: |
+    - quiero hacer un reclamo formal x mi tramite
+    - no estoy conforme como me resolvieron mi tramite como reclamo
+    - como presento un reclamo
+- intent: queja_atencion
+  examples: |
+    - un trabajador me atendio mal quiero reportarlo
+    - hola quiero quejarme de un servidor q me atendio de mala manera
+    - mala atencion de un trabajador a quien aviso
+- intent: rectificacion_partida
+  examples: |
+    - como se rectifica una partida de nacimiento con error en apellido
+    - hola mi acta de nacimiento esta con error en el apellido q hago
+- intent: redes_sociales_mpsr
+  examples: |
+    - tienen redes sociales para ver los avisos oficiales
+    - como me entero de los comunicados de la muni
+    - hola cual es la pagina de facebook de la municipalidad
+- intent: renovacion_licencia
+  examples: |
+    - mi licencia ya vencio como la renuevo
+    - se me vencio la licencia de funcionamiento q hago
+    - quiero renovar mi licencia q requisitos hay
+- intent: repetir_informacion
+  examples: |
+    - otra vez lo q dijiste
+    - puedes volver a enviarme la info
+    - no alcance a anotar repitelo por favor
+- intent: reporte_alumbrado_publico
+  examples: |
+    - un poste de mi calle no prende como reporto
+    - hola mi cuadra esta oscura x q un poste no funciona a quien aviso
+    - reporte de poste apagado
+- intent: requisitos_defensa_civil
+  examples: |
+    - q cosas debo tener listas para la revision de seguridad
+    - q piden en defensa civil extintor planos q mas
+    - que equipos de seguridad piden pa un local
+- intent: requisitos_generales
+  examples: |
+    - para un tramite solo llevo dni o necesito algo mas
+    - q piden para hacer cualquier tramite
+    - q documentos basicos debo llevar
+- intent: requisitos_matrimonio_civil
+  examples: |
+    - q papeles piden para casarse por civil
+    - requisitos matrimonio civil en la muni
+    - q documentos tenemos q llevar mi novia y yo para casarnos
+- intent: requisitos_mesa_partes
+  examples: |
+    - q tengo q llevar para presentar una solicitud
+    - quiero entregar un documento a mesa de partes que necesito
+    - buenas q requisitos hay para presentar un escrito en la muni
+- intent: saludo
+  examples: |
+    - hola buen dia
+- intent: serenazgo_contacto
+  examples: |
+    - q numero de serenazgo hay
+    - hola necesito contactar con serenazgo por donde puedo
+    - tienen whatsapp serenazgo
+- intent: sugerencia
+  examples: |
+    - quisiera sugerir q pongan mas ventanillas para atender mas rapido
+    - como envio una sugerencia a la municipalidad
+    - se me ocurrio algo para mejorar el servicio donde lo digo
+- intent: ubicacion_oficinas
+  examples: |
+    - direccion de la municipalidad
+    - en q calle queda la municipalidad de juliaca

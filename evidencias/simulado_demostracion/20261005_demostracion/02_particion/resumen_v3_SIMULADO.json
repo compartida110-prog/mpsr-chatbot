@@ -1,0 +1,297 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "version": "v3_real",
+  "fecha": "2026-10-05T10:29:43",
+  "seed": 42,
+  "totales": {
+    "train": 708,
+    "validation": 110,
+    "test": 151
+  },
+  "frases_reales": 261,
+  "frases_sinteticas": 708,
+  "intenciones": 54,
+  "por_intencion": {
+    "afirmar": {
+      "train": 18,
+      "validation": 1,
+      "test": 1
+    },
+    "agradecimiento": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "ayuda_chatbot": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "certificado_defensa_civil": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "certificado_posesion": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "constancia_domiciliaria": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "constancia_no_adeudo": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "consulta_deuda_predial": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "consulta_no_entendida": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "contacto_telefonico": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "copia_documento": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "costos_generales": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "denuncia_seguridad_ciudadana": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "despedida": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "estado_reclamo": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "estado_tramite": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "fraccionamiento_deuda": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "fuera_de_alcance": {
+      "train": 21,
+      "validation": 7,
+      "test": 7
+    },
+    "hablar_con_persona": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "horario_atencion_general": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "horario_mesa_partes": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "horario_recojo_basura": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "impuesto_alcabala": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "inspeccion_tecnica": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "libro_reclamaciones": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "licencia_edificacion_costo": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "licencia_edificacion_requisitos": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "licencia_funcionamiento_costo": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "licencia_funcionamiento_plazo": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "licencia_funcionamiento_requisitos": {
+      "train": 21,
+      "validation": 2,
+      "test": 3
+    },
+    "limpieza_via_publica": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "mantenimiento_parques": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "negar": {
+      "train": 12,
+      "validation": 1,
+      "test": 2
+    },
+    "pago_arbitrios": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "pago_predial_como": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "partida_defuncion": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "partida_matrimonio": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "partida_nacimiento": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "poda_arboles": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "presentar_reclamo": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "queja_atencion": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "rectificacion_partida": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    },
+    "redes_sociales_mpsr": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "renovacion_licencia": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "repetir_informacion": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "reporte_alumbrado_publico": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "requisitos_defensa_civil": {
+      "train": 18,
+      "validation": 2,
+      "test": 3
+    },
+    "requisitos_generales": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "requisitos_matrimonio_civil": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "requisitos_mesa_partes": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "saludo": {
+      "train": 12,
+      "validation": 1,
+      "test": 1
+    },
+    "serenazgo_contacto": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "sugerencia": {
+      "train": 12,
+      "validation": 2,
+      "test": 3
+    },
+    "ubicacion_oficinas": {
+      "train": 12,
+      "validation": 2,
+      "test": 2
+    }
+  },
+  "intenciones_con_menos_de_2_frases_reales": [],
+  "verificaciones": {
+    "54_intenciones_en_las_3_particiones": true,
+    "sin_frases_repetidas_entre_particiones": true,
+    "sin_base_phrase_id_en_dos_particiones": true,
+    "sin_frases_reales_en_entrenamiento": true
+  },
+  "entradas_sha256": {
+    "sintetico": "9e10876af2eea2fa1a4efb711ed478cda5f51daaffe7a4d60ea7af7a75ffb462",
+    "real": "e7bee05212dc3eaad43a4c647871ea54c305469ab0b7fbc0d3250d3d66b7fa6c"
+  }
+}

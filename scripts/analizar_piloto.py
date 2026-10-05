@@ -529,17 +529,22 @@ def main(argv=None, predictor=None):
     ap.add_argument("--demo-simulada", action="store_true", help="demostración con datos simulados: escribe en evidencias/simulado_demostracion/<ejecución>/ con el marcador SIMULADO")
     ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración (por defecto, fecha y hora)")
     ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas
+    ap.add_argument("--demo-sin-marcar", action="store_true", help=argparse.SUPPRESS)  # lo usa el orquestador
     a = ap.parse_args(argv)
     demo = bool(a.demo_simulada)
     if demo:
         import congelar_modelo
+        modelo_demo = None
         if a.modelo_congelado != ap.get_default("modelo_congelado"):
-            sys.exit("ERROR: con --demo-simulada se usa un modelo de demostración propio; no se acepta --modelo-congelado (no se toca el modelo real).")
+            ds.exigir_en_demo(a.modelo_congelado, a.demo_raiz or None)  # solo un congelamiento de DEMOSTRACIÓN hecho en esta carpeta, nunca el real
+            if Path(a.modelo_congelado).name != "modelo_congelado_SIMULADO.json" or not Path(a.modelo_congelado).exists():
+                sys.exit("ERROR: con --demo-simulada solo se acepta un modelo_congelado_SIMULADO.json de demostración ya creado (congelar_modelo.py --demo-simulada).")
+            modelo_demo = a.modelo_congelado
         pedidas = [a.salida] if a.salida != ap.get_default("salida") else []
         carpeta = ds.preparar_demo("analizar_piloto", a.registro, a.demo_raiz or None, a.ejecucion, pedidas)
         a.salida = str(carpeta)
         a.permitir_simulado = True
-        a.modelo_congelado = str(congelar_modelo.crear_demo(carpeta))
+        a.modelo_congelado = modelo_demo or str(congelar_modelo.crear_demo(carpeta))
         predictor = predictor or predictor_demostracion(a.catalogo)
 
     mapa_usr = json.loads(Path(a.mapa_columnas).read_text(encoding="utf-8")) if a.mapa_columnas else None
@@ -614,7 +619,7 @@ def main(argv=None, predictor=None):
                             "motivo": a.motivo.strip(), "rotulo": R["rotulo"]}, ensure_ascii=False) + "\n")
     print(informe_md(R))
     print(f"Guardado en {salida}")
-    if demo:
+    if demo and not a.demo_sin_marcar:
         marcados = ds.marcar_directorio(salida)
         print(f"DEMOSTRACIÓN SIMULADA: {len(marcados)} archivos marcados «{ds.MARCA_ESTADO}» en {salida}")
     return R

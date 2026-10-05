@@ -1,0 +1,970 @@
+utterance_id,text,intent,category,source,base_phrase_id,split,ESTADO
+U0001,¿Qué requisitos necesito para sacar mi licencia de funcionamiento?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0002,Quiero saber los requisitos para la licencia de funcionamiento,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0003,¿Qué documentos piden para licencia de funcionamiento de mi tienda?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0004,"Voy a abrir un negocio, ¿qué necesito para la licencia?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0005,"Para aperturar mi local, ¿qué papeles me piden?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0006,¿Qué se necesita para licenciar un negocio nuevo?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0007,"Buenas, ¿me podría explicar los requisitos para la licencia de funcionamiento?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0008,Quisiera saber los requisitos para la licencia de funcionamiento.,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0009,¿Usted me puede ayudar con los requisitos para la licencia de funcionamiento?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0010,"Disculpe, ¿dónde consigo información sobre los requisitos para la licencia de funcionamiento?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0011,"Oiga, ¿qué hay sobre los requisitos para la licencia de funcionamiento?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0012,Necesitaría orientación sobre los requisitos para la licencia de funcionamiento.,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0013,¿Cuánto cuesta la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0014,¿Cuál es el costo de la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0015,¿Cuánto tengo que pagar por la licencia de mi negocio?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0016,¿A cuánto sale sacar la licencia para mi tienda?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0017,¿Qué precio tiene tramitar la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0018,Quisiera saber el monto de la licencia de funcionamiento,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0019,"Buenas, ¿me podría explicar el costo de la licencia de funcionamiento?",licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0020,Quisiera saber el costo de la licencia de funcionamiento.,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0021,¿Usted me puede ayudar con el costo de la licencia de funcionamiento?,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0022,"Disculpe, ¿dónde consigo información sobre el costo de la licencia de funcionamiento?",licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0023,"Oiga, ¿qué hay sobre el costo de la licencia de funcionamiento?",licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0024,Necesitaría orientación sobre el costo de la licencia de funcionamiento.,licencia_funcionamiento_costo,Licencias y autorizaciones,sintético,licencia_funcionamiento_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0025,¿En cuánto tiempo me dan la licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0026,¿Cuántos días demora el trámite de licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0027,¿Cuál es el plazo de atención para la licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0028,¿Cuándo estará lista mi licencia si la pido hoy?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0029,¿Cuánto tarda en salir la licencia de mi negocio?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0030,¿Cuántos días hábiles toma aprobar la licencia?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0031,"Buenas, ¿me podría explicar el plazo de atención de la licencia de funcionamiento?",licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0032,Quisiera saber el plazo de atención de la licencia de funcionamiento.,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0033,¿Usted me puede ayudar con el plazo de atención de la licencia de funcionamiento?,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0034,"Disculpe, ¿dónde consigo información sobre el plazo de atención de la licencia de funcionamiento?",licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0035,"Oiga, ¿qué hay sobre el plazo de atención de la licencia de funcionamiento?",licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0036,Necesitaría orientación sobre el plazo de atención de la licencia de funcionamiento.,licencia_funcionamiento_plazo,Licencias y autorizaciones,sintético,licencia_funcionamiento_plazo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0037,¿Qué requisitos piden para la licencia de edificación?,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0038,"Quiero construir, ¿qué necesito para la licencia de edificación?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0039,¿Qué documentos se necesitan para licencia de construcción?,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0040,"Voy a ampliar mi casa, ¿qué papeles necesito?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0041,¿Qué me piden para licenciar una construcción nueva?,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0042,"Para remodelar mi vivienda, ¿qué requisitos hay?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0043,"Buenas, ¿me podría explicar los requisitos para la licencia de edificación?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0044,Quisiera saber los requisitos para la licencia de edificación.,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0045,¿Usted me puede ayudar con los requisitos para la licencia de edificación?,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0046,"Disculpe, ¿dónde consigo información sobre los requisitos para la licencia de edificación?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0047,"Oiga, ¿qué hay sobre los requisitos para la licencia de edificación?",licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0048,Necesitaría orientación sobre los requisitos para la licencia de edificación.,licencia_edificacion_requisitos,Licencias y autorizaciones,sintético,licencia_edificacion_requisitos__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0049,¿Cuánto cuesta la licencia de edificación?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0050,¿Cuál es el costo de licencia de construcción?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0051,¿Cuánto debo pagar para licenciar mi obra?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0052,¿A cuánto sale el trámite de licencia de edificación?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0053,¿Qué precio tiene la licencia para construir?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0054,Quiero saber el monto de la licencia de obra,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0055,"Buenas, ¿me podría explicar el costo de la licencia de edificación?",licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0056,Quisiera saber el costo de la licencia de edificación.,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0057,¿Usted me puede ayudar con el costo de la licencia de edificación?,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0058,"Disculpe, ¿dónde consigo información sobre el costo de la licencia de edificación?",licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0059,"Oiga, ¿qué hay sobre el costo de la licencia de edificación?",licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0060,Necesitaría orientación sobre el costo de la licencia de edificación.,licencia_edificacion_costo,Licencias y autorizaciones,sintético,licencia_edificacion_costo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0061,¿Cómo renuevo mi licencia de funcionamiento?,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0062,"Se me venció mi licencia, ¿cómo la renuevo?",renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0063,¿Qué trámite hago para renovar la licencia de mi negocio?,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0064,¿Qué necesito para renovar mi licencia vencida?,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0065,"Quiero actualizar mi licencia de funcionamiento, ¿cómo hago?",renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0066,¿Cuáles son los pasos para renovar una licencia?,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0067,"Buenas, ¿me podría explicar cómo renovar una licencia de funcionamiento?",renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0068,Quisiera saber cómo renovar una licencia de funcionamiento.,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0069,¿Usted me puede ayudar con cómo renovar una licencia de funcionamiento?,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0070,"Disculpe, ¿dónde consigo información sobre cómo renovar una licencia de funcionamiento?",renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0071,"Oiga, ¿qué hay sobre cómo renovar una licencia de funcionamiento?",renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0072,Necesitaría orientación sobre cómo renovar una licencia de funcionamiento.,renovacion_licencia,Licencias y autorizaciones,sintético,renovacion_licencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0073,¿Cómo consulto mi deuda del impuesto predial?,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0074,Quiero saber cuánto debo de predial,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0075,¿Dónde veo mi estado de cuenta del impuesto predial?,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0076,¿Tengo deuda pendiente de autoavalúo?,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0077,¿Cómo sé si debo predial de este año?,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0078,Quisiera revisar mi deuda de impuesto predial,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0079,"Buenas, ¿me podría explicar mi deuda del impuesto predial?",consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0080,Quisiera saber mi deuda del impuesto predial.,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0081,¿Usted me puede ayudar con mi deuda del impuesto predial?,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0082,"Disculpe, ¿dónde consigo información sobre mi deuda del impuesto predial?",consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0083,"Oiga, ¿qué hay sobre mi deuda del impuesto predial?",consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0084,Necesitaría orientación sobre mi deuda del impuesto predial.,consulta_deuda_predial,Tributos y pagos municipales,sintético,consulta_deuda_predial__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0085,¿Cómo pago mi impuesto predial?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0086,¿Dónde puedo pagar el predial?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0087,¿Qué formas de pago hay para el impuesto predial?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0088,¿Puedo pagar mi predial por internet?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0089,¿Cómo cancelo el autoavalúo de mi casa?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0090,¿Qué opciones tengo para pagar predial?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0091,"Buenas, ¿me podría explicar cómo pagar el impuesto predial?",pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0092,Quisiera saber cómo pagar el impuesto predial.,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0093,¿Usted me puede ayudar con cómo pagar el impuesto predial?,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0094,"Disculpe, ¿dónde consigo información sobre cómo pagar el impuesto predial?",pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0095,"Oiga, ¿qué hay sobre cómo pagar el impuesto predial?",pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0096,Necesitaría orientación sobre cómo pagar el impuesto predial.,pago_predial_como,Tributos y pagos municipales,sintético,pago_predial_como__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0097,¿Cómo pago los arbitrios municipales?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0098,¿Dónde cancelo mis arbitrios de limpieza pública?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0099,"Quiero pagar mis arbitrios, ¿cómo hago?",pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0100,¿Cuánto debo de arbitrios este año?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0101,¿Qué son los arbitrios y cómo los pago?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0102,¿Dónde consulto mi deuda de arbitrios?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0103,"Buenas, ¿me podría explicar cómo pagar los arbitrios municipales?",pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0104,Quisiera saber cómo pagar los arbitrios municipales.,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0105,¿Usted me puede ayudar con cómo pagar los arbitrios municipales?,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0106,"Disculpe, ¿dónde consigo información sobre cómo pagar los arbitrios municipales?",pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0107,"Oiga, ¿qué hay sobre cómo pagar los arbitrios municipales?",pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0108,Necesitaría orientación sobre cómo pagar los arbitrios municipales.,pago_arbitrios,Tributos y pagos municipales,sintético,pago_arbitrios__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0109,¿Qué es el impuesto de alcabala y cómo lo pago?,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0110,"Compré un terreno, ¿tengo que pagar alcabala?",impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0111,¿Cómo tramito el pago de alcabala?,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0112,¿Cuánto es el impuesto de alcabala por mi compra?,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0113,¿Dónde pago el impuesto de alcabala?,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0114,Necesito información sobre el impuesto de alcabala,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0115,"Buenas, ¿me podría explicar el impuesto de alcabala?",impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0116,Quisiera saber el impuesto de alcabala.,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0117,¿Usted me puede ayudar con el impuesto de alcabala?,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0118,"Disculpe, ¿dónde consigo información sobre el impuesto de alcabala?",impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0119,"Oiga, ¿qué hay sobre el impuesto de alcabala?",impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0120,Necesitaría orientación sobre el impuesto de alcabala.,impuesto_alcabala,Tributos y pagos municipales,sintético,impuesto_alcabala__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0121,¿Puedo fraccionar mi deuda tributaria?,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0122,"Quiero pagar mi deuda municipal en partes, ¿se puede?",fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0123,¿Cómo hago un fraccionamiento de mi deuda predial?,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0124,"Debo varios años de predial, ¿puedo pagar en cuotas?",fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0125,¿Qué requisitos piden para fraccionar una deuda?,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0126,¿Dónde solicito el fraccionamiento de mi deuda?,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0127,"Buenas, ¿me podría explicar el fraccionamiento de una deuda tributaria?",fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0128,Quisiera saber el fraccionamiento de una deuda tributaria.,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0129,¿Usted me puede ayudar con el fraccionamiento de una deuda tributaria?,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0130,"Disculpe, ¿dónde consigo información sobre el fraccionamiento de una deuda tributaria?",fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0131,"Oiga, ¿qué hay sobre el fraccionamiento de una deuda tributaria?",fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0132,Necesitaría orientación sobre el fraccionamiento de una deuda tributaria.,fraccionamiento_deuda,Tributos y pagos municipales,sintético,fraccionamiento_deuda__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0133,¿Cómo saco mi constancia de no adeudo?,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0134,Necesito un certificado de que no debo nada a la municipalidad,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0135,¿Dónde tramito la constancia de no adeudo?,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0136,Quiero un documento que diga que estoy al día en mis pagos,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0137,¿Cómo obtengo una constancia de no adeudo municipal?,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0138,Necesito comprobar que no tengo deudas con la MPSR,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0139,"Buenas, ¿me podría explicar la constancia de no adeudo?",constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0140,Quisiera saber la constancia de no adeudo.,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0141,¿Usted me puede ayudar con la constancia de no adeudo?,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0142,"Disculpe, ¿dónde consigo información sobre la constancia de no adeudo?",constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0143,"Oiga, ¿qué hay sobre la constancia de no adeudo?",constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0144,Necesitaría orientación sobre la constancia de no adeudo.,constancia_no_adeudo,Tributos y pagos municipales,sintético,constancia_no_adeudo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0145,¿Qué requisitos piden en mesa de partes?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0146,¿Qué necesito para presentar un documento en mesa de partes?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0147,¿Qué papeles debo llevar a mesa de partes?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0148,"Quiero presentar una solicitud, ¿qué necesito?",requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0149,¿Cómo presento un documento a la municipalidad?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0150,¿Qué formato debe tener mi solicitud para mesa de partes?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0151,"Buenas, ¿me podría explicar los requisitos de mesa de partes?",requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0152,Quisiera saber los requisitos de mesa de partes.,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0153,¿Usted me puede ayudar con los requisitos de mesa de partes?,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0154,"Disculpe, ¿dónde consigo información sobre los requisitos de mesa de partes?",requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0155,"Oiga, ¿qué hay sobre los requisitos de mesa de partes?",requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0156,Necesitaría orientación sobre los requisitos de mesa de partes.,requisitos_mesa_partes,Trámites documentarios,sintético,requisitos_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0157,¿Cómo consulto el estado de mi trámite?,estado_tramite,Trámites documentarios,sintético,estado_tramite__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0158,Quiero saber en qué va mi expediente,estado_tramite,Trámites documentarios,sintético,estado_tramite__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0159,¿Dónde veo el avance de mi solicitud?,estado_tramite,Trámites documentarios,sintético,estado_tramite__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0160,"Presenté un documento, ¿cómo sé si ya lo revisaron?",estado_tramite,Trámites documentarios,sintético,estado_tramite__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0161,¿Cómo rastreo mi expediente municipal?,estado_tramite,Trámites documentarios,sintético,estado_tramite__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0162,Necesito saber el estado de mi solicitud,estado_tramite,Trámites documentarios,sintético,estado_tramite__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0163,"Buenas, ¿me podría explicar el estado de mi trámite?",estado_tramite,Trámites documentarios,sintético,estado_tramite__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0164,Quisiera saber el estado de mi trámite.,estado_tramite,Trámites documentarios,sintético,estado_tramite__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0165,¿Usted me puede ayudar con el estado de mi trámite?,estado_tramite,Trámites documentarios,sintético,estado_tramite__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0166,"Disculpe, ¿dónde consigo información sobre el estado de mi trámite?",estado_tramite,Trámites documentarios,sintético,estado_tramite__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0167,"Oiga, ¿qué hay sobre el estado de mi trámite?",estado_tramite,Trámites documentarios,sintético,estado_tramite__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0168,Necesitaría orientación sobre el estado de mi trámite.,estado_tramite,Trámites documentarios,sintético,estado_tramite__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0169,¿Cuál es el horario de atención de mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0170,¿A qué hora abre mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0171,¿Hasta qué hora atienden en mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0172,¿Mesa de partes atiende los sábados?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0173,¿Qué días atiende mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0174,¿Cuál es el horario para presentar documentos?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0175,"Buenas, ¿me podría explicar el horario de atención de mesa de partes?",horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0176,Quisiera saber el horario de atención de mesa de partes.,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0177,¿Usted me puede ayudar con el horario de atención de mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0178,"Disculpe, ¿dónde consigo información sobre el horario de atención de mesa de partes?",horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0179,"Oiga, ¿qué hay sobre el horario de atención de mesa de partes?",horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0180,Necesitaría orientación sobre el horario de atención de mesa de partes.,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0181,¿Cómo saco una copia certificada de mi expediente?,copia_documento,Trámites documentarios,sintético,copia_documento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0182,Necesito una copia de un documento que presenté,copia_documento,Trámites documentarios,sintético,copia_documento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0183,¿Dónde pido copias de mis trámites anteriores?,copia_documento,Trámites documentarios,sintético,copia_documento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0184,"Perdí mi copia, ¿cómo consigo otra?",copia_documento,Trámites documentarios,sintético,copia_documento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0185,¿Puedo pedir copia certificada de una resolución?,copia_documento,Trámites documentarios,sintético,copia_documento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0186,¿Qué costo tiene una copia certificada?,copia_documento,Trámites documentarios,sintético,copia_documento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0187,"Buenas, ¿me podría explicar una copia certificada de un documento?",copia_documento,Trámites documentarios,sintético,copia_documento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0188,Quisiera saber una copia certificada de un documento.,copia_documento,Trámites documentarios,sintético,copia_documento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0189,¿Usted me puede ayudar con una copia certificada de un documento?,copia_documento,Trámites documentarios,sintético,copia_documento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0190,"Disculpe, ¿dónde consigo información sobre una copia certificada de un documento?",copia_documento,Trámites documentarios,sintético,copia_documento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0191,"Oiga, ¿qué hay sobre una copia certificada de un documento?",copia_documento,Trámites documentarios,sintético,copia_documento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0192,Necesitaría orientación sobre una copia certificada de un documento.,copia_documento,Trámites documentarios,sintético,copia_documento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0193,¿Cómo tramito un certificado de posesión?,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0194,Necesito un certificado de posesión de mi terreno,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0195,¿Qué requisitos piden para certificado de posesión?,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0196,"Quiero formalizar la posesión de mi lote, ¿qué hago?",certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0197,¿Dónde solicito constancia de posesión?,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0198,¿Cuánto demora el certificado de posesión?,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0199,"Buenas, ¿me podría explicar el certificado de posesión?",certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0200,Quisiera saber el certificado de posesión.,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0201,¿Usted me puede ayudar con el certificado de posesión?,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0202,"Disculpe, ¿dónde consigo información sobre el certificado de posesión?",certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0203,"Oiga, ¿qué hay sobre el certificado de posesión?",certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0204,Necesitaría orientación sobre el certificado de posesión.,certificado_posesion,Trámites documentarios,sintético,certificado_posesion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0205,¿Cómo saco una constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0206,Necesito un certificado de domicilio,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0207,¿Qué requisitos piden para constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0208,¿Dónde tramito mi constancia de residencia?,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0209,Quiero un documento que acredite dónde vivo,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0210,¿Cuánto cuesta la constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0211,"Buenas, ¿me podría explicar la constancia domiciliaria?",constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0212,Quisiera saber la constancia domiciliaria.,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0213,¿Usted me puede ayudar con la constancia domiciliaria?,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0214,"Disculpe, ¿dónde consigo información sobre la constancia domiciliaria?",constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0215,"Oiga, ¿qué hay sobre la constancia domiciliaria?",constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0216,Necesitaría orientación sobre la constancia domiciliaria.,constancia_domiciliaria,Trámites documentarios,sintético,constancia_domiciliaria__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0217,¿Cómo obtengo el certificado de defensa civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0218,Necesito mi certificado de Defensa Civil para mi local,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0219,¿Qué requisitos piden para certificado de Defensa Civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0220,Quiero sacar el ITSE para mi negocio,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0221,¿Cómo tramito mi certificado de seguridad en edificación?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0222,¿Dónde solicito la inspección de Defensa Civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0223,"Buenas, ¿me podría explicar el certificado de Defensa Civil?",certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0224,Quisiera saber el certificado de Defensa Civil.,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0225,¿Usted me puede ayudar con el certificado de Defensa Civil?,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0226,"Disculpe, ¿dónde consigo información sobre el certificado de Defensa Civil?",certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0227,"Oiga, ¿qué hay sobre el certificado de Defensa Civil?",certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0228,Necesitaría orientación sobre el certificado de Defensa Civil.,certificado_defensa_civil,Defensa civil y seguridad ciudadana,sintético,certificado_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0229,¿Cómo solicito una inspección técnica de seguridad?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0230,Necesito que vengan a inspeccionar mi local,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0231,¿Qué pasos sigo para pedir una ITSE?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0232,¿Cuánto demora la inspección técnica de mi negocio?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0233,¿Quién hace la inspección de seguridad en edificaciones?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0234,¿Cómo programo una visita de Defensa Civil?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0235,"Buenas, ¿me podría explicar la inspección técnica de seguridad (ITSE)?",inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0236,Quisiera saber la inspección técnica de seguridad (ITSE).,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0237,¿Usted me puede ayudar con la inspección técnica de seguridad (ITSE)?,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0238,"Disculpe, ¿dónde consigo información sobre la inspección técnica de seguridad (ITSE)?",inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0239,"Oiga, ¿qué hay sobre la inspección técnica de seguridad (ITSE)?",inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0240,Necesitaría orientación sobre la inspección técnica de seguridad (ITSE).,inspeccion_tecnica,Defensa civil y seguridad ciudadana,sintético,inspeccion_tecnica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0241,¿Qué requisitos piden para defensa civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0242,¿Qué documentos necesito para el certificado de Defensa Civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0243,¿Qué me piden para la inspección de seguridad?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0244,"Para mi local comercial, ¿qué necesito de Defensa Civil?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0245,¿Qué papeles debo presentar para ITSE?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0246,¿Cuáles son los requisitos de seguridad para mi tienda?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0247,"Buenas, ¿me podría explicar los requisitos de Defensa Civil?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0248,Quisiera saber los requisitos de Defensa Civil.,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0249,¿Usted me puede ayudar con los requisitos de Defensa Civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0250,"Disculpe, ¿dónde consigo información sobre los requisitos de Defensa Civil?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0251,"Oiga, ¿qué hay sobre los requisitos de Defensa Civil?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0252,Necesitaría orientación sobre los requisitos de Defensa Civil.,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0253,Quiero reportar un problema de seguridad en mi barrio,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0254,¿Cómo denuncio algo sospechoso a seguridad ciudadana?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0255,Necesito reportar un robo en mi zona,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0256,¿A quién llamo si veo algo raro en la calle?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0257,Quiero hacer una denuncia de inseguridad,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0258,¿Cómo contacto a serenazgo por un problema de seguridad?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0259,"Buenas, ¿me podría explicar cómo reportar un problema de seguridad ciudadana?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0260,Quisiera saber cómo reportar un problema de seguridad ciudadana.,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0261,¿Usted me puede ayudar con cómo reportar un problema de seguridad ciudadana?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0262,"Disculpe, ¿dónde consigo información sobre cómo reportar un problema de seguridad ciudadana?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0263,"Oiga, ¿qué hay sobre cómo reportar un problema de seguridad ciudadana?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0264,Necesitaría orientación sobre cómo reportar un problema de seguridad ciudadana.,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético,denuncia_seguridad_ciudadana__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0265,¿Cuál es el número de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0266,¿Cómo contacto a serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0267,Necesito el teléfono de seguridad ciudadana,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0268,¿Serenazgo atiende las 24 horas?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0269,¿Dónde queda la oficina de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0270,¿Cómo pido apoyo de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0271,"Buenas, ¿me podría explicar el contacto de serenazgo?",serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0272,Quisiera saber el contacto de serenazgo.,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0273,¿Usted me puede ayudar con el contacto de serenazgo?,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0274,"Disculpe, ¿dónde consigo información sobre el contacto de serenazgo?",serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0275,"Oiga, ¿qué hay sobre el contacto de serenazgo?",serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0276,Necesitaría orientación sobre el contacto de serenazgo.,serenazgo_contacto,Defensa civil y seguridad ciudadana,sintético,serenazgo_contacto__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0277,¿Cómo saco una copia de mi partida de nacimiento?,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0278,Necesito mi partida de nacimiento,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0279,¿Dónde tramito mi partida de nacimiento?,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0280,"Perdí mi partida de nacimiento, ¿cómo saco otra?",partida_nacimiento,Registro civil,sintético,partida_nacimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0281,¿Qué requisitos piden para partida de nacimiento?,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0282,Quiero una copia certificada de mi partida de nacimiento,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0283,"Buenas, ¿me podría explicar mi partida de nacimiento?",partida_nacimiento,Registro civil,sintético,partida_nacimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0284,Quisiera saber mi partida de nacimiento.,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0285,¿Usted me puede ayudar con mi partida de nacimiento?,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0286,"Disculpe, ¿dónde consigo información sobre mi partida de nacimiento?",partida_nacimiento,Registro civil,sintético,partida_nacimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0287,"Oiga, ¿qué hay sobre mi partida de nacimiento?",partida_nacimiento,Registro civil,sintético,partida_nacimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0288,Necesitaría orientación sobre mi partida de nacimiento.,partida_nacimiento,Registro civil,sintético,partida_nacimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0289,¿Cómo obtengo mi partida de matrimonio?,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0290,Necesito una copia de mi partida de matrimonio,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0291,¿Dónde tramito mi partida de matrimonio?,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0292,¿Qué requisitos piden para partida de matrimonio?,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0293,Quiero un certificado de mi matrimonio civil,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0294,¿Cuánto cuesta la partida de matrimonio?,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0295,"Buenas, ¿me podría explicar mi partida de matrimonio?",partida_matrimonio,Registro civil,sintético,partida_matrimonio__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0296,Quisiera saber mi partida de matrimonio.,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0297,¿Usted me puede ayudar con mi partida de matrimonio?,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0298,"Disculpe, ¿dónde consigo información sobre mi partida de matrimonio?",partida_matrimonio,Registro civil,sintético,partida_matrimonio__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0299,"Oiga, ¿qué hay sobre mi partida de matrimonio?",partida_matrimonio,Registro civil,sintético,partida_matrimonio__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0300,Necesitaría orientación sobre mi partida de matrimonio.,partida_matrimonio,Registro civil,sintético,partida_matrimonio__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0301,¿Cómo tramito una partida de defunción?,partida_defuncion,Registro civil,sintético,partida_defuncion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0302,Necesito el certificado de defunción de un familiar,partida_defuncion,Registro civil,sintético,partida_defuncion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0303,¿Qué requisitos piden para partida de defunción?,partida_defuncion,Registro civil,sintético,partida_defuncion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0304,¿Dónde registro un fallecimiento?,partida_defuncion,Registro civil,sintético,partida_defuncion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0305,¿Cómo saco copia de una partida de defunción?,partida_defuncion,Registro civil,sintético,partida_defuncion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0306,¿Qué documentos necesito para inscribir una defunción?,partida_defuncion,Registro civil,sintético,partida_defuncion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0307,"Buenas, ¿me podría explicar una partida de defunción?",partida_defuncion,Registro civil,sintético,partida_defuncion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0308,Quisiera saber una partida de defunción.,partida_defuncion,Registro civil,sintético,partida_defuncion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0309,¿Usted me puede ayudar con una partida de defunción?,partida_defuncion,Registro civil,sintético,partida_defuncion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0310,"Disculpe, ¿dónde consigo información sobre una partida de defunción?",partida_defuncion,Registro civil,sintético,partida_defuncion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0311,"Oiga, ¿qué hay sobre una partida de defunción?",partida_defuncion,Registro civil,sintético,partida_defuncion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0312,Necesitaría orientación sobre una partida de defunción.,partida_defuncion,Registro civil,sintético,partida_defuncion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0313,¿Cómo rectifico un error en mi partida de nacimiento?,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0314,"Mi partida tiene un dato mal escrito, ¿cómo lo corrijo?",rectificacion_partida,Registro civil,sintético,rectificacion_partida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0315,¿Qué trámite hago para rectificar una partida?,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0316,Necesito corregir mi apellido en la partida,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0317,¿Dónde solicito la rectificación de una partida civil?,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0318,¿Qué requisitos piden para rectificar un acta?,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0319,"Buenas, ¿me podría explicar la rectificación de una partida?",rectificacion_partida,Registro civil,sintético,rectificacion_partida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0320,Quisiera saber la rectificación de una partida.,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0321,¿Usted me puede ayudar con la rectificación de una partida?,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0322,"Disculpe, ¿dónde consigo información sobre la rectificación de una partida?",rectificacion_partida,Registro civil,sintético,rectificacion_partida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0323,"Oiga, ¿qué hay sobre la rectificación de una partida?",rectificacion_partida,Registro civil,sintético,rectificacion_partida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0324,Necesitaría orientación sobre la rectificación de una partida.,rectificacion_partida,Registro civil,sintético,rectificacion_partida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0325,¿Qué requisitos piden para matrimonio civil?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0326,"Quiero casarme por civil, ¿qué necesito?",requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0327,¿Qué documentos piden para matrimonio municipal?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0328,¿Cuánto cuesta el matrimonio civil en la municipalidad?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0329,¿Cómo programo mi matrimonio civil?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0330,¿Qué pasos sigo para casarme en la MPSR?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0331,"Buenas, ¿me podría explicar los requisitos para matrimonio civil?",requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0332,Quisiera saber los requisitos para matrimonio civil.,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0333,¿Usted me puede ayudar con los requisitos para matrimonio civil?,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0334,"Disculpe, ¿dónde consigo información sobre los requisitos para matrimonio civil?",requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0335,"Oiga, ¿qué hay sobre los requisitos para matrimonio civil?",requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0336,Necesitaría orientación sobre los requisitos para matrimonio civil.,requisitos_matrimonio_civil,Registro civil,sintético,requisitos_matrimonio_civil__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0337,¿A qué hora pasa el carro de la basura?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0338,¿Cuál es el horario de recojo de basura en mi zona?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0339,¿Qué días recogen la basura?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0340,"El camión de basura no pasó, ¿a qué hora viene?",horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0341,¿Cómo sé el horario de recolección de residuos?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0342,¿Qué días hay recojo de basura en mi barrio?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0343,"Buenas, ¿me podría explicar el horario de recojo de basura?",horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0344,Quisiera saber el horario de recojo de basura.,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0345,¿Usted me puede ayudar con el horario de recojo de basura?,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0346,"Disculpe, ¿dónde consigo información sobre el horario de recojo de basura?",horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0347,"Oiga, ¿qué hay sobre el horario de recojo de basura?",horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0348,Necesitaría orientación sobre el horario de recojo de basura.,horario_recojo_basura,Servicios públicos,sintético,horario_recojo_basura__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0349,"Un poste de luz está malogrado, ¿cómo reporto?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0350,Quiero reportar un foco público que no enciende,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0351,¿Dónde reporto una falla de alumbrado público?,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0352,"Hay un cable suelto en un poste, ¿a quién aviso?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0353,¿Cómo reporto que una calle está sin luz?,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0354,Necesito reportar un poste de alumbrado dañado,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0355,"Buenas, ¿me podría explicar cómo reportar una falla de alumbrado público?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0356,Quisiera saber cómo reportar una falla de alumbrado público.,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0357,¿Usted me puede ayudar con cómo reportar una falla de alumbrado público?,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0358,"Disculpe, ¿dónde consigo información sobre cómo reportar una falla de alumbrado público?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0359,"Oiga, ¿qué hay sobre cómo reportar una falla de alumbrado público?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0360,Necesitaría orientación sobre cómo reportar una falla de alumbrado público.,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0361,¿Cómo reporto el mal estado de un parque?,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0362,El parque de mi barrio necesita mantenimiento,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0363,¿Dónde solicito arreglo de un parque público?,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0364,Las áreas verdes de mi zona están descuidadas,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0365,¿Cómo pido que arreglen el parque de mi urbanización?,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0366,Quiero reportar juegos rotos en el parque,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0367,"Buenas, ¿me podría explicar el mantenimiento de un parque?",mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0368,Quisiera saber el mantenimiento de un parque.,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0369,¿Usted me puede ayudar con el mantenimiento de un parque?,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0370,"Disculpe, ¿dónde consigo información sobre el mantenimiento de un parque?",mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0371,"Oiga, ¿qué hay sobre el mantenimiento de un parque?",mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0372,Necesitaría orientación sobre el mantenimiento de un parque.,mantenimiento_parques,Servicios públicos,sintético,mantenimiento_parques__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0373,¿Cómo solicito la poda de un árbol?,poda_arboles,Servicios públicos,sintético,poda_arboles__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0374,Hay un árbol que necesita poda frente a mi casa,poda_arboles,Servicios públicos,sintético,poda_arboles__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0375,¿Dónde pido el servicio de poda de árboles?,poda_arboles,Servicios públicos,sintético,poda_arboles__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0376,"Un árbol está muy crecido y es peligroso, ¿cómo reporto?",poda_arboles,Servicios públicos,sintético,poda_arboles__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0377,¿Cómo pido que corten las ramas de un árbol público?,poda_arboles,Servicios públicos,sintético,poda_arboles__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0378,Necesito solicitar poda municipal,poda_arboles,Servicios públicos,sintético,poda_arboles__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0379,"Buenas, ¿me podría explicar la poda de un árbol público?",poda_arboles,Servicios públicos,sintético,poda_arboles__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0380,Quisiera saber la poda de un árbol público.,poda_arboles,Servicios públicos,sintético,poda_arboles__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0381,¿Usted me puede ayudar con la poda de un árbol público?,poda_arboles,Servicios públicos,sintético,poda_arboles__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0382,"Disculpe, ¿dónde consigo información sobre la poda de un árbol público?",poda_arboles,Servicios públicos,sintético,poda_arboles__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0383,"Oiga, ¿qué hay sobre la poda de un árbol público?",poda_arboles,Servicios públicos,sintético,poda_arboles__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0384,Necesitaría orientación sobre la poda de un árbol público.,poda_arboles,Servicios públicos,sintético,poda_arboles__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0385,¿Cómo solicito limpieza de una calle?,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0386,"Mi calle está muy sucia, ¿cómo reporto?",limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0387,¿Dónde pido el servicio de barrido de calles?,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0388,"Hay basura acumulada en mi cuadra, ¿a quién aviso?",limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0389,¿Cómo pido limpieza pública para mi zona?,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0390,Quiero reportar una vía pública descuidada,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0391,"Buenas, ¿me podría explicar la limpieza de una vía pública?",limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0392,Quisiera saber la limpieza de una vía pública.,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0393,¿Usted me puede ayudar con la limpieza de una vía pública?,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0394,"Disculpe, ¿dónde consigo información sobre la limpieza de una vía pública?",limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0395,"Oiga, ¿qué hay sobre la limpieza de una vía pública?",limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0396,Necesitaría orientación sobre la limpieza de una vía pública.,limpieza_via_publica,Servicios públicos,sintético,limpieza_via_publica__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0397,¿Cómo presento un reclamo a la municipalidad?,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0398,Quiero hacer un reclamo formal,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0399,¿Dónde registro una queja contra la municipalidad?,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0400,"No estoy conforme con un trámite, ¿cómo reclamo?",presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0401,¿Qué requisitos piden para presentar un reclamo?,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0402,Necesito reclamar por un servicio municipal,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0403,"Buenas, ¿me podría explicar cómo presentar un reclamo?",presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0404,Quisiera saber cómo presentar un reclamo.,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0405,¿Usted me puede ayudar con cómo presentar un reclamo?,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0406,"Disculpe, ¿dónde consigo información sobre cómo presentar un reclamo?",presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0407,"Oiga, ¿qué hay sobre cómo presentar un reclamo?",presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0408,Necesitaría orientación sobre cómo presentar un reclamo.,presentar_reclamo,Reclamos y quejas,sintético,presentar_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0409,¿Cómo consulto el estado de mi reclamo?,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0410,"Presenté un reclamo, ¿cómo sé si lo atendieron?",estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0411,¿Dónde veo la respuesta a mi queja?,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0412,¿Cuánto demora en resolverse un reclamo?,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0413,¿Cómo le hago seguimiento a mi reclamo?,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0414,Quiero saber si ya respondieron mi queja,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0415,"Buenas, ¿me podría explicar el estado de mi reclamo?",estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0416,Quisiera saber el estado de mi reclamo.,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0417,¿Usted me puede ayudar con el estado de mi reclamo?,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0418,"Disculpe, ¿dónde consigo información sobre el estado de mi reclamo?",estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0419,"Oiga, ¿qué hay sobre el estado de mi reclamo?",estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0420,Necesitaría orientación sobre el estado de mi reclamo.,estado_reclamo,Reclamos y quejas,sintético,estado_reclamo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0421,¿Dónde está el libro de reclamaciones?,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0422,Quiero usar el libro de reclamaciones,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0423,¿Cómo accedo al libro de reclamaciones virtual?,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0424,¿Puedo reclamar por el libro de reclamaciones online?,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0425,¿Cómo lleno el libro de reclamaciones?,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0426,Necesito el libro de reclamaciones para una queja,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0427,"Buenas, ¿me podría explicar el libro de reclamaciones?",libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0428,Quisiera saber el libro de reclamaciones.,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0429,¿Usted me puede ayudar con el libro de reclamaciones?,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0430,"Disculpe, ¿dónde consigo información sobre el libro de reclamaciones?",libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0431,"Oiga, ¿qué hay sobre el libro de reclamaciones?",libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0432,Necesitaría orientación sobre el libro de reclamaciones.,libro_reclamaciones,Reclamos y quejas,sintético,libro_reclamaciones__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0433,Quiero quejarme de la atención que recibí,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0434,"El personal me atendió mal, ¿cómo reporto?",queja_atencion,Reclamos y quejas,sintético,queja_atencion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0435,Tengo una queja sobre el servicio de un trabajador,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0436,"No me atendieron bien en ventanilla, ¿a dónde reclamo?",queja_atencion,Reclamos y quejas,sintético,queja_atencion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0437,Quiero reportar mala atención en mesa de partes,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0438,¿Cómo reporto una queja sobre un funcionario?,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0439,"Buenas, ¿me podría explicar una queja sobre la atención recibida?",queja_atencion,Reclamos y quejas,sintético,queja_atencion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0440,Quisiera saber una queja sobre la atención recibida.,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0441,¿Usted me puede ayudar con una queja sobre la atención recibida?,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0442,"Disculpe, ¿dónde consigo información sobre una queja sobre la atención recibida?",queja_atencion,Reclamos y quejas,sintético,queja_atencion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0443,"Oiga, ¿qué hay sobre una queja sobre la atención recibida?",queja_atencion,Reclamos y quejas,sintético,queja_atencion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0444,Necesitaría orientación sobre una queja sobre la atención recibida.,queja_atencion,Reclamos y quejas,sintético,queja_atencion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0445,Quiero dejar una sugerencia a la municipalidad,sugerencia,Reclamos y quejas,sintético,sugerencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0446,¿Cómo puedo sugerir una mejora?,sugerencia,Reclamos y quejas,sintético,sugerencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0447,Tengo una idea para mejorar la atención municipal,sugerencia,Reclamos y quejas,sintético,sugerencia__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0448,¿Dónde dejo mis comentarios sobre el servicio?,sugerencia,Reclamos y quejas,sintético,sugerencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0449,Quiero proponer una mejora a un trámite,sugerencia,Reclamos y quejas,sintético,sugerencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0450,¿Cómo envío una sugerencia a la MPSR?,sugerencia,Reclamos y quejas,sintético,sugerencia__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0451,"Buenas, ¿me podría explicar cómo dejar una sugerencia a la municipalidad?",sugerencia,Reclamos y quejas,sintético,sugerencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0452,Quisiera saber cómo dejar una sugerencia a la municipalidad.,sugerencia,Reclamos y quejas,sintético,sugerencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0453,¿Usted me puede ayudar con cómo dejar una sugerencia a la municipalidad?,sugerencia,Reclamos y quejas,sintético,sugerencia__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0454,"Disculpe, ¿dónde consigo información sobre cómo dejar una sugerencia a la municipalidad?",sugerencia,Reclamos y quejas,sintético,sugerencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0455,"Oiga, ¿qué hay sobre cómo dejar una sugerencia a la municipalidad?",sugerencia,Reclamos y quejas,sintético,sugerencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0456,Necesitaría orientación sobre cómo dejar una sugerencia a la municipalidad.,sugerencia,Reclamos y quejas,sintético,sugerencia__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0457,¿Cuál es el horario de atención de la municipalidad?,horario_atencion_general,Información general,sintético,horario_atencion_general__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0458,¿A qué hora abren la municipalidad?,horario_atencion_general,Información general,sintético,horario_atencion_general__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0459,¿Hasta qué hora atienden en la MPSR?,horario_atencion_general,Información general,sintético,horario_atencion_general__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0460,¿La municipalidad atiende los fines de semana?,horario_atencion_general,Información general,sintético,horario_atencion_general__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0461,¿Qué días atiende la municipalidad?,horario_atencion_general,Información general,sintético,horario_atencion_general__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0462,¿Cuál es el horario de atención al público?,horario_atencion_general,Información general,sintético,horario_atencion_general__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0463,"Buenas, ¿me podría explicar el horario de atención de la municipalidad?",horario_atencion_general,Información general,sintético,horario_atencion_general__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0464,Quisiera saber el horario de atención de la municipalidad.,horario_atencion_general,Información general,sintético,horario_atencion_general__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0465,¿Usted me puede ayudar con el horario de atención de la municipalidad?,horario_atencion_general,Información general,sintético,horario_atencion_general__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0466,"Disculpe, ¿dónde consigo información sobre el horario de atención de la municipalidad?",horario_atencion_general,Información general,sintético,horario_atencion_general__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0467,"Oiga, ¿qué hay sobre el horario de atención de la municipalidad?",horario_atencion_general,Información general,sintético,horario_atencion_general__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0468,Necesitaría orientación sobre el horario de atención de la municipalidad.,horario_atencion_general,Información general,sintético,horario_atencion_general__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0469,¿Dónde queda la municipalidad?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0470,¿Cuál es la dirección de la MPSR?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0471,¿Dónde están las oficinas de la municipalidad?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0472,¿Cómo llego a la municipalidad de San Román?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0473,¿En qué parte de Juliaca está la municipalidad?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0474,Necesito la ubicación exacta del palacio municipal,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0475,"Buenas, ¿me podría explicar la ubicación de la municipalidad?",ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0476,Quisiera saber la ubicación de la municipalidad.,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0477,¿Usted me puede ayudar con la ubicación de la municipalidad?,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0478,"Disculpe, ¿dónde consigo información sobre la ubicación de la municipalidad?",ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0479,"Oiga, ¿qué hay sobre la ubicación de la municipalidad?",ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0480,Necesitaría orientación sobre la ubicación de la municipalidad.,ubicacion_oficinas,Información general,sintético,ubicacion_oficinas__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0481,¿Qué documento de identidad piden para hacer trámites?,requisitos_generales,Información general,sintético,requisitos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0482,¿Necesito llevar mi DNI para cualquier trámite?,requisitos_generales,Información general,sintético,requisitos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0483,¿Qué requisitos generales piden en la municipalidad?,requisitos_generales,Información general,sintético,requisitos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0484,¿Puedo hacer un trámite con copia de mi DNI?,requisitos_generales,Información general,sintético,requisitos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0485,¿Qué documentos básicos debo llevar siempre?,requisitos_generales,Información general,sintético,requisitos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0486,¿Necesito algo más aparte del DNI para trámites?,requisitos_generales,Información general,sintético,requisitos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0487,"Buenas, ¿me podría explicar los requisitos generales para hacer un trámite?",requisitos_generales,Información general,sintético,requisitos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0488,Quisiera saber los requisitos generales para hacer un trámite.,requisitos_generales,Información general,sintético,requisitos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0489,¿Usted me puede ayudar con los requisitos generales para hacer un trámite?,requisitos_generales,Información general,sintético,requisitos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0490,"Disculpe, ¿dónde consigo información sobre los requisitos generales para hacer un trámite?",requisitos_generales,Información general,sintético,requisitos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0491,"Oiga, ¿qué hay sobre los requisitos generales para hacer un trámite?",requisitos_generales,Información general,sintético,requisitos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0492,Necesitaría orientación sobre los requisitos generales para hacer un trámite.,requisitos_generales,Información general,sintético,requisitos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0493,¿Dónde veo los costos de los trámites municipales?,costos_generales,Información general,sintético,costos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0494,¿Cuánto cuestan los trámites en general?,costos_generales,Información general,sintético,costos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0495,¿Dónde está el tupa con los precios de trámites?,costos_generales,Información general,sintético,costos_generales__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0496,Quiero saber cuánto cuesta cada trámite,costos_generales,Información general,sintético,costos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0497,¿Hay una lista de precios de trámites municipales?,costos_generales,Información general,sintético,costos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0498,¿Dónde consulto las tasas municipales?,costos_generales,Información general,sintético,costos_generales__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0499,"Buenas, ¿me podría explicar los costos de los trámites municipales?",costos_generales,Información general,sintético,costos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0500,Quisiera saber los costos de los trámites municipales.,costos_generales,Información general,sintético,costos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0501,¿Usted me puede ayudar con los costos de los trámites municipales?,costos_generales,Información general,sintético,costos_generales__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0502,"Disculpe, ¿dónde consigo información sobre los costos de los trámites municipales?",costos_generales,Información general,sintético,costos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0503,"Oiga, ¿qué hay sobre los costos de los trámites municipales?",costos_generales,Información general,sintético,costos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0504,Necesitaría orientación sobre los costos de los trámites municipales.,costos_generales,Información general,sintético,costos_generales__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0505,¿Cuál es el teléfono de la municipalidad?,contacto_telefonico,Información general,sintético,contacto_telefonico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0506,¿Cómo llamo a la MPSR?,contacto_telefonico,Información general,sintético,contacto_telefonico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0507,Necesito el número de contacto de la municipalidad,contacto_telefonico,Información general,sintético,contacto_telefonico__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0508,¿Tienen un WhatsApp de atención?,contacto_telefonico,Información general,sintético,contacto_telefonico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0509,¿Cuál es el correo de la municipalidad?,contacto_telefonico,Información general,sintético,contacto_telefonico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0510,¿Cómo me comunico con la MPSR por teléfono?,contacto_telefonico,Información general,sintético,contacto_telefonico__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0511,"Buenas, ¿me podría explicar el teléfono de contacto de la municipalidad?",contacto_telefonico,Información general,sintético,contacto_telefonico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0512,Quisiera saber el teléfono de contacto de la municipalidad.,contacto_telefonico,Información general,sintético,contacto_telefonico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0513,¿Usted me puede ayudar con el teléfono de contacto de la municipalidad?,contacto_telefonico,Información general,sintético,contacto_telefonico__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0514,"Disculpe, ¿dónde consigo información sobre el teléfono de contacto de la municipalidad?",contacto_telefonico,Información general,sintético,contacto_telefonico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0515,"Oiga, ¿qué hay sobre el teléfono de contacto de la municipalidad?",contacto_telefonico,Información general,sintético,contacto_telefonico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0516,Necesitaría orientación sobre el teléfono de contacto de la municipalidad.,contacto_telefonico,Información general,sintético,contacto_telefonico__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0517,¿Cuál es el Facebook de la municipalidad?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0518,¿Tienen redes sociales donde informan trámites?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0519,¿Dónde sigo las noticias de la MPSR?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0520,¿Cómo encuentro a la municipalidad en redes sociales?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0521,¿Tienen página web oficial?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0522,¿Dónde publican los comunicados oficiales?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0523,"Buenas, ¿me podría explicar las redes sociales de la municipalidad?",redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0524,Quisiera saber las redes sociales de la municipalidad.,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0525,¿Usted me puede ayudar con las redes sociales de la municipalidad?,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0526,"Disculpe, ¿dónde consigo información sobre las redes sociales de la municipalidad?",redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0527,"Oiga, ¿qué hay sobre las redes sociales de la municipalidad?",redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0528,Necesitaría orientación sobre las redes sociales de la municipalidad.,redes_sociales_mpsr,Información general,sintético,redes_sociales_mpsr__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0529,Hola,saludo,Interacción conversacional,sintético,saludo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0530,Buenos días,saludo,Interacción conversacional,sintético,saludo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0531,Qué tal,saludo,Interacción conversacional,sintético,saludo__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0532,Buenas,saludo,Interacción conversacional,sintético,saludo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0533,"Hola, buenas tardes",saludo,Interacción conversacional,sintético,saludo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0534,"Hola, cómo estás",saludo,Interacción conversacional,sintético,saludo__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0535,Buenas tardes,saludo,Interacción conversacional,sintético,saludo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0536,"Hola, qué tal está",saludo,Interacción conversacional,sintético,saludo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0537,"Buenas, disculpe",saludo,Interacción conversacional,sintético,saludo__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0538,"Oiga, buenas",saludo,Interacción conversacional,sintético,saludo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0539,"Hola, cómo le va",saludo,Interacción conversacional,sintético,saludo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0540,"Buenos días, disculpe la hora",saludo,Interacción conversacional,sintético,saludo__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0541,"Chau, gracias",despedida,Interacción conversacional,sintético,despedida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0542,Hasta luego,despedida,Interacción conversacional,sintético,despedida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0543,Nos vemos,despedida,Interacción conversacional,sintético,despedida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0544,"Ya, gracias, me voy",despedida,Interacción conversacional,sintético,despedida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0545,Adiós,despedida,Interacción conversacional,sintético,despedida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0546,"Listo, hasta pronto",despedida,Interacción conversacional,sintético,despedida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0547,"Muchas gracias, hasta luego",despedida,Interacción conversacional,sintético,despedida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0548,"Ya está, gracias",despedida,Interacción conversacional,sintético,despedida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0549,"Bueno, me retiro, gracias",despedida,Interacción conversacional,sintético,despedida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0550,"Vale, gracias, chau",despedida,Interacción conversacional,sintético,despedida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0551,"Está bien, hasta otra",despedida,Interacción conversacional,sintético,despedida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0552,"Gracias, que esté bien",despedida,Interacción conversacional,sintético,despedida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0553,Gracias por la información,agradecimiento,Interacción conversacional,sintético,agradecimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0554,Muchas gracias,agradecimiento,Interacción conversacional,sintético,agradecimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0555,"Gracias, me ayudó bastante",agradecimiento,Interacción conversacional,sintético,agradecimiento__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0556,"Ok, gracias",agradecimiento,Interacción conversacional,sintético,agradecimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0557,"Perfecto, muchas gracias",agradecimiento,Interacción conversacional,sintético,agradecimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0558,Gracias por tu ayuda,agradecimiento,Interacción conversacional,sintético,agradecimiento__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0559,Mil gracias,agradecimiento,Interacción conversacional,sintético,agradecimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0560,"Qué bien, gracias",agradecimiento,Interacción conversacional,sintético,agradecimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0561,Agradecido por la info,agradecimiento,Interacción conversacional,sintético,agradecimiento__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0562,"Bien ahí, gracias",agradecimiento,Interacción conversacional,sintético,agradecimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0563,"Gracias, eso necesitaba",agradecimiento,Interacción conversacional,sintético,agradecimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0564,"Buenísimo, gracias",agradecimiento,Interacción conversacional,sintético,agradecimiento__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0565,Sí,afirmar,Interacción conversacional,sintético,afirmar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0566,Claro que sí,afirmar,Interacción conversacional,sintético,afirmar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0567,"Correcto, eso es",afirmar,Interacción conversacional,sintético,afirmar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0568,Así es,afirmar,Interacción conversacional,sintético,afirmar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0569,"Sí, exacto",afirmar,Interacción conversacional,sintético,afirmar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0570,Eso mismo,afirmar,Interacción conversacional,sintético,afirmar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0571,Correcto,afirmar,Interacción conversacional,sintético,afirmar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0572,"Sí, así es",afirmar,Interacción conversacional,sintético,afirmar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0573,Confirmado,afirmar,Interacción conversacional,sintético,afirmar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0574,"Exacto, eso es",afirmar,Interacción conversacional,sintético,afirmar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0575,Sí señor/señorita,afirmar,Interacción conversacional,sintético,afirmar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0576,Así mismo es,afirmar,Interacción conversacional,sintético,afirmar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0577,No,negar,Interacción conversacional,sintético,negar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0578,No es eso,negar,Interacción conversacional,sintético,negar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0579,Para nada,negar,Interacción conversacional,sintético,negar__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0580,"No, gracias",negar,Interacción conversacional,sintético,negar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0581,No es lo que busco,negar,Interacción conversacional,sintético,negar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0582,"No, otra cosa",negar,Interacción conversacional,sintético,negar__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0583,"No, nada que ver",negar,Interacción conversacional,sintético,negar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0584,Negativo,negar,Interacción conversacional,sintético,negar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0585,No es así,negar,Interacción conversacional,sintético,negar__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0586,"No, otra cosa quería",negar,Interacción conversacional,sintético,negar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0587,"No, disculpe",negar,Interacción conversacional,sintético,negar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0588,"No, para nada",negar,Interacción conversacional,sintético,negar__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0589,¿Cuál es el clima en Juliaca hoy?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0590,¿Qué equipo de fútbol es mejor?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0591,Cuéntame un chiste,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0592,¿Puedes ayudarme con mi tarea de matemáticas?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0593,¿Qué hora es en Lima?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0594,¿Me recomiendas un restaurante?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0595,¿Cuál es la capital de Francia?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0596,¿Me ayudas con mi tarea?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0597,¿Qué partido juega hoy?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0598,¿Sabes cocinar?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0599,¿Cuánto es 2 más 2?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0600,Recomiéndame una película,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0601,Quiero hablar con una persona,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0602,¿Me puedes pasar con un trabajador?,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0603,Necesito hablar con alguien de la municipalidad,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0604,"No quiero hablar con un robot, quiero un humano",hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0605,¿Hay alguien real que me pueda atender?,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0606,"Pásame con un funcionario, por favor",hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0607,Quiero que me atienda una persona real,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0608,Comuníqueme con un trabajador,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0609,¿Hay alguien humano ahí?,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0610,Prefiero hablar con un funcionario,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0611,¿Me puede pasar con alguien del área?,hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0612,"Necesito atención humana, no un bot",hablar_con_persona,Interacción conversacional,sintético,hablar_con_persona__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0613,¿Qué puedes hacer?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0614,¿En qué me puedes ayudar?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0615,¿Qué tipo de consultas respondes?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0616,¿Cómo te uso?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0617,¿Qué temas conoces?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0618,¿Para qué sirve este chat?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0619,¿Qué funciones tienes?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0620,¿Qué consultas puedo hacerte?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0621,¿Para qué sirves exactamente?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0622,¿Qué sabes responder?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0623,Cuéntame qué puedes hacer,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0624,¿Qué tipo de ayuda das?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0625,No entendí tu respuesta,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0626,¿Puedes explicarlo de otra forma?,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0627,No me quedó claro lo que dijiste,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0628,¿Qué quisiste decir con eso?,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0629,"No comprendí, ¿puedes repetir?",consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0630,"Explícamelo más simple, por favor",consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0631,No capté eso,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0632,¿Cómo? no entendí,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0633,"Perdón, no quedó claro",consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0634,¿A qué te refieres?,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0635,No comprendí tu mensaje,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0636,Explícalo de nuevo porfa,consulta_no_entendida,Interacción conversacional,sintético,consulta_no_entendida__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0637,¿Puedes repetir lo que dijiste?,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0638,"Repíteme eso, por favor",repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0639,"No alcancé a leer, ¿puedes repetir?",repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b1,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0640,¿Me lo puedes volver a decir?,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0641,Vuelve a enviarme esa información,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0642,"Repite la respuesta anterior, porfa",repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b2,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0643,¿Me repites por favor?,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0644,"No leí bien, repite",repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0645,Otra vez porfa,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b3,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0646,Mándamelo de nuevo,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0647,Repite la info anterior,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0648,¿Puedes volver a escribirlo?,repetir_informacion,Interacción conversacional,sintético,repetir_informacion__b4,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0649,"quiero abrir un restaurante, ¿qué necesito?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0650,"voy a abrir un restaurante, ¿qué trámite debo hacer?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0651,"para poner mi restaurante, ¿qué me exigen?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0652,"voy a poner una tienda, ¿qué papeles me piden?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0653,"quiero poner mi bodega, ¿qué documentos llevo a la municipalidad?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0654,"voy a abrir una botica, ¿qué papeles necesito?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0655,¿qué documentos pide la municipalidad para un negocio nuevo?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0656,"mi negocio recién empieza, ¿qué permisos me piden?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0657,"quiero poner una peluquería o un hostal, ¿qué requisitos hay?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético,licencia_funcionamiento_requisitos__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0658,¿cómo saco mi RUC en la SUNAT?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0659,¿dónde tramito mi RUC para emitir facturas?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0660,necesito sacar mi clave SOL de la SUNAT,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0661,¿dónde puedo pagar mi recibo de luz?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0662,¿hasta cuándo puedo pagar el agua sin que me corten?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0663,"mi recibo de luz salió muy alto, ¿a quién le cuento?",fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0664,¿cómo saco mi DNI nuevo en la RENIEC?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0665,¿cómo tramito mi pasaporte?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0666,¿cómo me afilio al seguro de EsSalud?,fuera_de_alcance,Interacción conversacional,sintético,fuera_de_alcance__b7,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0667,dale pues,afirmar,Interacción conversacional,sintético,afirmar__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0668,"ya, adelante pues",afirmar,Interacción conversacional,sintético,afirmar__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0669,"sí pues, claro",afirmar,Interacción conversacional,sintético,afirmar__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0670,"ok, listo",afirmar,Interacción conversacional,sintético,afirmar__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0671,"bueno, está bien",afirmar,Interacción conversacional,sintético,afirmar__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0672,"eso mismo es, sí",afirmar,Interacción conversacional,sintético,afirmar__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0673,¿en qué cosas me puedes ayudar?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0674,¿cómo me puedes colaborar con mis trámites?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0675,¿para qué cosas sirves?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0676,¿qué trámites puedo consultar aquí?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0677,¿qué puedo preguntarte?,ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0678,"no sé qué preguntar, ¿qué haces tú?",ayuda_chatbot,Interacción conversacional,sintético,ayuda_chatbot__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0679,¿me pueden dar una copia de mi expediente?,copia_documento,Trámites documentarios,sintético,copia_documento__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0680,quiero copia de un documento que ya presenté,copia_documento,Trámites documentarios,sintético,copia_documento__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0681,¿cómo saco copia de lo que presenté antes?,copia_documento,Trámites documentarios,sintético,copia_documento__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0682,necesito que me den copia fedateada de un documento,copia_documento,Trámites documentarios,sintético,copia_documento__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0683,"perdí el cargo de mi trámite, ¿me dan otra copia?",copia_documento,Trámites documentarios,sintético,copia_documento__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0684,"una copia de una resolución municipal, ¿cómo la pido?",copia_documento,Trámites documentarios,sintético,copia_documento__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0685,"ya me despido, que le vaya bien",despedida,Interacción conversacional,sintético,despedida__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0686,"bueno, me despido, cuídese mucho",despedida,Interacción conversacional,sintético,despedida__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0687,"hasta luego pues, gracias",despedida,Interacción conversacional,sintético,despedida__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0688,"chau pues, muchas gracias",despedida,Interacción conversacional,sintético,despedida__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0689,"nos vemos, gracias por todo",despedida,Interacción conversacional,sintético,despedida__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0690,"eso nomás, gracias, hasta pronto",despedida,Interacción conversacional,sintético,despedida__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0691,¿hasta qué hora reciben papeles en mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0692,"mesa de partes, ¿a qué hora cierra?",horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0693,¿qué horario tiene mesa de partes para dejar un documento?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0694,¿se puede presentar documentos en mesa de partes por la tarde?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0695,¿atienden los sábados en mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0696,¿a qué hora empieza a recibir mesa de partes?,horario_mesa_partes,Trámites documentarios,sintético,horario_mesa_partes__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0697,la luz del poste de mi cuadra está apagada,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0698,"en mi calle no hay luz, los postes no encienden",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0699,se quemó un foco del alumbrado de mi barrio,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0700,¿a quién aviso que el alumbrado de mi calle está malogrado?,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0701,"hay un poste sin luz en la esquina, ¿cómo reporto?",reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0702,mi calle está a oscuras por falta de alumbrado,reporte_alumbrado_publico,Servicios públicos,sintético,reporte_alumbrado_publico__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0703,¿qué piden para la inspección de defensa civil de mi local?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0704,¿qué necesito para pasar la revisión de seguridad de mi tienda?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0705,"para defensa civil, ¿qué cosas me exigen?",requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b5,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0706,¿qué debo tener en mi local para que defensa civil me apruebe?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0707,¿cuáles son las exigencias de defensa civil para un negocio?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+U0708,¿me piden extintores y señales para defensa civil?,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,sintético,requisitos_defensa_civil__b6,train,SIMULADO — datos de prueba; no son hallazgos de campo
+R0001,hola q papeles necesito para abrir mi tienda,licencia_funcionamiento_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0001,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0002,mi licencia ya vencio como la renuevo,renovacion_licencia,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0002,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0003,puedo pagar mi deuda de impuestos en cuotas,fraccionamiento_deuda,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0003,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0004,perdi la copia de mi documento q presente como la recupero,copia_documento,Trámites documentarios,lenguaje real (lote 1),REAL_R0004,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0005,q cosas debo tener listas para la revision de seguridad,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0005,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0006,murio mi tio y necesito el acta de defuncion como se saca,partida_defuncion,Registro civil,lenguaje real (lote 1),REAL_R0006,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0007,el parque esta abandonado y los juegos malogrados quiero q lo arreglen,mantenimiento_parques,Servicios públicos,lenguaje real (lote 1),REAL_R0007,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0009,basta con mi dni para hacer un tramite,requisitos_generales,Información general,lenguaje real (lote 1),REAL_R0009,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0010,gracias chau,despedida,Interacción conversacional,lenguaje real (lote 1),REAL_R0010,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0011,como pago mi recibo de luz,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0011,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0012,repite porfa no alcance a leer,repetir_informacion,Interacción conversacional,lenguaje real (lote 1),REAL_R0012,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0013,cuanto cuesta la licencia pa mi tienda,licencia_funcionamiento_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0013,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0014,quiero saber si debo predial,consulta_deuda_predial,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0014,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0015,como saco constancia de no adeudo,constancia_no_adeudo,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0015,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0016,como saco certificado de posesion,certificado_posesion,Trámites documentarios,lenguaje real (lote 1),REAL_R0016,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0017,hay gente sospechosa en mi cuadra a quien aviso,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0017,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0018,un arbol tapa la vereda quiero q lo corten,poda_arboles,Servicios públicos,lenguaje real (lote 1),REAL_R0018,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0019,un trabajador me atendio mal quiero reportarlo,queja_atencion,Reclamos y quejas,lenguaje real (lote 1),REAL_R0019,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0020,cuanto cuestan los tramites,costos_generales,Información general,lenguaje real (lote 1),REAL_R0020,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0021,gracias,agradecimiento,Interacción conversacional,lenguaje real (lote 1),REAL_R0021,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0023,cuantos dias demora la licencia de funcionamiento,licencia_funcionamiento_plazo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0023,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0024,donde pago el impuesto predial,pago_predial_como,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0024,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0025,q tengo q llevar para presentar una solicitud,requisitos_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0025,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0026,como saco mi constancia de domicilio,constancia_domiciliaria,Trámites documentarios,lenguaje real (lote 1),REAL_R0026,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0027,como me comunico con serenazgo,serenazgo_contacto,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0027,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0028,q papeles piden para casarse por civil,requisitos_matrimonio_civil,Registro civil,lenguaje real (lote 1),REAL_R0028,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0029,tengo una idea para mejorar la atencion,sugerencia,Reclamos y quejas,lenguaje real (lote 1),REAL_R0029,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0030,a q numero puedo llamar a la municipalidad,contacto_telefonico,Información general,lenguaje real (lote 1),REAL_R0030,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0033,q documentos necesito para construir un segundo piso,licencia_edificacion_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0033,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0034,como pago los arbitrios,pago_arbitrios,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0034,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0035,como va mi tramite q deje hace semanas,estado_tramite,Trámites documentarios,lenguaje real (lote 1),REAL_R0035,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0036,como se saca el certificado de defensa civil,certificado_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0036,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0037,como saco mi partida de nacimiento,partida_nacimiento,Registro civil,lenguaje real (lote 1),REAL_R0037,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0038,a q hora pasa el camion de basura,horario_recojo_basura,Servicios públicos,lenguaje real (lote 1),REAL_R0038,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0039,quiero hacer un reclamo formal x mi tramite,presentar_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0039,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0040,a q hora abre la municipalidad,horario_atencion_general,Información general,lenguaje real (lote 1),REAL_R0040,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0041,donde puedo seguir a la municipalidad en facebook,redes_sociales_mpsr,Información general,lenguaje real (lote 1),REAL_R0041,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0043,q puedes hacer,ayuda_chatbot,Interacción conversacional,lenguaje real (lote 1),REAL_R0043,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0044,cuanto cobran por la licencia de construccion,licencia_edificacion_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0044,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0045,compre un terreno y me dicen q hay q pagar alcabala q es eso,impuesto_alcabala,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0045,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0046,hasta q hora atiende mesa de partes,horario_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0046,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0047,como pido q vengan a inspeccionar mi local,inspeccion_tecnica,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0047,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0048,perdi mi acta de matrimonio como saco otra,partida_matrimonio,Registro civil,lenguaje real (lote 1),REAL_R0048,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0049,un poste de mi calle no prende como reporto,reporte_alumbrado_publico,Servicios públicos,lenguaje real (lote 1),REAL_R0049,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0050,ya respondieron mi reclamo,estado_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0050,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0053,como estara el clima mañana en juliaca,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0053,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0054,no entendi puedes explicar de nuevo,consulta_no_entendida,Interacción conversacional,lenguaje real (lote 1),REAL_R0054,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0055,buenas tardes quisiera saber que documentos piden para sacar licencia de funcionamiento de una bodega,licencia_funcionamiento_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0055,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0056,como hago para renovar el permiso de mi negocio que ya caduco,renovacion_licencia,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0056,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0057,debo varios años de predial y no puedo pagar todo junto hay facilidades,fraccionamiento_deuda,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0057,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0058,necesito una copia sellada de un documento q presente antes,copia_documento,Trámites documentarios,lenguaje real (lote 1),REAL_R0058,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0059,q piden en defensa civil extintor planos q mas,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0059,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0060,como saco la partida de defuncion de un familiar,partida_defuncion,Registro civil,lenguaje real (lote 1),REAL_R0060,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0061,como pido mantenimiento para el parque de mi barrio,mantenimiento_parques,Servicios públicos,lenguaje real (lote 1),REAL_R0061,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0062,quiero dejar mi queja en el libro de reclamos como se usa,libro_reclamaciones,Reclamos y quejas,lenguaje real (lote 1),REAL_R0062,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0063,para un tramite solo llevo dni o necesito algo mas,requisitos_generales,Información general,lenguaje real (lote 1),REAL_R0063,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0064,ok muchas gracias hasta luego,despedida,Interacción conversacional,lenguaje real (lote 1),REAL_R0064,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0065,como saco mi dni en reniec,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0065,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0066,me puedes repetir la informacion no la anote,repetir_informacion,Interacción conversacional,lenguaje real (lote 1),REAL_R0066,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0067,cuanto se paga por la licencia de funcionamiento,licencia_funcionamiento_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0067,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0068,como puedo ver cuanto debo de impuesto predial de mi casa,consulta_deuda_predial,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0068,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0069,me piden un papel q diga q no debo nada a la muni como lo consigo,constancia_no_adeudo,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0069,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0070,vivo en un terreno sin titulo y me piden un certificado de posesion como se tramita,certificado_posesion,Trámites documentarios,lenguaje real (lote 1),REAL_R0070,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0071,quiero denunciar personas raras q rondan mi calle,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0071,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0072,como se rectifica una partida de nacimiento con error en apellido,rectificacion_partida,Registro civil,lenguaje real (lote 1),REAL_R0072,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0073,como solicito poda de un arbol q bloquea el paso,poda_arboles,Servicios públicos,lenguaje real (lote 1),REAL_R0073,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0074,me trataron mal en la muni donde pongo mi queja,queja_atencion,Reclamos y quejas,lenguaje real (lote 1),REAL_R0074,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0075,donde veo la lista de precios de los tramites de la muni,costos_generales,Información general,lenguaje real (lote 1),REAL_R0075,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0076,muchas gracias por la informacion,agradecimiento,Interacción conversacional,lenguaje real (lote 1),REAL_R0076,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0077,hazme mi tarea de matematicas,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0077,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0078,ya entregue mis documentos y cuanto tiempo se demoran en darme el permiso,licencia_funcionamiento_plazo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0078,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0079,como puedo pagar mi predial desde mi celular o tengo q ir a la muni,pago_predial_como,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0079,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0080,quiero entregar un documento a mesa de partes que necesito,requisitos_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0080,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0081,me piden un documento q pruebe donde vivo q hago,constancia_domiciliaria,Trámites documentarios,lenguaje real (lote 1),REAL_R0081,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0082,q numero de serenazgo hay,serenazgo_contacto,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0082,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0083,mi pareja y yo queremos casarnos q requisitos hay,requisitos_matrimonio_civil,Registro civil,lenguaje real (lote 1),REAL_R0083,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0084,quiero q limpien la basura de mi cuadra,limpieza_via_publica,Servicios públicos,lenguaje real (lote 1),REAL_R0084,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0085,quisiera sugerir q pongan mas ventanillas para atender mas rapido,sugerencia,Reclamos y quejas,lenguaje real (lote 1),REAL_R0085,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0086,prefiero llamar x telefono como me comunico con la muni,contacto_telefonico,Información general,lenguaje real (lote 1),REAL_R0086,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0088,prefiero q me atienda alguien no un robot,hablar_con_persona,Interacción conversacional,lenguaje real (lote 1),REAL_R0088,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0089,quiero hacer el segundo piso de mi casa que tengo q presentar,licencia_edificacion_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0089,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0090,me llego un cobro de limpieza y serenazgo donde lo pago,pago_arbitrios,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0090,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0091,quiero saber en q estado esta mi expediente,estado_tramite,Trámites documentarios,lenguaje real (lote 1),REAL_R0091,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0092,mi local necesita certificado de seguridad como lo obtengo,certificado_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0092,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0093,me piden partida de nacimiento y no se donde sacarla,partida_nacimiento,Registro civil,lenguaje real (lote 1),REAL_R0093,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0094,hoy no paso el carro de la basura por mi calle a q hora suele pasar,horario_recojo_basura,Servicios públicos,lenguaje real (lote 1),REAL_R0094,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0095,no estoy conforme como me resolvieron mi tramite como reclamo,presentar_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0095,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0096,q horario de atencion tiene la muni y abren los sabados,horario_atencion_general,Información general,lenguaje real (lote 1),REAL_R0096,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0097,tienen redes sociales para ver los avisos oficiales,redes_sociales_mpsr,Información general,lenguaje real (lote 1),REAL_R0097,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0098,no eso no queria,negar,Interacción conversacional,lenguaje real (lote 1),REAL_R0098,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0099,para q sirve este asistente,ayuda_chatbot,Interacción conversacional,lenguaje real (lote 1),REAL_R0099,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0100,cuanto cuesta el permiso para construir en mi terreno,licencia_edificacion_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0100,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0101,que es la alcabala y cuanto se paga,impuesto_alcabala,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0101,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0102,q dias y horas puedo ir a dejar un documento,horario_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0102,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0103,quiero una inspeccion tecnica de seguridad para mi negocio como se solicita,inspeccion_tecnica,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0103,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0104,me piden partida de matrimonio y no encuentro el original,partida_matrimonio,Registro civil,lenguaje real (lote 1),REAL_R0104,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0105,quiero avisar q en mi calle no hay luz en los postes,reporte_alumbrado_publico,Servicios públicos,lenguaje real (lote 1),REAL_R0105,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0106,hice un reclamo hace unos dias y quiero saber si ya hay respuesta,estado_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0106,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0107,como llego a la muni provincial de san roman,ubicacion_oficinas,Información general,lenguaje real (lote 1),REAL_R0107,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0109,quien gano el partido de ayer,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0109,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0110,no te entiendo dime mas facil,consulta_no_entendida,Interacción conversacional,lenguaje real (lote 1),REAL_R0110,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0111,q requisitos piden pa poner una tiendita,licencia_funcionamiento_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0111,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0112,se me vencio la licencia de funcionamiento q hago,renovacion_licencia,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0112,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0113,hay fraccionamiento de deudas?,fraccionamiento_deuda,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0113,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0114,como pido copia de mi cargo de un tramite,copia_documento,Trámites documentarios,lenguaje real (lote 1),REAL_R0114,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0115,requisitos para inspeccion de defensa civil,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0115,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0116,q requisitos piden para el acta de defuncion,partida_defuncion,Registro civil,lenguaje real (lote 1),REAL_R0116,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0117,el parque cerca de mi casa esta descuidado a donde reclamo,mantenimiento_parques,Servicios públicos,lenguaje real (lote 1),REAL_R0117,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0118,como uso el libro de reclamaciones de la muni,libro_reclamaciones,Reclamos y quejas,lenguaje real (lote 1),REAL_R0118,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0119,q piden para hacer cualquier tramite,requisitos_generales,Información general,lenguaje real (lote 1),REAL_R0119,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0120,listo eso era todo adios,despedida,Interacción conversacional,lenguaje real (lote 1),REAL_R0120,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0121,donde reclamo x el agua q no llega,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0121,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0122,otra vez lo q dijiste,repetir_informacion,Interacción conversacional,lenguaje real (lote 1),REAL_R0122,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0123,hola cuanto es el costo del permiso para mi negocio,licencia_funcionamiento_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0123,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0124,tengo deuda de mi terreno en la muni? cuanto seria,consulta_deuda_predial,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0124,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0125,q necesito para la constancia de no adeudo,constancia_no_adeudo,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0125,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0126,requisitos para constancia de posesion,certificado_posesion,Trámites documentarios,lenguaje real (lote 1),REAL_R0126,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0127,como aviso a serenazgo q hay gente sospechosa,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0127,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0128,q tramite hay q hacer para corregir un apellido en la partida,rectificacion_partida,Registro civil,lenguaje real (lote 1),REAL_R0128,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0129,hay un arbol grande en mi vereda q estorba q hago,poda_arboles,Servicios públicos,lenguaje real (lote 1),REAL_R0129,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0130,como denuncio a un empleado q fue grosero conmigo,queja_atencion,Reclamos y quejas,lenguaje real (lote 1),REAL_R0130,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0131,hay un tarifario de la municipalidad,costos_generales,Información general,lenguaje real (lote 1),REAL_R0131,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0132,mil gracias me ayudo bastante,agradecimiento,Interacción conversacional,lenguaje real (lote 1),REAL_R0132,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0133,dime tu opinion sobre mi futuro jaja,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0133,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0134,en cuanto tiempo me dan mi licencia,licencia_funcionamiento_plazo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0134,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0135,q formas de pago hay para el predial,pago_predial_como,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0135,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0136,como presento una solicitud por escrito,requisitos_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0136,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0137,donde se saca la constancia domiciliaria,constancia_domiciliaria,Trámites documentarios,lenguaje real (lote 1),REAL_R0137,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0138,como llamo al serenazgo de juliaca,serenazgo_contacto,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0138,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0139,requisitos matrimonio civil en la muni,requisitos_matrimonio_civil,Registro civil,lenguaje real (lote 1),REAL_R0139,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0140,como pido limpieza de calle,limpieza_via_publica,Servicios públicos,lenguaje real (lote 1),REAL_R0140,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0141,como envio una sugerencia a la municipalidad,sugerencia,Reclamos y quejas,lenguaje real (lote 1),REAL_R0141,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0142,tienen telefono o whatsapp para consultas,contacto_telefonico,Información general,lenguaje real (lote 1),REAL_R0142,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0144,me puede atender una persona real,hablar_con_persona,Interacción conversacional,lenguaje real (lote 1),REAL_R0144,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0145,requisitos para licencia de construccion,licencia_edificacion_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0145,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0146,donde puedo pagar arbitrios municipales,pago_arbitrios,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0146,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0147,deje unos papeles hace tiempo y no me dicen nada como consulto,estado_tramite,Trámites documentarios,lenguaje real (lote 1),REAL_R0147,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0148,q hay q hacer para tener el itse,certificado_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0148,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0149,donde se tramita el acta de nacimiento,partida_nacimiento,Registro civil,lenguaje real (lote 1),REAL_R0149,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0150,horario del recojo de basura,horario_recojo_basura,Servicios públicos,lenguaje real (lote 1),REAL_R0150,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0151,como presento un reclamo,presentar_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0151,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0152,horario de atencion,horario_atencion_general,Información general,lenguaje real (lote 1),REAL_R0152,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0153,como me entero de los comunicados de la muni,redes_sociales_mpsr,Información general,lenguaje real (lote 1),REAL_R0153,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0155,hola q cosas puedo preguntarte,ayuda_chatbot,Interacción conversacional,lenguaje real (lote 1),REAL_R0155,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0156,cuanto tengo q pagar a la muni para construir mi casa,licencia_edificacion_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0156,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0157,horario de mesa de partes,horario_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0157,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0158,como se pide la visita del inspector,inspeccion_tecnica,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0158,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0159,como pido copia del acta de matrimonio,partida_matrimonio,Registro civil,lenguaje real (lote 1),REAL_R0159,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0160,como reporto alumbrado publico malogrado,reporte_alumbrado_publico,Servicios públicos,lenguaje real (lote 1),REAL_R0160,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0161,como veo el estado de mi reclamo,estado_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0161,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0162,direccion de la municipalidad,ubicacion_oficinas,Información general,lenguaje real (lote 1),REAL_R0162,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0163,hola buen dia,saludo,Interacción conversacional,lenguaje real (lote 1),REAL_R0163,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0164,cual es la capital de bolivia,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0164,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0165,q quieres decir con eso,consulta_no_entendida,Interacción conversacional,lenguaje real (lote 1),REAL_R0165,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0166,para abrir mi negocio q tengo q llevar a la muni,licencia_funcionamiento_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0166,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0167,quiero renovar mi licencia q requisitos hay,renovacion_licencia,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0167,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0168,buenas quisiera pagar mi deuda poco a poco se puede,fraccionamiento_deuda,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0168,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0169,buenas ya no tengo mi copia sellada puedo pedir otra,copia_documento,Trámites documentarios,lenguaje real (lote 1),REAL_R0169,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0170,hola q necesito tener en mi local para la inspeccion de seguridad,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0170,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0171,buenas fallecio mi abuelita y necesito el documento para hacer tramites,partida_defuncion,Registro civil,lenguaje real (lote 1),REAL_R0171,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0172,buenas los juegos del parque estan rotos pueden arreglarlos,mantenimiento_parques,Servicios públicos,lenguaje real (lote 1),REAL_R0172,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0173,buenas donde puedo encontrar el libro de reclamos,libro_reclamaciones,Reclamos y quejas,lenguaje real (lote 1),REAL_R0173,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0174,buenas con dni nomas puedo hacer mi tramite,requisitos_generales,Información general,lenguaje real (lote 1),REAL_R0174,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0175,chau,despedida,Interacción conversacional,lenguaje real (lote 1),REAL_R0175,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0176,como declaro mis impuestos en la sunat,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0176,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0177,puedes volver a enviarme la info,repetir_informacion,Interacción conversacional,lenguaje real (lote 1),REAL_R0177,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0178,cuanto cobran por sacar licencia de funcionamiento de un restaurant pequeño,licencia_funcionamiento_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0178,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0179,buenas quisiera consultar si tengo deudas de autoavaluo,consulta_deuda_predial,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0179,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0180,hola donde se tramita la constancia de no tener deudas,constancia_no_adeudo,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0180,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0181,hola q necesito para q la muni me de un papel de q yo ocupo mi terreno,certificado_posesion,Trámites documentarios,lenguaje real (lote 1),REAL_R0181,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0182,buenas hay personas sospechosas cerca de mi casa q hago,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0182,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0183,hola mi acta de nacimiento esta con error en el apellido q hago,rectificacion_partida,Registro civil,lenguaje real (lote 1),REAL_R0183,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0184,hola necesito q recorten un arbol de la vereda,poda_arboles,Servicios públicos,lenguaje real (lote 1),REAL_R0184,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0185,hola quiero quejarme de un servidor q me atendio de mala manera,queja_atencion,Reclamos y quejas,lenguaje real (lote 1),REAL_R0185,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0186,hola cuanto se paga en general por los tramites,costos_generales,Información general,lenguaje real (lote 1),REAL_R0186,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0187,gracias por responderme,agradecimiento,Interacción conversacional,lenguaje real (lote 1),REAL_R0187,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0188,puedes decirme un chiste de juliaca,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0188,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0189,buenas cuantos dias tarda para q me entreguen la licencia de mi negocio,licencia_funcionamiento_plazo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0189,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0190,buenas q requisitos hay para presentar un escrito en la muni,requisitos_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0190,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0191,buenas q requisitos hay para certificado de domicilio,constancia_domiciliaria,Trámites documentarios,lenguaje real (lote 1),REAL_R0191,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0192,hola necesito contactar con serenazgo por donde puedo,serenazgo_contacto,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0192,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0193,hola q necesitamos para el matrimonio civil,requisitos_matrimonio_civil,Registro civil,lenguaje real (lote 1),REAL_R0193,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0194,buenas mi calle esta llena de basura quien la recoge,limpieza_via_publica,Servicios públicos,lenguaje real (lote 1),REAL_R0194,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0195,buenas quiero dar una sugerencia sobre la atencion,sugerencia,Reclamos y quejas,lenguaje real (lote 1),REAL_R0195,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0196,buenas cual es el numero de la municipalidad,contacto_telefonico,Información general,lenguaje real (lote 1),REAL_R0196,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0197,ajá si,afirmar,Interacción conversacional,lenguaje real (lote 1),REAL_R0197,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0198,pasame con un asesor,hablar_con_persona,Interacción conversacional,lenguaje real (lote 1),REAL_R0198,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0199,buenas q papeles piden para empezar a construir mi 2do piso,licencia_edificacion_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0199,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0200,buenas como pago el recojo de basura y serenazgo q me llego,pago_arbitrios,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0200,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0201,buenas como puedo hacer seguimiento a mi tramite,estado_tramite,Trámites documentarios,lenguaje real (lote 1),REAL_R0201,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0202,hola para q funcione mi negocio piden defensa civil como se tramita,certificado_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0202,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0203,buenas q requisitos para partida de nacimiento,partida_nacimiento,Registro civil,lenguaje real (lote 1),REAL_R0203,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0204,buenas el camion no paso hoy cuando pasa,horario_recojo_basura,Servicios públicos,lenguaje real (lote 1),REAL_R0204,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0205,buenas quiero reclamar x la atencion de mi expediente,presentar_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0205,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0206,buenas desde q hora hasta q hora atienden,horario_atencion_general,Información general,lenguaje real (lote 1),REAL_R0206,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0207,hola cual es la pagina de facebook de la municipalidad,redes_sociales_mpsr,Información general,lenguaje real (lote 1),REAL_R0207,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0208,no es lo q busco,negar,Interacción conversacional,lenguaje real (lote 1),REAL_R0208,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0209,en q me puedes ayudar,ayuda_chatbot,Interacción conversacional,lenguaje real (lote 1),REAL_R0209,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0210,hola acabo de comprar un lote y debo pagar un impuesto como es,impuesto_alcabala,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0210,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0211,hola mesa de partes abre los sabados,horario_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0211,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0212,buenas como solicito q un inspector revise mi local,inspeccion_tecnica,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0212,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0213,hola donde saco una nueva partida de matrimonio,partida_matrimonio,Registro civil,lenguaje real (lote 1),REAL_R0213,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0214,hola mi cuadra esta oscura x q un poste no funciona a quien aviso,reporte_alumbrado_publico,Servicios públicos,lenguaje real (lote 1),REAL_R0214,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0215,hola mi reclamo ya fue atendido,estado_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0215,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0216,hola no conozco el local de la muni donde esta,ubicacion_oficinas,Información general,lenguaje real (lote 1),REAL_R0216,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0218,q hace frio hoy no? va a llover,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0218,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0219,no comprendo la respuesta,consulta_no_entendida,Interacción conversacional,lenguaje real (lote 1),REAL_R0219,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0220,que papeles me piden para la licencia de mi tienda en juliaca,licencia_funcionamiento_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0220,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0221,buenas mi licencia esta vencida como la activo otra vez,renovacion_licencia,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0221,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0222,donde saco una copia fedateada de lo q presente,copia_documento,Trámites documentarios,lenguaje real (lote 1),REAL_R0222,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0223,que equipos de seguridad piden pa un local,requisitos_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0223,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0224,donde se saca el certificado de defuncion,partida_defuncion,Registro civil,lenguaje real (lote 1),REAL_R0224,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0225,quiero solicitar q arreglen el parque,mantenimiento_parques,Servicios públicos,lenguaje real (lote 1),REAL_R0225,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0226,libro de reclamos donde queda,libro_reclamaciones,Reclamos y quejas,lenguaje real (lote 1),REAL_R0226,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0227,q documentos basicos debo llevar,requisitos_generales,Información general,lenguaje real (lote 1),REAL_R0227,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0228,bueno gracias q tenga buen dia,despedida,Interacción conversacional,lenguaje real (lote 1),REAL_R0228,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0229,a donde denuncio un robo en la policia,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0229,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0230,no alcance a anotar repitelo por favor,repetir_informacion,Interacción conversacional,lenguaje real (lote 1),REAL_R0230,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0231,precio de la licencia de funcionamiento,licencia_funcionamiento_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0231,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0232,cuanto debo de predial,consulta_deuda_predial,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0232,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0233,constancia de no adeudo municipal requisitos y costo,constancia_no_adeudo,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0233,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0234,donde tramito el certificado de posesion,certificado_posesion,Trámites documentarios,lenguaje real (lote 1),REAL_R0234,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0235,rectificacion de partida requisitos,rectificacion_partida,Registro civil,lenguaje real (lote 1),REAL_R0235,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0236,poda de arboles como se pide,poda_arboles,Servicios públicos,lenguaje real (lote 1),REAL_R0236,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0237,mala atencion de un trabajador a quien aviso,queja_atencion,Reclamos y quejas,lenguaje real (lote 1),REAL_R0237,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0238,quiero ver los costos de todos los tramites,costos_generales,Información general,lenguaje real (lote 1),REAL_R0238,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0239,ok grasias,agradecimiento,Interacción conversacional,lenguaje real (lote 1),REAL_R0239,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0240,ayudame a resolver mi tarea de historia,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0240,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0241,cuando estara lista mi licencia ya presente todo,licencia_funcionamiento_plazo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0241,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0242,puedo pagar mi predial en el banco o solo en la municipalidad,pago_predial_como,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0242,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0243,para hacer una solicitud q debo llevar,requisitos_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0243,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0244,necesito constancia de domicilio como la tramito en la muni,constancia_domiciliaria,Trámites documentarios,lenguaje real (lote 1),REAL_R0244,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0245,tienen whatsapp serenazgo,serenazgo_contacto,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0245,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0246,q documentos tenemos q llevar mi novia y yo para casarnos,requisitos_matrimonio_civil,Registro civil,lenguaje real (lote 1),REAL_R0246,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0247,reporte de basura acumulada en la via,limpieza_via_publica,Servicios públicos,lenguaje real (lote 1),REAL_R0247,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0248,se me ocurrio algo para mejorar el servicio donde lo digo,sugerencia,Reclamos y quejas,lenguaje real (lote 1),REAL_R0248,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0249,por q medio me puedo comunicar sin ir hasta alla,contacto_telefonico,Información general,lenguaje real (lote 1),REAL_R0249,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0250,sip,afirmar,Interacción conversacional,lenguaje real (lote 1),REAL_R0250,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0251,no quiero hablar con un programa quiero una persona,hablar_con_persona,Interacción conversacional,lenguaje real (lote 1),REAL_R0251,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0252,para ampliar mi casa q documentos debo llevar a la municipalidad,licencia_edificacion_requisitos,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0252,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0253,quiero pagar mis arbitrios como se hace,pago_arbitrios,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0253,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0254,ya esta listo mi tramite,estado_tramite,Trámites documentarios,lenguaje real (lote 1),REAL_R0254,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0255,certificado de seguridad en edificaciones como lo saco,certificado_defensa_civil,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0255,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0256,necesito mi partida de nacimiento como la consigo,partida_nacimiento,Registro civil,lenguaje real (lote 1),REAL_R0256,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0257,q dias y a q hora pasa el recolector por mi zona,horario_recojo_basura,Servicios públicos,lenguaje real (lote 1),REAL_R0257,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0258,donde hago mi reclamo si no me resolvieron bien,presentar_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0258,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0259,la municipalidad abre sabado?,horario_atencion_general,Información general,lenguaje real (lote 1),REAL_R0259,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0260,donde veo los avisos de la muni por internet,redes_sociales_mpsr,Información general,lenguaje real (lote 1),REAL_R0260,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0261,nop otra cosa,negar,Interacción conversacional,lenguaje real (lote 1),REAL_R0261,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0262,ayuda q puedo consultar aqui,ayuda_chatbot,Interacción conversacional,lenguaje real (lote 1),REAL_R0262,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0263,cuanto me cobran para autorizar la construccion de mi terreno,licencia_edificacion_costo,Licencias y autorizaciones,lenguaje real (lote 1),REAL_R0263,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0264,alcabala como se paga,impuesto_alcabala,Tributos y pagos municipales,lenguaje real (lote 1),REAL_R0264,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0265,a q hora puedo ir a dejar mis papeles,horario_mesa_partes,Trámites documentarios,lenguaje real (lote 1),REAL_R0265,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0266,q tengo q hacer para q vengan a revisar mi tienda,inspeccion_tecnica,Defensa civil y seguridad ciudadana,lenguaje real (lote 1),REAL_R0266,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0267,q hago si no tengo mi partida de matrimonio,partida_matrimonio,Registro civil,lenguaje real (lote 1),REAL_R0267,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0268,reporte de poste apagado,reporte_alumbrado_publico,Servicios públicos,lenguaje real (lote 1),REAL_R0268,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0269,quiero saber si ya me contestaron el reclamo q puse,estado_reclamo,Reclamos y quejas,lenguaje real (lote 1),REAL_R0269,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0270,en q calle queda la municipalidad de juliaca,ubicacion_oficinas,Información general,lenguaje real (lote 1),REAL_R0270,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0271,hola q tal,saludo,Interacción conversacional,lenguaje real (lote 1),REAL_R0271,validation,SIMULADO — datos de prueba; no son hallazgos de campo
+R0272,cuantos habitantes tiene puno,fuera_de_alcance,Interacción conversacional,lenguaje real (lote 1),REAL_R0272,test,SIMULADO — datos de prueba; no son hallazgos de campo
+R0273,explicame otra vez no entendi nada,consulta_no_entendida,Interacción conversacional,lenguaje real (lote 1),REAL_R0273,test,SIMULADO — datos de prueba; no son hallazgos de campo

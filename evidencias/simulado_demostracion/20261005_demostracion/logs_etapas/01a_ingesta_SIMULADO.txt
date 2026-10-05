@@ -1,0 +1,82 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/ingest_real_lote.py --libro docs\lote_real_1\ejemplos_simulados\Lote1_Transcripcion_SIMULADO_v2.xlsx --demo-simulada --demo-sin-marcar --out-dir evidencias\simulado_demostracion\20261005_demostracion\01_ingesta --log-dir evidencias\simulado_demostracion\20261005_demostracion\01_ingesta
+salida: 0  (2 s)
+
+DEMOSTRACIÓN SIMULADA: datos SIMULADOS (el título de la hoja «Participantes» dice «SIMULADO — Transcripción del lote 1 — participantes (datos d»). Las salidas van a evidencias\simulado_demostracion\20261005_demostracion\01_ingesta y no son hallazgos de campo.
+INGESTA DEL LOTE 1 — REPORTE
+
+Libro de transcripción: 25 participantes Transcritos (mínimo 15) | blancos derivados (vacíos o solo espacios, no exportados como respuesta): 7
+Participantes: 25 | formularios: {'A': 5, 'B': 5, 'C': 5, 'D': 5, 'E': 5}
+Respuestas recibidas: 273 | en blanco (omitidas): 0 | validadas: 273
+Situaciones del catálogo: 56 | intenciones cubiertas: 54/54
+
+ADVERTENCIAS (no se corrigen solas; resuélvelas en lote1_respuestas.csv y vuelve a ejecutar):
+  [1] Respuestas en blanco omitidas: 0
+  [2] Texto de menos de 3 caracteres (fuera de las intenciones exentas): 0
+  [3] Posibles datos personales: 0 frases
+  [4] Duplicados exactos entre participantes distintos: 0 textos
+  [5] Frases idénticas a una del corpus sintético: 12 -> ['R0008', 'R0022', 'R0031', 'R0032', 'R0042', 'R0051', 'R0052', 'R0087', 'R0108', 'R0143', 'R0154', 'R0217'] (provocarían fuga si pasan a validación/test)
+  [6] Intenciones con menos de 3 frases: 0
+  [7] Categoría del catálogo distinta a la del corpus sintético: 0
+
+Frases validadas por intención:
+  afirmar                                 5
+  agradecimiento                          5
+  ayuda_chatbot                           5
+  certificado_defensa_civil               5
+  certificado_posesion                    5
+  constancia_domiciliaria                 5
+  constancia_no_adeudo                    5
+  consulta_deuda_predial                  5
+  consulta_no_entendida                   5
+  contacto_telefonico                     5
+  copia_documento                         5
+  costos_generales                        5
+  denuncia_seguridad_ciudadana            4
+  despedida                               5
+  estado_reclamo                          5
+  estado_tramite                          5
+  fraccionamiento_deuda                   4
+  fuera_de_alcance                       15
+  hablar_con_persona                      5
+  horario_atencion_general                5
+  horario_mesa_partes                     5
+  horario_recojo_basura                   5
+  impuesto_alcabala                       4
+  inspeccion_tecnica                      5
+  libro_reclamaciones                     5
+  licencia_edificacion_costo              4
+  licencia_edificacion_requisitos         5
+  licencia_funcionamiento_costo           5
+  licencia_funcionamiento_plazo           5
+  licencia_funcionamiento_requisitos      5
+  limpieza_via_publica                    4
+  mantenimiento_parques                   5
+  negar                                   5
+  pago_arbitrios                          5
+  pago_predial_como                       4
+  partida_defuncion                       5
+  partida_matrimonio                      5
+  partida_nacimiento                      5
+  poda_arboles                            5
+  presentar_reclamo                       5
+  queja_atencion                          5
+  rectificacion_partida                   4
+  redes_sociales_mpsr                     5
+  renovacion_licencia                     5
+  repetir_informacion                     5
+  reporte_alumbrado_publico               5
+  requisitos_defensa_civil                5
+  requisitos_generales                    5
+  requisitos_matrimonio_civil             5
+  requisitos_mesa_partes                  5
+  saludo                                  5
+  serenazgo_contacto                      5
+  sugerencia                              5
+  ubicacion_oficinas                      5
+
+Total de advertencias: 12. Esta etapa no genera ni completa frases: si faltan, hay que recolectarlas.
+¿Listo para la Parte B? SÍ (transcritos 25/15, intenciones con menos de 3 frases: 0). No sigas a la Parte B sin que el tesista revise este reporte.
+
+Salidas: evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_real_validado.csv, evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_revision_etiquetas.csv, evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\ingesta_reporte.txt
+Exportados desde el libro: evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_respuestas.csv, evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_participantes.csv, evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_blancos_derivados.csv

@@ -1,0 +1,219 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "rotulo": "SIMULADO",
+  "fecha": "2026-10-05T11:21:56",
+  "n": 60,
+  "exploratorio": false,
+  "sesiones_excluidas_no_SA": 2,
+  "tiempo": {
+    "media_pre": 100.25,
+    "mediana_pre": 90.0,
+    "media_post": 1.8719444444444446,
+    "mediana_post": 1.8,
+    "media_dif_post_menos_pre": -98.37805555555556,
+    "contraste": {
+      "n": 60,
+      "shapiro_W": 0.8049919009208679,
+      "shapiro_p": 1.802017663976585e-07,
+      "normal": false,
+      "prueba": "Wilcoxon de rangos con signo (unilateral)",
+      "estadistico": 1830.0,
+      "p": 8.14522207627029e-12,
+      "efecto_nombre": "r (correlación biserial por rangos)",
+      "efecto": 1.0,
+      "decision": "se rechaza H0"
+    },
+    "reduccion_medias": 0.9813272374619009,
+    "media_reducciones_individuales": 0.9480583333333334,
+    "ic95_reduccion_medias": [
+      0.9765121664405373,
+      0.985361846504452
+    ],
+    "ic95_dif_pre_menos_post": [
+      77.55436342592591,
+      121.85968055555556
+    ]
+  },
+  "satisfaccion": {
+    "media_p10": 2.783333333333333,
+    "media_item9": 3.35,
+    "contraste": {
+      "n": 60,
+      "shapiro_W": 0.9315084218978882,
+      "shapiro_p": 0.0023025348782539368,
+      "normal": false,
+      "prueba": "Wilcoxon de rangos con signo (unilateral)",
+      "estadistico": 618.0,
+      "p": 0.0005215713995369832,
+      "efecto_nombre": "r (correlación biserial por rangos)",
+      "efecto": 0.5846153846153846,
+      "decision": "se rechaza H0"
+    },
+    "media_items_1_8": 3.25,
+    "ic95_media_items_1_8": [
+      3.131541912012918,
+      3.368458087987082
+    ],
+    "alfa_cronbach": 0.5487825356842989,
+    "alfa_resumen_b24": 0.5487825356842991,
+    "alfa_difiere": false
+  },
+  "prueba_final": {
+    "n_sesiones": 60,
+    "n_consultas": 180,
+    "accuracy": 0.6055555555555555,
+    "f1_macro_intenciones_presentes": 0.5132608132608133,
+    "ic95_accuracy_bootstrap_por_sesion": [
+      0.5444444444444444,
+      0.6777777777777778
+    ],
+    "ic95_f1_bootstrap_por_sesion": [
+      0.43906335177168515,
+      0.5292972500209342
+    ],
+    "n_por_intencion": {
+      "fuera_de_alcance": 9,
+      "licencia_funcionamiento_requisitos": 4,
+      "pago_predial_como": 4,
+      "licencia_funcionamiento_costo": 4,
+      "constancia_no_adeudo": 4,
+      "impuesto_alcabala": 4,
+      "pago_arbitrios": 4,
+      "fraccionamiento_deuda": 4,
+      "consulta_deuda_predial": 4,
+      "renovacion_licencia": 4,
+      "licencia_edificacion_costo": 4,
+      "licencia_edificacion_requisitos": 4,
+      "licencia_funcionamiento_plazo": 4,
+      "contacto_telefonico": 3,
+      "libro_reclamaciones": 3,
+      "queja_atencion": 3,
+      "sugerencia": 3,
+      "horario_atencion_general": 3,
+      "ubicacion_oficinas": 3,
+      "requisitos_generales": 3,
+      "costos_generales": 3,
+      "negar": 3,
+      "redes_sociales_mpsr": 3,
+      "saludo": 3,
+      "despedida": 3,
+      "agradecimiento": 3,
+      "afirmar": 3,
+      "presentar_reclamo": 3,
+      "hablar_con_persona": 3,
+      "ayuda_chatbot": 3,
+      "consulta_no_entendida": 3,
+      "estado_reclamo": 3,
+      "requisitos_matrimonio_civil": 3,
+      "limpieza_via_publica": 3,
+      "requisitos_defensa_civil": 3,
+      "requisitos_mesa_partes": 3,
+      "estado_tramite": 3,
+      "horario_mesa_partes": 3,
+      "copia_documento": 3,
+      "certificado_posesion": 3,
+      "constancia_domiciliaria": 3,
+      "certificado_defensa_civil": 3,
+      "inspeccion_tecnica": 3,
+      "denuncia_seguridad_ciudadana": 3,
+      "poda_arboles": 3,
+      "serenazgo_contacto": 3,
+      "partida_nacimiento": 3,
+      "partida_matrimonio": 3,
+      "partida_defuncion": 3,
+      "rectificacion_partida": 3,
+      "horario_recojo_basura": 3,
+      "reporte_alumbrado_publico": 3,
+      "mantenimiento_parques": 3,
+      "repetir_informacion": 3
+    },
+    "confianza": {
+      "media_aciertos": 0.7344036697247707,
+      "media_errores": 0.7771830985915493,
+      "mediana": 0.74
+    },
+    "umbral": {
+      "t": 0.5,
+      "ambiguedad": 0.1,
+      "cobertura": 1.0,
+      "precision_respondida": 0.6055555555555555,
+      "errores_atrapados": 0,
+      "aciertos_perdidos": 0
+    },
+    "acuerdos": {
+      "juicio_del_aplicador": {
+        "n": 180,
+        "acuerdo_con_modelo_pct": 52.22222222222223,
+        "respondieron_si_pct": 51.66666666666667
+      },
+      "lo_que_necesitaba_la_persona": {
+        "n": 180,
+        "acuerdo_con_modelo_pct": 53.888888888888886,
+        "respondieron_si_pct": 67.77777777777779
+      }
+    }
+  },
+  "modelo_congelado": {
+    "modelo_nombre": "modelo_demostracion_SIMULADO.tar.gz",
+    "sha256": "024eaa6df47813099315ef61b7504d6ffb2b48cd94f1070e57cd5dd44ec8ecdb",
+    "fecha": "2026-10-05T16:21:49+00:00"
+  },
+  "desempeno_registro": {
+    "consultas": 180,
+    "respuesta_util_segun_persona": 0.6777777777777778,
+    "respuesta_correcta_segun_aplicador": 0.5166666666666667,
+    "respuesta_parcial_segun_aplicador": 0.37222222222222223,
+    "dijo_no_entendi": 0.15555555555555556,
+    "mensajes_promedio": 2.1555555555555554,
+    "segundos_media": 112.31666666666666,
+    "segundos_mediana": 103.5
+  },
+  "avisos": [
+    "Parametros: no se anotó el nombre/versión del modelo congelado (hay que anotarlo antes de la primera sesión)",
+    "Parametros: no se anotó la fecha de congelamiento del modelo"
+  ],
+  "limitaciones": [
+    "La línea base (minutos «antes») es recordada por la persona: sesgo de recuerdo.",
+    "Sesgo de novedad: la persona prueba un asistente nuevo con el aplicador presente.",
+    "El tiempo pre mide un trámite y el post una consulta al asistente: no son exactamente lo mismo (OE3 habla de consultas).",
+    "Muestra de conveniencia y piloto exploratorio: no confirmatorio, no generalizable."
+  ],
+  "columnas": {
+    "codigo": "Código de sesión",
+    "rango": "Tiempo presencial (rango)",
+    "p10": "Pre P10 satisfacción general",
+    "elegible": "Elegible y completa",
+    "min_pre": "Minutos pre (línea base)",
+    "min_post": "Minutos post (promedio de 3 consultas)",
+    "item1": "Post ítem 1: fácil de usar",
+    "item2": "Post ítem 2: tiempo adecuado",
+    "item3": "Post ítem 3: respuestas claras",
+    "item4": "Post ítem 4: resolvió mi consulta",
+    "item5": "Post ítem 5: confío en la información",
+    "item6": "Post ítem 6: prefiero usarlo antes que ir presencialmente",
+    "item7": "Post ítem 7: lo usaría de nuevo",
+    "item8": "Post ítem 8: lo recomendaría",
+    "item9": "Post ítem 9: satisfacción general (pareada con P10)",
+    "t1_tarjeta": "Tarjeta 1",
+    "t1_consulta": "Consulta 1: texto escrito",
+    "t1_seg": "Consulta 1: tiempo hasta respuesta útil (s)",
+    "t1_msgs": "Consulta 1: mensajes enviados",
+    "t1_obtuvo": "Consulta 1: ¿la persona obtuvo lo que necesitaba?",
+    "t1_correcta": "Consulta 1: ¿respuesta correcta? (aplicador)",
+    "t1_noentendi": "Consulta 1: ¿dijo «no entendí»?",
+    "t2_tarjeta": "Tarjeta 2",
+    "t2_consulta": "Consulta 2: texto escrito",
+    "t2_seg": "Consulta 2: tiempo hasta respuesta útil (s)",
+    "t2_msgs": "Consulta 2: mensajes enviados",
+    "t2_obtuvo": "Consulta 2: ¿la persona obtuvo lo que necesitaba?",
+    "t2_correcta": "Consulta 2: ¿respuesta correcta? (aplicador)",
+    "t2_noentendi": "Consulta 2: ¿dijo «no entendí»?",
+    "t3_tarjeta": "Tarjeta 3",
+    "t3_consulta": "Consulta 3: texto escrito",
+    "t3_seg": "Consulta 3: tiempo hasta respuesta útil (s)",
+    "t3_msgs": "Consulta 3: mensajes enviados",
+    "t3_obtuvo": "Consulta 3: ¿la persona obtuvo lo que necesitaba?",
+    "t3_correcta": "Consulta 3: ¿respuesta correcta? (aplicador)",
+    "t3_noentendi": "Consulta 3: ¿dijo «no entendí»?"
+  }
+}

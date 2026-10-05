@@ -415,6 +415,7 @@ def main():
     ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta datos simulados y escribe en una carpeta temporal")
     ap.add_argument("--demo-simulada", action="store_true", help="demostración con datos simulados: escribe en evidencias/simulado_demostracion/<ejecución>/ con el marcador SIMULADO")
     ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración (por defecto, fecha y hora)")
+    ap.add_argument("--demo-sin-marcar", action="store_true", help=argparse.SUPPRESS)  # lo usa el orquestador: marca una sola vez al final
     ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas: raíz alternativa del modo demostración
     a = ap.parse_args()
     if a.demo_simulada:
@@ -434,7 +435,7 @@ def main():
         ingestar(a)
         if getattr(a, "info_libro", None):
             publicar_exportaciones(a)
-        if a.demo_simulada:
+        if a.demo_simulada and not a.demo_sin_marcar:
             marcados = ds.marcar_directorio(a.out_dir)
             print(f"DEMOSTRACIÓN SIMULADA: {len(marcados)} archivos marcados «{ds.MARCA_ESTADO}» en {a.out_dir}")
 

@@ -1,0 +1,2 @@
+experiment_id,epochs,batch_size,embedding_dimension,seed,accuracy,precision_macro,recall_macro,f1_macro,balanced_accuracy,train_seconds,ESTADO
+RASA-e150-b64-d20-s42,150,64,20,42,0.8545454545454545,0.8765432098765431,0.8584656084656085,0.8436372269705601,0.8584656084656085,439.0,SIMULADO — datos de prueba; no son hallazgos de campo

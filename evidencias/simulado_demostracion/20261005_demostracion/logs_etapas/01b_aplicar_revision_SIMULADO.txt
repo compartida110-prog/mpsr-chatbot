@@ -1,0 +1,14 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/ingest_real_lote.py --aplicar-revision --out-dir evidencias\simulado_demostracion\20261005_demostracion\01_ingesta --log-dir evidencias\simulado_demostracion\20261005_demostracion\01_ingesta
+salida: 0  (2 s)
+
+REVISIÓN DE ETIQUETAS — REPORTE
+
+Frases revisadas: 273 | OK: 261 | CAMBIAR: 0 (0.0%) | DESCARTAR: 12 (4.4%)
+Etiquetas cambiadas: 0.0% (hallazgo en sí mismo: mide cuánto difiere la intención de la situación de la que la frase realmente expresa)
+Frases finales: 261 | intenciones con menos de 3 frases: ['afirmar', 'saludo']
+
+Kappa de Cohen, etiqueta esperada vs. revisión (revisora 1): 1.000
+Sin columna intent_revisora2: no se calcula el kappa entre revisoras.
+
+Salidas: evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\lote1_real_final.csv, evidencias\simulado_demostracion\20261005_demostracion\01_ingesta\revision_reporte.txt

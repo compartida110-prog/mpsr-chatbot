@@ -1,0 +1,820 @@
+# ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+version: "3.1"
+
+nlu:
+- intent: afirmar
+  examples: |
+    - si
+    - claro que si
+    - correcto eso es
+    - asi es
+    - si exacto
+    - eso mismo
+    - correcto
+    - si asi es
+    - confirmado
+    - exacto eso es
+    - si señor señorita
+    - asi mismo es
+    - dale pues
+    - ya adelante pues
+    - si pues claro
+    - ok listo
+    - bueno esta bien
+    - eso mismo es si
+- intent: agradecimiento
+  examples: |
+    - gracias por la informacion
+    - muchas gracias
+    - gracias me ayudo bastante
+    - ok gracias
+    - perfecto muchas gracias
+    - gracias por tu ayuda
+    - mil gracias
+    - que bien gracias
+    - agradecido por la info
+    - bien ahi gracias
+    - gracias eso necesitaba
+    - buenisimo gracias
+- intent: ayuda_chatbot
+  examples: |
+    - que puedes hacer
+    - en que me puedes ayudar
+    - que tipo de consultas respondes
+    - como te uso
+    - que temas conoces
+    - para que sirve este chat
+    - que funciones tienes
+    - que consultas puedo hacerte
+    - para que sirves exactamente
+    - que sabes responder
+    - cuentame que puedes hacer
+    - que tipo de ayuda das
+    - en que cosas me puedes ayudar
+    - como me puedes colaborar con mis tramites
+    - para que cosas sirves
+    - que tramites puedo consultar aqui
+    - que puedo preguntarte
+    - no se que preguntar que haces tu
+- intent: certificado_defensa_civil
+  examples: |
+    - como obtengo el certificado de defensa civil
+    - necesito mi certificado de defensa civil para mi local
+    - que requisitos piden para certificado de defensa civil
+    - quiero sacar el itse para mi negocio
+    - como tramito mi certificado de seguridad en edificacion
+    - donde solicito la inspeccion de defensa civil
+    - buenas me podria explicar el certificado de defensa civil
+    - quisiera saber el certificado de defensa civil
+    - usted me puede ayudar con el certificado de defensa civil
+    - disculpe donde consigo informacion sobre el certificado de defensa civil
+    - oiga que hay sobre el certificado de defensa civil
+    - necesitaria orientacion sobre el certificado de defensa civil
+- intent: certificado_posesion
+  examples: |
+    - como tramito un certificado de posesion
+    - necesito un certificado de posesion de mi terreno
+    - que requisitos piden para certificado de posesion
+    - quiero formalizar la posesion de mi lote que hago
+    - donde solicito constancia de posesion
+    - cuanto demora el certificado de posesion
+    - buenas me podria explicar el certificado de posesion
+    - quisiera saber el certificado de posesion
+    - usted me puede ayudar con el certificado de posesion
+    - disculpe donde consigo informacion sobre el certificado de posesion
+    - oiga que hay sobre el certificado de posesion
+    - necesitaria orientacion sobre el certificado de posesion
+- intent: constancia_domiciliaria
+  examples: |
+    - como saco una constancia domiciliaria
+    - necesito un certificado de domicilio
+    - que requisitos piden para constancia domiciliaria
+    - donde tramito mi constancia de residencia
+    - quiero un documento que acredite donde vivo
+    - cuanto cuesta la constancia domiciliaria
+    - buenas me podria explicar la constancia domiciliaria
+    - quisiera saber la constancia domiciliaria
+    - usted me puede ayudar con la constancia domiciliaria
+    - disculpe donde consigo informacion sobre la constancia domiciliaria
+    - oiga que hay sobre la constancia domiciliaria
+    - necesitaria orientacion sobre la constancia domiciliaria
+- intent: constancia_no_adeudo
+  examples: |
+    - como saco mi constancia de no adeudo
+    - necesito un certificado de que no debo nada a la municipalidad
+    - donde tramito la constancia de no adeudo
+    - quiero un documento que diga que estoy al dia en mis pagos
+    - como obtengo una constancia de no adeudo municipal
+    - necesito comprobar que no tengo deudas con la mpsr
+    - buenas me podria explicar la constancia de no adeudo
+    - quisiera saber la constancia de no adeudo
+    - usted me puede ayudar con la constancia de no adeudo
+    - disculpe donde consigo informacion sobre la constancia de no adeudo
+    - oiga que hay sobre la constancia de no adeudo
+    - necesitaria orientacion sobre la constancia de no adeudo
+- intent: consulta_deuda_predial
+  examples: |
+    - como consulto mi deuda del impuesto predial
+    - quiero saber cuanto debo de predial
+    - donde veo mi estado de cuenta del impuesto predial
+    - tengo deuda pendiente de autoavaluo
+    - como se si debo predial de este año
+    - quisiera revisar mi deuda de impuesto predial
+    - buenas me podria explicar mi deuda del impuesto predial
+    - quisiera saber mi deuda del impuesto predial
+    - usted me puede ayudar con mi deuda del impuesto predial
+    - disculpe donde consigo informacion sobre mi deuda del impuesto predial
+    - oiga que hay sobre mi deuda del impuesto predial
+    - necesitaria orientacion sobre mi deuda del impuesto predial
+- intent: consulta_no_entendida
+  examples: |
+    - no entendi tu respuesta
+    - puedes explicarlo de otra forma
+    - no me quedo claro lo que dijiste
+    - que quisiste decir con eso
+    - no comprendi puedes repetir
+    - explicamelo mas simple por favor
+    - no capte eso
+    - como no entendi
+    - perdon no quedo claro
+    - a que te refieres
+    - no comprendi tu mensaje
+    - explicalo de nuevo porfa
+- intent: contacto_telefonico
+  examples: |
+    - cual es el telefono de la municipalidad
+    - como llamo a la mpsr
+    - necesito el numero de contacto de la municipalidad
+    - tienen un whatsapp de atencion
+    - cual es el correo de la municipalidad
+    - como me comunico con la mpsr por telefono
+    - buenas me podria explicar el telefono de contacto de la municipalidad
+    - quisiera saber el telefono de contacto de la municipalidad
+    - usted me puede ayudar con el telefono de contacto de la municipalidad
+    - disculpe donde consigo informacion sobre el telefono de contacto de la municipalidad
+    - oiga que hay sobre el telefono de contacto de la municipalidad
+    - necesitaria orientacion sobre el telefono de contacto de la municipalidad
+- intent: copia_documento
+  examples: |
+    - como saco una copia certificada de mi expediente
+    - necesito una copia de un documento que presente
+    - donde pido copias de mis tramites anteriores
+    - perdi mi copia como consigo otra
+    - puedo pedir copia certificada de una resolucion
+    - que costo tiene una copia certificada
+    - buenas me podria explicar una copia certificada de un documento
+    - quisiera saber una copia certificada de un documento
+    - usted me puede ayudar con una copia certificada de un documento
+    - disculpe donde consigo informacion sobre una copia certificada de un documento
+    - oiga que hay sobre una copia certificada de un documento
+    - necesitaria orientacion sobre una copia certificada de un documento
+    - me pueden dar una copia de mi expediente
+    - quiero copia de un documento que ya presente
+    - como saco copia de lo que presente antes
+    - necesito que me den copia fedateada de un documento
+    - perdi el cargo de mi tramite me dan otra copia
+    - una copia de una resolucion municipal como la pido
+- intent: costos_generales
+  examples: |
+    - donde veo los costos de los tramites municipales
+    - cuanto cuestan los tramites en general
+    - donde esta el tupa con los precios de tramites
+    - quiero saber cuanto cuesta cada tramite
+    - hay una lista de precios de tramites municipales
+    - donde consulto las tasas municipales
+    - buenas me podria explicar los costos de los tramites municipales
+    - quisiera saber los costos de los tramites municipales
+    - usted me puede ayudar con los costos de los tramites municipales
+    - disculpe donde consigo informacion sobre los costos de los tramites municipales
+    - oiga que hay sobre los costos de los tramites municipales
+    - necesitaria orientacion sobre los costos de los tramites municipales
+- intent: denuncia_seguridad_ciudadana
+  examples: |
+    - quiero reportar un problema de seguridad en mi barrio
+    - como denuncio algo sospechoso a seguridad ciudadana
+    - necesito reportar un robo en mi zona
+    - a quien llamo si veo algo raro en la calle
+    - quiero hacer una denuncia de inseguridad
+    - como contacto a serenazgo por un problema de seguridad
+    - buenas me podria explicar como reportar un problema de seguridad ciudadana
+    - quisiera saber como reportar un problema de seguridad ciudadana
+    - usted me puede ayudar con como reportar un problema de seguridad ciudadana
+    - disculpe donde consigo informacion sobre como reportar un problema de seguridad ciudadana
+    - oiga que hay sobre como reportar un problema de seguridad ciudadana
+    - necesitaria orientacion sobre como reportar un problema de seguridad ciudadana
+- intent: despedida
+  examples: |
+    - chau gracias
+    - hasta luego
+    - nos vemos
+    - ya gracias me voy
+    - adios
+    - listo hasta pronto
+    - muchas gracias hasta luego
+    - ya esta gracias
+    - bueno me retiro gracias
+    - vale gracias chau
+    - esta bien hasta otra
+    - gracias que este bien
+    - ya me despido que le vaya bien
+    - bueno me despido cuidese mucho
+    - hasta luego pues gracias
+    - chau pues muchas gracias
+    - nos vemos gracias por todo
+    - eso nomas gracias hasta pronto
+- intent: estado_reclamo
+  examples: |
+    - como consulto el estado de mi reclamo
+    - presente un reclamo como se si lo atendieron
+    - donde veo la respuesta a mi queja
+    - cuanto demora en resolverse un reclamo
+    - como le hago seguimiento a mi reclamo
+    - quiero saber si ya respondieron mi queja
+    - buenas me podria explicar el estado de mi reclamo
+    - quisiera saber el estado de mi reclamo
+    - usted me puede ayudar con el estado de mi reclamo
+    - disculpe donde consigo informacion sobre el estado de mi reclamo
+    - oiga que hay sobre el estado de mi reclamo
+    - necesitaria orientacion sobre el estado de mi reclamo
+- intent: estado_tramite
+  examples: |
+    - como consulto el estado de mi tramite
+    - quiero saber en que va mi expediente
+    - donde veo el avance de mi solicitud
+    - presente un documento como se si ya lo revisaron
+    - como rastreo mi expediente municipal
+    - necesito saber el estado de mi solicitud
+    - buenas me podria explicar el estado de mi tramite
+    - quisiera saber el estado de mi tramite
+    - usted me puede ayudar con el estado de mi tramite
+    - disculpe donde consigo informacion sobre el estado de mi tramite
+    - oiga que hay sobre el estado de mi tramite
+    - necesitaria orientacion sobre el estado de mi tramite
+- intent: fraccionamiento_deuda
+  examples: |
+    - puedo fraccionar mi deuda tributaria
+    - quiero pagar mi deuda municipal en partes se puede
+    - como hago un fraccionamiento de mi deuda predial
+    - debo varios años de predial puedo pagar en cuotas
+    - que requisitos piden para fraccionar una deuda
+    - donde solicito el fraccionamiento de mi deuda
+    - buenas me podria explicar el fraccionamiento de una deuda tributaria
+    - quisiera saber el fraccionamiento de una deuda tributaria
+    - usted me puede ayudar con el fraccionamiento de una deuda tributaria
+    - disculpe donde consigo informacion sobre el fraccionamiento de una deuda tributaria
+    - oiga que hay sobre el fraccionamiento de una deuda tributaria
+    - necesitaria orientacion sobre el fraccionamiento de una deuda tributaria
+- intent: fuera_de_alcance
+  examples: |
+    - cual es el clima en juliaca hoy
+    - que equipo de futbol es mejor
+    - cuentame un chiste
+    - puedes ayudarme con mi tarea de matematicas
+    - que hora es en lima
+    - me recomiendas un restaurante
+    - cual es la capital de francia
+    - me ayudas con mi tarea
+    - que partido juega hoy
+    - sabes cocinar
+    - cuanto es 2 mas 2
+    - recomiendame una pelicula
+    - como saco mi ruc en la sunat
+    - donde tramito mi ruc para emitir facturas
+    - necesito sacar mi clave sol de la sunat
+    - donde puedo pagar mi recibo de luz
+    - hasta cuando puedo pagar el agua sin que me corten
+    - mi recibo de luz salio muy alto a quien le cuento
+    - como saco mi dni nuevo en la reniec
+    - como tramito mi pasaporte
+    - como me afilio al seguro de essalud
+- intent: hablar_con_persona
+  examples: |
+    - quiero hablar con una persona
+    - me puedes pasar con un trabajador
+    - necesito hablar con alguien de la municipalidad
+    - no quiero hablar con un robot quiero un humano
+    - hay alguien real que me pueda atender
+    - pasame con un funcionario por favor
+    - quiero que me atienda una persona real
+    - comuniqueme con un trabajador
+    - hay alguien humano ahi
+    - prefiero hablar con un funcionario
+    - me puede pasar con alguien del area
+    - necesito atencion humana no un bot
+- intent: horario_atencion_general
+  examples: |
+    - cual es el horario de atencion de la municipalidad
+    - a que hora abren la municipalidad
+    - hasta que hora atienden en la mpsr
+    - la municipalidad atiende los fines de semana
+    - que dias atiende la municipalidad
+    - cual es el horario de atencion al publico
+    - buenas me podria explicar el horario de atencion de la municipalidad
+    - quisiera saber el horario de atencion de la municipalidad
+    - usted me puede ayudar con el horario de atencion de la municipalidad
+    - disculpe donde consigo informacion sobre el horario de atencion de la municipalidad
+    - oiga que hay sobre el horario de atencion de la municipalidad
+    - necesitaria orientacion sobre el horario de atencion de la municipalidad
+- intent: horario_mesa_partes
+  examples: |
+    - cual es el horario de atencion de mesa de partes
+    - a que hora abre mesa de partes
+    - hasta que hora atienden en mesa de partes
+    - mesa de partes atiende los sabados
+    - que dias atiende mesa de partes
+    - cual es el horario para presentar documentos
+    - buenas me podria explicar el horario de atencion de mesa de partes
+    - quisiera saber el horario de atencion de mesa de partes
+    - usted me puede ayudar con el horario de atencion de mesa de partes
+    - disculpe donde consigo informacion sobre el horario de atencion de mesa de partes
+    - oiga que hay sobre el horario de atencion de mesa de partes
+    - necesitaria orientacion sobre el horario de atencion de mesa de partes
+    - hasta que hora reciben papeles en mesa de partes
+    - mesa de partes a que hora cierra
+    - que horario tiene mesa de partes para dejar un documento
+    - se puede presentar documentos en mesa de partes por la tarde
+    - atienden los sabados en mesa de partes
+    - a que hora empieza a recibir mesa de partes
+- intent: horario_recojo_basura
+  examples: |
+    - a que hora pasa el carro de la basura
+    - cual es el horario de recojo de basura en mi zona
+    - que dias recogen la basura
+    - el camion de basura no paso a que hora viene
+    - como se el horario de recoleccion de residuos
+    - que dias hay recojo de basura en mi barrio
+    - buenas me podria explicar el horario de recojo de basura
+    - quisiera saber el horario de recojo de basura
+    - usted me puede ayudar con el horario de recojo de basura
+    - disculpe donde consigo informacion sobre el horario de recojo de basura
+    - oiga que hay sobre el horario de recojo de basura
+    - necesitaria orientacion sobre el horario de recojo de basura
+- intent: impuesto_alcabala
+  examples: |
+    - que es el impuesto de alcabala y como lo pago
+    - compre un terreno tengo que pagar alcabala
+    - como tramito el pago de alcabala
+    - cuanto es el impuesto de alcabala por mi compra
+    - donde pago el impuesto de alcabala
+    - necesito informacion sobre el impuesto de alcabala
+    - buenas me podria explicar el impuesto de alcabala
+    - quisiera saber el impuesto de alcabala
+    - usted me puede ayudar con el impuesto de alcabala
+    - disculpe donde consigo informacion sobre el impuesto de alcabala
+    - oiga que hay sobre el impuesto de alcabala
+    - necesitaria orientacion sobre el impuesto de alcabala
+- intent: inspeccion_tecnica
+  examples: |
+    - como solicito una inspeccion tecnica de seguridad
+    - necesito que vengan a inspeccionar mi local
+    - que pasos sigo para pedir una itse
+    - cuanto demora la inspeccion tecnica de mi negocio
+    - quien hace la inspeccion de seguridad en edificaciones
+    - como programo una visita de defensa civil
+    - buenas me podria explicar la inspeccion tecnica de seguridad itse
+    - quisiera saber la inspeccion tecnica de seguridad itse
+    - usted me puede ayudar con la inspeccion tecnica de seguridad itse
+    - disculpe donde consigo informacion sobre la inspeccion tecnica de seguridad itse
+    - oiga que hay sobre la inspeccion tecnica de seguridad itse
+    - necesitaria orientacion sobre la inspeccion tecnica de seguridad itse
+- intent: libro_reclamaciones
+  examples: |
+    - donde esta el libro de reclamaciones
+    - quiero usar el libro de reclamaciones
+    - como accedo al libro de reclamaciones virtual
+    - puedo reclamar por el libro de reclamaciones online
+    - como lleno el libro de reclamaciones
+    - necesito el libro de reclamaciones para una queja
+    - buenas me podria explicar el libro de reclamaciones
+    - quisiera saber el libro de reclamaciones
+    - usted me puede ayudar con el libro de reclamaciones
+    - disculpe donde consigo informacion sobre el libro de reclamaciones
+    - oiga que hay sobre el libro de reclamaciones
+    - necesitaria orientacion sobre el libro de reclamaciones
+- intent: licencia_edificacion_costo
+  examples: |
+    - cuanto cuesta la licencia de edificacion
+    - cual es el costo de licencia de construccion
+    - cuanto debo pagar para licenciar mi obra
+    - a cuanto sale el tramite de licencia de edificacion
+    - que precio tiene la licencia para construir
+    - quiero saber el monto de la licencia de obra
+    - buenas me podria explicar el costo de la licencia de edificacion
+    - quisiera saber el costo de la licencia de edificacion
+    - usted me puede ayudar con el costo de la licencia de edificacion
+    - disculpe donde consigo informacion sobre el costo de la licencia de edificacion
+    - oiga que hay sobre el costo de la licencia de edificacion
+    - necesitaria orientacion sobre el costo de la licencia de edificacion
+- intent: licencia_edificacion_requisitos
+  examples: |
+    - que requisitos piden para la licencia de edificacion
+    - quiero construir que necesito para la licencia de edificacion
+    - que documentos se necesitan para licencia de construccion
+    - voy a ampliar mi casa que papeles necesito
+    - que me piden para licenciar una construccion nueva
+    - para remodelar mi vivienda que requisitos hay
+    - buenas me podria explicar los requisitos para la licencia de edificacion
+    - quisiera saber los requisitos para la licencia de edificacion
+    - usted me puede ayudar con los requisitos para la licencia de edificacion
+    - disculpe donde consigo informacion sobre los requisitos para la licencia de edificacion
+    - oiga que hay sobre los requisitos para la licencia de edificacion
+    - necesitaria orientacion sobre los requisitos para la licencia de edificacion
+- intent: licencia_funcionamiento_costo
+  examples: |
+    - cuanto cuesta la licencia de funcionamiento
+    - cual es el costo de la licencia de funcionamiento
+    - cuanto tengo que pagar por la licencia de mi negocio
+    - a cuanto sale sacar la licencia para mi tienda
+    - que precio tiene tramitar la licencia de funcionamiento
+    - quisiera saber el monto de la licencia de funcionamiento
+    - buenas me podria explicar el costo de la licencia de funcionamiento
+    - quisiera saber el costo de la licencia de funcionamiento
+    - usted me puede ayudar con el costo de la licencia de funcionamiento
+    - disculpe donde consigo informacion sobre el costo de la licencia de funcionamiento
+    - oiga que hay sobre el costo de la licencia de funcionamiento
+    - necesitaria orientacion sobre el costo de la licencia de funcionamiento
+- intent: licencia_funcionamiento_plazo
+  examples: |
+    - en cuanto tiempo me dan la licencia de funcionamiento
+    - cuantos dias demora el tramite de licencia de funcionamiento
+    - cual es el plazo de atencion para la licencia de funcionamiento
+    - cuando estara lista mi licencia si la pido hoy
+    - cuanto tarda en salir la licencia de mi negocio
+    - cuantos dias habiles toma aprobar la licencia
+    - buenas me podria explicar el plazo de atencion de la licencia de funcionamiento
+    - quisiera saber el plazo de atencion de la licencia de funcionamiento
+    - usted me puede ayudar con el plazo de atencion de la licencia de funcionamiento
+    - disculpe donde consigo informacion sobre el plazo de atencion de la licencia de funcionamiento
+    - oiga que hay sobre el plazo de atencion de la licencia de funcionamiento
+    - necesitaria orientacion sobre el plazo de atencion de la licencia de funcionamiento
+- intent: licencia_funcionamiento_requisitos
+  examples: |
+    - que requisitos necesito para sacar mi licencia de funcionamiento
+    - quiero saber los requisitos para la licencia de funcionamiento
+    - que documentos piden para licencia de funcionamiento de mi tienda
+    - voy a abrir un negocio que necesito para la licencia
+    - para aperturar mi local que papeles me piden
+    - que se necesita para licenciar un negocio nuevo
+    - buenas me podria explicar los requisitos para la licencia de funcionamiento
+    - quisiera saber los requisitos para la licencia de funcionamiento
+    - usted me puede ayudar con los requisitos para la licencia de funcionamiento
+    - disculpe donde consigo informacion sobre los requisitos para la licencia de funcionamiento
+    - oiga que hay sobre los requisitos para la licencia de funcionamiento
+    - necesitaria orientacion sobre los requisitos para la licencia de funcionamiento
+    - quiero abrir un restaurante que necesito
+    - voy a abrir un restaurante que tramite debo hacer
+    - para poner mi restaurante que me exigen
+    - voy a poner una tienda que papeles me piden
+    - quiero poner mi bodega que documentos llevo a la municipalidad
+    - voy a abrir una botica que papeles necesito
+    - que documentos pide la municipalidad para un negocio nuevo
+    - mi negocio recien empieza que permisos me piden
+    - quiero poner una peluqueria o un hostal que requisitos hay
+- intent: limpieza_via_publica
+  examples: |
+    - como solicito limpieza de una calle
+    - mi calle esta muy sucia como reporto
+    - donde pido el servicio de barrido de calles
+    - hay basura acumulada en mi cuadra a quien aviso
+    - como pido limpieza publica para mi zona
+    - quiero reportar una via publica descuidada
+    - buenas me podria explicar la limpieza de una via publica
+    - quisiera saber la limpieza de una via publica
+    - usted me puede ayudar con la limpieza de una via publica
+    - disculpe donde consigo informacion sobre la limpieza de una via publica
+    - oiga que hay sobre la limpieza de una via publica
+    - necesitaria orientacion sobre la limpieza de una via publica
+- intent: mantenimiento_parques
+  examples: |
+    - como reporto el mal estado de un parque
+    - el parque de mi barrio necesita mantenimiento
+    - donde solicito arreglo de un parque publico
+    - las areas verdes de mi zona estan descuidadas
+    - como pido que arreglen el parque de mi urbanizacion
+    - quiero reportar juegos rotos en el parque
+    - buenas me podria explicar el mantenimiento de un parque
+    - quisiera saber el mantenimiento de un parque
+    - usted me puede ayudar con el mantenimiento de un parque
+    - disculpe donde consigo informacion sobre el mantenimiento de un parque
+    - oiga que hay sobre el mantenimiento de un parque
+    - necesitaria orientacion sobre el mantenimiento de un parque
+- intent: negar
+  examples: |
+    - no
+    - no es eso
+    - para nada
+    - no gracias
+    - no es lo que busco
+    - no otra cosa
+    - no nada que ver
+    - negativo
+    - no es asi
+    - no otra cosa queria
+    - no disculpe
+    - no para nada
+- intent: pago_arbitrios
+  examples: |
+    - como pago los arbitrios municipales
+    - donde cancelo mis arbitrios de limpieza publica
+    - quiero pagar mis arbitrios como hago
+    - cuanto debo de arbitrios este año
+    - que son los arbitrios y como los pago
+    - donde consulto mi deuda de arbitrios
+    - buenas me podria explicar como pagar los arbitrios municipales
+    - quisiera saber como pagar los arbitrios municipales
+    - usted me puede ayudar con como pagar los arbitrios municipales
+    - disculpe donde consigo informacion sobre como pagar los arbitrios municipales
+    - oiga que hay sobre como pagar los arbitrios municipales
+    - necesitaria orientacion sobre como pagar los arbitrios municipales
+- intent: pago_predial_como
+  examples: |
+    - como pago mi impuesto predial
+    - donde puedo pagar el predial
+    - que formas de pago hay para el impuesto predial
+    - puedo pagar mi predial por internet
+    - como cancelo el autoavaluo de mi casa
+    - que opciones tengo para pagar predial
+    - buenas me podria explicar como pagar el impuesto predial
+    - quisiera saber como pagar el impuesto predial
+    - usted me puede ayudar con como pagar el impuesto predial
+    - disculpe donde consigo informacion sobre como pagar el impuesto predial
+    - oiga que hay sobre como pagar el impuesto predial
+    - necesitaria orientacion sobre como pagar el impuesto predial
+- intent: partida_defuncion
+  examples: |
+    - como tramito una partida de defuncion
+    - necesito el certificado de defuncion de un familiar
+    - que requisitos piden para partida de defuncion
+    - donde registro un fallecimiento
+    - como saco copia de una partida de defuncion
+    - que documentos necesito para inscribir una defuncion
+    - buenas me podria explicar una partida de defuncion
+    - quisiera saber una partida de defuncion
+    - usted me puede ayudar con una partida de defuncion
+    - disculpe donde consigo informacion sobre una partida de defuncion
+    - oiga que hay sobre una partida de defuncion
+    - necesitaria orientacion sobre una partida de defuncion
+- intent: partida_matrimonio
+  examples: |
+    - como obtengo mi partida de matrimonio
+    - necesito una copia de mi partida de matrimonio
+    - donde tramito mi partida de matrimonio
+    - que requisitos piden para partida de matrimonio
+    - quiero un certificado de mi matrimonio civil
+    - cuanto cuesta la partida de matrimonio
+    - buenas me podria explicar mi partida de matrimonio
+    - quisiera saber mi partida de matrimonio
+    - usted me puede ayudar con mi partida de matrimonio
+    - disculpe donde consigo informacion sobre mi partida de matrimonio
+    - oiga que hay sobre mi partida de matrimonio
+    - necesitaria orientacion sobre mi partida de matrimonio
+- intent: partida_nacimiento
+  examples: |
+    - como saco una copia de mi partida de nacimiento
+    - necesito mi partida de nacimiento
+    - donde tramito mi partida de nacimiento
+    - perdi mi partida de nacimiento como saco otra
+    - que requisitos piden para partida de nacimiento
+    - quiero una copia certificada de mi partida de nacimiento
+    - buenas me podria explicar mi partida de nacimiento
+    - quisiera saber mi partida de nacimiento
+    - usted me puede ayudar con mi partida de nacimiento
+    - disculpe donde consigo informacion sobre mi partida de nacimiento
+    - oiga que hay sobre mi partida de nacimiento
+    - necesitaria orientacion sobre mi partida de nacimiento
+- intent: poda_arboles
+  examples: |
+    - como solicito la poda de un arbol
+    - hay un arbol que necesita poda frente a mi casa
+    - donde pido el servicio de poda de arboles
+    - un arbol esta muy crecido y es peligroso como reporto
+    - como pido que corten las ramas de un arbol publico
+    - necesito solicitar poda municipal
+    - buenas me podria explicar la poda de un arbol publico
+    - quisiera saber la poda de un arbol publico
+    - usted me puede ayudar con la poda de un arbol publico
+    - disculpe donde consigo informacion sobre la poda de un arbol publico
+    - oiga que hay sobre la poda de un arbol publico
+    - necesitaria orientacion sobre la poda de un arbol publico
+- intent: presentar_reclamo
+  examples: |
+    - como presento un reclamo a la municipalidad
+    - quiero hacer un reclamo formal
+    - donde registro una queja contra la municipalidad
+    - no estoy conforme con un tramite como reclamo
+    - que requisitos piden para presentar un reclamo
+    - necesito reclamar por un servicio municipal
+    - buenas me podria explicar como presentar un reclamo
+    - quisiera saber como presentar un reclamo
+    - usted me puede ayudar con como presentar un reclamo
+    - disculpe donde consigo informacion sobre como presentar un reclamo
+    - oiga que hay sobre como presentar un reclamo
+    - necesitaria orientacion sobre como presentar un reclamo
+- intent: queja_atencion
+  examples: |
+    - quiero quejarme de la atencion que recibi
+    - el personal me atendio mal como reporto
+    - tengo una queja sobre el servicio de un trabajador
+    - no me atendieron bien en ventanilla a donde reclamo
+    - quiero reportar mala atencion en mesa de partes
+    - como reporto una queja sobre un funcionario
+    - buenas me podria explicar una queja sobre la atencion recibida
+    - quisiera saber una queja sobre la atencion recibida
+    - usted me puede ayudar con una queja sobre la atencion recibida
+    - disculpe donde consigo informacion sobre una queja sobre la atencion recibida
+    - oiga que hay sobre una queja sobre la atencion recibida
+    - necesitaria orientacion sobre una queja sobre la atencion recibida
+- intent: rectificacion_partida
+  examples: |
+    - como rectifico un error en mi partida de nacimiento
+    - mi partida tiene un dato mal escrito como lo corrijo
+    - que tramite hago para rectificar una partida
+    - necesito corregir mi apellido en la partida
+    - donde solicito la rectificacion de una partida civil
+    - que requisitos piden para rectificar un acta
+    - buenas me podria explicar la rectificacion de una partida
+    - quisiera saber la rectificacion de una partida
+    - usted me puede ayudar con la rectificacion de una partida
+    - disculpe donde consigo informacion sobre la rectificacion de una partida
+    - oiga que hay sobre la rectificacion de una partida
+    - necesitaria orientacion sobre la rectificacion de una partida
+- intent: redes_sociales_mpsr
+  examples: |
+    - cual es el facebook de la municipalidad
+    - tienen redes sociales donde informan tramites
+    - donde sigo las noticias de la mpsr
+    - como encuentro a la municipalidad en redes sociales
+    - tienen pagina web oficial
+    - donde publican los comunicados oficiales
+    - buenas me podria explicar las redes sociales de la municipalidad
+    - quisiera saber las redes sociales de la municipalidad
+    - usted me puede ayudar con las redes sociales de la municipalidad
+    - disculpe donde consigo informacion sobre las redes sociales de la municipalidad
+    - oiga que hay sobre las redes sociales de la municipalidad
+    - necesitaria orientacion sobre las redes sociales de la municipalidad
+- intent: renovacion_licencia
+  examples: |
+    - como renuevo mi licencia de funcionamiento
+    - se me vencio mi licencia como la renuevo
+    - que tramite hago para renovar la licencia de mi negocio
+    - que necesito para renovar mi licencia vencida
+    - quiero actualizar mi licencia de funcionamiento como hago
+    - cuales son los pasos para renovar una licencia
+    - buenas me podria explicar como renovar una licencia de funcionamiento
+    - quisiera saber como renovar una licencia de funcionamiento
+    - usted me puede ayudar con como renovar una licencia de funcionamiento
+    - disculpe donde consigo informacion sobre como renovar una licencia de funcionamiento
+    - oiga que hay sobre como renovar una licencia de funcionamiento
+    - necesitaria orientacion sobre como renovar una licencia de funcionamiento
+- intent: repetir_informacion
+  examples: |
+    - puedes repetir lo que dijiste
+    - repiteme eso por favor
+    - no alcance a leer puedes repetir
+    - me lo puedes volver a decir
+    - vuelve a enviarme esa informacion
+    - repite la respuesta anterior porfa
+    - me repites por favor
+    - no lei bien repite
+    - otra vez porfa
+    - mandamelo de nuevo
+    - repite la info anterior
+    - puedes volver a escribirlo
+- intent: reporte_alumbrado_publico
+  examples: |
+    - un poste de luz esta malogrado como reporto
+    - quiero reportar un foco publico que no enciende
+    - donde reporto una falla de alumbrado publico
+    - hay un cable suelto en un poste a quien aviso
+    - como reporto que una calle esta sin luz
+    - necesito reportar un poste de alumbrado dañado
+    - buenas me podria explicar como reportar una falla de alumbrado publico
+    - quisiera saber como reportar una falla de alumbrado publico
+    - usted me puede ayudar con como reportar una falla de alumbrado publico
+    - disculpe donde consigo informacion sobre como reportar una falla de alumbrado publico
+    - oiga que hay sobre como reportar una falla de alumbrado publico
+    - necesitaria orientacion sobre como reportar una falla de alumbrado publico
+    - la luz del poste de mi cuadra esta apagada
+    - en mi calle no hay luz los postes no encienden
+    - se quemo un foco del alumbrado de mi barrio
+    - a quien aviso que el alumbrado de mi calle esta malogrado
+    - hay un poste sin luz en la esquina como reporto
+    - mi calle esta a oscuras por falta de alumbrado
+- intent: requisitos_defensa_civil
+  examples: |
+    - que requisitos piden para defensa civil
+    - que documentos necesito para el certificado de defensa civil
+    - que me piden para la inspeccion de seguridad
+    - para mi local comercial que necesito de defensa civil
+    - que papeles debo presentar para itse
+    - cuales son los requisitos de seguridad para mi tienda
+    - buenas me podria explicar los requisitos de defensa civil
+    - quisiera saber los requisitos de defensa civil
+    - usted me puede ayudar con los requisitos de defensa civil
+    - disculpe donde consigo informacion sobre los requisitos de defensa civil
+    - oiga que hay sobre los requisitos de defensa civil
+    - necesitaria orientacion sobre los requisitos de defensa civil
+    - que piden para la inspeccion de defensa civil de mi local
+    - que necesito para pasar la revision de seguridad de mi tienda
+    - para defensa civil que cosas me exigen
+    - que debo tener en mi local para que defensa civil me apruebe
+    - cuales son las exigencias de defensa civil para un negocio
+    - me piden extintores y señales para defensa civil
+- intent: requisitos_generales
+  examples: |
+    - que documento de identidad piden para hacer tramites
+    - necesito llevar mi dni para cualquier tramite
+    - que requisitos generales piden en la municipalidad
+    - puedo hacer un tramite con copia de mi dni
+    - que documentos basicos debo llevar siempre
+    - necesito algo mas aparte del dni para tramites
+    - buenas me podria explicar los requisitos generales para hacer un tramite
+    - quisiera saber los requisitos generales para hacer un tramite
+    - usted me puede ayudar con los requisitos generales para hacer un tramite
+    - disculpe donde consigo informacion sobre los requisitos generales para hacer un tramite
+    - oiga que hay sobre los requisitos generales para hacer un tramite
+    - necesitaria orientacion sobre los requisitos generales para hacer un tramite
+- intent: requisitos_matrimonio_civil
+  examples: |
+    - que requisitos piden para matrimonio civil
+    - quiero casarme por civil que necesito
+    - que documentos piden para matrimonio municipal
+    - cuanto cuesta el matrimonio civil en la municipalidad
+    - como programo mi matrimonio civil
+    - que pasos sigo para casarme en la mpsr
+    - buenas me podria explicar los requisitos para matrimonio civil
+    - quisiera saber los requisitos para matrimonio civil
+    - usted me puede ayudar con los requisitos para matrimonio civil
+    - disculpe donde consigo informacion sobre los requisitos para matrimonio civil
+    - oiga que hay sobre los requisitos para matrimonio civil
+    - necesitaria orientacion sobre los requisitos para matrimonio civil
+- intent: requisitos_mesa_partes
+  examples: |
+    - que requisitos piden en mesa de partes
+    - que necesito para presentar un documento en mesa de partes
+    - que papeles debo llevar a mesa de partes
+    - quiero presentar una solicitud que necesito
+    - como presento un documento a la municipalidad
+    - que formato debe tener mi solicitud para mesa de partes
+    - buenas me podria explicar los requisitos de mesa de partes
+    - quisiera saber los requisitos de mesa de partes
+    - usted me puede ayudar con los requisitos de mesa de partes
+    - disculpe donde consigo informacion sobre los requisitos de mesa de partes
+    - oiga que hay sobre los requisitos de mesa de partes
+    - necesitaria orientacion sobre los requisitos de mesa de partes
+- intent: saludo
+  examples: |
+    - hola
+    - buenos dias
+    - que tal
+    - buenas
+    - hola buenas tardes
+    - hola como estas
+    - buenas tardes
+    - hola que tal esta
+    - buenas disculpe
+    - oiga buenas
+    - hola como le va
+    - buenos dias disculpe la hora
+- intent: serenazgo_contacto
+  examples: |
+    - cual es el numero de serenazgo
+    - como contacto a serenazgo
+    - necesito el telefono de seguridad ciudadana
+    - serenazgo atiende las 24 horas
+    - donde queda la oficina de serenazgo
+    - como pido apoyo de serenazgo
+    - buenas me podria explicar el contacto de serenazgo
+    - quisiera saber el contacto de serenazgo
+    - usted me puede ayudar con el contacto de serenazgo
+    - disculpe donde consigo informacion sobre el contacto de serenazgo
+    - oiga que hay sobre el contacto de serenazgo
+    - necesitaria orientacion sobre el contacto de serenazgo
+- intent: sugerencia
+  examples: |
+    - quiero dejar una sugerencia a la municipalidad
+    - como puedo sugerir una mejora
+    - tengo una idea para mejorar la atencion municipal
+    - donde dejo mis comentarios sobre el servicio
+    - quiero proponer una mejora a un tramite
+    - como envio una sugerencia a la mpsr
+    - buenas me podria explicar como dejar una sugerencia a la municipalidad
+    - quisiera saber como dejar una sugerencia a la municipalidad
+    - usted me puede ayudar con como dejar una sugerencia a la municipalidad
+    - disculpe donde consigo informacion sobre como dejar una sugerencia a la municipalidad
+    - oiga que hay sobre como dejar una sugerencia a la municipalidad
+    - necesitaria orientacion sobre como dejar una sugerencia a la municipalidad
+- intent: ubicacion_oficinas
+  examples: |
+    - donde queda la municipalidad
+    - cual es la direccion de la mpsr
+    - donde estan las oficinas de la municipalidad
+    - como llego a la municipalidad de san roman
+    - en que parte de juliaca esta la municipalidad
+    - necesito la ubicacion exacta del palacio municipal
+    - buenas me podria explicar la ubicacion de la municipalidad
+    - quisiera saber la ubicacion de la municipalidad
+    - usted me puede ayudar con la ubicacion de la municipalidad
+    - disculpe donde consigo informacion sobre la ubicacion de la municipalidad
+    - oiga que hay sobre la ubicacion de la municipalidad
+    - necesitaria orientacion sobre la ubicacion de la municipalidad

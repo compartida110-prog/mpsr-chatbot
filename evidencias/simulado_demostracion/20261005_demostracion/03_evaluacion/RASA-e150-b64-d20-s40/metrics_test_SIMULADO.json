@@ -1,0 +1,25 @@
+{
+  "ESTADO": "SIMULADO — datos de prueba; no son hallazgos de campo",
+  "experiment_id": "RASA-e150-b64-d20-s40",
+  "evaluated_on": "test",
+  "seed": 40,
+  "metrics": {
+    "accuracy": 0.8278145695364238,
+    "precision_macro": 0.8234567901234568,
+    "recall_macro": 0.8311287477954143,
+    "f1_macro": 0.8105854022520688,
+    "balanced_accuracy": 0.8311287477954143
+  },
+  "n_evaluated": 151,
+  "config": {
+    "epochs": 150,
+    "batch_size": 64,
+    "embedding_dimension": 20
+  },
+  "corpus_file": "evidencias\\simulado_demostracion\\20261005_demostracion\\02_particion\\corpus_metadata_v3.csv",
+  "corpus_sha256": "900a76f5136261c10055202f0212dd51f22519df0e1d7d59c0aa007e54ff5219",
+  "git_commit": "08a9740-modificado",
+  "timestamp": "2026-10-05T11:12:59",
+  "python": "3.10.11",
+  "train_seconds": 502.7
+}

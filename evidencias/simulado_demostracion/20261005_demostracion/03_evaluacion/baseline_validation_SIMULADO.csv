@@ -1,0 +1,2 @@
+experiment_id,model,C,seed,accuracy,precision_macro,recall_macro,f1_macro,balanced_accuracy,ESTADO
+BASE-SVM-C10.0-s42,svm,10.0,42,0.7636363636363637,0.8017568850902185,0.7566137566137567,0.7475308641975308,0.7566137566137567,SIMULADO — datos de prueba; no son hallazgos de campo

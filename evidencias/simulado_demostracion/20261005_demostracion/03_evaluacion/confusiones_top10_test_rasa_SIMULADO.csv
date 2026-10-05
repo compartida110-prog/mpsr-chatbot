@@ -1,0 +1,11 @@
+intencion_real,intencion_predicha,veces_por_semilla,ESTADO
+pago_arbitrios,serenazgo_contacto,1.2,SIMULADO — datos de prueba; no son hallazgos de campo
+estado_tramite,licencia_funcionamiento_plazo,1.0,SIMULADO — datos de prueba; no son hallazgos de campo
+limpieza_via_publica,horario_recojo_basura,1.0,SIMULADO — datos de prueba; no son hallazgos de campo
+certificado_defensa_civil,requisitos_defensa_civil,1.0,SIMULADO — datos de prueba; no son hallazgos de campo
+renovacion_licencia,licencia_funcionamiento_costo,0.8,SIMULADO — datos de prueba; no son hallazgos de campo
+costos_generales,horario_atencion_general,0.8,SIMULADO — datos de prueba; no son hallazgos de campo
+sugerencia,queja_atencion,0.8,SIMULADO — datos de prueba; no son hallazgos de campo
+licencia_edificacion_requisitos,requisitos_mesa_partes,0.6,SIMULADO — datos de prueba; no son hallazgos de campo
+horario_mesa_partes,sugerencia,0.6,SIMULADO — datos de prueba; no son hallazgos de campo
+redes_sociales_mpsr,costos_generales,0.6,SIMULADO — datos de prueba; no son hallazgos de campo

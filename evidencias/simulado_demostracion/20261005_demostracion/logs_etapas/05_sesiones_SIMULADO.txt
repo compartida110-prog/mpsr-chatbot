@@ -1,0 +1,103 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/analizar_piloto.py --registro docs\piloto\ejemplos_simulados\Registro_Sesiones_Piloto_SIMULADO_v4.xlsx --demo-simulada --demo-sin-marcar --salida evidencias\simulado_demostracion\20261005_demostracion\05_sesiones --modelo-congelado evidencias\simulado_demostracion\20261005_demostracion\04_congelado\modelo_congelado_SIMULADO.json
+salida: 0  (8 s)
+
+Sesiones elegibles: 60 (filas con código que no empieza por SA, p. ej. EJ01: 2) — n completo
+AVISO: Parametros: no se anotó el nombre/versión del modelo congelado (hay que anotarlo antes de la primera sesión)
+AVISO: Parametros: no se anotó la fecha de congelamiento del modelo
+# Análisis del piloto exploratorio (V1.3) — SIMULADO
+
+**SIMULADO** · generado 2026-10-05T11:21:56 · sesiones elegibles analizadas: **n = 60** · piloto exploratorio (objetivo 60)
+
+Exploratorio: estos resultados no son confirmatorios.
+
+## OE3 — Tiempo de respuesta (minutos)
+
+- Pre: media 100.25, mediana 90.00 · Post: media 1.87, mediana 1.80
+- Diferencia post − pre: media -98.38
+- Shapiro-Wilk sobre las diferencias: W = 0.8050, p = 0.0000 -> no normales
+- Prueba: Wilcoxon de rangos con signo (unilateral); estadístico = 1830.0000, p = 0.000000 (se rechaza H0, α = 0.05)
+- Tamaño de efecto r (correlación biserial por rangos): 1.000
+- Reducción de las medias: 98.1 % (IC95 % bootstrap 97.7 % a 98.5 %)
+- Media de las reducciones individuales: 94.8 %
+- IC95 % bootstrap de la diferencia media pre − post: [77.55, 121.86] min (1000 remuestreos, semilla 42)
+
+## OE4 — Satisfacción
+
+- P10 frente al ítem 9: P10 media 2.78, ítem 9 media 3.35; Wilcoxon de rangos con signo (unilateral), p = 0.000522 (se rechaza H0); efecto r (correlación biserial por rangos) = 0.585; Shapiro p = 0.0023
+- Media de los ítems 1–8: 3.250 (IC95 % [3.132, 3.368])
+- Alfa de Cronbach (ítems 1–8): 0.549 · Resumen!B24 del registro: 0.549
+
+## Prueba final del modelo congelado (evaluada una sola vez)
+
+- Modelo: modelo_demostracion_SIMULADO.tar.gz (sha256 024eaa6df478…, congelado 2026-10-05T16:21:49+00:00)
+- 180 consultas de 60 sesiones · accuracy 0.606 (IC95 % por sesión [0.544, 0.678])
+- F1 macro (intenciones presentes) 0.513 (IC95 % por sesión [0.439, 0.529])
+- Confianza: media en aciertos 0.734, en errores 0.777, mediana 0.740
+- Umbral congelado t = 0.5: cobertura 1.000, precisión de lo respondido 0.606, errores atrapados 0, aciertos perdidos 0
+- Acuerdo del modelo con juicio del aplicador: 52.2 % (n = 180; respondieron «Sí»: 51.7 %)
+- Acuerdo del modelo con lo que necesitaba la persona: 53.9 % (n = 180; respondieron «Sí»: 67.8 %)
+
+## Desempeño según el registro (mismas cifras que calcula la hoja Resumen)
+
+- Respuesta útil según la persona: 67.8 % · correcta según el aplicador (solo «Sí»): 51.7 % («Parcial»: 37.2 %) · dijo «no entendí»: 15.6 %
+- Mensajes por consulta: 2.16 · tiempo hasta respuesta útil: media 112 s, mediana 104 s
+
+## Avisos
+
+- Parametros: no se anotó el nombre/versión del modelo congelado (hay que anotarlo antes de la primera sesión)
+- Parametros: no se anotó la fecha de congelamiento del modelo
+
+n por intención: afirmar 3, agradecimiento 3, ayuda_chatbot 3, certificado_defensa_civil 3, certificado_posesion 3, constancia_domiciliaria 3, constancia_no_adeudo 4, consulta_deuda_predial 4, consulta_no_entendida 3, contacto_telefonico 3, copia_documento 3, costos_generales 3, denuncia_seguridad_ciudadana 3, despedida 3, estado_reclamo 3, estado_tramite 3, fraccionamiento_deuda 4, fuera_de_alcance 9, hablar_con_persona 3, horario_atencion_general 3, horario_mesa_partes 3, horario_recojo_basura 3, impuesto_alcabala 4, inspeccion_tecnica 3, libro_reclamaciones 3, licencia_edificacion_costo 4, licencia_edificacion_requisitos 4, licencia_funcionamiento_costo 4, licencia_funcionamiento_plazo 4, licencia_funcionamiento_requisitos 4, limpieza_via_publica 3, mantenimiento_parques 3, negar 3, pago_arbitrios 4, pago_predial_como 4, partida_defuncion 3, partida_matrimonio 3, partida_nacimiento 3, poda_arboles 3, presentar_reclamo 3, queja_atencion 3, rectificacion_partida 3, redes_sociales_mpsr 3, renovacion_licencia 4, repetir_informacion 3, reporte_alumbrado_publico 3, requisitos_defensa_civil 3, requisitos_generales 3, requisitos_matrimonio_civil 3, requisitos_mesa_partes 3, saludo 3, serenazgo_contacto 3, sugerencia 3, ubicacion_oficinas 3
+
+## Limitaciones
+
+- La línea base (minutos «antes») es recordada por la persona: sesgo de recuerdo.
+- Sesgo de novedad: la persona prueba un asistente nuevo con el aplicador presente.
+- El tiempo pre mide un trámite y el post una consulta al asistente: no son exactamente lo mismo (OE3 habla de consultas).
+- Muestra de conveniencia y piloto exploratorio: no confirmatorio, no generalizable.
+
+## Columnas del registro usadas
+
+| Campo | Encabezado |
+|---|---|
+| codigo | Código de sesión |
+| rango | Tiempo presencial (rango) |
+| p10 | Pre P10 satisfacción general |
+| elegible | Elegible y completa |
+| min_pre | Minutos pre (línea base) |
+| min_post | Minutos post (promedio de 3 consultas) |
+| item1 | Post ítem 1: fácil de usar |
+| item2 | Post ítem 2: tiempo adecuado |
+| item3 | Post ítem 3: respuestas claras |
+| item4 | Post ítem 4: resolvió mi consulta |
+| item5 | Post ítem 5: confío en la información |
+| item6 | Post ítem 6: prefiero usarlo antes que ir presencialmente |
+| item7 | Post ítem 7: lo usaría de nuevo |
+| item8 | Post ítem 8: lo recomendaría |
+| item9 | Post ítem 9: satisfacción general (pareada con P10) |
+| t1_tarjeta | Tarjeta 1 |
+| t1_consulta | Consulta 1: texto escrito |
+| t1_seg | Consulta 1: tiempo hasta respuesta útil (s) |
+| t1_msgs | Consulta 1: mensajes enviados |
+| t1_obtuvo | Consulta 1: ¿la persona obtuvo lo que necesitaba? |
+| t1_correcta | Consulta 1: ¿respuesta correcta? (aplicador) |
+| t1_noentendi | Consulta 1: ¿dijo «no entendí»? |
+| t2_tarjeta | Tarjeta 2 |
+| t2_consulta | Consulta 2: texto escrito |
+| t2_seg | Consulta 2: tiempo hasta respuesta útil (s) |
+| t2_msgs | Consulta 2: mensajes enviados |
+| t2_obtuvo | Consulta 2: ¿la persona obtuvo lo que necesitaba? |
+| t2_correcta | Consulta 2: ¿respuesta correcta? (aplicador) |
+| t2_noentendi | Consulta 2: ¿dijo «no entendí»? |
+| t3_tarjeta | Tarjeta 3 |
+| t3_consulta | Consulta 3: texto escrito |
+| t3_seg | Consulta 3: tiempo hasta respuesta útil (s) |
+| t3_msgs | Consulta 3: mensajes enviados |
+| t3_obtuvo | Consulta 3: ¿la persona obtuvo lo que necesitaba? |
+| t3_correcta | Consulta 3: ¿respuesta correcta? (aplicador) |
+| t3_noentendi | Consulta 3: ¿dijo «no entendí»? |
+
+Guardado en evidencias\simulado_demostracion\20261005_demostracion\05_sesiones
+venv\lib\site-packages\openpyxl\worksheet\_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed
+  warn(msg)

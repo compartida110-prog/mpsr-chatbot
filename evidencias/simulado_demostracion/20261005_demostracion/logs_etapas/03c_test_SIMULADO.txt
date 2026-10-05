@@ -1,0 +1,61 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/eval_real.py --corpus-v3 evidencias\simulado_demostracion\20261005_demostracion\02_particion\corpus_metadata_v3.csv --nlu-dir evidencias\simulado_demostracion\20261005_demostracion\02_particion\nlu --out-dir evidencias\simulado_demostracion\20261005_demostracion\03_evaluacion --models-dir <usuario>\AppData\Local\Temp\demo_modelos_rasa__yy_2u1s --fase test
+salida: 0  (2656 s)
+
+corpus v3: train=708 (sintético) | validation=110 (real) | test=151 (real) | intenciones=54
+
+SVM (C=10.0) — test real, semillas [10, 20, 30, 40, 50]:
+  BASE-SVM-C10.0-s10                 accuracy=0.8212  precision_macro=0.8665  recall_macro=0.8148  f1_macro=0.8094  balanced_accuracy=0.8148
+  BASE-SVM-C10.0-s20                 accuracy=0.8212  precision_macro=0.8665  recall_macro=0.8148  f1_macro=0.8094  balanced_accuracy=0.8148
+  BASE-SVM-C10.0-s30                 accuracy=0.8212  precision_macro=0.8665  recall_macro=0.8148  f1_macro=0.8094  balanced_accuracy=0.8148
+  BASE-SVM-C10.0-s40                 accuracy=0.8212  precision_macro=0.8665  recall_macro=0.8148  f1_macro=0.8094  balanced_accuracy=0.8148
+  BASE-SVM-C10.0-s50                 accuracy=0.8212  precision_macro=0.8665  recall_macro=0.8148  f1_macro=0.8094  balanced_accuracy=0.8148
+
+Rasa/DIET (e150 b64 d20) — test real, semillas [10, 20, 30, 40, 50]:
+  RASA-e150-b64-d20-s10 (583s)       accuracy=0.8675  precision_macro=0.8852  recall_macro=0.8713  f1_macro=0.8566  balanced_accuracy=0.8713
+  RASA-e150-b64-d20-s20 (462s)       accuracy=0.8212  precision_macro=0.8660  recall_macro=0.8254  f1_macro=0.8163  balanced_accuracy=0.8254
+  RASA-e150-b64-d20-s30 (497s)       accuracy=0.8079  precision_macro=0.8364  recall_macro=0.8192  f1_macro=0.7953  balanced_accuracy=0.8192
+  RASA-e150-b64-d20-s40 (503s)       accuracy=0.8278  precision_macro=0.8235  recall_macro=0.8311  f1_macro=0.8106  balanced_accuracy=0.8311
+  RASA-e150-b64-d20-s50 (487s)       accuracy=0.8344  precision_macro=0.8509  recall_macro=0.8408  f1_macro=0.8243  balanced_accuracy=0.8408
+
+EVALUACIÓN SOBRE LENGUAJE REAL — TEST
+
+Test: 151 frases reales, 54 intenciones | validación: 110 frases | entrenamiento sintético: 708
+IC95 % por bootstrap sobre frases (1000 remuestreos, seed 42); media sobre las semillas [10, 20, 30, 40, 50]
+
+Rasa NLU / DIET:
+  F1 macro test   = 0.8206  IC95 % [0.7318, 0.8452]  (DE entre semillas 0.0227)
+  Accuracy test   = 0.8318  IC95 % [0.7801, 0.8795]
+  Balanced acc.   = 0.8376
+  F1 macro validación (seed 42) = 0.8436  IC95 % [0.7394, 0.8778]
+  Criterio F1 >= 0.75: CUMPLE (punto); límite inferior del IC = 0.7318
+
+  10 confusiones principales (veces por semilla): pago_arbitrios->serenazgo_contacto (1.2); estado_tramite->licencia_funcionamiento_plazo (1.0); limpieza_via_publica->horario_recojo_basura (1.0); certificado_defensa_civil->requisitos_defensa_civil (1.0); renovacion_licencia->licencia_funcionamiento_costo (0.8); costos_generales->horario_atencion_general (0.8); sugerencia->queja_atencion (0.8); licencia_edificacion_requisitos->requisitos_mesa_partes (0.6); horario_mesa_partes->sugerencia (0.6); redes_sociales_mpsr->costos_generales (0.6)
+  10 intenciones con peor F1: denuncia_seguridad_ciudadana (0.13), estado_tramite (0.41), pago_arbitrios (0.50), limpieza_via_publica (0.58), costos_generales (0.63), horario_recojo_basura (0.65), horario_mesa_partes (0.69), inspeccion_tecnica (0.71), saludo (0.71), fuera_de_alcance (0.73)
+
+TF-IDF + SVM:
+  F1 macro test   = 0.8094  IC95 % [0.7122, 0.8507]  (DE entre semillas 0.0000)
+  Accuracy test   = 0.8212  IC95 % [0.7616, 0.8808]
+  Balanced acc.   = 0.8148
+  F1 macro validación (seed 42) = 0.7475  IC95 % [0.6282, 0.7867]
+  Criterio F1 >= 0.75: CUMPLE (punto); límite inferior del IC = 0.7122
+
+  10 confusiones principales (veces por semilla): denuncia_seguridad_ciudadana->limpieza_via_publica (1.0); contacto_telefonico->ubicacion_oficinas (1.0); licencia_edificacion_requisitos->licencia_funcionamiento_requisitos (1.0); partida_matrimonio->copia_documento (1.0); licencia_funcionamiento_plazo->fuera_de_alcance (1.0); sugerencia->fuera_de_alcance (1.0); pago_arbitrios->fuera_de_alcance (1.0); horario_mesa_partes->fuera_de_alcance (1.0); costos_generales->ubicacion_oficinas (1.0); estado_tramite->negar (1.0)
+  10 intenciones con peor F1: licencia_edificacion_costo (0.00), denuncia_seguridad_ciudadana (0.00), pago_arbitrios (0.50), certificado_defensa_civil (0.50), limpieza_via_publica (0.50), horario_mesa_partes (0.50), estado_tramite (0.50), fuera_de_alcance (0.56), ubicacion_oficinas (0.57), pago_predial_como (0.67)
+
+COMPARACIÓN RASA/DIET vs. SVM (mismas frases de test):
+  Diferencia de F1 macro (Rasa − SVM) = +0.0112  IC95 % bootstrap pareado [-0.0633, +0.0727]  -> el IC incluye 0: no hay diferencia demostrable
+  McNemar exacto (Rasa por mayoría entre semillas vs. SVM): solo SVM acierta 8, solo Rasa acierta 15, p = 0.2100
+  McNemar exacto por semilla de Rasa: s10: p=0.210; s20: p=1.000; s30: p=0.845; s40: p=1.000; s50: p=0.851
+
+Veces que se evaluó el test real: {'rasa': 1, 'svm': 1} (registro: test_registro.json)
+venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()

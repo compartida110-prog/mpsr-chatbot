@@ -1,0 +1,111 @@
+utterance_id,text,intent,predicted,correct,ESTADO
+R0001,hola q papeles necesito para abrir mi tienda,licencia_funcionamiento_requisitos,licencia_funcionamiento_requisitos,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0003,puedo pagar mi deuda de impuestos en cuotas,fraccionamiento_deuda,fraccionamiento_deuda,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0009,basta con mi dni para hacer un tramite,requisitos_generales,requisitos_generales,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0010,gracias chau,despedida,despedida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0011,como pago mi recibo de luz,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0012,repite porfa no alcance a leer,repetir_informacion,repetir_informacion,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0015,como saco constancia de no adeudo,constancia_no_adeudo,constancia_no_adeudo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0023,cuantos dias demora la licencia de funcionamiento,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0024,donde pago el impuesto predial,pago_predial_como,pago_predial_como,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0026,como saco mi constancia de domicilio,constancia_domiciliaria,constancia_domiciliaria,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0027,como me comunico con serenazgo,serenazgo_contacto,serenazgo_contacto,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0029,tengo una idea para mejorar la atencion,sugerencia,sugerencia,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0034,como pago los arbitrios,pago_arbitrios,pago_arbitrios,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0040,a q hora abre la municipalidad,horario_atencion_general,horario_atencion_general,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0041,donde puedo seguir a la municipalidad en facebook,redes_sociales_mpsr,redes_sociales_mpsr,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0044,cuanto cobran por la licencia de construccion,licencia_edificacion_costo,licencia_edificacion_costo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0053,como estara el clima mañana en juliaca,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0055,buenas tardes quisiera saber que documentos piden para sacar licencia de funcionamiento de una bodega,licencia_funcionamiento_requisitos,licencia_funcionamiento_requisitos,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0056,como hago para renovar el permiso de mi negocio que ya caduco,renovacion_licencia,renovacion_licencia,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0060,como saco la partida de defuncion de un familiar,partida_defuncion,partida_defuncion,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0061,como pido mantenimiento para el parque de mi barrio,mantenimiento_parques,mantenimiento_parques,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0064,ok muchas gracias hasta luego,despedida,despedida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0066,me puedes repetir la informacion no la anote,repetir_informacion,repetir_informacion,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0067,cuanto se paga por la licencia de funcionamiento,licencia_funcionamiento_costo,licencia_funcionamiento_costo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0071,quiero denunciar personas raras q rondan mi calle,denuncia_seguridad_ciudadana,denuncia_seguridad_ciudadana,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0073,como solicito poda de un arbol q bloquea el paso,poda_arboles,poda_arboles,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0074,me trataron mal en la muni donde pongo mi queja,queja_atencion,mantenimiento_parques,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0075,donde veo la lista de precios de los tramites de la muni,costos_generales,costos_generales,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0076,muchas gracias por la informacion,agradecimiento,agradecimiento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0079,como puedo pagar mi predial desde mi celular o tengo q ir a la muni,pago_predial_como,pago_predial_como,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0083,mi pareja y yo queremos casarnos q requisitos hay,requisitos_matrimonio_civil,requisitos_matrimonio_civil,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0084,quiero q limpien la basura de mi cuadra,limpieza_via_publica,limpieza_via_publica,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0086,prefiero llamar x telefono como me comunico con la muni,contacto_telefonico,contacto_telefonico,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0088,prefiero q me atienda alguien no un robot,hablar_con_persona,hablar_con_persona,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0091,quiero saber en q estado esta mi expediente,estado_tramite,estado_tramite,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0092,mi local necesita certificado de seguridad como lo obtengo,certificado_defensa_civil,certificado_defensa_civil,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0094,hoy no paso el carro de la basura por mi calle a q hora suele pasar,horario_recojo_basura,horario_recojo_basura,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0100,cuanto cuesta el permiso para construir en mi terreno,licencia_edificacion_costo,licencia_edificacion_costo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0101,que es la alcabala y cuanto se paga,impuesto_alcabala,impuesto_alcabala,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0103,quiero una inspeccion tecnica de seguridad para mi negocio como se solicita,inspeccion_tecnica,inspeccion_tecnica,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0105,quiero avisar q en mi calle no hay luz en los postes,reporte_alumbrado_publico,reporte_alumbrado_publico,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0106,hice un reclamo hace unos dias y quiero saber si ya hay respuesta,estado_reclamo,presentar_reclamo,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0107,como llego a la muni provincial de san roman,ubicacion_oficinas,ubicacion_oficinas,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0110,no te entiendo dime mas facil,consulta_no_entendida,consulta_no_entendida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0113,hay fraccionamiento de deudas?,fraccionamiento_deuda,fraccionamiento_deuda,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0115,requisitos para inspeccion de defensa civil,requisitos_defensa_civil,requisitos_defensa_civil,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0123,hola cuanto es el costo del permiso para mi negocio,licencia_funcionamiento_costo,licencia_funcionamiento_requisitos,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0126,requisitos para constancia de posesion,certificado_posesion,certificado_posesion,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0127,como aviso a serenazgo q hay gente sospechosa,denuncia_seguridad_ciudadana,serenazgo_contacto,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0128,q tramite hay q hacer para corregir un apellido en la partida,rectificacion_partida,rectificacion_partida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0129,hay un arbol grande en mi vereda q estorba q hago,poda_arboles,poda_arboles,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0130,como denuncio a un empleado q fue grosero conmigo,queja_atencion,denuncia_seguridad_ciudadana,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0133,dime tu opinion sobre mi futuro jaja,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0136,como presento una solicitud por escrito,requisitos_mesa_partes,requisitos_mesa_partes,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0138,como llamo al serenazgo de juliaca,serenazgo_contacto,serenazgo_contacto,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0140,como pido limpieza de calle,limpieza_via_publica,limpieza_via_publica,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0146,donde puedo pagar arbitrios municipales,pago_arbitrios,pago_arbitrios,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0148,q hay q hacer para tener el itse,certificado_defensa_civil,requisitos_generales,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0157,horario de mesa de partes,horario_mesa_partes,horario_mesa_partes,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0158,como se pide la visita del inspector,inspeccion_tecnica,inspeccion_tecnica,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0159,como pido copia del acta de matrimonio,partida_matrimonio,partida_matrimonio,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0160,como reporto alumbrado publico malogrado,reporte_alumbrado_publico,reporte_alumbrado_publico,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0164,cual es la capital de bolivia,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0169,buenas ya no tengo mi copia sellada puedo pedir otra,copia_documento,copia_documento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0170,hola q necesito tener en mi local para la inspeccion de seguridad,requisitos_defensa_civil,requisitos_defensa_civil,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0171,buenas fallecio mi abuelita y necesito el documento para hacer tramites,partida_defuncion,licencia_funcionamiento_requisitos,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0173,buenas donde puedo encontrar el libro de reclamos,libro_reclamaciones,libro_reclamaciones,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0174,buenas con dni nomas puedo hacer mi tramite,requisitos_generales,requisitos_generales,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0176,como declaro mis impuestos en la sunat,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0179,buenas quisiera consultar si tengo deudas de autoavaluo,consulta_deuda_predial,consulta_deuda_predial,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0181,hola q necesito para q la muni me de un papel de q yo ocupo mi terreno,certificado_posesion,saludo,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0187,gracias por responderme,agradecimiento,agradecimiento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0188,puedes decirme un chiste de juliaca,fuera_de_alcance,fuera_de_alcance,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0191,buenas q requisitos hay para certificado de domicilio,constancia_domiciliaria,constancia_domiciliaria,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0193,hola q necesitamos para el matrimonio civil,requisitos_matrimonio_civil,requisitos_matrimonio_civil,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0195,buenas quiero dar una sugerencia sobre la atencion,sugerencia,sugerencia,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0198,pasame con un asesor,hablar_con_persona,hablar_con_persona,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0199,buenas q papeles piden para empezar a construir mi 2do piso,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0203,buenas q requisitos para partida de nacimiento,partida_nacimiento,partida_nacimiento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0205,buenas quiero reclamar x la atencion de mi expediente,presentar_reclamo,estado_reclamo,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0206,buenas desde q hora hasta q hora atienden,horario_atencion_general,horario_atencion_general,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0209,en q me puedes ayudar,ayuda_chatbot,ayuda_chatbot,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0211,hola mesa de partes abre los sabados,horario_mesa_partes,horario_mesa_partes,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0213,hola donde saco una nueva partida de matrimonio,partida_matrimonio,partida_matrimonio,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0215,hola mi reclamo ya fue atendido,estado_reclamo,estado_reclamo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0216,hola no conozco el local de la muni donde esta,ubicacion_oficinas,saludo,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0219,no comprendo la respuesta,consulta_no_entendida,consulta_no_entendida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0221,buenas mi licencia esta vencida como la activo otra vez,renovacion_licencia,repetir_informacion,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0222,donde saco una copia fedateada de lo q presente,copia_documento,copia_documento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0225,quiero solicitar q arreglen el parque,mantenimiento_parques,mantenimiento_parques,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0226,libro de reclamos donde queda,libro_reclamaciones,libro_reclamaciones,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0229,a donde denuncio un robo en la policia,fuera_de_alcance,denuncia_seguridad_ciudadana,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0232,cuanto debo de predial,consulta_deuda_predial,consulta_deuda_predial,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0233,constancia de no adeudo municipal requisitos y costo,constancia_no_adeudo,constancia_no_adeudo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0235,rectificacion de partida requisitos,rectificacion_partida,rectificacion_partida,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0238,quiero ver los costos de todos los tramites,costos_generales,costos_generales,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0241,cuando estara lista mi licencia ya presente todo,licencia_funcionamiento_plazo,licencia_funcionamiento_plazo,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0243,para hacer una solicitud q debo llevar,requisitos_mesa_partes,requisitos_generales,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0249,por q medio me puedo comunicar sin ir hasta alla,contacto_telefonico,reporte_alumbrado_publico,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0250,sip,afirmar,afirmar,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0252,para ampliar mi casa q documentos debo llevar a la municipalidad,licencia_edificacion_requisitos,licencia_edificacion_requisitos,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0254,ya esta listo mi tramite,estado_tramite,estado_tramite,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0256,necesito mi partida de nacimiento como la consigo,partida_nacimiento,partida_nacimiento,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0257,q dias y a q hora pasa el recolector por mi zona,horario_recojo_basura,horario_recojo_basura,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0258,donde hago mi reclamo si no me resolvieron bien,presentar_reclamo,estado_reclamo,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0260,donde veo los avisos de la muni por internet,redes_sociales_mpsr,costos_generales,False,SIMULADO — datos de prueba; no son hallazgos de campo
+R0261,nop otra cosa,negar,negar,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0262,ayuda q puedo consultar aqui,ayuda_chatbot,ayuda_chatbot,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0264,alcabala como se paga,impuesto_alcabala,impuesto_alcabala,True,SIMULADO — datos de prueba; no son hallazgos de campo
+R0271,hola q tal,saludo,saludo,True,SIMULADO — datos de prueba; no son hallazgos de campo

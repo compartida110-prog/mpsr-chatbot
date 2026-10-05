@@ -138,6 +138,13 @@ def rechazar_si_real(ruta, raiz=None, etiqueta="salidas"):
                      "El modo --demo-simulada escribe solo en evidencias/simulado_demostracion/.")
 
 
+def exigir_en_demo(ruta, raiz=None):
+    """Una ruta de salida del modo de demostración: ni carpeta real ni fuera de evidencias/simulado_demostracion/."""
+    rechazar_si_real(ruta, raiz)
+    if not _bajo(ruta, base_demo(raiz)):
+        sys.exit(f"ME NIEGO a escribir en {ruta}: con --demo-simulada las salidas van solo a evidencias/simulado_demostracion/.")
+
+
 def preparar_demo(script, entrada=None, raiz=None, ejecucion="", explicitas=()):
     """Valida la entrada y las rutas de salida pedidas a mano y devuelve la carpeta de la ejecución (creada)."""
     if entrada is not None:
@@ -147,9 +154,7 @@ def preparar_demo(script, entrada=None, raiz=None, ejecucion="", explicitas=()):
             sys.exit(f"ERROR: no existe {entrada}.")
     base = base_demo(raiz)
     for ruta in explicitas:
-        rechazar_si_real(ruta, raiz)
-        if not _bajo(ruta, base):
-            sys.exit(f"ME NIEGO a escribir en {ruta}: con --demo-simulada las salidas van solo a evidencias/simulado_demostracion/.")
+        exigir_en_demo(ruta, raiz)
     if explicitas:
         d = Path(explicitas[0])
     else:
@@ -160,7 +165,7 @@ def preparar_demo(script, entrada=None, raiz=None, ejecucion="", explicitas=()):
 
 
 def _con_sufijo(f):
-    return f if "_SIMULADO" in f.name else f.with_name(f.stem + "_SIMULADO" + f.suffix)
+    return f if ("_SIMULADO" in f.name or f.name.startswith("INFORME_")) else f.with_name(f.stem + "_SIMULADO" + f.suffix)
 
 
 def marcar_directorio(d):
@@ -183,6 +188,9 @@ def marcar_directorio(d):
         elif suf in (".txt", ".md", ".log"):
             t = f.read_text(encoding="utf-8")
             nuevo.write_text(t if t.startswith(MARCA_ESTADO) else MARCA_ESTADO + "\n" + t, encoding="utf-8")
+        elif suf in (".yml", ".yaml"):
+            t = f.read_text(encoding="utf-8")
+            nuevo.write_text(t if t.startswith("# " + MARCA_ESTADO) else "# " + MARCA_ESTADO + "\n" + t, encoding="utf-8")
         elif suf == ".json":
             obj = json.loads(f.read_text(encoding="utf-8"))
             obj = {"ESTADO": VALOR_ESTADO, **obj} if isinstance(obj, dict) else {"ESTADO": VALOR_ESTADO, "contenido": obj}

@@ -1,0 +1,5 @@
+ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo
+$ python scripts/congelar_modelo.py --demo-simulada --demo-sin-marcar --salida evidencias\simulado_demostracion\20261005_demostracion\04_congelado --umbral evidencias\simulado_demostracion\20261005_demostracion\03_evaluacion\umbral_congelado.json
+salida: 0  (2 s)
+
+DEMOSTRACIÓN SIMULADA: modelo de demostración y modelo_congelado_SIMULADO.json en evidencias\simulado_demostracion\20261005_demostracion\04_congelado (0 archivos marcados). No se tocó logs/v3_real.

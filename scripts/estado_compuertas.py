@@ -80,15 +80,16 @@ def a_fecha(v):
 class Mundo:
     """Un conjunto de artefactos: el real (rutas fijas del repositorio) o el simulado (carpetas de evidencias/simulado_demostracion/)."""
 
-    def __init__(self, raiz, simulado):
+    def __init__(self, raiz, simulado, carpeta=None):
         self.raiz, self.simulado = Path(raiz), simulado
+        self.base = Path(carpeta) if carpeta else ds.base_demo(self.raiz)  # en el mundo simulado: todas las ejecuciones, o solo una (modo demostración)
 
     def ruta(self, real_rel):
         p = Path(real_rel)
         if not self.simulado:
             f = self.raiz / p
             return f if f.is_file() else None
-        cand = sorted(ds.base_demo(self.raiz).glob(f"*/{p.stem}_SIMULADO{p.suffix}"))
+        cand = sorted(self.base.glob(f"**/{p.stem}_SIMULADO{p.suffix}"))
         return cand[-1] if cand else None
 
     def rel(self, f):
@@ -101,7 +102,7 @@ class Mundo:
         if not self.simulado:
             c = sorted((self.raiz / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: int(re.search(r"_v(\d+)", f.name).group(1)))
             return c[-1] if c else None
-        c = sorted(ds.base_demo(self.raiz).glob("*/Verificacion_TUPA*_SIMULADO.xlsx"))
+        c = sorted(self.base.glob("**/Verificacion_TUPA*_SIMULADO.xlsx"))
         return c[-1] if c else None
 
     def registros(self, patron, excluir=()):
@@ -342,11 +343,15 @@ def g7(W, previos):
 EVALUADORES = {"G1": g1, "G2": g2, "G3": g3, "G4": g4, "G5": g5, "G6": g6, "G7": g7}
 
 
-def evaluar(raiz):
-    """Evalúa cada compuerta en el mundo real y en el simulado y combina: real si hay evidencia real; si no, simulado (rotulado); si no, Pendiente."""
+def evaluar(raiz, solo_simulado=False, carpeta=None):
+    """Evalúa cada compuerta en el mundo real y en el simulado y combina: real si hay evidencia real; si no, simulado (rotulado); si no, Pendiente.
+    Con solo_simulado (modo demostración) el mundo real no se evalúa y solo se leen los archivos *_SIMULADO de `carpeta`."""
     mundos = {}
     for nombre, simulado in (("real", False), ("simulado", True)):
-        W, previos = Mundo(raiz, simulado), {}
+        W, previos = Mundo(raiz, simulado, carpeta), {}
+        if solo_simulado and not simulado:
+            mundos[nombre] = {gid: res(PENDIENTE, "no se evalúa en el modo de demostración") for gid, _ in COMPUERTAS}
+            continue
         for gid, _ in COMPUERTAS:
             try:
                 previos[gid] = EVALUADORES[gid](W, previos)
@@ -369,13 +374,15 @@ def evaluar(raiz):
     return filas
 
 
-def informe(filas, raiz):
+def informe(filas, raiz, demo=False):
     reales = sum(1 for f in filas if f["datos"] == "Real" and f["estado_base"] == CUMPLIDA)
     simuladas = sum(1 for f in filas if f["datos"] == "Simulado" and f["estado_base"] == CUMPLIDA)
     L = ["# Estado de las compuertas de avance (protocolo 2.14)", "",
          f"**Compuertas cumplidas con datos reales: {reales} de {len(filas)}.** Cumplidas con datos simulados: {simuladas} (no cuentan como reales).", "",
          f"Generado el {datetime.now():%Y-%m-%d %H:%M} por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). "
          "Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.", "",
+         *(["**TABLERO DE LA DEMOSTRACIÓN SIMULADA.** Solo se leyeron los archivos `*_SIMULADO` de esta ejecución; el estado real del repositorio no se evalúa aquí (ver `logs/avance/estado_compuertas.md`). "
+            "Ninguna compuerta de esta tabla es real.", ""] if demo else []),
          "| Compuerta | Criterio | Estado | Datos | Evidencia | Nota |", "|---|---|---|---|---|---|"]
     for f in filas:
         L.append(f"| **{f['id']}** {f['nombre']} | {f['criterio']} | **{f['estado']}** | {f['datos']} | {f['evidencia'] or '—'} | {f['nota'] or '—'} |".replace("\n", " "))
@@ -393,21 +400,35 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--raiz", default=str(ROOT), help="raíz del repositorio (para probar con un árbol de datos falsos)")
     ap.add_argument("--salida", default="", help="carpeta de salida; solo se acepta logs/avance/ de la raíz")
+    ap.add_argument("--demo-simulada", action="store_true", help="tablero de una demostración simulada: lee solo los *_SIMULADO de --ejecucion y escribe en su carpeta 06_tablero/")
+    ap.add_argument("--ejecucion", default="", help="carpeta de la ejecución de demostración (dentro de evidencias/simulado_demostracion/)")
     a = ap.parse_args()
     raiz = Path(a.raiz).resolve()
-    permitida = (raiz / "logs" / "avance").resolve()
+    carpeta = None
+    if a.demo_simulada:
+        if not a.ejecucion:
+            sys.exit("ERROR: --demo-simulada necesita --ejecucion (la carpeta de la demostración).")
+        carpeta = ds.base_demo(raiz) / a.ejecucion
+        if not carpeta.is_dir():
+            sys.exit(f"ERROR: no existe {carpeta}.")
+        permitida = carpeta / "06_tablero"
+        ds.exigir_en_demo(permitida, raiz)
+    else:
+        permitida = (raiz / "logs" / "avance").resolve()
     salida = Path(a.salida).resolve() if a.salida else permitida
-    if salida != permitida:
+    if salida != permitida.resolve():
         sys.exit(f"ME NIEGO a escribir en {salida}: el tablero solo escribe en {permitida}.")
-    filas = evaluar(raiz)
-    md, reales, simuladas = informe(filas, raiz)
+    filas = evaluar(raiz, solo_simulado=a.demo_simulada, carpeta=carpeta)
+    md, reales, simuladas = informe(filas, raiz, demo=a.demo_simulada)
     salida.mkdir(parents=True, exist_ok=True)
     (salida / "estado_compuertas.md").write_text(md, encoding="utf-8")
     (salida / "estado_compuertas.json").write_text(json.dumps(
         {"generado": datetime.now().isoformat(timespec="seconds"), "compuertas_cumplidas_con_datos_reales": reales, "compuertas_cumplidas_con_datos_simulados": simuladas,
          "total": len(filas), "compuertas": filas}, indent=2, ensure_ascii=False), encoding="utf-8")
+    if a.demo_simulada:
+        ds.marcar_directorio(salida)
     print(md)
-    print(f"Escrito en {salida / 'estado_compuertas.md'} y .json")
+    print(f"Escrito en {salida}")
 
 
 if __name__ == "__main__":
