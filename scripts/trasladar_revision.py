@@ -61,11 +61,14 @@ def main():
     ap.add_argument("--validado", default=str(ROOT / "corpus" / "real" / "lote1_real_validado.csv"))
     ap.add_argument("--revision", default=str(ROOT / "corpus" / "real" / "lote1_revision_etiquetas.csv"))
     ap.add_argument("--domain", default=str(ROOT / "domain.yml"))
+    ap.add_argument("--base-revision", default="", help="revisión ya trasladada (p. ej. las 169 primeras): se suma al informe de cobertura y, con --unir, se le agregan estas filas")
+    ap.add_argument("--unir", action="store_true", help="agrega las filas trasladadas a --base-revision (con copia previa) para que --aplicar-revision vea todas las frases")
     ap.add_argument("--solo-verificar", action="store_true", help="comprueba y informa sin escribir")
     a = ap.parse_args()
     lib = leer_libro(a.libro)
     val = pd.read_csv(a.validado, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     rev = pd.read_csv(a.revision, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    val = val[val["real_id"].isin(rev["real_id"])]  # solo las frases de la hoja de revisión que se está trasladando (puede ser un subconjunto)
     intents = set(yaml.safe_load(open(a.domain, encoding="utf-8"))["intents"])
     problemas = []
     if lib.duplicated(["p", "s"]).any():
@@ -102,6 +105,17 @@ def main():
     # ---- cobertura con esas decisiones
     esperada = dict(zip(rev["real_id"], rev["intent_esperada"]))
     destino = Counter()
+    if a.base_revision:  # lo ya trasladado antes también cuenta en la cobertura
+        base = pd.read_csv(a.base_revision, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+        if set(base["real_id"]) & set(rev["real_id"]):
+            sys.exit("ERROR: --base-revision comparte real_id con la hoja que se traslada.")
+        if (base["decision"] == "").any():
+            sys.exit("ERROR: --base-revision tiene filas sin decisión.")
+        for r in base.itertuples():
+            esperada[r.real_id] = r.intent_esperada
+            if r.decision != "DESCARTAR":
+                destino[r.intent_revisada if r.decision == "CAMBIAR" else r.intent_esperada] += 1
+        print(f"Cobertura junto con {len(base)} frases ya trasladadas de {Path(a.base_revision).name}.")
     for rid, (d, nueva, _) in nuevas.items():
         if d != "DESCARTAR":
             destino[nueva if d == "CAMBIAR" else esperada[rid]] += 1
@@ -114,14 +128,22 @@ def main():
     if a.solo_verificar:
         print("(--solo-verificar: no se escribió nada)")
         return
-    copia = Path(a.revision).with_name("lote1_revision_etiquetas.ANTES_DE_TRASLADAR.csv")
+    copia = Path(a.revision).with_name(Path(a.revision).stem + ".ANTES_DE_TRASLADAR.csv")
     if not copia.exists():
         shutil.copyfile(a.revision, copia)
     rev["decision"] = [nuevas[r][0] for r in rev["real_id"]]
     rev["intent_revisada"] = [nuevas[r][1] for r in rev["real_id"]]
     rev["comentario"] = [nuevas[r][2] for r in rev["real_id"]]
     rev.to_csv(a.revision, index=False, encoding="utf-8")
-    print(f"Escrito {a.revision} (copia previa: {copia.name}). NO se ejecutó --aplicar-revision.")
+    print(f"Escrito {a.revision} (copia previa: {copia.name}).")
+    if a.unir:
+        if not a.base_revision:
+            sys.exit("ERROR: --unir necesita --base-revision.")
+        cb = Path(a.base_revision).with_name(Path(a.base_revision).stem + ".ANTES_DE_UNIR.csv")
+        shutil.copyfile(a.base_revision, cb)
+        pd.concat([base, rev], ignore_index=True).to_csv(a.base_revision, index=False, encoding="utf-8")
+        print(f"Unidas: {a.base_revision} ahora tiene {len(base) + len(rev)} filas (copia previa: {cb.name}).")
+    print("NO se ejecutó --aplicar-revision.")
 
 
 if __name__ == "__main__":
