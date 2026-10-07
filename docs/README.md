@@ -2,11 +2,11 @@
 
 | Archivo | Qué es | Estado |
 |---|---|---|
-| `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7.pdf` / `.docx` | **Protocolo Experimental V1.4** (5 de octubre de 2026): metodología, protocolo y matriz de trazabilidad; las etapas del piloto avanzan por **compuertas de avance** (sección 2.14, G1 a G7) y no por fechas | Vigente |
-| `historico/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf` y `…_v5`, `…_v6` (`.pdf` / `.docx`) | Protocolos V1.2 (piloto planificado de 120 personas), V1.3 v5 y v6 | Reemplazados por la v7 |
+| `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v8.pdf` | **Protocolo Experimental V1.5** (6 de octubre de 2026): incorpora la demostración simulada (pasos marcados «Simulado (ejecutado en la demostración)»); mantiene las compuertas de avance 2.14. Solo PDF: falta el Word | Vigente |
+| `historico/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf` y `…_v5`, `…_v6` y `…_v7` (`.pdf` / `.docx`) | Protocolos V1.2 (piloto planificado de 120 personas), V1.3 v5 y v6 | Reemplazados por la v8 |
 | `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR.docx` | Protocolo V1.1 (anterior) | Reemplazado por V1.2 |
-| `Nota_Desviacion_P11_1_v7.pdf` / `.docx` | Nota de desviación: hallazgos de P11.1, medidas y modificaciones V1.1 → V1.4 | Vigente |
-| `historico/Nota_Desviacion_P11_1_v2.pdf`, `…_v5` y `…_v6` (`.pdf` / `.docx`) | Notas de desviación anteriores (V1.2 y V1.3) | Reemplazadas por la v7 |
+| `Nota_Desviacion_P11_1_v8.pdf` | Nota de desviación: hallazgos de P11.1, medidas y modificaciones V1.1 → V1.5. Solo PDF: falta el Word | Vigente |
+| `historico/Nota_Desviacion_P11_1_v2.pdf`, `…_v5`, `…_v6` y `…_v7` (`.pdf` / `.docx`) | Notas de desviación anteriores (V1.2 y V1.3) | Reemplazadas por la v8 |
 | `Ficha2_Registro_Correcciones_Protocolo.docx` | Registro de correcciones de la revisión por pares (V1.0 → V1.1) | Histórico |
 | `Ficha_Diagnostico_P01_OE1.docx` | Instrumento de diagnóstico de la atención presencial (OE1) | Vigente |
 | `Informe_Ejecucion_Preliminar.docx` | Informe de la ejecución preliminar (baseline P07 y simulaciones de P14) | Histórico |

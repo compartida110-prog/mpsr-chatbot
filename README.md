@@ -238,7 +238,7 @@ Las correcciones al texto de los documentos están en [`docs/ERRATAS_protocolo_V
 
 ## Piloto exploratorio (V1.3)
 
-El protocolo vigente es la **V1.4** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7.pdf`): mantiene el piloto de la V1.3 y reemplaza la «fecha de corte» por **compuertas de avance** (sección 2.14, G1 a G7; ver `logs/avance/estado_compuertas.md`). **Estado Planificado.**
+El protocolo vigente es la **V1.4** (`docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v8.pdf`): mantiene el piloto de la V1.3 y reemplaza la «fecha de corte» por **compuertas de avance** (sección 2.14, G1 a G7; ver `logs/avance/estado_compuertas.md`). **Estado Planificado.**
 
 | | V1.2 (ahora solo planificada) | **V1.3 (vigente)** |
 |---|---|---|

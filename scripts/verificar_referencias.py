@@ -1,15 +1,15 @@
-"""Verifica que las rutas y las cifras citadas en el protocolo V1.4 y en la Nota de Desviación (versiones _v7) existan y coincidan con el repositorio.
+"""Verifica que las rutas y las cifras citadas en el protocolo V1.5 y en la Nota de Desviación (versiones _v8; solo PDF) existan y coincidan con el repositorio.
 
 Parte 1: cada archivo o carpeta que cita el protocolo existe (y en qué ruta).
 Parte 2: cada cifra (intenciones, situaciones, F1, validación cruzada, smoke test, McNemar, incidencias, …) se RECALCULA desde los
          archivos del repositorio y se compara con lo que dicen los documentos. Ningún valor se escribe a mano en el resultado.
 
 Estados: OK · DISCREPANCIA (el documento y el repositorio difieren) · PLANIFICADO (aún no existe, coherente con su estado) · NOTA.
-Las afirmaciones se transcribieron del protocolo V1.4 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7) y de la
-Nota_Desviacion_P11_1_v7; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
+Las afirmaciones se transcribieron del protocolo V1.4 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v8) y de la
+Nota_Desviacion_P11_1_v8; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
 afirmaciones de esas filas se actualizaron; una diferencia nueva se informa, no se tapa.
 
-Escribe evidencias/piloto/verificacion_referencias_v7.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
+Escribe evidencias/piloto/verificacion_referencias_v8.md (el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
 V1.2 y forma parte de la historia: no se edita).
 
 Uso:
@@ -45,7 +45,7 @@ def media_f1(patron, col="f1_macro"):
 
 def main():
     # ============================================================ PARTE 1: rutas
-    cit = "Protocolo V1.4"
+    cit = "Protocolo V1.5"
     rutas = [
         ("README.md", "README.md", "OK"),
         ("corpus_audit.csv", "corpus/corpus_audit.csv", "OK"),
@@ -195,7 +195,7 @@ def main():
         "OK" if (ev["test"], ev["validation"], sorted(set(fr))) == (27, 27, [3]) else "DISCREPANCIA")
     # incidencias
     n_inc = len(pd.read_csv(ROOT / "incident_log.csv"))
-    reg("Protocolo y Nota v7 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
+    reg("Protocolo y Nota v8 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
         f"`incident_log.csv` existe y tiene {n_inc} filas (dato informativo: cambia con cada incidencia nueva)", "OK" if existe("incident_log.csv") and n_inc > 0 else "DISCREPANCIA",
         f"informativo: {n_inc} incidencias registradas a la fecha de esta verificación")
 
@@ -336,11 +336,11 @@ def main():
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
     disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     con_errata = sum(1 for f in disc if errata_de(f))
-    L = ["# Verificación de referencias y cifras — protocolo V1.4 (v7) y Nota de Desviación (v7)", "",
+    L = ["# Verificación de referencias y cifras — protocolo V1.5 (v8) y Nota de Desviación (v8)", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
-         "del protocolo V1.4 (v7) y de la Nota (v7), que este script no modifica.", "",
+         "del protocolo V1.5 (v8) y de la Nota (v8), que este script no modifica.", "",
          f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
-         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5, v6 y v7)", "",
+         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 a v8)", "",
          "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
     for i, f in enumerate(FILAS, 1):
         d, dice, repo, est, nota = f
@@ -352,7 +352,7 @@ def main():
     if disc:
         L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
             f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
-    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v7.md"
+    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v8.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

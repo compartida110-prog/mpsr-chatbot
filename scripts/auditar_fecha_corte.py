@@ -8,7 +8,7 @@ Clasificaciones
   HISTÓRICO   docs/historico/, docs/piloto/historico/ y copias de instrucciones anteriores: NO se edita (tampoco incident_log.csv ni evidencias/, que quedan fuera de la búsqueda).
   VIGENTE     texto actual que aún presenta una regla de fecha de corte: se reemplaza con el cambio mínimo por «compuertas de avance (protocolo 2.14)». Nunca se cambia la lógica de un script.
               Si el texto está en un documento Word del tesista (no se re-guarda), queda anotado como pendiente de reemitir (el formulario v3 ya lo corrigió).
-  ACTUALIZADO documento o texto ya coherente con la V1.4 (protocolo y nota v7, las instrucciones de este cambio, o el texto ya corregido).
+  ACTUALIZADO documento o texto ya coherente con la V1.4 (protocolo y nota v8, las instrucciones de este cambio, o el texto ya corregido).
   NO APLICA   «plazo» de un trámite (p. ej. licencia_funcionamiento_plazo) o el plazo del curso como motivo, no como regla de avance.
 
 Con --despues agrega al mismo archivo el resultado de volver a buscar tras aplicar las correcciones.
@@ -30,7 +30,7 @@ SALIDA = ROOT / "logs" / "v3_real" / "auditoria_fecha_corte_vs_compuertas.md"
 
 REGLAS_RUTA = [
     (r"^docs/(piloto/)?historico/", "HISTÓRICO", "documento de una versión anterior"),
-    (r"^docs/(Nota_Desviacion_P11_1_v7|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v7)", "ACTUALIZADO",
+    (r"^docs/(Nota_Desviacion_P11_1_v8|Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v8)", "ACTUALIZADO",
      "documento V1.4 vigente: «plazo» aparece como motivo de la decisión de la V1.3 o como lo que se evita fijar; las etapas avanzan por la sección 2.14"),
     (r"^docs/piloto/Instrucciones_ClaudeCode_compuertas_y_simulacion", "ACTUALIZADO", "instrucciones de este cambio: citan la «fecha de corte» como la regla que se reemplaza"),
     (r"^docs/piloto/Instrucciones_ClaudeCode_", "HISTÓRICO", "copia de instrucciones anteriores, guardada para trazabilidad"),
