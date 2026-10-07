@@ -44,3 +44,10 @@
   cambiar A–E ni el catálogo (`scripts/catalogo_formularios.py`); la ingesta y la conciliación aceptan F y los códigos P01–P28.
 - **`Lote1_Transcripcion_V1.3.xlsx`:** libro **vacío** con las mismas hojas y fórmulas que la plantilla y filas para P26–P28 (rangos extendidos: Participantes 4:31, Respuestas 4:295; generado por `scripts/preparar_libro_v13.py`).
   Ábrelo y guárdalo una vez en Excel para que recalcule los totales (se entrega sin valores guardados en Resumen, Cobertura y Situaciones). Pasa ahí los 25 participantes y las frases nuevas, y guarda el libro lleno en `privado/`.
+
+### Combinar los libros (V1.2 + lote 1b)
+
+`python scripts/combinar_libros.py --base <libro con P26–P28> --fuente <libro con P01–P25> --salida docs/lote_real_1/privado/<nombre nuevo>.xlsx` copia **solo las celdas de entrada** de Participantes y Respuestas
+a la base editando el XML (conserva validaciones, formato y fórmulas), se detiene sin escribir si algo no cuadra o si el destino ya tiene datos, y no modifica ni la base ni la fuente. El resultado queda sin valores guardados y con
+recálculo completo al abrir: ábrelo y guárdalo una vez en Excel. `scripts/libro_xml.py` verifica además que las fórmulas de cada fila apunten a su propia fila (así se detectó el error antiguo de la columna «En blanco»
+de P26–P28). **La ingesta solo procesa participantes con Estado = «Transcrito»**: si un participante tiene frases pero sigue «Pendiente», sus frases se ignoran (el reporte lo avisa).

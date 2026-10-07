@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import warnings
+import zipfile
 from pathlib import Path
 
 warnings.filterwarnings("ignore")
@@ -313,6 +314,41 @@ def main():
           and not any(r[3] for r in rv[3:]) and {r[2] for r in pv[3:] if r[0]} == {"Pendiente"}, str(len(rv)))
     c, t = run("ingest_real_lote.py", "--libro", V13, "--out-dir", W / "v13vacio", "--log-dir", W / "v13vacio" / "log")
     check("el libro V1.3 vacío se lee sin errores con la ingesta (0 transcritos, «Listo NO»)", c == 0 and "¿Listo para la Parte B? NO (transcritos 0/15" in t, t[-300:])
+
+    # ------------------------------------------------------------------ combinar libros y referencias de fila
+    print("\nCombinar libros (combinar_libros.py) y referencias relativas de las filas nuevas")
+    import libro_xml as lx
+    zv = zipfile.ZipFile(V13)
+    xs1, xs2 = zv.read("xl/worksheets/sheet1.xml").decode(), zv.read("xl/worksheets/sheet2.xml").decode()
+    check("libro V1.3 vacío: las fórmulas de P26–P28 (incluida «En blanco», columna K) y de las 12 filas nuevas apuntan a su propia fila",
+          not lx.verificar_filas(xs1, range(4, 32)) and not lx.verificar_filas(xs2, range(4, 296)), lx.verificar_filas(xs1, range(29, 32)))
+    malo = xs1.replace("I29-J29", "I28-J29")
+    check("el verificador detecta el error antiguo (K29 apuntando a I28)", malo != xs1 and any("K29" in m and "I28" in m for m in lx.verificar_filas(malo, [29])), lx.verificar_filas(malo, [29]))
+    check("el Resumen del libro V1.3 vacío trae «Formulario F» en «Transcritos por formulario»", ">Formulario F<" in zv.read("xl/worksheets/sheet3.xml").decode() or "Formulario F" in zv.read("xl/sharedStrings.xml").decode() + zv.read("xl/worksheets/sheet3.xml").decode())
+    comb = W / "combinado.xlsx"
+    h0 = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in (V13, LIBRO)}
+    c, t = run("combinar_libros.py", "--base", V13, "--fuente", LIBRO, "--salida", comb)
+    check("combinar la base V1.3 vacía con el libro de prueba: copia 25 participantes y 273 frases", c == 0 and "25 participantes y 273 frases" in t, t[-300:])
+    check("ni la base ni la fuente se modificaron (SHA-256)", all(hashlib.sha256(p.read_bytes()).hexdigest() == h for p, h in h0.items()))
+    c, t = ingerir(comb, "comb")
+    c2, t2 = ingerir(LIBRO, "comb_ref")
+    iguales = c == 0 and c2 == 0 and all((W / "comb" / n).read_bytes() == (W / "comb_ref" / n).read_bytes() for n in COLUMNAS)
+    check("ingerir el libro combinado da exactamente lo mismo que ingerir la fuente (mismos tres CSV)", iguales, t[-300:])
+    zc = zipfile.ZipFile(comb)
+    check("el combinado conserva las validaciones y los formatos de la base, no deja valores guardados viejos y marca el recálculo completo",
+          zc.read("xl/worksheets/sheet1.xml").decode().count("<dataValidation ") == xs1.count("<dataValidation ") and 'fullCalcOnLoad="1"' in zc.read("xl/workbook.xml").decode()
+          and not lx.verificar_filas(zc.read("xl/worksheets/sheet1.xml").decode(), range(4, 32)), "")
+    def con_dato(wb):
+        wb["Respuestas"].cell(284, 4).value = "dato real de prueba (falso)"
+    base_ocupada = variante("base_con_dato.xlsx", con_dato)
+    # la base con dato en P26 S02 y una fuente que también lo trae: no se sobrescribe
+    wbf = load_workbook(LIBRO)
+    wbf["Respuestas"].cell(284, 1).value, wbf["Respuestas"].cell(284, 2).value, wbf["Respuestas"].cell(284, 3).value, wbf["Respuestas"].cell(284, 4).value = "P26", "F", "S02", "otra frase"
+    fuente_choque = W / "fuente_choque.xlsx"; wbf.save(fuente_choque)
+    c, t = run("combinar_libros.py", "--base", base_ocupada, "--fuente", fuente_choque, "--salida", W / "choque.xlsx")
+    check("si la base ya tiene una frase en el destino, se detiene sin escribir (nunca sobrescribe)", c == 2 and "no se sobrescribe" in t and not (W / "choque.xlsx").exists(), t[-300:])
+    c, t = run("combinar_libros.py", "--base", LIBRO, "--fuente", LIBRO, "--salida", LIBRO)
+    check("--salida no puede ser la base ni la fuente", c != 0 and "no puede ser" in t)
 
     # ------------------------------------------------------------------ integridad
     print("\nIntegridad del repositorio")

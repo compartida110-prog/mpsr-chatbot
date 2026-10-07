@@ -15,6 +15,7 @@ import sys
 import zipfile
 from pathlib import Path
 
+import libro_xml as lx
 from common import ROOT
 
 NUEVOS = ["P26", "P27", "P28"]
@@ -62,8 +63,7 @@ def main():
     nuevas = []
     for k, cod in enumerate(NUEVOS):
         n = P_HASTA + 1 + k
-        f = re.sub(r'(?<=[A-Z])%d(?=["\\s<,)=*&])' % P_HASTA, str(n), fila28)
-        f = f.replace(f'<row r="{P_HASTA}"', f'<row r="{n}"')
+        f = lx.desplazar_fila(fila28, P_HASTA, n)  # cambia TODAS las referencias relativas a la fila (antes un patrón con lista de caracteres dejaba I28 en «I28-J28»)
         f = re.sub(r'<c r="A%d" s="(\d+)" t="s"><v>\d+</v></c>' % n, lambda m: inline(f"A{n}", m.group(1), cod), f)
         f = re.sub(r'<c r="B%d" s="(\d+)" t="s"><v>\d+</v></c>' % n, lambda m: inline(f"B{n}", m.group(1), "F"), f)
         f = re.sub(r'(<c r="I%d"[^>]*><f[^>]*>[^<]*</f>)<v>[^<]*</v>' % n, r"\g<1><v>%d</v>" % len(SITUACIONES_F), f)
@@ -91,8 +91,7 @@ def main():
         for sit in SITUACIONES_F:
             n += 1
             ci, ei, fi = por_sit[sit]
-            f = re.sub(r'(?<=[A-Z])%d(?=["\\s<,)=*&])' % R_HASTA, str(n), fila_283)
-            f = f.replace(f'<row r="{R_HASTA}"', f'<row r="{n}"')
+            f = lx.desplazar_fila(fila_283, R_HASTA, n)
             f = re.sub(r'<c r="A%d" s="(\d+)" t="s"><v>\d+</v></c>' % n, lambda m: inline(f"A{n}", m.group(1), cod), f)
             f = re.sub(r'<c r="B%d" s="(\d+)" t="s"><v>\d+</v></c>' % n, lambda m: inline(f"B{n}", m.group(1), "F"), f)
             f = re.sub(r'(<c r="C%d" s="\d+" t="s"><v>)\d+' % n, r"\g<1>" + ci, f)
@@ -103,6 +102,12 @@ def main():
         sys.exit(f"ERROR: se esperaban {R_NUEVO - R_HASTA} filas nuevas y salieron {n - R_HASTA}.")
     x = x.replace(fila_283, fila_283 + "".join(filas), 1)
     hoja["Respuestas"] = x
+
+    # ------------------------------------------------------------ las fórmulas de las filas nuevas deben apuntar a su propia fila
+    malos = lx.verificar_filas(hoja["Participantes"], range(P_HASTA + 1, P_NUEVO + 1)) + lx.verificar_filas(hoja["Respuestas"], range(R_HASTA + 1, R_NUEVO + 1))
+    if malos:
+        sys.exit("ERROR: referencias relativas mal desplazadas: " + "; ".join(malos[:10]))
+    hoja["Resumen"] = lx.agregar_fila_f(hoja["Resumen"])  # «Formulario F» en «Transcritos por formulario»
 
     # ------------------------------------------------------------ rangos, validaciones, formatos, dimensiones; valores guardados
     for nombre in list(hoja):
