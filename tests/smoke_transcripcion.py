@@ -6,7 +6,7 @@ corpus/v3_real y logs/v3_real no cambiaron.
 
 Comprueba: el caso normal; un transcrito sin consentimiento (bloquea); una fila de Respuestas cuya situación no es de su formulario (bloquea); un texto de solo
 espacios (blanco derivado); una intención con menos de 3 frases (impide la Parte B); el encabezado en la fila 2 (se acepta y da lo mismo); una pestaña Situaciones
-distinta del catálogo, un código fuera de P01–P25 y un Estado inválido (bloquean); los tres CSV de salida (UTF-8, coma, sin filas vacías); que un error bloqueante no
+distinta del catálogo, un código fuera de P01–P28 y un Estado inválido (bloquean); los tres CSV de salida (UTF-8, coma, sin filas vacías); que un error bloqueante no
 deje salidas; y la conciliación con los blancos derivados (sin hoja Blancos, con hoja Blancos igual y con hoja Blancos distinta), sin editar ningún archivo.
 
 Uso:
@@ -159,9 +159,9 @@ def main():
 
     def codigo_fuera(wb):
         ws = wb["Participantes"]
-        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P26"
+        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P29"
     c, t = ingerir(variante("codigo_fuera.xlsx", codigo_fuera), "cod")
-    check("un código fuera de P01–P25 bloquea", c == 2 and "P26" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
+    check("un código fuera de P01–P28 bloquea", c == 2 and "P29" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
 
     def estado_malo(wb):
         ws = wb["Participantes"]
@@ -254,6 +254,65 @@ def main():
     check("la conciliación no edita ningún archivo (seguimientos, respuestas ni blancos derivados)", all(hashlib.sha256(p.read_bytes()).hexdigest() == h for p, h in hashes.items()))
     c, t = run("conciliar_seguimiento.py", "--seguimiento", seg_sin, "--respuestas", resp_csv, "--situaciones", CATALOGO, "--out-participantes", W / "c4" / "p.csv", "--log-dir", W / "c4" / "log")
     check("sin hoja Blancos y sin --blancos-derivados sigue exigiendo la hoja (error claro)", c != 0 and "--blancos-derivados" in t, t[-300:])
+
+    # ------------------------------------------------------------------ formulario F (lote 1b)
+    print("\nFormulario F (lote 1b): P26–P28 con S02, S24, S34 y S39")
+    sys.path.insert(0, str(SCRIPTS))
+    import catalogo_formularios as cf
+    import pandas as pd
+    cat_df = pd.read_csv(CATALOGO, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    formas = cf.formas_por_situacion(cat_df, CATALOGO)
+    F4 = ["S02", "S24", "S34", "S39"]
+    check("el complemento suma F solo a S02, S24, S34 y S39, sin quitar su formulario A–E",
+          {s for s, f in formas.items() if "F" in f} == set(F4) and all(len(f) == 1 for s, f in formas.items() if s not in F4) and formas["S02"] == {"B", "F"} and formas["S24"] == {"D", "F"}, str({k: v for k, v in formas.items() if len(v) > 1}))
+    check("las 56 situaciones siguen en su formulario A–E (el catálogo del tesista no cambió)", all(next(iter(cat_df[cat_df.scenario_id == s].form)) in formas[s] for s in formas) and cf.por_formulario(formas)["F"] == set(F4))
+    import conciliar_seguimiento as cs
+    check("conciliar: P26 a P28 son del formulario F y P01 a P25 conservan la rotación A–E", [cs.forma_de(c) for c in ("P26", "P27", "P28")] == ["F"] * 3 and "".join(cs.forma_de(f"P{k:02d}") for k in range(1, 6)) == "ABCDE")
+
+    def con_F(nombre, mod=None, consent="Sí"):
+        def f(wb):
+            wp, wr = wb["Participantes"], wb["Respuestas"]
+            nr = wp.max_row + 1
+            filas_p = []
+            for k, cod in enumerate(("P26", "P27", "P28")):
+                r = 4 + 25 + k
+                for c, v in ((1, cod), (2, "F"), (3, "Transcrito"), (4, "30–44"), (5, "Sí"), (6, "Sí"), (7, consent), (13, "Dato sintético de prueba")):
+                    wp.cell(r, c).value = v
+            r = wr.max_row + 1
+            for cod in ("P26", "P27", "P28"):
+                for sit in F4:
+                    for c, v in ((1, cod), (2, "F"), (3, sit), (4, f"prueba falsa {cod} {sit}")):
+                        wr.cell(r, c).value = v
+                    r += 1
+            if mod:
+                mod(wb)
+        return variante(nombre, f)
+    c, t = ingerir(con_F("con_F.xlsx"), "conF")
+    resp = leer_csv(W / "conF" / "lote1_respuestas.csv")[1:] if c == 0 else []
+    part = leer_csv(W / "conF" / "lote1_participantes.csv")[1:] if c == 0 else []
+    check("el libro con P26–P28 (formulario F, 4 situaciones cada uno) se ingiere: 28 participantes y 12 respuestas más", c == 0 and len(part) == n_trans + 3 and len(resp) == n_texto + 12 and sum(1 for r in resp if r[1] == "F") == 12, t[-400:])
+    check("las frases del formulario F cuentan para la intención de la situación (4 intenciones suben 3 frases)", "Frases validadas por intención" in t and "Participantes: 28 | formularios: {'A': 5, 'B': 5, 'C': 5, 'D': 5, 'E': 5, 'F': 3}" in t, t[:600])
+    def F_mala(wb):
+        ws = wb["Respuestas"]
+        ws.cell(ws.max_row, 3).value = "S01"  # S01 es de A: no se reparte en F
+    c, t = ingerir(con_F("F_situacion_ajena.xlsx", F_mala), "F_ajena")
+    check("una respuesta de F a una situación que F no reparte (S01) bloquea y no deja salidas", c == 2 and "distinto del formulario de la situación" in t and not (W / "F_ajena" / "lote1_respuestas.csv").exists(), t[-300:])
+    c, t = ingerir(con_F("F_sin_consent.xlsx", consent="No"), "F_consent")
+    check("un transcrito de F sin consentimiento bloquea igual que A–E", c == 2 and "P26" in t and "Consentimiento" in t, t[-300:])
+    def A_en_F(wb):
+        ws = wb["Respuestas"]
+        ws.cell(ws.max_row - 11, 2).value = "A"  # P26 S02 dicho como formulario A: S02 es de B y F
+    c, t = ingerir(con_F("A_no_corresponde.xlsx", A_en_F), "A_mal")
+    check("el formulario del participante y el de la fila siguen debiendo coincidir (A en una fila de P26 bloquea)", c == 2 and "distinto del formulario del participante" in t, t[-300:])
+    # el libro V1.3 vacío del repositorio
+    V13 = ROOT / "docs" / "lote_real_1" / "Lote1_Transcripcion_V1.3.xlsx"
+    wbv = load_workbook(V13, read_only=True, data_only=True)
+    pv, rv = list(wbv["Participantes"].iter_rows(values_only=True)), list(wbv["Respuestas"].iter_rows(values_only=True))
+    wbv.close()
+    check("el libro V1.3 vacío: 28 participantes (P26–P28 en F), 292 filas de respuestas, sin ninguna frase ni dato", [r[0] for r in pv[3:] if r[0]][-3:] == ["P26", "P27", "P28"] and len([r for r in rv[3:] if r[0]]) == 292
+          and not any(r[3] for r in rv[3:]) and {r[2] for r in pv[3:] if r[0]} == {"Pendiente"}, str(len(rv)))
+    c, t = run("ingest_real_lote.py", "--libro", V13, "--out-dir", W / "v13vacio", "--log-dir", W / "v13vacio" / "log")
+    check("el libro V1.3 vacío se lee sin errores con la ingesta (0 transcritos, «Listo NO»)", c == 0 and "¿Listo para la Parte B? NO (transcritos 0/15" in t, t[-300:])
 
     # ------------------------------------------------------------------ integridad
     print("\nIntegridad del repositorio")

@@ -26,7 +26,7 @@ Nunca genera ni completa frases reales: solo transforma lo que el tesista transc
 Libro de transcripción (--libro): se lee directamente el .xlsx (solo lectura; no se exporta a CSV desde Excel). Las columnas de entrada son valores escritos a mano:
   Participantes: participant_code, form, Estado, age_range, vive_en_juliaca, tramite_12m, Consentimiento firmado
   Respuestas:    participant_code, form, scenario_id, text      (el encabezado se busca por texto en las primeras 10 filas)
-Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P25,
+Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P28,
 Estado fuera de la lista, o una pestaña Situaciones que no coincide con el catálogo (scenario_id, form, intención y texto). Un texto vacío o de solo espacios es un blanco:
 no se exporta como respuesta pero se registra como blanco derivado. Salidas en --out-dir (por defecto corpus/real): lote1_respuestas.csv, lote1_participantes.csv y
 lote1_blancos_derivados.csv (participant_code, scenario_id), UTF-8, coma, sin filas vacías; después sigue la ingesta de siempre. El reporte agrega «¿Listo para la Parte B?».
@@ -54,6 +54,7 @@ import pandas as pd
 import yaml
 from sklearn.metrics import cohen_kappa_score
 
+import catalogo_formularios as cf
 import deteccion_simulado as ds
 from common import CORPUS, LOGS, ROOT, load_jerga, normalize
 
@@ -108,7 +109,7 @@ def ingestar(a):
         errores.append(f"participantes: códigos repetidos {sorted(par['participant_code'][par['participant_code'].duplicated()].unique())}")
 
     forma_part = par.set_index("participant_code")["form"].to_dict()
-    forma_sit = cat.set_index("scenario_id")["form"].to_dict()
+    forma_sit = cf.formas_por_situacion(cat, a.situaciones)  # {situación: {formularios}}; el formulario F (lote 1b) se suma a A–E
     for i, r in res.iterrows():
         fila = f"respuestas fila {i + 2} ({r['participant_code']}, {r['scenario_id']})"
         if r["participant_code"] not in forma_part:
@@ -119,8 +120,8 @@ def ingestar(a):
             continue
         if r["form"] != forma_part[r["participant_code"]]:
             errores.append(f"{fila}: form '{r['form']}' distinto del formulario del participante ('{forma_part[r['participant_code']]}')")
-        if r["form"] != forma_sit[r["scenario_id"]]:
-            errores.append(f"{fila}: form '{r['form']}' distinto del formulario de la situación ('{forma_sit[r['scenario_id']]}')")
+        if r["form"] not in forma_sit[r["scenario_id"]]:
+            errores.append(f"{fila}: form '{r['form']}' distinto del formulario de la situación ('{cf.etiqueta(forma_sit[r['scenario_id']])}')")
     rep = res[res.duplicated(["participant_code", "scenario_id"], keep=False)]
     for (p, s), g in rep.groupby(["participant_code", "scenario_id"]):
         errores.append(f"respuestas: {p} respondió dos veces a {s} (filas {[i + 2 for i in g.index]})")
@@ -284,7 +285,7 @@ def hoja_a_tabla(wb, nombre, columnas, ancla=None):
 
 
 ESTADOS_LIBRO = {"Pendiente", "Aplicado", "Transcrito"}
-CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2[0-5])$")
+CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2[0-8])$")  # P01–P28 (lote 1) y P26–P28 (lote 1b)
 COLS_PART = ["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado"]
 
 
@@ -302,7 +303,7 @@ def procesar_libro(wb, a):
     for nombre, tabla in (("Participantes", part), ("Respuestas", resp)):
         malos = sorted({c for c in tabla["participant_code"] if not CODIGO_LIBRO.match(c)})
         if malos:
-            errores.append(f"{nombre}: códigos fuera de P01–P25: {malos}")
+            errores.append(f"{nombre}: códigos fuera de P01–P28: {malos}")
     malos = part[~part["Estado"].isin(ESTADOS_LIBRO)]
     if len(malos):
         errores.append(f"Participantes: Estado fuera de la lista {sorted(ESTADOS_LIBRO)}: {[(c, e) for c, e in zip(malos['participant_code'], malos['Estado'])][:10]}")

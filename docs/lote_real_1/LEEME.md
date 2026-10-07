@@ -34,3 +34,13 @@
    registrada (semillas, número de frases, huella SHA-256), si el umbral se congeló **después** del test, o si ya se aplicó (para repetirlo hace falta `--motivo-test-adicional`, que queda registrado).
 
 **Las frases las deben escribir los participantes.** Si las redactan el tesista o una IA son sintéticas y no sirven para este lote.
+
+## Revisión de etiquetas y lote 1b (complemento)
+
+- **Revisión de etiquetas (lote 1 real):** el tesista revisó las 169 frases en `Revision_Etiquetas_Lote1_v1_1.xlsx` (privado). `python scripts/trasladar_revision.py --libro <ese libro>` las traslada a
+  `corpus/real/lote1_revision_etiquetas.csv` comprobando antes que la frase y la intención esperada coincidan (se detiene si no). Es una revisión humana de una sola revisora: no hay kappa. Resultado: 158 OK, 11 CAMBIAR, 0 DESCARTAR.
+  **Cuatro intenciones quedan con 2 frases** (mínimo 3), así que no se ejecuta `--aplicar-revision` ni la partición hasta reunir más.
+- **Lote 1b (formulario F):** `Lote1b_Formulario_complemento_v1.docx` / `.pdf` reparte solo S02, S24, S34 y S39 a P26–P28 (el 4.º participante cubre descartes). `situaciones_lote1b_v1.csv` suma F a esas cuatro situaciones sin
+  cambiar A–E ni el catálogo (`scripts/catalogo_formularios.py`); la ingesta y la conciliación aceptan F y los códigos P01–P28.
+- **`Lote1_Transcripcion_V1.3.xlsx`:** libro **vacío** con las mismas hojas y fórmulas que la plantilla y filas para P26–P28 (rangos extendidos: Participantes 4:31, Respuestas 4:295; generado por `scripts/preparar_libro_v13.py`).
+  Ábrelo y guárdalo una vez en Excel para que recalcule los totales (se entrega sin valores guardados en Resumen, Cobertura y Situaciones). Pasa ahí los 25 participantes y las frases nuevas, y guarda el libro lleno en `privado/`.

@@ -32,6 +32,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import catalogo_formularios as cf
 import deteccion_simulado as ds
 from common import LOGS, ROOT
 
@@ -45,7 +46,8 @@ CODIGO = re.compile(r"^P\d{2}$")
 
 
 def forma_de(codigo):
-    return "ABCDE"[(int(codigo[1:]) - 1) % 5]  # misma rotación que la hoja Participantes
+    n = int(codigo[1:])
+    return "F" if n > 25 else "ABCDE"[(n - 1) % 5]  # misma rotación que la hoja Participantes; P26–P28 son el lote 1b (formulario F)
 
 
 def texto(v):
@@ -137,9 +139,9 @@ def main():
         if c not in resp.columns:
             sys.exit(f"ERROR: a {a.respuestas} le falta la columna '{c}'.")
     resp["text"] = resp["text"].str.strip()
-    sit_form = cat.set_index("scenario_id")["form"].to_dict()
+    sit_form = cf.formas_por_situacion(cat, a.situaciones)  # {situación: {formularios}}; el formulario F se suma a A–E
     sit_intent = cat.set_index("scenario_id")["intent_esperada"].to_dict()
-    por_form = cat.groupby("form")["scenario_id"].apply(set).to_dict()
+    por_form = cf.por_formulario(sit_form)
     codigos = set(part["codigo"]) if len(part) else set()
     form_part = dict(zip(part["codigo"], part["form"])) if len(part) else {}
     estado = dict(zip(part["codigo"], part["estado"])) if len(part) else {}
@@ -159,8 +161,8 @@ def main():
             D["blanco_invalido"].append(f"Blancos fila {b.fila}: participante '{b.codigo}' no existe en Participantes")
         elif b.sit not in sit_form:
             D["blanco_invalido"].append(f"Blancos fila {b.fila}: situación '{b.sit}' no existe en el catálogo")
-        elif sit_form[b.sit] != form_part[b.codigo]:
-            D["blanco_invalido"].append(f"Blancos fila {b.fila}: {b.sit} es del formulario {sit_form[b.sit]} y {b.codigo} usó el {form_part[b.codigo]}")
+        elif form_part[b.codigo] not in sit_form[b.sit]:
+            D["blanco_invalido"].append(f"Blancos fila {b.fila}: {b.sit} es del formulario {cf.etiqueta(sit_form[b.sit])} y {b.codigo} usó el {form_part[b.codigo]}")
         if (b.codigo, b.sit) in vistos:
             D["blanco_duplicado"].append(f"Blancos fila {b.fila}: ({b.codigo}, {b.sit}) repetido")
         vistos.add((b.codigo, b.sit))
@@ -173,8 +175,8 @@ def main():
             D["resp_no_transcrito"].append(f"{r.participant_code} / {r.scenario_id}: hay respuestas pero el seguimiento dice '{estado[r.participant_code]}'")
         if r.scenario_id not in sit_form:
             D["resp_situacion_invalida"].append(f"{r.participant_code} / {r.scenario_id}: situación inexistente")
-        elif r.participant_code in form_part and sit_form[r.scenario_id] != form_part[r.participant_code]:
-            D["resp_situacion_invalida"].append(f"{r.participant_code} / {r.scenario_id}: la situación es del formulario {sit_form[r.scenario_id]} y el participante usó el {form_part[r.participant_code]}")
+        elif r.participant_code in form_part and form_part[r.participant_code] not in sit_form[r.scenario_id]:
+            D["resp_situacion_invalida"].append(f"{r.participant_code} / {r.scenario_id}: la situación es del formulario {cf.etiqueta(sit_form[r.scenario_id])} y el participante usó el {form_part[r.participant_code]}")
     con_texto = {(r.participant_code, r.scenario_id) for r in resp.itertuples() if r.text}
     codigos_resp = set(resp["participant_code"])
     # ---- conciliación por participante transcrito
@@ -197,7 +199,7 @@ def main():
     # ---- cobertura real por intención
     reales = {}
     for (c, s) in con_texto:
-        if c in form_part and estado.get(c) == "Transcrito" and s in sit_intent and sit_form[s] == form_part[c]:
+        if c in form_part and estado.get(c) == "Transcrito" and s in sit_intent and form_part[c] in sit_form[s]:
             reales[sit_intent[s]] = reales.get(sit_intent[s], 0) + 1
     intents = sorted(set(cat["intent_esperada"]))
     cob = {i: reales.get(i, 0) for i in intents}

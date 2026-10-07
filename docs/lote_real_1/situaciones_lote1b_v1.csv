@@ -1,0 +1,5 @@
+scenario_id,form,intent_esperada
+S02,F,licencia_funcionamiento_costo
+S24,F,partida_nacimiento
+S34,F,presentar_reclamo
+S39,F,horario_atencion_general
