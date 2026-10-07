@@ -32,3 +32,8 @@ Seguimiento_Lote1_Participantes_real*.xlsx
 # Piloto exploratorio V1.3: el registro real lleno y las hojas originales NO se versionan
 docs/piloto/privado/*
 !docs/piloto/privado/LEEME.md
+
+# Lote 1 REAL: frases reales y derivados de la ingesta (no subir; revisar datos personales primero)
+corpus/real/lote1_*.csv
+logs/v3_real/ingesta_reporte.txt
+logs/v3_real/revision_reporte.txt
