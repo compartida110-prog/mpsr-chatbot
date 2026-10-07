@@ -1,0 +1,21 @@
+Revisión de datos personales del lote 1 y lote 1b (real)
+Revisado por: Luis Mario Escalante Marca
+Fecha: 2026-10-07
+
+Reporte leído: logs/v3_real/ingesta_reporte.txt (0 alertas de datos personales)
+Columna Alerta de la hoja Participantes: vacía en los 28 participantes.
+
+Frases revisadas: 181 (P01–P28)
+Método: patrones verificados con apoyo de una herramienta automática (Claude); lectura a ojo hecha por mí.
+Verificación por patrones: ningún número de 4 o más dígitos, correo (@), enlace web ni teléfono.
+Resultado: sin nombres, DNI, teléfonos, correos ni direcciones de participantes.
+  - La palabra «DNI» aparece en 5 frases (P04 S24, P06 S41, P07 S27, P16 S41, P21 S51) como documento, sin número.
+  - Ninguna decisión de DESCARTAR por datos personales en las hojas de revisión de etiquetas.
+
+Observaciones (se mantienen; no identifican a un ciudadano):
+  - P17 S37: referencia a una ventanilla, sin nombre.
+  - P19 S29: nombre de una calle, no un domicilio.
+  - P18 S33: lugar público de referencia.
+
+Participantes que no viven en Juliaca: P08, P24, P25 (3 de 28, 10.7 %; 20 de 181 frases, 11 %).
+Se mantienen y se declaran como desviación: excluirlos dejaría 17 intenciones con menos de 3 frases.
