@@ -1,3 +1,5 @@
 fecha,real_id,participant_code,scenario_id,intent,accion,motivo
 2026-10-07,R0147,P22,S47,agradecimiento,DESCARTADA,"duplicado exacto (texto normalizado) de R0102 (P17 S47), misma etiqueta agradecimiento; decisión del tesista; no se cambia ninguna etiqueta"
 2026-10-07,R0136,P21,S46,despedida,EXCLUIDA,"mismo texto normalizado que R0102 y R0147 con dos etiquetas (despedida y agradecimiento): ambigua por texto idéntico; se excluye de entrenamiento, validación y test y queda en el corpus; decisión del tesista; no se cambia ninguna etiqueta"
+2026-10-07,R0182,P29,S46,despedida,DESCARTADA,"duplicado exacto (texto normalizado) de R0093, misma etiqueta despedida; regla automática; decisión del tesista; no se cambia ninguna etiqueta"
+2026-10-07,R0183,P29,S47,agradecimiento,DESCARTADA,"duplicado exacto (texto normalizado) de R0102, misma etiqueta agradecimiento; regla automática; decisión del tesista; no se cambia ninguna etiqueta"

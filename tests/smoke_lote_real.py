@@ -213,7 +213,7 @@ def main():
 
     # ------------------------------------------------------------------------------ partición v3
     print("\nPartición v3")
-    sp = ["--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--log-cambios", W / "log_cambios_prueba.csv"]  # log temporal: nunca el log real del repositorio
+    sp = ["--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--log-cambios", W / "log_cambios_prueba.csv", "--log-sintetico", W / "ls_prueba.csv"]  # log temporal: nunca el log real del repositorio
     c, t = run("split_corpus_v3.py", *sp, "--real", W / "ok" / "lote1_real_final.csv", "--out-dir", W / "v3", "--nlu-dir", W / "v3nlu")
     meta = read_csv(W / "v3" / "corpus_metadata_v3.csv") if (W / "v3" / "corpus_metadata_v3.csv").exists() else []
     check("partición: código 0 y verificaciones impresas", c == 0 and "Verificado: 54 intenciones en las tres particiones" in t, t[-400:])
@@ -233,7 +233,7 @@ def main():
     dup_rows[0][cab.index("text")] = sint[5]["text"]
     write_csv(W / "final_dup.csv", cab, dup_rows)
     c, t = run("split_corpus_v3.py", *sp, "--real", W / "final_dup.csv", "--out-dir", W / "v3x", "--nlu-dir", W / "v3xnlu")
-    check("frase real idéntica a una sintética -> error y sin salidas", c == 2 and "repetidas entre particiones" in t and not (W / "v3x" / "corpus_metadata_v3.csv").exists(), t[:300])
+    check("frase real idéntica a una sintética -> la real se conserva y la copia sintética sale del entrenamiento (ya no es error)", c == 0 and "COPIAS SINTÉTICAS idénticas" in t and (W / "v3x" / "corpus_metadata_v3.csv").exists(), t[:300])
     una = [r for r in fin_rows if r[cab.index("intent")] != "licencia_funcionamiento_costo"] + [r for r in fin_rows if r[cab.index("intent")] == "licencia_funcionamiento_costo"][:1]
     write_csv(W / "final_una.csv", cab, una)
     c, t = run("split_corpus_v3.py", *sp, "--real", W / "final_una.csv", "--out-dir", W / "v3y", "--nlu-dir", W / "v3ynlu")
@@ -260,7 +260,7 @@ def main():
     # (1) duplicado exacto con la misma etiqueta + una frase de otra etiqueta con el mismo texto (ambigua)
     f1 = con_textos("final_dups", {a1[ix["real_id"]]: texto, a2[ix["real_id"]]: texto.upper() + "!", b1[ix["real_id"]]: texto})
     log1 = W / "log_auto.csv"
-    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f1, "--out-dir", W / "v3d", "--nlu-dir", W / "v3dnlu", "--log-cambios", log1)
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f1, "--out-dir", W / "v3d", "--nlu-dir", W / "v3dnlu", "--log-cambios", log1, "--log-sintetico", W / "ls1.csv")
     lg = read_csv(log1) if log1.exists() else []
     check("duplicados exactos tras normalizar (mayúsculas y signos): se detectan, se reportan y se tratan (misma etiqueta: DESCARTADA; otra etiqueta: EXCLUIDA) y quedan en el log con motivo y fecha",
           c == 0 and "DUPLICADOS EXACTOS tratados automáticamente" in t and {x["accion"] for x in lg} == {"DESCARTADA", "EXCLUIDA"} and all(x["motivo"] and x["fecha"] for x in lg), t[:500] + str(lg))
@@ -274,20 +274,33 @@ def main():
     res = json.loads((W / "v3d" / "resumen_v3.json").read_text(encoding="utf-8")) if c == 0 else {}
     check("el resumen declara como limitación el reparto de participantes y situaciones entre validación y test, y las cifras de la desviación",
           res.get("limitacion_reparto", {}).get("participantes_total", 0) > 0 and "criterio" in res.get("limitacion_reparto", {}) and "frases" in res.get("desviacion_vive_en_juliaca_no", {}) and res.get("descartadas") == desc and res.get("excluidas_ambiguas") == exc, str(res.get("limitacion_reparto")))
-    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f1, "--out-dir", W / "v3d2", "--nlu-dir", W / "v3d2nlu", "--log-cambios", log1)
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f1, "--out-dir", W / "v3d2", "--nlu-dir", W / "v3d2nlu", "--log-cambios", log1, "--log-sintetico", W / "ls2.csv")
     check("con el log ya escrito, repetir la partición no vuelve a tratar duplicados y da la misma partición", c == 0 and "DUPLICADOS EXACTOS tratados" not in t and (W / "v3d2" / "dataset_split_v3.csv").read_bytes() == (W / "v3d" / "dataset_split_v3.csv").read_bytes(), t[:300])
     # (2) descarte y exclusión pedidos a mano en el log
     log2 = W / "log_manual.csv"
     write_csv(log2, ["fecha", "real_id", "participant_code", "scenario_id", "intent", "accion", "motivo"],
               [["2026-01-01", a1[ix["real_id"]], a1[ix["participant_code"]], a1[ix["scenario_id"]], a1[ix["intent"]], "DESCARTADA", "prueba"], ["2026-01-01", b1[ix["real_id"]], b1[ix["participant_code"]], b1[ix["scenario_id"]], b1[ix["intent"]], "EXCLUIDA", "prueba"]])
-    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", W / "ok" / "lote1_real_final.csv", "--out-dir", W / "v3m", "--nlu-dir", W / "v3mnlu", "--log-cambios", log2)
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", W / "ok" / "lote1_real_final.csv", "--out-dir", W / "v3m", "--nlu-dir", W / "v3mnlu", "--log-cambios", log2, "--log-sintetico", W / "ls3.csv")
     meta2 = {r["utterance_id"]: r for r in read_csv(W / "v3m" / "corpus_metadata_v3.csv")} if c == 0 else {}
     check("el log manual se respeta: DESCARTADA sale del corpus y EXCLUIDA queda como «excluida»", c == 0 and a1[ix["real_id"]] not in meta2 and meta2[b1[ix["real_id"]]]["split"] == "excluida", t[:300])
     # (3) menos de 3 textos distintos en una intención
     mismos = {r[ix["real_id"]]: "mismo texto repetido" for r in cnt[I1][:3]}
     f3 = con_textos("final_pocas_distintas", mismos)
-    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f3, "--out-dir", W / "v3p", "--nlu-dir", W / "v3pnlu", "--log-cambios", W / "log_pocas.csv")
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f3, "--out-dir", W / "v3p", "--nlu-dir", W / "v3pnlu", "--log-cambios", W / "log_pocas.csv", "--log-sintetico", W / "ls4.csv")
     check("si tras los duplicados una intención queda con menos de 3 textos distintos: error y no escribe nada (ni partición ni log)", c == 2 and "menos de 3 frases reales con textos distintos" in t and not (W / "v3p" / "corpus_metadata_v3.csv").exists() and not (W / "log_pocas.csv").exists(), t[:400])
+    # (4) frase real idéntica a una sintética: la real se conserva, la copia sintética sale del entrenamiento y se registra
+    sint_filas = read_csv(ROOT / "corpus" / "corpus_metadata.csv")
+    sint_i1 = next(r for r in sint_filas if r["intent"] == a1[ix["intent"]])
+    f4 = con_textos("final_ident_sint", {a1[ix["real_id"]]: sint_i1["text"]})
+    ls4 = W / "ls_ident.csv"
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f4, "--out-dir", W / "v3s", "--nlu-dir", W / "v3snlu", "--log-cambios", W / "log_ident.csv", "--log-sintetico", ls4)
+    lg4 = read_csv(ls4) if ls4.exists() else []
+    meta4 = {r["utterance_id"]: r for r in read_csv(W / "v3s" / "corpus_metadata_v3.csv")} if c == 0 else {}
+    check("real idéntica a una sintética: la sintética queda «excluida» (fuera del entrenamiento), se registra con motivo y fecha, y la real se conserva en validación/test",
+          c == 0 and any(x["utterance_id"] == sint_i1["utterance_id"] and x["motivo"] and x["fecha"] for x in lg4) and meta4[sint_i1["utterance_id"]]["split"] == "excluida"
+          and meta4[a1[ix["real_id"]]]["split"] in ("validation", "test"), t[:400] + str(lg4))
+    c, t = run("split_corpus_v3.py", "--sintetico", ROOT / "corpus" / "corpus_metadata.csv", "--real", f4, "--out-dir", W / "v3s2", "--nlu-dir", W / "v3s2nlu", "--log-cambios", W / "log_ident2.csv", "--log-sintetico", W / "ls_ident2.csv", "--min-train", "999")
+    check("si una intención queda con muy pocas frases sintéticas de entrenamiento: se detiene y avisa sin escribir nada", c == 2 and "frases sintéticas de entrenamiento tras las exclusiones" in t and not (W / "v3s2").exists(), t[:300])
 
     # ------------------------------------------------------------------------------ evaluación (--smoke)
     print("\nEvaluación (--smoke: 1 combinación de 3 épocas y 1 semilla; resultados NO válidos)")

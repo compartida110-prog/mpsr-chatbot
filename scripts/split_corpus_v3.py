@@ -14,6 +14,9 @@ Descartes, exclusiones y duplicados (docs/lote_real_1/log_cambios_lote1.csv, con
     conserva la de menor real_id y las demás se descartan; con varias etiquetas se conserva la de la etiqueta mayoritaria (menor real_id) y las de otra etiqueta se excluyen; si hay empate se excluyen todas.
   - Cada intención debe conservar al menos 3 frases reales con textos DISTINTOS (normalizados); si no, el script termina con error y no escribe nada.
 
+Frases reales idénticas a una sintética: la real se CONSERVA (para validación/test) y la copia sintética se excluye del ENTRENAMIENTO (split = «excluida»); no se edita el corpus sintético.
+  La lista se registra con motivo y fecha en docs/lote_real_1/log_exclusion_sintetica.csv (--log-sintetico). Si una intención queda con menos de --min-train frases de entrenamiento, el script se detiene y avisa.
+
 Verificaciones (si fallan, el script termina con error y no escribe salidas):
   - las 54 intenciones presentes en entrenamiento, validación y test;
   - ninguna frase (normalizada) repetida entre particiones;
@@ -34,6 +37,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from common import BASE_SEED, CORPUS, ROOT, file_sha256, load_jerga, normalize
@@ -52,6 +56,8 @@ def main():
     ap.add_argument("--nlu-dir", default=str(ROOT / "data" / "v3"))
     ap.add_argument("--seed", type=int, default=BASE_SEED)
     ap.add_argument("--log-cambios", default=str(ROOT / "docs" / "lote_real_1" / "log_cambios_lote1.csv"), help="descartes y exclusiones con motivo y fecha")
+    ap.add_argument("--log-sintetico", default=str(ROOT / "docs" / "lote_real_1" / "log_exclusion_sintetica.csv"), help="copias sintéticas excluidas del entrenamiento por ser idénticas a una frase real")
+    ap.add_argument("--min-train", type=int, default=8, help="mínimo de frases sintéticas de entrenamiento por intención tras las exclusiones; por debajo se detiene y avisa")
     ap.add_argument("--desviacion", default="P08,P24,P25", help="participantes con desviación registrada (para informar su proporción)")
     ap.add_argument("--participantes-real", default=str(ROOT / "corpus" / "real" / "lote1_real_validado.csv"), help="trae participant_code y scenario_id de cada real_id (para informar el reparto por autor y situación)")
     ap.add_argument("--permitir-incompleto", action="store_true",
@@ -117,6 +123,34 @@ def main():
         print("ERRORES (no se escribió ninguna salida):\n  - intenciones con menos de 3 frases reales con textos distintos tras los descartes y exclusiones: " + str(pocas_distintas))
         sys.exit(2)
 
+    # ---------------------------------------------------------------- copias sintéticas idénticas a una real activa: fuera del entrenamiento
+    ruta_ls = Path(a.log_sintetico)
+    COLS_LS = ["fecha", "utterance_id", "intent", "real_id", "motivo"]
+    log_s = pd.read_csv(ruta_ls, dtype=str, keep_default_na=False, encoding="utf-8-sig") if ruta_ls.exists() else pd.DataFrame(columns=COLS_LS)
+    sint = sint.copy()
+    sint["norm_"] = sint["text"].map(lambda t: normalize(t, jerga))
+    real_por_norm = activas.assign(_n=activas["text"].map(lambda t: normalize(t, jerga))).groupby("_n")["real_id"].apply(sorted).to_dict()
+    nuevas_s = []
+    for rw in sint[sint["norm_"].isin(real_por_norm) & ~sint["utterance_id"].isin(log_s["utterance_id"])].itertuples():
+        rids = real_por_norm[rw.norm_]
+        nuevas_s.append({"fecha": datetime.now().date().isoformat(), "utterance_id": rw.utterance_id, "intent": rw.intent, "real_id": "+".join(rids),
+                         "motivo": f"idéntica (texto normalizado) a la frase real {'+'.join(rids)}; la real se conserva para validación/test y esta copia sintética se excluye del entrenamiento; el corpus sintético no se edita"})
+    if nuevas_s:
+        log_s = pd.concat([log_s, pd.DataFrame(nuevas_s)], ignore_index=True)
+        print("COPIAS SINTÉTICAS idénticas a una frase real (se excluyen del entrenamiento y se agregan al log):")
+        for f in nuevas_s:
+            print(f"  - {f['utterance_id']} ({f['intent']}) = {f['real_id']}")
+    excl_sint = set(log_s["utterance_id"])
+    desconocidas_s = sorted(excl_sint - set(sint["utterance_id"]))
+    if desconocidas_s:
+        sys.exit(f"ERROR: el log de exclusión sintética menciona utterance_id que no existen: {desconocidas_s[:5]}")
+    train_quedan = sint[~sint["utterance_id"].isin(excl_sint)].groupby("intent").size().reindex(intents, fill_value=0)
+    pocas_train = {i: int(n) for i, n in train_quedan.items() if n < a.min_train}
+    if pocas_train:
+        print(f"ERRORES (no se escribió ninguna salida):\n  - intenciones con menos de {a.min_train} frases sintéticas de entrenamiento tras las exclusiones: {pocas_train}")
+        sys.exit(2)
+    sint = sint.drop(columns="norm_")
+
     # ---------------------------------------------------------------- asignación de las frases reales
     rng = random.Random(a.seed)
     split_real = {}
@@ -129,7 +163,7 @@ def main():
 
     train = pd.DataFrame({"utterance_id": sint["utterance_id"], "text": sint["text"], "intent": sint["intent"],
                           "category": sint["category"], "source": SOURCE_SINT,
-                          "base_phrase_id": sint["base_phrase_id"], "split": "train"})
+                          "base_phrase_id": sint["base_phrase_id"], "split": np.where(sint["utterance_id"].isin(excl_sint), "excluida", "train")})
     cat_de = sint.drop_duplicates("intent").set_index("intent")["category"].to_dict()
     r = pd.DataFrame({"utterance_id": real["real_id"], "text": real["text"], "intent": real["intent"],
                       "category": real["intent"].map(cat_de), "source": SOURCE_REAL,
@@ -166,6 +200,9 @@ def main():
     out, nlu = Path(a.out_dir), Path(a.nlu_dir)
     out.mkdir(parents=True, exist_ok=True)
     nlu.mkdir(parents=True, exist_ok=True)
+    if nuevas_s:
+        ruta_ls.parent.mkdir(parents=True, exist_ok=True)
+        log_s.to_csv(ruta_ls, index=False, encoding="utf-8")
     if nuevas_filas:  # el log se escribe solo cuando todo salió bien
         ruta_log.parent.mkdir(parents=True, exist_ok=True)
         log.to_csv(ruta_log, index=False, encoding="utf-8")
@@ -187,7 +224,7 @@ def main():
         "version": "v3_real", "fecha": datetime.now().isoformat(timespec="seconds"), "seed": a.seed,
         "totales": {s: int((df["split"] == s).sum()) for s in SPLITS},
         "frases_reales": int(len(real)), "frases_reales_antes_de_descartes": int(real_total), "descartadas": sorted(descartadas), "excluidas_ambiguas": sorted(excluidas),
-        "limitacion_reparto": reparto, "desviacion_vive_en_juliaca_no": desv, "frases_sinteticas": int(len(sint)), "intenciones": len(intents),
+        "limitacion_reparto": reparto, "desviacion_vive_en_juliaca_no": desv, "frases_sinteticas": int(len(sint)), "sinteticas_excluidas_del_entrenamiento": sorted(excl_sint), "sinteticas_min_train_por_intencion": int(train_quedan.min()), "intenciones": len(intents),
         "por_intencion": {i: {s: int(tabla.loc[i, s]) for s in SPLITS} for i in intents},
         "intenciones_con_menos_de_2_frases_reales": pocas,
         "verificaciones": {"54_intenciones_en_las_3_particiones": cobertura_ok, "sin_frases_repetidas_entre_particiones": True,

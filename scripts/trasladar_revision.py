@@ -37,7 +37,7 @@ def leer_libro(ruta):
         filas = list(wb["Revision"].iter_rows(values_only=True))
     finally:
         wb.close()
-    fe = next((i for i, f in enumerate(filas[:10]) if f and f[1] == "participant_code"), None)
+    fe = next((i for i, f in enumerate(filas[:10]) if f and "participant_code" in [norm(c) for c in f]), None)
     if fe is None:
         sys.exit("ERROR: no encuentro el encabezado «participant_code» en la hoja Revision.")
     enc = [norm(c) for c in filas[fe]]
