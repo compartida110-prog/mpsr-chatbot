@@ -1,6 +1,3 @@
-# domain_v3.yml -- copia de domain.yml + intención nlu_fallback + utter_no_entendi (umbral de confianza, protocolo V1.2).
-# domain.yml sigue siendo la línea base vigente; promover esta versión solo si el puntaje del umbral mejora en la
-# validación real (ver scripts/fallback_threshold.py). Las respuestas de trámites siguen sin validar con el TUPA real.
 # domain_v2.yml -- P09 completado (54/54 respuestas, ya no hay [PENDIENTE]).
 #
 # IMPORTANTE: las 44 respuestas de tramites (todo lo que no es conversacional:
@@ -70,7 +67,6 @@ intents:
 - serenazgo_contacto
 - sugerencia
 - ubicacion_oficinas
-- nlu_fallback
 responses:
   utter_licencia_funcionamiento_requisitos:
   - text: El TUPA pide una solicitud de licencia con carácter de declaración jurada y una declaración de cumplimiento de las condiciones de seguridad. Para riesgo bajo o medio, la ITSE se realiza después de otorgar la licencia; para riesgo alto o muy alto, se realiza antes y se adjuntan documentos técnicos, como croquis, planos y plan de seguridad. La municipalidad determina el nivel de riesgo y los requisitos exactos.
@@ -159,7 +155,7 @@ responses:
   utter_contacto_telefonico:
   - text: La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
   utter_redes_sociales_mpsr:
-  - text: 'La Municipalidad Provincial de San Román publica información sobre trámites en su portal institucional (munisanroman.gob.pe), en su página de gob.pe (gob.pe/munisanroman) y en sus redes oficiales: Facebook «Municipalidad Provincial de San Román - Juliaca» (web.facebook.com/munisanromanjuliaca), Instagram (@muni_san_roman) y TikTok (@munisanroman).'
+  - text: Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman).
   utter_saludo:
   - text: ¡Hola! Soy el asistente virtual de la municipalidad. ¿En qué trámite te puedo ayudar hoy?
   utter_despedida:
@@ -180,8 +176,6 @@ responses:
   - text: Perfecto, continuemos.
   utter_negar:
   - text: Entendido, dime en qué más te puedo ayudar.
-  utter_no_entendi:
-  - text: 'No estoy seguro de haber entendido tu consulta. ¿Puedes reformularla o decirme qué trámite necesitas?'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

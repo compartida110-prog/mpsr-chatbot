@@ -159,7 +159,7 @@ responses:
   utter_contacto_telefonico:
   - text: La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
   utter_redes_sociales_mpsr:
-  - text: 'La Municipalidad Provincial de San Román publica información sobre trámites en su portal institucional (munisanroman.gob.pe), en su página de gob.pe (gob.pe/munisanroman) y en sus redes oficiales: Facebook «Municipalidad Provincial de San Román - Juliaca» (web.facebook.com/munisanromanjuliaca), Instagram (@muni_san_roman) y TikTok (@munisanroman).'
+  - text: Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman).
   utter_saludo:
   - text: ¡Hola! Soy el asistente virtual de la municipalidad. ¿En qué trámite te puedo ayudar hoy?
   utter_despedida:

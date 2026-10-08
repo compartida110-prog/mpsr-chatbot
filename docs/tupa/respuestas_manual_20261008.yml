@@ -46,9 +46,7 @@ queja_atencion:
 sugerencia:
   texto: "Puedes dejar tu sugerencia en Mesa de Partes mediante un documento simple, o por los canales de atención ciudadana de la municipalidad."
   bloque: C17
-redes_sociales_mpsr:
-  texto: "Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman)."
-  bloque: C18
+# redes_sociales_mpsr: ahora usa la fila 47 (#44) de Verificacion_TUPA_v10_3.xlsx (decisión del tesista, 2026-10-08); el texto C18 se retiró
 # Respuestas que NO se tocan (bloque E): conservan su texto y su marcador [Verificar…]
 conservar:
   - libro_reclamaciones
