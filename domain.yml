@@ -81,13 +81,13 @@ responses:
   utter_renovacion_licencia:
   - text: La licencia de funcionamiento tiene vigencia indeterminada y no requiere renovación. El certificado ITSE sí debe renovarse cada 2 años.
   utter_consulta_deuda_predial:
-  - text: Puedes consultar tu deuda de impuesto predial presentando tu DNI en la Plataforma de Atención, o a través del número de tu autoavalúo si lo tienes a la mano. [Verificar canal y procedimiento de consulta con el TUPA vigente de la MPSR].
+  - text: Para consultar tu deuda de impuesto predial acércate a la Plataforma de Atención al Ciudadano, en la ventanilla de Orientación Tributaria / Rentas, con tu DNI y tu número de contribuyente. Si llevas tu autoavalúo, el trámite puede ser más rápido.
   utter_pago_predial_como:
-  - text: El impuesto predial se puede pagar en caja de la municipalidad o en los bancos autorizados que tengan convenio con la MPSR. [Verificar si existe opción de pago en línea].
+  - text: 'Puedes pagar tu impuesto predial en las ventanillas de Caja de la municipalidad o en sus agencias: Complejo Deportivo La Capilla, Agencia Municipal San Pablo, Agencia Municipal Rodolfo Diesel, Agencia Municipal Tambopata, Agencia Municipal Néstor Cáceres Velásquez y MAC Juliaca (Real Plaza).'
   utter_pago_arbitrios:
-  - text: Los arbitrios municipales (limpieza pública, parques y jardines, serenazgo) se pagan junto con el impuesto predial o de forma independiente en caja de la municipalidad. [Verificar forma y lugar de pago con el TUPA vigente de la MPSR].
+  - text: Los arbitrios municipales se pueden pagar junto con el impuesto predial o por separado, en las ventanillas de Caja o en las agencias municipales.
   utter_impuesto_alcabala:
-  - text: El impuesto de alcabala se paga cuando compras un inmueble, y corresponde al 3% del valor de transferencia (con un tramo inicial inafecto equivalente a 10 UIT). Se cancela dentro del mes siguiente a la compra. [Verificar tasa, monto inafecto y plazo de pago con el TUPA y la normativa vigentes].
+  - text: El impuesto de alcabala se paga cuando compras un inmueble, y corresponde al 3% del valor de transferencia (con un tramo inicial inafecto equivalente a 10 UIT). Se cancela dentro del mes siguiente a la compra. Para más información, acércate a la ventanilla de Orientación Tributaria / Rentas.
   utter_fraccionamiento_deuda:
   - text: El fraccionamiento de deuda tributaria es gratuito y de aprobación automática si presentas la documentación completa. Se requiere una solicitud que indique la deuda; si actúa un representante, un poder específico; y una declaración jurada de compromiso de pago con firma legalizada ante notario.
   utter_constancia_no_adeudo:
@@ -103,7 +103,7 @@ responses:
   utter_certificado_posesion:
   - text: La constancia de posesión se emite para acceder a agua, desagüe y electricidad. El TUPA pide solicitud, planos de ubicación/perimétrico/localización que cubran un radio de 550 metros, declaración jurada notarial de posesión, documento de propiedad, verificación del predio y visto bueno de la empresa prestadora. Cuesta S/ 85,80 y el plazo es de 10 días hábiles.
   utter_constancia_domiciliaria:
-  - text: La constancia domiciliaria se tramita presentando tu DNI y un recibo de servicio (luz o agua) a tu nombre o de un familiar directo que viva contigo. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
+  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde, tu DNI y un recibo de servicio. [Verificar costo y plazo con el TUPA vigente].
   utter_certificado_defensa_civil:
   - text: En el TUPA el trámite se denomina ITSE (Inspección Técnica de Seguridad en Edificaciones). El certificado tiene vigencia de 2 años; el procedimiento, los requisitos, el costo y el plazo dependen del nivel de riesgo del establecimiento.
   utter_inspeccion_tecnica:
@@ -111,9 +111,9 @@ responses:
   utter_requisitos_defensa_civil:
   - text: Los requisitos de ITSE dependen del nivel de riesgo. Para riesgo bajo o medio, el TUPA pide solicitud y declaración jurada de cumplimiento de condiciones de seguridad. Para riesgo alto o muy alto, también exige documentos técnicos, como croquis, planos, certificado de puesta a tierra, plan de seguridad y protocolos de mantenimiento.
   utter_denuncia_seguridad_ciudadana:
-  - text: Para reportar un problema de seguridad ciudadana puedes comunicarte con serenazgo o acudir a la comisaría más cercana si se trata de una emergencia.
+  - text: Para reportar un problema de seguridad ciudadana puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana.
   utter_serenazgo_contacto:
-  - text: Puedes comunicarte con serenazgo de la MPSR a través de su línea de atención. [Verificar número vigente con la municipalidad].
+  - text: Puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana.
   utter_partida_nacimiento:
   - text: Para obtener una copia de una partida de nacimiento, paga el derecho de expedición de S/ 8,50. El plazo de atención del TUPA es de 1 día hábil.
   utter_partida_matrimonio:
@@ -129,21 +129,21 @@ responses:
   utter_reporte_alumbrado_publico:
   - text: Para reportar una falla de alumbrado público puedes comunicarte con el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del poste o farola. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
   utter_mantenimiento_parques:
-  - text: Puedes solicitar el mantenimiento de un parque presentando tu pedido en mesa de partes o comunicándote con el área de Servicios Públicos, indicando la ubicación del parque. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  - text: Presenta una solicitud en Mesa de Partes indicando la ubicación del parque. Si es urgente, acércate a la Gerencia de Servicios Públicos y Medio Ambiente.
   utter_poda_arboles:
   - text: La poda de árboles públicos se solicita ante el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del árbol. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
   utter_limpieza_via_publica:
   - text: Para solicitar limpieza de una vía pública puedes comunicarte con el área de limpieza pública de la MPSR, indicando la calle y cuadra exacta. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
   utter_presentar_reclamo:
-  - text: Puedes presentar un reclamo en mesa de partes, mediante un escrito simple indicando los hechos y adjuntando tu DNI, o a través del libro de reclamaciones si corresponde. [Verificar procedimiento con el TUPA vigente de la MPSR].
+  - text: 'Puedes presentar tus quejas, reclamos o sugerencias en Mesa de Partes, con un escrito simple que indique los hechos y adjuntando tu DNI. También puedes usar la Mesa de Partes Virtual: https://san-roman.siamsoft.pe/portal-ciudadano'
   utter_estado_reclamo:
-  - text: El estado de tu reclamo puede consultarse en mesa de partes indicando tu número de expediente. [Verificar canal de consulta con el TUPA vigente de la MPSR].
+  - text: 'Puedes consultar el estado de tu trámite en Mesa de Partes con tu número de expediente, o en línea desde Trámite documentario / Seguimiento de trámites en la web: https://munisanroman.gob.pe/web/'
   utter_libro_reclamaciones:
   - text: El libro de reclamaciones está disponible en la Plataforma de Atención; también puede existir una versión virtual. [Verificar si la MPSR cuenta con libro de reclamaciones virtual].
   utter_queja_atencion:
-  - text: Si tuviste un problema con la atención recibida, puedes presentar tu queja en mesa de partes o directamente en el libro de reclamaciones, detallando lo ocurrido. [Verificar procedimiento con el TUPA vigente de la MPSR].
+  - text: Puedes presentar tu queja por la atención recibida en Mesa de Partes, detallando lo ocurrido.
   utter_sugerencia:
-  - text: Puedes dejar tu sugerencia en mesa de partes mediante un documento simple, o a través de los canales de atención ciudadana de la MPSR. [Verificar canal de recepción con la MPSR].
+  - text: Puedes dejar tu sugerencia en Mesa de Partes mediante un documento simple, o por los canales de atención ciudadana de la municipalidad.
   utter_horario_atencion_general:
   - text: La sede central atiende de lunes a viernes, de 8:00 a. m. a 1:00 p. m. y de 2:00 p. m. a 4:00 p. m. Las agencias municipales pueden tener un horario distinto; confirma el horario de la sede que visitarás.
   utter_ubicacion_oficinas:
@@ -155,19 +155,19 @@ responses:
   utter_contacto_telefonico:
   - text: La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
   utter_redes_sociales_mpsr:
-  - text: La Municipalidad Provincial de San Román publica información e trámites en su página web institucional y en sus redes sociales oficiales. [Verificar enlaces vigentes].
+  - text: Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman).
   utter_saludo:
-  - text: ¡Hola! Soy el asistente virtual de la MPSR. ¿En qué trámite te puedo ayudar hoy?
+  - text: ¡Hola! Soy el asistente virtual de la municipalidad. ¿En qué trámite te puedo ayudar hoy?
   utter_despedida:
-  - text: ¡Gracias por tu consulta! Que tengas un buen día.
+  - text: ¡Un gusto ayudarte! Que tengas un buen día. Si necesitas algo más de la municipalidad, escríbeme.
   utter_agradecimiento:
-  - text: ¡Con gusto! ¿Hay algo más en lo que te pueda ayudar?
+  - text: ¡Un gusto ayudarte! Si necesitas algo más, aquí estoy.
   utter_fuera_de_alcance:
-  - text: Soy un asistente especializado en trámites de la MPSR, así que no puedo ayudarte con eso. ¿Tienes alguna consulta sobre un trámite municipal?
+  - text: Soy un asistente especializado en trámites de la municipalidad, así que no puedo ayudarte con eso. ¿Tienes alguna consulta sobre un trámite municipal?
   utter_hablar_con_persona:
-  - text: Entiendo. Puedes acercarte a la Plataforma de Atención al Ciudadano de la MPSR o llamar a nuestra central telefónica para hablar con un funcionario.
+  - text: Entiendo. Puedes acercarte a la Plataforma de Atención al Ciudadano de la municipalidad o llamar a nuestra central telefónica para hablar con un funcionario.
   utter_ayuda_chatbot:
-  - text: Puedo ayudarte con consultas sobre licencias, tributos municipales, trámites documentarios, defensa civil, registro civil, servicios públicos, reclamos e información general de la MPSR.
+  - text: Puedo ayudarte con consultas sobre licencias, tributos municipales, trámites documentarios, defensa civil, registro civil, servicios públicos, reclamos e información general de la municipalidad.
   utter_consulta_no_entendida:
   - text: Disculpa, no entendí bien tu consulta. ¿Puedes reformularla, por favor?
   utter_repetir_informacion:

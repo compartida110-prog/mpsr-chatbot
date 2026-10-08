@@ -26,6 +26,7 @@ def calcular(domain_actual, libro):
     spec = yaml.safe_load(open(SPEC, encoding="utf-8"))
     conservar = set(spec.pop("conservar"))
     nombres = spec.pop("nombres")
+    reemplazos = spec.pop("reemplazos", [])
     final = dict(domain_actual)
     origen = {}
     filas, _ = at.leer_hoja(libro)
@@ -60,6 +61,16 @@ def calcular(domain_actual, libro):
         if t != final[k]:
             final[k] = t
             origen[k] = origen.get(k, "") + (" + " if k in origen else "") + "D (nombres)"
+    for rp in reemplazos:  # sigla -> «la municipalidad» en las intenciones indicadas
+        for i in rp["intenciones"]:
+            k = "utter_" + i
+            if i in conservar or k not in final:
+                continue
+            if rp["desde"] not in final[k]:
+                avisos.append(f"{k}: no contiene «{rp['desde']}»")
+                continue
+            final[k] = final[k].replace(rp["desde"], rp["hasta"])
+            origen[k] = origen.get(k, "") + (" + " if k in origen else "") + "sigla -> la municipalidad"
     omitidas_d = [k for k in conservar if any(n["desde"] in domain_actual.get("utter_" + k, "") for n in nombres)]
     return final, origen, avisos, conservar, omitidas_d
 

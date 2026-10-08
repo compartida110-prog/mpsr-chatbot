@@ -64,3 +64,8 @@ nombres:
     hasta: "Gerencia de Servicios Públicos y Medio Ambiente"
   - desde: "Área de Servicios Públicos"
     hasta: "Gerencia de Servicios Públicos y Medio Ambiente"
+# Sigla institucional en el texto que ve el ciudadano -> «la municipalidad» (solo ese reemplazo; no se tocan las de `conservar`)
+reemplazos:
+  - intenciones: [saludo, fuera_de_alcance, hablar_con_persona, ayuda_chatbot]
+    desde: "de la MPSR"
+    hasta: "de la municipalidad"

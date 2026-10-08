@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T09:23:28",
+  "generado": "2026-10-08T13:25:22",
   "compuertas_cumplidas_con_datos_reales": 2,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
@@ -42,8 +42,8 @@
     },
     {
       "estado": "En curso",
-      "evidencia": "docs/tupa/Verificacion_TUPA_v10_1.xlsx",
-      "nota": "Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 2 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 26).",
+      "evidencia": "docs/tupa/Verificacion_TUPA_v10_3.xlsx",
+      "nota": "Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 1 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 27).",
       "simulado": false,
       "fecha": "2026-10-07T05:00:00+00:00",
       "estado_base": "En curso",
@@ -53,12 +53,12 @@
       "criterio": "TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin confirmar = 0"
     },
     {
-      "estado": "En curso (Simulado)",
+      "estado": "No cumplida (Simulado)",
       "evidencia": "evidencias/simulado_demostracion/20261005_demostracion/04_congelado/modelo_congelado_SIMULADO.json",
-      "nota": "Modelo de demostración congelado; no hay evidencia simulada de G3 o G4 con la que compararlo.",
+      "nota": "Congelamiento inválido: la huella de dominio cambió.",
       "simulado": true,
       "fecha": "2026-10-05T16:21:49+00:00",
-      "estado_base": "En curso",
+      "estado_base": "No cumplida",
       "datos": "Simulado",
       "id": "G5",
       "nombre": "Modelo congelado",

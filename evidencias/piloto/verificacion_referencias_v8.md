@@ -2,7 +2,7 @@
 
 Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron del protocolo V1.5 (v8) y de la Nota (v8), que este script no modifica.
 
-**Resumen:** 54 afirmaciones · OK 51 · NOTA 1 · PLANIFICADO 2 · **DISCREPANCIA 0** (las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 a v8)
+**Resumen:** 54 afirmaciones · OK 51 · NOTA 1 · PLANIFICADO 1 · **DISCREPANCIA 1** (las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 a v8)
 
 | # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |
 |---|---|---|---|---|---|---|
@@ -24,13 +24,13 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 16 | Protocolo V1.5 | existen carpetas `logs/RASA-*` | 17 carpetas | **OK** | — |  |
 | 17 | Protocolo V1.5 (T03) | «corpus_metadata.csv (v3, 708 frases; la v2 en corpus/historico/)» | corpus_metadata.csv tiene 708 frases; la v2 está en corpus/historico/ | **OK** | — |  |
 | 18 | Protocolo V1.5 (T05) | «dataset_split.csv (vigente, sobre el corpus v3)»; la V1.1 en corpus/historico/dataset_split_v2_648.csv | dataset_split.csv tiene 708 filas; la V1.1 está en corpus/historico/ | **OK** | — | el archivo actual asigna la misma partición que la V1.1 en 648 de las 648 frases comunes |
-| 19 | Protocolo V1.5 (T05) | «dataset_split_v3.csv (V1.2, planificado)» | no existe todavía; lo generará scripts/split_corpus_v3.py en corpus/v3_real/ | **PLANIFICADO** | — | coherente con el estado Planificado |
+| 19 | Protocolo V1.5 (T05) | «dataset_split_v3.csv (V1.2, planificado)» | no existe todavía; lo generará scripts/split_corpus_v3.py en corpus/v3_real/ | **OK** | — | coherente con el estado Planificado |
 | 20 | Seguimiento (Notas) / guía | existen `Lote1_Formularios_lenguaje_real_v2.pdf`, `situaciones_lote1_v1.csv` e `Instrucciones_ClaudeCode_lote_real_v2.md` | Lote1_Formularios_lenguaje_real_v2.pdf: sí, situaciones_lote1_v1.csv: sí, Instrucciones_ClaudeCode_lote_real_v2.md: sí | **OK** | — |  |
 | 21 | Protocolo 2.3 / 5.5 | 54 intenciones (44 de trámites y 10 conversacionales) en 9 categorías | 54 intenciones (44 de trámites y 10 conversacionales), 9 categorías | **OK** | — |  |
 | 22 | Protocolo 2.4.2 | 56 situaciones: una por intención y tres para fuera_de_alcance, en 5 formularios (A–E) | 56 situaciones, 54 intenciones, fuera_de_alcance x3 | **OK** | — |  |
 | 23 | Seguimiento (Notas) | 12/11/11/11/11 situaciones por formulario | 12/11/11/11/11 | **OK** | — |  |
 | 24 | Protocolo 2.4.2 | con 20 participantes cada situación queda respondida por 4 personas | 20 participantes / 5 formularios (rotación A–E) = 4 por formulario | **OK** | — |  |
-| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 40 de 44 con [Verificar] | **OK** | — |  |
+| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 5 de 44 con [Verificar] | **DISCREPANCIA** | — |  |
 | 26 | Protocolo 2.11 / P11.1 / T06; Nota | F1 macro en test (partición de P05): Rasa/DIET 0.624 y SVM 0.648 | Rasa/DIET 0.624 y SVM 0.648 (logs/rasa_test.csv, logs/baseline_test.csv) | **OK** | — |  |
 | 27 | Protocolo 2.11 / P11.1; Nota | validación cruzada agrupada por base_phrase_id: Rasa/DIET 0.655 y SVM 0.637 | Rasa/DIET 0.655 y SVM 0.637 (logs/P11_1_crossval_agrupada/folds_metrics.csv) | **OK** | — |  |
 | 28 | Protocolo 2.11; Nota | validación cruzada nativa de Rasa 0.778 (inflada por fuga) | 0.778 (evidencias/p11_1_pruebas/salidas/03_rasa_test_nlu_crossval.txt) | **OK** | — | la CV nativa se hizo con el corpus v2 (648 frases); la agrupada, con el v3 (708) |
@@ -46,7 +46,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 38 | Protocolo 2.8 / P05 / T05 | partición V1.1 (ejecutada): 486/81/81 = 75 % / 12,5 % / 12,5 % (el objetivo nominal era 70/15/15) | 486/81/81 frases = 75.0/12.5/12.5 % | **OK** | — | coincide con la V1.3 (errata E4 ya aplicada); el mecanismo descrito en 2.8 se verifica en la fila siguiente |
 | 39 | Protocolo 2.8 | con 4 grupos por intención, 3 pasan a entrenamiento y el cuarto se asigna alternadamente a validación o a prueba | las 54 intenciones tienen 4 grupos, 3 en entrenamiento; el cuarto: 27 grupos a validación y 27 a prueba | **OK** | — |  |
 | 40 | Protocolo 2.8 / 5.2; Nota | el test mide 27 de las 54 intenciones (3 frases cada una) y la validación las otras 27 | test: 27 intenciones con [3] frases; validación: 27 intenciones; sin solape: True | **OK** | — |  |
-| 41 | Protocolo y Nota v8 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 62 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 62 incidencias registradas a la fecha de esta verificación |
+| 41 | Protocolo y Nota v8 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 63 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 63 incidencias registradas a la fecha de esta verificación |
 | 42 | Protocolo 2.4 (V1.3) | margen de error de una proporción ≈ 11,7 % con n = 60 y ≈ 7,5 % con n = 120 (N ≈ 400, confianza 95 %) | 11.7 % con n = 60 y 7.5 % con n = 120 (fórmula con corrección para población finita, p = q = 0,5) | **OK** | — |  |
 | 43 | Protocolo 2.4 (V1.3) | con 60 pares, la t pareada detecta con 80 % de potencia (α = 0,05, dos colas) efectos de d ≈ 0,37 o mayores | d mínimo con 80 % de potencia (t pareada, dos colas, n = 60) = 0.368 | **OK** | — |  |
 | 44 | Protocolo 5.4 (V1.3) | pruebas de humo con datos falsos (simuladas): 59/59 y 22/22 | 59/59 y 22/22 (últimas salidas guardadas en evidencias/v3_real/salidas/) | **OK** | — |  |
@@ -55,7 +55,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 47 | Protocolo 2.14 (V1.4) | siete compuertas de avance, G1 a G7, sin fechas | scripts/estado_compuertas.py evalúa G1, G2, G3, G4, G5, G6, G7 | **OK** | — |  |
 | 48 | Protocolo 2.14 (G1) | al menos 15 participantes transcritos y cada intención con al menos 3 frases reales (meta de 4) | libro de transcripción: mínimo 15 participantes, mínimo 3 frases, meta 4; tablero: 15 y 3 | **OK** | — |  |
 | 49 | Protocolo 2.14 (G3) | hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más | tablero: 2 ciclos, mejora mínima 0.02, F1 mínimo 0.75; eval_real.py usa el umbral 0.75 y guarda un registro de cada evaluación del test | **OK** | — |  |
-| 50 | Protocolo 2.14 (G4) | la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar | docs/tupa/Verificacion_TUPA_v10_1.xlsx (la versión más alta) tiene esas tres cifras en su hoja Resumen | **OK** | — |  |
+| 50 | Protocolo 2.14 (G4) | la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar | docs/tupa/Verificacion_TUPA_v10_3.xlsx (la versión más alta) tiene esas tres cifras en su hoja Resumen | **OK** | — |  |
 | 51 | Protocolo 2.14 (G6, G7) | pre-piloto de 5 a 15 personas con alfa de Cronbach de 0.70 o más; sesiones: cierre en 60 elegibles o con un mínimo de 30 declarado por el tesista | registro v2: alfa mínimo 0.7, meta 60 sesiones; tablero: 5–15 sesiones, alfa 0.7, 60 y cierre con 30 | **OK** | — |  |
 | 52 | Protocolo 2.14 (datos simulados) | todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real | modo --demo-simulada en 3 scripts (ingest_real_lote.py, analizar_piloto.py, congelar_modelo.py) y orquestador scripts/demostracion_simulada.py; 1 ejecución(es) de demostración guardada(s); el tablero cuenta los simulados aparte | **OK** | — | la demostración se ejecutó; todos sus resultados son Simulado (ver INFORME_DEMOSTRACION_SIMULADA.md) |
 | 53 | Protocolo 2.14 (datos simulados): marcado | cada archivo generado por la demostración lleva el marcador «ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo» y el sufijo _SIMULADO | 105 archivos revisados en evidencias/simulado_demostracion/; sin marcador o sufijo: 0 | **OK** | — |  |
@@ -64,3 +64,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 ## No verificable con el repositorio (no se comprobó)
 
 Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), línea base y post-test de P01 y P12–P14 (simulados), el avance real de cada compuerta (ver logs/avance/estado_compuertas.md; hoy 2 de 7 con datos reales), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza (planificados), y la redacción metodológica.
+
+## Discrepancias (se informan tal cual; no se corrigen los documentos)
+
+- **sin errata** · **Protocolo P09 / T07; Nota** — «54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar]»: el repositorio tiene 54 respuestas sin [PENDIENTE] de 54; 5 de 44 con [Verificar]. 

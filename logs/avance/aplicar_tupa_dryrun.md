@@ -1,10 +1,10 @@
-# Dry-run de aplicar_tupa.py — Verificacion_TUPA_v10_2.xlsx
+# Dry-run de aplicar_tupa.py — Verificacion_TUPA_v10_3.xlsx
 
-Generado el 2026-10-08 13:10. **No se escribió domain.yml.** Entran 26 de 44 filas (Resultado = Corregir, texto corregido, confirmada por el tesista, sin alerta).
+Generado el 2026-10-08 13:24. **No se escribió domain.yml.** Entran 27 de 44 filas (Resultado = Corregir, texto corregido, confirmada por el tesista, sin alerta).
 
-No entran: Pendiente: 9; No figura en la fuente: 7; Corregir sin confirmar: 2.
+No entran: Pendiente: 9; No figura en la fuente: 7; Corregir sin confirmar: 1.
 
-Hoja Resumen guardada: Confirmadas por el tesista = 26; Prioridad Alta pendientes = 0; Filas con alerta = 0; Corregir o Coincide sin confirmar por el tesista = 2. (Si difiere del recuento, la hoja se guardó antes de la última edición: ábrela y guárdala en Excel.)
+Hoja Resumen guardada: Confirmadas por el tesista = 27; Prioridad Alta pendientes = 0; Filas con alerta = 0; Corregir o Coincide sin confirmar por el tesista = 1. (Si difiere del recuento, la hoja se guardó antes de la última edición: ábrela y guárdala en Excel.)
 
 | # | Intención | Prioridad | Tenía [Verificar] | Largo actual → nuevo | Avisos |
 |---|---|---|---|---|---|
@@ -34,6 +34,7 @@ Hoja Resumen guardada: Confirmadas por el tesista = 26; Prioridad Alta pendiente
 | 41 | `requisitos_generales` | Alta | no | 108 → 108 | igual a la actual |
 | 42 | `costos_generales` | Alta | no | 165 → 165 | igual a la actual |
 | 43 | `contacto_telefonico` | Media | no | 82 → 82 | igual a la actual |
+| 44 | `redes_sociales_mpsr` | Media | no | 167 → 349 | — |
 
 ## Texto actual y nuevo de cada fila
 
@@ -166,4 +167,9 @@ Hoja Resumen guardada: Confirmadas por el tesista = 26; Prioridad Alta pendiente
 
 - **Actual:** La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
 - **Nuevo:** La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
+
+### 44. `utter_redes_sociales_mpsr`
+
+- **Actual:** La Municipalidad Provincial de San Román publica información e trámites en su página web institucional y en sus redes sociales oficiales. [Verificar enlaces vigentes].
+- **Nuevo:** La Municipalidad Provincial de San Román publica información sobre trámites en su portal institucional (munisanroman.gob.pe), en su página de gob.pe (gob.pe/munisanroman) y en sus redes oficiales: Facebook «Municipalidad Provincial de San Román - Juliaca» (web.facebook.com/munisanromanjuliaca), Instagram (@muni_san_roman) y TikTok (@munisanroman).
 

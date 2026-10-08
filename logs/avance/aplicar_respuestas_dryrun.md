@@ -1,11 +1,15 @@
-# Dry-run de respuestas — Verificacion_TUPA_v10_2.xlsx + textos del tesista
+# Aplicación de respuestas — Verificacion_TUPA_v10_3.xlsx + textos del tesista
 
-Estado: **DRY-RUN (no se escribió ningún dominio)**. Solo respuestas `utter_*`; NLU, ejemplos de entrenamiento e intenciones no se tocan; no se reentrena ni se evalúa.
+Estado: **APLICADO**. Solo respuestas `utter_*`; NLU, ejemplos de entrenamiento e intenciones no se tocan; no se reentrena ni se evalúa.
 
-- Respuestas que cambian: **15** de 55 (idénticas en `domain.yml` y `domain_v3.yml`).
+- Respuestas que cambian: **19** de 55 (idénticas en `domain.yml` y `domain_v3.yml`).
 - Con marcador [Verificar…]: **16 → 5**. Marcador quitado en 11: consulta_deuda_predial, estado_reclamo, impuesto_alcabala, mantenimiento_parques, pago_arbitrios, pago_predial_como, presentar_reclamo, queja_atencion, redes_sociales_mpsr, serenazgo_contacto, sugerencia.
 - Siguen con marcador (5): constancia_domiciliaria, libro_reclamaciones, limpieza_via_publica, poda_arboles, reporte_alumbrado_publico.
 - No se tocan (bloque E, `conservar`): libro_reclamaciones, limpieza_via_publica, poda_arboles, reporte_alumbrado_publico. De ellas contienen un nombre que el bloque D cambiaría y NO se cambia: libro_reclamaciones, poda_arboles, reporte_alumbrado_publico.
+
+## Avisos
+
+- utter_redes_sociales_mpsr: la fila del TUPA y el texto del tesista coinciden en la intención; gana el texto del tesista
 
 ## Diff por respuesta
 
@@ -13,6 +17,11 @@ Estado: **DRY-RUN (no se escribió ningún dominio)**. Solo respuestas `utter_*`
 
 - **Antes:** ¡Con gusto! ¿Hay algo más en lo que te pueda ayudar?
 - **Después:** ¡Un gusto ayudarte! Si necesitas algo más, aquí estoy.
+
+### `utter_ayuda_chatbot` — sigla -> la municipalidad
+
+- **Antes:** Puedo ayudarte con consultas sobre licencias, tributos municipales, trámites documentarios, defensa civil, registro civil, servicios públicos, reclamos e información general de la MPSR.
+- **Después:** Puedo ayudarte con consultas sobre licencias, tributos municipales, trámites documentarios, defensa civil, registro civil, servicios públicos, reclamos e información general de la municipalidad.
 
 ### `utter_constancia_domiciliaria` — manual C5 (derivado: revisar)
 
@@ -38,6 +47,16 @@ Estado: **DRY-RUN (no se escribió ningún dominio)**. Solo respuestas `utter_*`
 
 - **Antes:** El estado de tu reclamo puede consultarse en mesa de partes indicando tu número de expediente. [Verificar canal de consulta con el TUPA vigente de la MPSR].
 - **Después:** Puedes consultar el estado de tu trámite en Mesa de Partes con tu número de expediente, o en línea desde Trámite documentario / Seguimiento de trámites en la web: https://munisanroman.gob.pe/web/
+
+### `utter_fuera_de_alcance` — sigla -> la municipalidad
+
+- **Antes:** Soy un asistente especializado en trámites de la MPSR, así que no puedo ayudarte con eso. ¿Tienes alguna consulta sobre un trámite municipal?
+- **Después:** Soy un asistente especializado en trámites de la municipalidad, así que no puedo ayudarte con eso. ¿Tienes alguna consulta sobre un trámite municipal?
+
+### `utter_hablar_con_persona` — sigla -> la municipalidad
+
+- **Antes:** Entiendo. Puedes acercarte a la Plataforma de Atención al Ciudadano de la MPSR o llamar a nuestra central telefónica para hablar con un funcionario.
+- **Después:** Entiendo. Puedes acercarte a la Plataforma de Atención al Ciudadano de la municipalidad o llamar a nuestra central telefónica para hablar con un funcionario.
 
 ### `utter_impuesto_alcabala` — manual C4 (derivado: revisar)
 
@@ -73,6 +92,11 @@ Estado: **DRY-RUN (no se escribió ningún dominio)**. Solo respuestas `utter_*`
 
 - **Antes:** La Municipalidad Provincial de San Román publica información e trámites en su página web institucional y en sus redes sociales oficiales. [Verificar enlaces vigentes].
 - **Después:** Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman).
+
+### `utter_saludo` — sigla -> la municipalidad
+
+- **Antes:** ¡Hola! Soy el asistente virtual de la MPSR. ¿En qué trámite te puedo ayudar hoy?
+- **Después:** ¡Hola! Soy el asistente virtual de la municipalidad. ¿En qué trámite te puedo ayudar hoy?
 
 ### `utter_serenazgo_contacto` — manual C6
 
