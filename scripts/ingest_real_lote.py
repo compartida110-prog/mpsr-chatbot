@@ -26,7 +26,7 @@ Nunca genera ni completa frases reales: solo transforma lo que el tesista transc
 Libro de transcripción (--libro): se lee directamente el .xlsx (solo lectura; no se exporta a CSV desde Excel). Las columnas de entrada son valores escritos a mano:
   Participantes: participant_code, form, Estado, age_range, vive_en_juliaca, tramite_12m, Consentimiento firmado
   Respuestas:    participant_code, form, scenario_id, text      (el encabezado se busca por texto en las primeras 10 filas)
-Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P31,
+Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P32,
 Estado fuera de la lista, o una pestaña Situaciones que no coincide con el catálogo (scenario_id, form, intención y texto). Un texto vacío o de solo espacios es un blanco:
 no se exporta como respuesta pero se registra como blanco derivado. Salidas en --out-dir (por defecto corpus/real): lote1_respuestas.csv, lote1_participantes.csv y
 lote1_blancos_derivados.csv (participant_code, scenario_id), UTF-8, coma, sin filas vacías; después sigue la ingesta de siempre. El reporte agrega «¿Listo para la Parte B?».
@@ -69,6 +69,15 @@ PII = {
     "URL": re.compile(r"https?://\S+|www\.\S+"),
     "@usuario": re.compile(r"(?<!\w)@\w+"),
 }
+
+
+# Palabras que casi nunca se usan en el español de las frases (heurística simple, sin librerías): una frase con alguna se MARCA como posible otro idioma; no se descarta ni se cambia.
+PALABRAS_INGLES = {"thanks", "thank", "you", "bye", "goodbye", "hello", "please", "the", "what", "how", "are", "have", "and", "for", "with", "help", "later", "great", "see", "welcome"}
+
+
+def posible_otro_idioma(texto, jerga=None):
+    toks = normalize(texto, jerga).split()
+    return bool(toks) and any(t in PALABRAS_INGLES for t in toks)
 
 
 def leer(path, requeridas, nombre):
@@ -158,6 +167,7 @@ def ingestar(a):
     ident_sint = res[res["_norm"].isin(sint_norm)]
     cobertura = res.groupby("intent_esperada").size().reindex(intents, fill_value=0)
     pocas = cobertura[cobertura < MIN_FRASES]
+    idioma = res.loc[pd.Series([posible_otro_idioma(t, jerga) for t in res["text"]], index=res.index, dtype=bool)]  # con 0 frases queda vacío pero con sus columnas
     dif_cat = cat[(cat[col_cat].str.strip() != "") & (cat[col_cat] != cat["intent_esperada"].map(cat_de))] if col_cat else cat.iloc[0:0]
 
     L = ["INGESTA DEL LOTE 1 — REPORTE", ""]
@@ -191,8 +201,9 @@ def ingestar(a):
     L.append(f"  [5] Frases idénticas a una del corpus sintético: {len(ident_sint)}" + (f" -> {ident_sint['real_id'].tolist()} (provocarían fuga si pasan a validación/test)" if len(ident_sint) else ""))
     L.append(f"  [6] Intenciones con menos de {MIN_FRASES} frases: {len(pocas)}" + (" -> " + ", ".join(f"{i} ({n})" for i, n in pocas.items()) if len(pocas) else ""))
     L.append(f"  [7] Categoría del catálogo distinta a la del corpus sintético: {len(dif_cat)}" + (f" -> {dif_cat['scenario_id'].tolist()} (se usa la del corpus)" if len(dif_cat) else ""))
+    L.append(f"  [8] Posible otro idioma (se MARCA; no se descarta ni se cambia): {len(idioma)}" + (f" -> {idioma['real_id'].tolist()} ({idioma['participant_code'].tolist()}, {idioma['scenario_id'].tolist()})" if len(idioma) else ""))
     L += ["", "Frases validadas por intención:"] + [f"  {i:<38}{int(n):>3}" for i, n in cobertura.items()]
-    n_adv = len(vacios) + len(cortos) + len(pii) + dup["_norm"].nunique() + len(ident_sint) + len(pocas) + len(dif_cat)
+    n_adv = len(vacios) + len(cortos) + len(pii) + dup["_norm"].nunique() + len(ident_sint) + len(pocas) + len(dif_cat) + len(idioma)
     L += ["", f"Total de advertencias: {n_adv}. Esta etapa no genera ni completa frases: si faltan, hay que recolectarlas."]
     if info:
         listo = info["transcritos"] >= info["min_part"] and len(pocas) == 0
@@ -204,6 +215,7 @@ def ingestar(a):
     out = Path(a.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     val.to_csv(out / "lote1_real_validado.csv", index=False, encoding="utf-8")
+    pd.DataFrame({"real_id": idioma["real_id"], "alerta": "posible otro idioma"}).to_csv(out / "lote1_alertas_frases.csv", index=False, encoding="utf-8")  # solo marcas; las frases no se modifican
     rev = out / "lote1_revision_etiquetas.csv"
     plantilla = pd.DataFrame({"real_id": val["real_id"], "text": val["text"], "intent_esperada": val["intent_esperada"],
                               "intent_revisada": "", "decision": "", "comentario": ""})
@@ -296,7 +308,7 @@ def hoja_a_tabla(wb, nombre, columnas, ancla=None):
 
 
 ESTADOS_LIBRO = {"Pendiente", "Aplicado", "Transcrito"}
-CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2\d|3[01])$")  # P01–P31 (lote 1, P26–P28 del 1b y P29–P31 del 1c)
+CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2\d|3[0-2])$")  # P01–P32 (lote 1, P26–P28 del 1b y P29–P32 del 1c)
 COLS_PART = ["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado"]
 
 
@@ -314,7 +326,7 @@ def procesar_libro(wb, a):
     for nombre, tabla in (("Participantes", part), ("Respuestas", resp)):
         malos = sorted({c for c in tabla["participant_code"] if not CODIGO_LIBRO.match(c)})
         if malos:
-            errores.append(f"{nombre}: códigos fuera de P01–P31: {malos}")
+            errores.append(f"{nombre}: códigos fuera de P01–P32: {malos}")
     malos = part[~part["Estado"].isin(ESTADOS_LIBRO)]
     if len(malos):
         errores.append(f"Participantes: Estado fuera de la lista {sorted(ESTADOS_LIBRO)}: {[(c, e) for c, e in zip(malos['participant_code'], malos['Estado'])][:10]}")

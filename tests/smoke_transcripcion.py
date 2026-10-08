@@ -160,9 +160,9 @@ def main():
 
     def codigo_fuera(wb):
         ws = wb["Participantes"]
-        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P32"
+        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P33"
     c, t = ingerir(variante("codigo_fuera.xlsx", codigo_fuera), "cod")
-    check("un código fuera de P01–P31 bloquea", c == 2 and "P32" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
+    check("un código fuera de P01–P32 bloquea", c == 2 and "P33" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
 
     def estado_malo(wb):
         ws = wb["Participantes"]

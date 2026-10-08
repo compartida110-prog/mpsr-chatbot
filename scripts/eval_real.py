@@ -116,6 +116,24 @@ def f1_por_intencion(y, preds, intents):
     return pd.Series(np.mean(f, axis=0), index=intents)
 
 
+PAR_ESPERABLE = ("despedida", "agradecimiento")  # «gracias» se usa también para despedirse: confusión esperable, se reporta aparte y no cambia el criterio de las demás intenciones
+
+
+def confusion_par(y, preds, a=PAR_ESPERABLE[0], b=PAR_ESPERABLE[1]):
+    """Matriz 2x2 del par (promedio por semilla): filas = intención real, columnas = predicha (a, b, otra). Devuelve dict con soporte y errores cruzados."""
+    y = np.asarray(y)
+    filas = {a: {a: 0.0, b: 0.0, "otra": 0.0}, b: {a: 0.0, b: 0.0, "otra": 0.0}}
+    for p in preds:
+        p = np.asarray(p)
+        for real in (a, b):
+            m = y == real
+            filas[real][a] += float(np.sum(p[m] == a)) / len(preds)
+            filas[real][b] += float(np.sum(p[m] == b)) / len(preds)
+            filas[real]["otra"] += float(np.sum((p[m] != a) & (p[m] != b))) / len(preds)
+    return {"par": [a, b], "soporte": {a: int(np.sum(y == a)), b: int(np.sum(y == b))}, "matriz_media_por_semilla": filas,
+            "cruzados_media_por_semilla": filas[a][b] + filas[b][a]}
+
+
 def confusiones(y, preds, top=10):
     c = Counter()
     for p in preds:
@@ -306,6 +324,14 @@ def main():
         cf = confusiones(yt, preds[m])
         pd.DataFrame(cf, columns=["intencion_real", "intencion_predicha", "veces_por_semilla"]).to_csv(out / f"{pref}confusiones_top10_test_{m}.csv", index=False, encoding="utf-8")
         L.append(f"  10 confusiones principales (veces por semilla): " + "; ".join(f"{t}->{q} ({n:.1f})" for t, q, n in cf))
+        cp = confusion_par(yt, preds[m])
+        resumen["metodos"][m]["confusion_par_despedida_agradecimiento"] = cp
+        mt = cp["matriz_media_por_semilla"]
+        L += [f"  CONFUSIÓN ESPERABLE despedida ↔ agradecimiento (se reporta aparte; «gracias» se usa también para despedirse; no cambia el criterio de las demás intenciones). Media por semilla, filas = real:",
+              f"      {'real / predicha':<22}{'despedida':>11}{'agradecimiento':>16}{'otra':>7}   (soporte)",
+              f"      {'despedida':<22}{mt['despedida']['despedida']:>11.1f}{mt['despedida']['agradecimiento']:>16.1f}{mt['despedida']['otra']:>7.1f}   ({cp['soporte']['despedida']})",
+              f"      {'agradecimiento':<22}{mt['agradecimiento']['despedida']:>11.1f}{mt['agradecimiento']['agradecimiento']:>16.1f}{mt['agradecimiento']['otra']:>7.1f}   ({cp['soporte']['agradecimiento']})",
+              f"      Errores cruzados del par (media por semilla): {cp['cruzados_media_por_semilla']:.1f}"]
         L.append(f"  10 intenciones con peor F1: " + ", ".join(f"{i} ({v:.2f})" for i, v in pif.sort_values().head(10).items()))
         L.append("")
     if {"svm", "rasa"} <= metodos:

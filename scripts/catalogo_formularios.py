@@ -1,6 +1,6 @@
 """Formularios de cada situación del lote 1, con el complemento del lote 1b (formulario F).
 
-El catálogo del tesista (situaciones_lote1_v1.csv) asigna cada situación a UN formulario (A–E). El formulario F (lote 1b, P26–P28) reparte solo S02, S24, S34 y S39 y el G (lote 1c, P29–P31) solo S46 y S47, que ya
+El catálogo del tesista (situaciones_lote1_v1.csv) asigna cada situación a UN formulario (A–E). El formulario F (lote 1b, P26–P28) reparte solo S02, S24, S34 y S39 y el G (lote 1c, P29–P32) solo S46 y S47, que ya
 están en A–E; sus pares situación–formulario extra se leen de situaciones_lote1b_v1.csv, junto al catálogo, y se SUMAN sin cambiar A–E. Si ese archivo no existe, todo funciona como antes.
 """
 from pathlib import Path

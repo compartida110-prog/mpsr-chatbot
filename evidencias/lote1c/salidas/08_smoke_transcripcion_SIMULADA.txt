@@ -1,0 +1,78 @@
+inicio: 2026-10-07 21:15:29
+$ python tests/smoke_transcripcion.py   (SIMULADA)
+SIMULADA — carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\transcripcion_PRUEBA_SIMULADA__hkfd6yh
+
+Caso normal
+  [PASS] el libro de prueba, con --permitir-simulado, se ingiere (código 0)
+  [PASS] sin la opción, el mismo libro se rechaza y no genera salidas
+  [PASS] 25 transcritos, 273 respuestas con texto y 7 blancos derivados (contados aparte desde el libro)
+  [PASS] el reporte dice «¿Listo para la Parte B? SÍ» y muestra los blancos derivados
+
+Los tres CSV de salida
+  [PASS] lote1_respuestas.csv: UTF-8, coma como delimitador, encabezado participant_code,form,scenario_id,text y sin filas vacías
+  [PASS] lote1_participantes.csv: UTF-8, coma como delimitador, encabezado participant_code,form,age_range,vive_en_juliaca,tramite_12m y sin filas vacías
+  [PASS] lote1_blancos_derivados.csv: UTF-8, coma como delimitador, encabezado participant_code,scenario_id y sin filas vacías
+  [PASS] lote1_participantes.csv no trae consentimiento, estado, fecha ni observaciones
+
+Errores bloqueantes (no dejan salidas)
+  [PASS] un transcrito sin consentimiento «Sí» bloquea (código 2) y no deja ningún CSV
+  [PASS] una fila de Respuestas con una situación de otro formulario bloquea y no deja ningún CSV
+  [PASS] la pestaña Situaciones distinta del catálogo bloquea
+  [PASS] un código fuera de P01–P32 bloquea
+  [PASS] un Estado fuera de la lista bloquea
+
+Blancos y cobertura
+  [PASS] un texto de solo espacios se trata como blanco: no se exporta como respuesta y queda como blanco derivado
+  [PASS] una intención con menos de 3 frases se informa ([6]) e impide pasar a la Parte B («¿Listo? NO»)
+
+Encabezado en la fila 2
+  [PASS] con el encabezado en la fila 2 se acepta y exporta exactamente lo mismo que con el encabezado en la fila 3
+  [PASS] si no encuentra el encabezado en las primeras 10 filas, aborta con un mensaje claro
+
+Conciliación con los blancos derivados
+  [PASS] sin hoja Blancos, los blancos derivados bastan: conciliado (código 0)
+  [PASS] con hoja Blancos igual a los derivados: conciliado y sin diferencias de blancos
+  [PASS] con una hoja Blancos distinta: informa la diferencia (código 1)
+  [PASS] la conciliación no edita ningún archivo (seguimientos, respuestas ni blancos derivados)
+  [PASS] sin hoja Blancos y sin --blancos-derivados sigue exigiendo la hoja (error claro)
+
+Formulario F (lote 1b): P26–P28 con S02, S24, S34 y S39
+  [PASS] el complemento suma F solo a S02, S24, S34 y S39, sin quitar su formulario A–E
+  [PASS] las 56 situaciones siguen en su formulario A–E (el catálogo del tesista no cambió)
+  [PASS] conciliar: P26 a P28 son del formulario F y P01 a P25 conservan la rotación A–E
+  [PASS] el libro con P26–P28 (formulario F, 4 situaciones cada uno) se ingiere: 28 participantes y 12 respuestas más
+  [PASS] las frases del formulario F cuentan para la intención de la situación (4 intenciones suben 3 frases)
+  [PASS] una respuesta de F a una situación que F no reparte (S01) bloquea y no deja salidas
+  [PASS] un transcrito de F sin consentimiento bloquea igual que A–E
+  [PASS] el formulario del participante y el de la fila siguen debiendo coincidir (A en una fila de P26 bloquea)
+  [PASS] el libro V1.3 vacío: 28 participantes (P26–P28 en F), 292 filas de respuestas, sin ninguna frase ni dato
+  [PASS] el libro V1.3 vacío se lee sin errores con la ingesta (0 transcritos, «Listo NO»)
+
+Combinar libros (combinar_libros.py) y referencias relativas de las filas nuevas
+  [PASS] libro V1.3 vacío: las fórmulas de P26–P28 (incluida «En blanco», columna K) y de las 12 filas nuevas apuntan a su propia fila
+  [PASS] el verificador detecta el error antiguo (K29 apuntando a I28)
+  [PASS] el Resumen del libro V1.3 vacío trae «Formulario F» en «Transcritos por formulario»
+  [PASS] combinar la base V1.3 vacía con el libro de prueba: copia 25 participantes y 273 frases
+  [PASS] ni la base ni la fuente se modificaron (SHA-256)
+  [PASS] ingerir el libro combinado da exactamente lo mismo que ingerir la fuente (mismos tres CSV)
+  [PASS] el combinado conserva las validaciones y los formatos de la base, no deja valores guardados viejos y marca el recálculo completo
+  [PASS] si la base ya tiene una frase en el destino, se detiene sin escribir (nunca sobrescribe)
+  [PASS] --salida no puede ser la base ni la fuente
+
+Lote 1c (formulario G): P29–P31 con S46 y S47
+  [PASS] el complemento del lote 1c suma G solo a S46 y S47 (y el F sigue en sus 4 situaciones)
+  [PASS] conciliar: P29 a P31 son del formulario G
+  [PASS] ampliar_libro.py agrega P29–P31 (G) y 6 filas de respuestas al libro V1.3 vacío sin modificarlo
+  [PASS] el libro ampliado: fórmulas de las filas nuevas apuntan a su fila, rangos extendidos (4:34 y 4:301), Formulario G en el Resumen y recálculo al abrir
+  [PASS] ampliar_libro.py no reutiliza ids: un código que ya existe se rechaza
+  [PASS] sobre un libro LLENO: la ingesta del ampliado da exactamente lo mismo que la del original (las filas nuevas no traen datos)
+  [PASS] el libro con P29–P31 (formulario G, S46 y S47) se ingiere: 6 respuestas más y 0 frases nuevas repetidas
+  [PASS] una respuesta de G a una situación que G no reparte (S01) bloquea
+  [PASS] una frase nueva que repite el texto normalizado de una existente se avisa como «FRASE NUEVA que repite…» (advertencia, no bloquea)
+
+Integridad del repositorio
+  [PASS] docs/lote_real_1, corpus/real, corpus/v3_real y logs/v3_real no cambiaron durante la prueba
+
+RESULTADO (SIMULADA): 51/51 comprobaciones PASS
+Recordatorio: datos FALSOS de prueba; nada de esto es un resultado del lote 1.
+fin: 2026-10-07 21:16:37

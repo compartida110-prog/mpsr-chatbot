@@ -1,0 +1,96 @@
+inicio: 2026-10-07 21:11:43
+$ python tests/smoke_compuertas.py   (SIMULADA)
+SIMULADA — carpeta temporal (datos FALSOS, no se commitean): C:\Users\LUISMA~1\AppData\Local\Temp\compuertas_PRUEBA_SIMULADA_ce23m2k6
+
+Tablero sin evidencia
+  [PASS] sin evidencia: las siete compuertas están «Pendiente (sin evidencia)»
+  [PASS] el encabezado dice «0 compuertas cumplidas con datos reales» y el JSON también
+  [PASS] el tablero solo escribe en logs/avance/ (estado_compuertas.md y .json)
+  [PASS] --salida fuera de logs/avance/ se rechaza y no escribe nada
+
+Datos simulados frente a reales
+  [PASS] una compuerta cumplida con datos simulados aparece «Cumplida (Simulado)»
+  [PASS] y no suma a las reales: «0 compuertas cumplidas con datos reales»; las simuladas se cuentan aparte
+  [PASS] la misma evidencia en el lugar real (sin marca de simulación) es «Cumplida» con datos Reales y suma 1
+  [PASS] un reporte marcado SIMULADO que alguien deja en la carpeta real no cuenta como real
+  [PASS] G1 con «Listo para la Parte B? NO» queda «En curso»
+
+G2: revisión de datos personales
+  [PASS] ingesta sin bloqueos pero sin la marca del tesista: G2 «En curso»
+  [PASS] con logs/avance/revision_pii.txt: G2 «Cumplida»
+
+G3: ciclos y evaluación única del test
+  [PASS] G3 con más de 2 ciclos: «No cumplida»
+  [PASS] G3 con test evaluado 2 veces: «No cumplida»
+  [PASS] G3 con F1 de la única evaluación = 0,70: «No cumplida»
+  [PASS] G3 con 2 ciclos y F1 = 0,80 en una sola evaluación: «Cumplida»
+  [PASS] G3 con 2 ciclos y el test aún sin evaluar: «En curso»
+
+G4 y G5: respuestas verificadas y orden del congelamiento
+  [PASS] G4 con Alta pendientes = 0, alertas = 0 y sin confirmar = 0 (versión más alta): «Cumplida»
+  [PASS] G4 con 23 Alta pendientes y 10 sin confirmar: «En curso», y dice «con resultado» (propuesto), no «verificadas»
+  [PASS] una hoja con los rótulos de la v4 (respaldo) también se lee: «En curso» con 3 Alta pendientes
+  [PASS] G5 con el congelamiento ANTERIOR a G3 y a G4: «No cumplida»
+  [PASS] G5 con el congelamiento después de G3 pero ANTERIOR a G4: «No cumplida»
+  [PASS] G5 congelado después de G3 y G4: «Cumplida», y G3, G4 y G5 suman 3 reales
+  [PASS] G5 con un archivo del modelo alterado (huella distinta): «No cumplida»
+  [PASS] G5 congelado sin G3 cumplida: «No cumplida» (se congela después de G3 y G4)
+
+G6 y G7 con registros falsos
+  [PASS] G6 con 8 sesiones y alfa 0.93 (calculado aparte con numpy): «Cumplida»
+  [PASS] G6 avisa que con n pequeño el alfa es poco estable
+  [PASS] G6 con 3 sesiones (menos de 5): «En curso»
+  [PASS] G7 con 60 sesiones elegibles: «Cumplida»
+  [PASS] G7 con 40 sesiones y cierre declarado: «Cumplida»
+  [PASS] G7 con 20 sesiones y cierre declarado (menos de 30): «No cumplida»
+  [PASS] G7 con 40 sesiones sin cierre declarado: «En curso»
+
+Modo --demo-simulada
+  [PASS] la carpeta de demostración por defecto es evidencias/simulado_demostracion/ del repositorio
+  [PASS] ingesta con --demo-simulada: código 0 y escribe en evidencias/simulado_demostracion/<ejecución>/
+  [PASS] análisis del piloto con --demo-simulada: código 0 y escribe en la carpeta de demostración
+  [PASS] congelar_modelo.py --demo-simulada escribe modelo_congelado_SIMULADO.json con un modelo de demostración de otro nombre
+  [PASS] los 17 archivos generados llevan el sufijo _SIMULADO y el marcador «ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo» (línea inicial, campo ESTADO o metadatos)
+  [PASS] los CSV llevan el sufijo _SIMULADO y la columna ESTADO
+  [PASS] el modo de demostración escribe solo bajo evidencias/simulado_demostracion/ (no crea nada más en la raíz)
+  [PASS] el modelo de demostración no es el real: otro nombre de archivo y estado SIMULADO; no existe logs/v3_real/modelo_congelado.json
+  [PASS] el tablero lee la carpeta de demostración y la muestra siempre como Simulado (G1 y G7 «Cumplida (Simulado)»; 0 reales)
+
+Negativas del modo de demostración
+  [PASS] --demo-simulada se NIEGA a escribir en corpus/real
+  [PASS] --demo-simulada se NIEGA a escribir en logs/v3_real
+  [PASS] --demo-simulada se NIEGA a escribir en docs/lote_real_1/privado
+  [PASS] --demo-simulada se NIEGA a escribir en docs/piloto/privado
+  [PASS] --demo-simulada tampoco escribe fuera de evidencias/simulado_demostracion/ (aunque no sea una carpeta real)
+  [PASS] analizar_piloto.py --demo-simulada se NIEGA a escribir en logs/v3_real
+  [PASS] congelar_modelo.py --demo-simulada se NIEGA a escribir en logs/v3_real
+  [PASS] con la ruta real por defecto (indistinguible de no pasarla) escribe en la carpeta de demostración y no toca el modelo congelado real
+  [PASS] --demo-simulada solo acepta las entradas simuladas permitidas: rechaza un libro con otro nombre
+  [PASS] --demo-simulada solo acepta las entradas simuladas permitidas: rechaza la plantilla vacía real
+  [PASS] --demo-simulada sin --libro se rechaza con un mensaje claro
+
+Sin --demo-simulada el comportamiento anterior no cambia
+  [PASS] el libro simulado sin ninguna opción se sigue rechazando (ME NIEGO) y no genera salidas
+  [PASS] con --permitir-simulado sigue escribiendo solo donde se le indica (carpeta temporal) y sin el marcador de demostración
+
+Piezas de la demostración completa (congelado con umbral, análisis, tablero de una ejecución)
+  [PASS] congelar --demo-simulada acepta una carpeta de demostración y el umbral elegido allí (se copia adentro; no se referencia el archivo)
+  [PASS] con la opción interna --demo-sin-marcar los archivos quedan sin marcar (el orquestador marca una sola vez al final)
+  [PASS] un --umbral fuera de evidencias/simulado_demostracion/ se rechaza en la demostración
+  [PASS] --salida con un archivo .json de la carpeta de demostración se interpreta como esa carpeta (no crea una carpeta con el nombre del archivo)
+  [PASS] analizar_piloto.py --demo-simulada acepta el congelamiento de demostración de otra etapa y usa su umbral (t = 0,5)
+  [PASS] un congelamiento de fuera de la carpeta de demostración se rechaza (nunca el real)
+  [PASS] tablero --demo-simulada: escribe solo en <ejecución>/06_tablero/, con sufijo _SIMULADO y marcador, y G1 sale «Cumplida (Simulado)»
+  [PASS] en ese tablero el mundo real no se evalúa (la evidencia real de G1 no se mezcla) y las reales siguen en 0
+  [PASS] el tablero de demostración con una ejecución inexistente se rechaza
+  [PASS] el tablero de demostración exige --ejecucion
+  [PASS] el tablero de demostración se niega a escribir en logs/avance/ (solo en la carpeta de la ejecución)
+  [PASS] marcar_directorio: el YAML lleva el marcador como comentario, el INFORME_… conserva su nombre y marcar dos veces no cambia nada
+  [PASS] demostracion_simulada.py sin --demo-simulada se niega y no crea nada
+
+Integridad del repositorio
+  [PASS] corpus/real, logs/v3_real, logs/avance, evidencias/simulado_demostracion, docs/lote_real_1 y docs/piloto no cambiaron durante la prueba
+
+RESULTADO (SIMULADA): 67/67 comprobaciones PASS
+Recordatorio: datos FALSOS de prueba; nada de esto es un avance real de las compuertas.
+fin: 2026-10-07 21:13:30
