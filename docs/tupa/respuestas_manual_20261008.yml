@@ -21,9 +21,8 @@ impuesto_alcabala:
   bloque: C4
   derivado: true   # texto vigente sin el marcador + la frase indicada
 constancia_domiciliaria:
-  texto: "La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde, tu DNI y un recibo de servicio. [Verificar costo y plazo con el TUPA vigente]."
-  bloque: C5
-  derivado: true   # el marcador queda solo para costo y plazo; su redacción es de Claude
+  texto: "La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. Consulta en ventanilla si piden algún otro documento. [Verificar costo y plazo]"
+  bloque: C5b   # texto exacto del tesista (2026-10-08, v10_4)
 serenazgo_contacto:
   texto: "Puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana."
   bloque: C6

@@ -107,7 +107,7 @@ responses:
   utter_certificado_posesion:
   - text: La constancia de posesión se emite para acceder a agua, desagüe y electricidad. El TUPA pide solicitud, planos de ubicación/perimétrico/localización que cubran un radio de 550 metros, declaración jurada notarial de posesión, documento de propiedad, verificación del predio y visto bueno de la empresa prestadora. Cuesta S/ 85,80 y el plazo es de 10 días hábiles.
   utter_constancia_domiciliaria:
-  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde, tu DNI y un recibo de servicio. [Verificar costo y plazo con el TUPA vigente].
+  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. Consulta en ventanilla si piden algún otro documento. [Verificar costo y plazo]
   utter_certificado_defensa_civil:
   - text: En el TUPA el trámite se denomina ITSE (Inspección Técnica de Seguridad en Edificaciones). El certificado tiene vigencia de 2 años; el procedimiento, los requisitos, el costo y el plazo dependen del nivel de riesgo del establecimiento.
   utter_inspeccion_tecnica:
@@ -131,19 +131,19 @@ responses:
   utter_horario_recojo_basura:
   - text: El horario de recojo de basura varía según el sector de la ciudad. Puedes consultar el cronograma vigente en la municipalidad o en sus redes sociales.
   utter_reporte_alumbrado_publico:
-  - text: Para reportar una falla de alumbrado público puedes comunicarte con el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del poste o farola. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  - text: 'El alumbrado público generalmente lo atiende Electro Puno, la empresa eléctrica. Puedes reportar la falla en su Central de Reclamos al (051) 366066 o en su portal de reclamos: https://www.electropuno.com.pe/virtual.php . También puedes llamar a su central al (051) 352552 o escribir a electropuno@electropuno.com.pe. Si un poste o cable representa riesgo eléctrico, llama de inmediato.'
   utter_mantenimiento_parques:
   - text: Presenta una solicitud en Mesa de Partes indicando la ubicación del parque. Si es urgente, acércate a la Gerencia de Servicios Públicos y Medio Ambiente.
   utter_poda_arboles:
-  - text: La poda de árboles públicos se solicita ante el área de Servicios Públicos de la MPSR, indicando la ubicación exacta del árbol. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  - text: 'La solicitud de poda de árboles se evalúa en la Gerencia de Gestión Ambiental y Residuos Sólidos. Presenta tu pedido en Mesa de Partes indicando la ubicación exacta del árbol, o acércate a la sede en el Jr. Jáuregui N.° 321. Si el árbol toca cables eléctricos, avisa también a Electro Puno: (051) 366066.'
   utter_limpieza_via_publica:
-  - text: Para solicitar limpieza de una vía pública puedes comunicarte con el área de limpieza pública de la MPSR, indicando la calle y cuadra exacta. [Verificar área responsable y procedimiento con el TUPA vigente de la MPSR].
+  - text: La limpieza de vías públicas está a cargo de la Gerencia de Gestión Ambiental y Residuos Sólidos de la municipalidad. Puedes presentar tu solicitud en Mesa de Partes indicando la calle y la cuadra, o acercarte a la sede en el Jr. Jáuregui N.° 321.
   utter_presentar_reclamo:
   - text: 'Puedes presentar tus quejas, reclamos o sugerencias en Mesa de Partes, con un escrito simple que indique los hechos y adjuntando tu DNI. También puedes usar la Mesa de Partes Virtual: https://san-roman.siamsoft.pe/portal-ciudadano'
   utter_estado_reclamo:
   - text: 'Puedes consultar el estado de tu trámite en Mesa de Partes con tu número de expediente, o en línea desde Trámite documentario / Seguimiento de trámites en la web: https://munisanroman.gob.pe/web/'
   utter_libro_reclamaciones:
-  - text: El libro de reclamaciones está disponible en la Plataforma de Atención; también puede existir una versión virtual. [Verificar si la MPSR cuenta con libro de reclamaciones virtual].
+  - text: 'Puedes presentar tu reclamo en el Libro de Reclamaciones, en la sede de la municipalidad (Jr. Jáuregui N.° 321, Plaza de Armas). También existe una versión digital; para consultar cómo acceder, llama a la central: (051) 321201.'
   utter_queja_atencion:
   - text: Puedes presentar tu queja por la atención recibida en Mesa de Partes, detallando lo ocurrido.
   utter_sugerencia:

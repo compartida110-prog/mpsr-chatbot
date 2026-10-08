@@ -30,7 +30,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 22 | Protocolo 2.4.2 | 56 situaciones: una por intención y tres para fuera_de_alcance, en 5 formularios (A–E) | 56 situaciones, 54 intenciones, fuera_de_alcance x3 | **OK** | — |  |
 | 23 | Seguimiento (Notas) | 12/11/11/11/11 situaciones por formulario | 12/11/11/11/11 | **OK** | — |  |
 | 24 | Protocolo 2.4.2 | con 20 participantes cada situación queda respondida por 4 personas | 20 participantes / 5 formularios (rotación A–E) = 4 por formulario | **OK** | — |  |
-| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 5 de 44 con [Verificar] | **DISCREPANCIA** | — |  |
+| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 1 de 44 con [Verificar] | **DISCREPANCIA** | — |  |
 | 26 | Protocolo 2.11 / P11.1 / T06; Nota | F1 macro en test (partición de P05): Rasa/DIET 0.624 y SVM 0.648 | Rasa/DIET 0.624 y SVM 0.648 (logs/rasa_test.csv, logs/baseline_test.csv) | **OK** | — |  |
 | 27 | Protocolo 2.11 / P11.1; Nota | validación cruzada agrupada por base_phrase_id: Rasa/DIET 0.655 y SVM 0.637 | Rasa/DIET 0.655 y SVM 0.637 (logs/P11_1_crossval_agrupada/folds_metrics.csv) | **OK** | — |  |
 | 28 | Protocolo 2.11; Nota | validación cruzada nativa de Rasa 0.778 (inflada por fuga) | 0.778 (evidencias/p11_1_pruebas/salidas/03_rasa_test_nlu_crossval.txt) | **OK** | — | la CV nativa se hizo con el corpus v2 (648 frases); la agrupada, con el v3 (708) |
@@ -55,7 +55,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 47 | Protocolo 2.14 (V1.4) | siete compuertas de avance, G1 a G7, sin fechas | scripts/estado_compuertas.py evalúa G1, G2, G3, G4, G5, G6, G7 | **OK** | — |  |
 | 48 | Protocolo 2.14 (G1) | al menos 15 participantes transcritos y cada intención con al menos 3 frases reales (meta de 4) | libro de transcripción: mínimo 15 participantes, mínimo 3 frases, meta 4; tablero: 15 y 3 | **OK** | — |  |
 | 49 | Protocolo 2.14 (G3) | hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más | tablero: 2 ciclos, mejora mínima 0.02, F1 mínimo 0.75; eval_real.py usa el umbral 0.75 y guarda un registro de cada evaluación del test | **OK** | — |  |
-| 50 | Protocolo 2.14 (G4) | la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar | docs/tupa/Verificacion_TUPA_v10_3.xlsx (la versión más alta) tiene esas tres cifras en su hoja Resumen | **OK** | — |  |
+| 50 | Protocolo 2.14 (G4) | la hoja de verificación del TUPA indica las filas de prioridad Alta pendientes, las filas con alerta y las aplicadas sin confirmar | docs/tupa/Verificacion_TUPA_v10_4.xlsx (la versión más alta) tiene esas tres cifras en su hoja Resumen | **OK** | — |  |
 | 51 | Protocolo 2.14 (G6, G7) | pre-piloto de 5 a 15 personas con alfa de Cronbach de 0.70 o más; sesiones: cierre en 60 elegibles o con un mínimo de 30 declarado por el tesista | registro v2: alfa mínimo 0.7, meta 60 sesiones; tablero: 5–15 sesiones, alfa 0.7, 60 y cierre con 30 | **OK** | — |  |
 | 52 | Protocolo 2.14 (datos simulados) | todo el flujo puede ejecutarse con datos simulados, rotulados «Simulado»; un resultado simulado nunca cumple una compuerta real | modo --demo-simulada en 3 scripts (ingest_real_lote.py, analizar_piloto.py, congelar_modelo.py) y orquestador scripts/demostracion_simulada.py; 1 ejecución(es) de demostración guardada(s); el tablero cuenta los simulados aparte | **OK** | — | la demostración se ejecutó; todos sus resultados son Simulado (ver INFORME_DEMOSTRACION_SIMULADA.md) |
 | 53 | Protocolo 2.14 (datos simulados): marcado | cada archivo generado por la demostración lleva el marcador «ESTADO: SIMULADO — datos de prueba; no son hallazgos de campo» y el sufijo _SIMULADO | 105 archivos revisados en evidencias/simulado_demostracion/; sin marcador o sufijo: 0 | **OK** | — |  |
@@ -67,4 +67,4 @@ Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutad
 
 ## Discrepancias (se informan tal cual; no se corrigen los documentos)
 
-- **sin errata** · **Protocolo P09 / T07; Nota** — «54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar]»: el repositorio tiene 54 respuestas sin [PENDIENTE] de 54; 5 de 44 con [Verificar]. 
+- **sin errata** · **Protocolo P09 / T07; Nota** — «54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar]»: el repositorio tiene 54 respuestas sin [PENDIENTE] de 54; 1 de 44 con [Verificar]. 

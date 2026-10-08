@@ -1,6 +1,6 @@
-# Dry-run de respuestas — Verificacion_TUPA_v10_4.xlsx + textos del tesista
+# Aplicación de respuestas — Verificacion_TUPA_v10_4.xlsx + textos del tesista
 
-Estado: **DRY-RUN (no se escribió ningún dominio)**. Solo respuestas `utter_*`; NLU, ejemplos de entrenamiento e intenciones no se tocan; no se reentrena ni se evalúa.
+Estado: **APLICADO**. Solo respuestas `utter_*`; NLU, ejemplos de entrenamiento e intenciones no se tocan; no se reentrena ni se evalúa.
 
 - Respuestas que cambian: **5** de 55 (idénticas en `domain.yml` y `domain_v3.yml`).
 - Con marcador [Verificar…]: **5 → 1**. Marcador quitado en 4: libro_reclamaciones, limpieza_via_publica, poda_arboles, reporte_alumbrado_publico.

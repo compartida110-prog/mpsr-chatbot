@@ -81,6 +81,7 @@ def main():
     ap.add_argument("--libro", default="")
     ap.add_argument("--dominios", default="domain.yml,domain_v3.yml")
     ap.add_argument("--informe", default=str(INFORME))
+    ap.add_argument("--sufijo", default=SUFIJO, help="sufijo del respaldo de cada dominio (no se sobrescribe un respaldo existente)")
     a = ap.parse_args()
     libro = Path(a.libro) if a.libro else at.libro_mas_alto()
     rutas = [ROOT / d for d in a.dominios.split(",")]
@@ -117,7 +118,7 @@ def main():
     if not a.aplicar:
         return
     for r in rutas:
-        copia = r.with_name(r.stem + SUFIJO)
+        copia = r.with_name(r.stem + a.sufijo)
         if copia.exists():
             sys.exit(f"ERROR: ya existe {copia.name}; no se sobrescribe el respaldo.")
         shutil.copyfile(r, copia)

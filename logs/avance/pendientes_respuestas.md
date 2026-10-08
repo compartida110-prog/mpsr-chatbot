@@ -53,3 +53,5 @@ Estado: el tesista dio textos exactos y pidió quitar el marcador [Verificar] de
 Condiciones que cumple el texto: sin nombres ni celulares de funcionarios, sin el correo mpsrj@munisanroman.gob.pe y sin «MPSR».
 
 Sigue con marcador solo `constancia_domiciliaria` ([Verificar costo y plazo]): costo y plazo sin fuente; el requisito «recibo de servicio» tampoco está confirmado, aunque el texto vigente lo menciona (queda como observación; no se cambió el texto).
+
+**Aplicado el 2026-10-08** (informe `logs/avance/aplicar_respuestas_aplicado2.md`, TUPA v10_4): las cuatro respuestas quedaron con los textos del tesista y `constancia_domiciliaria` con su texto nuevo y el marcador [Verificar costo y plazo]. Es la única respuesta con marcador.

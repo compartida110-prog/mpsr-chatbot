@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-08T13:25:22",
-  "compuertas_cumplidas_con_datos_reales": 2,
+  "generado": "2026-10-08T13:42:47",
+  "compuertas_cumplidas_con_datos_reales": 3,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
   "compuertas": [
@@ -41,12 +41,12 @@
       "criterio": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75"
     },
     {
-      "estado": "En curso",
-      "evidencia": "docs/tupa/Verificacion_TUPA_v10_3.xlsx",
-      "nota": "Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 1 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 27).",
+      "estado": "Cumplida",
+      "evidencia": "docs/tupa/Verificacion_TUPA_v10_4.xlsx",
+      "nota": "Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 0 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 28).",
       "simulado": false,
       "fecha": "2026-10-07T05:00:00+00:00",
-      "estado_base": "En curso",
+      "estado_base": "Cumplida",
       "datos": "Real",
       "id": "G4",
       "nombre": "Respuestas verificadas",
