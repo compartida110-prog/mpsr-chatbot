@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T13:42:47",
+  "generado": "2026-10-08T18:28:31",
   "compuertas_cumplidas_con_datos_reales": 3,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
@@ -31,7 +31,7 @@
     {
       "estado": "No cumplida",
       "evidencia": "logs/v3_real/test_registro.json",
-      "nota": "Ciclos de refinamiento: 0/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75).",
+      "nota": "No cumplida, lote 1. Ciclos de refinamiento: 0/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez). Falta el congelamiento previo del modelo y el umbral.",
       "simulado": false,
       "fecha": "2026-10-08T14:22:01+00:00",
       "estado_base": "No cumplida",

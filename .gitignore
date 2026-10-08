@@ -47,3 +47,12 @@ data/v3/nlu_test.yml
 logs/v3_real/*
 !logs/v3_real/.gitkeep
 !logs/v3_real/auditoria_*.md
+
+# Lote 2 REAL (prueba independiente de G3): frases, libros llenos y derivados de la ingesta. NO subir.
+docs/lote_real_2/privado/*
+!docs/lote_real_2/privado/LEEME.md
+corpus/real_lote2/*
+!corpus/real_lote2/.gitkeep
+corpus/v3_lote2/*
+!corpus/v3_lote2/.gitkeep
+data/v3_lote2/nlu_*.yml

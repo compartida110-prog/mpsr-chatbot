@@ -59,6 +59,25 @@ import deteccion_simulado as ds
 from common import CORPUS, LOGS, ROOT, load_jerga, normalize
 
 SOURCE_REAL = "lenguaje real (lote 1)"
+LOTE = 1                       # --lote 2 cambia estos valores (configurar_lote)
+PREF = "lote1"                 # prefijo de los archivos de salida
+ID_PREF = "R"                  # ids de las frases: R0001… (lote 1) y Q0001… (lote 2: no chocan con los del lote 1)
+RANGO = "P01–P32"
+MIN_PART_DEFECTO = 15
+
+
+def N(nombre):
+    return f"{PREF}_{nombre}"
+
+
+def configurar_lote(n):
+    global LOTE, PREF, ID_PREF, RANGO, SOURCE_REAL, CODIGO_LIBRO, MIN_PART_DEFECTO
+    LOTE = n
+    if n == 2:
+        PREF, ID_PREF, RANGO, MIN_PART_DEFECTO = "lote2", "Q", "P33–P57", 20
+        SOURCE_REAL = "lenguaje real (lote 2)"
+        CODIGO_LIBRO = re.compile(r"^P(3[3-9]|4\d|5[0-7])$")  # P33–P57: personas que NO respondieron los lotes 1, 1b ni 1c
+
 EXENTAS_LONGITUD = {"saludo", "despedida", "agradecimiento", "afirmar", "negar"}
 DECISIONES = {"OK", "CAMBIAR", "DESCARTAR"}
 MIN_FRASES = 3
@@ -117,6 +136,10 @@ def ingestar(a):
     if par["participant_code"].duplicated().any():
         errores.append(f"participantes: códigos repetidos {sorted(par['participant_code'][par['participant_code'].duplicated()].unique())}")
 
+    if LOTE == 2:
+        fuera = sorted({c for c in par["participant_code"] if not CODIGO_LIBRO.match(c)})
+        if fuera:
+            errores.append(f"participantes: códigos fuera de {RANGO} (el lote 2 es solo de personas que no respondieron el lote 1): {fuera}")
     forma_part = par.set_index("participant_code")["form"].to_dict()
     forma_sit = cf.formas_por_situacion(cat, a.situaciones)  # {situación: {formularios}}; el formulario F (lote 1b) se suma a A–E
     for i, r in res.iterrows():
@@ -138,7 +161,7 @@ def ingestar(a):
     rep_path = Path(a.log_dir) / "ingesta_reporte.txt"
     rep_path.parent.mkdir(parents=True, exist_ok=True)
     if errores:
-        txt = ["INGESTA DEL LOTE 1 — ERRORES BLOQUEANTES (no se generó ninguna salida)", ""] + [f"  - {e}" for e in errores]
+        txt = [f"INGESTA DEL LOTE {LOTE} — ERRORES BLOQUEANTES (no se generó ninguna salida)", ""] + [f"  - {e}" for e in errores]
         rep_path.write_text("\n".join(txt) + "\n", encoding="utf-8")
         print("\n".join(txt))
         sys.exit(2)
@@ -148,7 +171,7 @@ def ingestar(a):
     res = res.assign(text=res["text"].str.strip())
     vacios = res[res["text"] == ""]
     res = res[res["text"] != ""].sort_values(["participant_code", "scenario_id"]).reset_index(drop=True)
-    res["real_id"] = [f"R{i + 1:04d}" for i in range(len(res))]
+    res["real_id"] = [f"{ID_PREF}{i + 1:04d}" for i in range(len(res))]
     res["intent_esperada"] = res["scenario_id"].map(intent_de)
     res["category"] = res["intent_esperada"].map(cat_de)
     res["source"] = SOURCE_REAL
@@ -164,17 +187,20 @@ def ingestar(a):
             pii.append((r.real_id, r.participant_code, tipos))
     dup = res[res.duplicated("_norm", keep=False)].groupby("_norm").filter(lambda g: g["participant_code"].nunique() > 1)
     sint_norm = {normalize(t, jerga) for t in sint["text"]}
+    extra = getattr(a, "entrenamiento_extra", "")
+    if LOTE == 2 and extra and Path(extra).exists():  # el entrenamiento del lote 2 incluye las frases reales activas del lote 1
+        sint_norm |= {normalize(t, jerga) for t in pd.read_csv(extra, dtype=str, keep_default_na=False, encoding="utf-8")["text"]}
     ident_sint = res[res["_norm"].isin(sint_norm)]
     cobertura = res.groupby("intent_esperada").size().reindex(intents, fill_value=0)
     pocas = cobertura[cobertura < MIN_FRASES]
     idioma = res.loc[pd.Series([posible_otro_idioma(t, jerga) for t in res["text"]], index=res.index, dtype=bool)]  # con 0 frases queda vacío pero con sus columnas
     dif_cat = cat[(cat[col_cat].str.strip() != "") & (cat[col_cat] != cat["intent_esperada"].map(cat_de))] if col_cat else cat.iloc[0:0]
 
-    L = ["INGESTA DEL LOTE 1 — REPORTE", ""]
+    L = [f"INGESTA DEL LOTE {LOTE} — REPORTE", ""]
     L += [f"Participantes: {len(par)} | formularios: {par['form'].value_counts().sort_index().to_dict()}",
           f"Respuestas recibidas: {len(res) + len(vacios)} | en blanco (omitidas): {len(vacios)} | validadas: {len(res)}",
           f"Situaciones del catálogo: {len(cat)} | intenciones cubiertas: {int((cobertura > 0).sum())}/{len(intents)}", ""]
-    L.append(f"ADVERTENCIAS (no se corrigen solas; resuélvelas en lote1_respuestas.csv y vuelve a ejecutar):")
+    L.append(f"ADVERTENCIAS (no se corrigen solas; resuélvelas en {N('respuestas.csv')} y vuelve a ejecutar):")
     info = getattr(a, "info_libro", None)
     if info:
         L.insert(2, f"Libro de transcripción: {info['transcritos']} participantes Transcritos (mínimo {info['min_part']}) | blancos derivados (vacíos o solo espacios, no exportados como respuesta): {info['blancos_derivados']}"
@@ -198,7 +224,7 @@ def ingestar(a):
         L.append(f"        {g['real_id'].tolist()} ({g['intent_esperada'].tolist()}){marca}")
     if nuevos:
         L.append(f"        Participantes del complemento ({', '.join(sorted(nuevos))}): frases nuevas que repiten una existente: {n_nuevas_rep}; textos con intenciones distintas: {n_conflicto}")
-    L.append(f"  [5] Frases idénticas a una del corpus sintético: {len(ident_sint)}" + (f" -> {ident_sint['real_id'].tolist()} (provocarían fuga si pasan a validación/test)" if len(ident_sint) else ""))
+    L.append(f"  [5] Frases idénticas a una del corpus sintético: {len(ident_sint)}" + (f" -> {ident_sint['real_id'].tolist()} (provocarían fuga si pasan a validación/test; en el lote 2 se aplica el procedimiento de duplicados de split_lote2.py, sin mirar el modelo)" if len(ident_sint) else ""))
     L.append(f"  [6] Intenciones con menos de {MIN_FRASES} frases: {len(pocas)}" + (" -> " + ", ".join(f"{i} ({n})" for i, n in pocas.items()) if len(pocas) else ""))
     L.append(f"  [7] Categoría del catálogo distinta a la del corpus sintético: {len(dif_cat)}" + (f" -> {dif_cat['scenario_id'].tolist()} (se usa la del corpus)" if len(dif_cat) else ""))
     L.append(f"  [8] Posible otro idioma (se MARCA; no se descarta ni se cambia): {len(idioma)}" + (f" -> {idioma['real_id'].tolist()} ({idioma['participant_code'].tolist()}, {idioma['scenario_id'].tolist()})" if len(idioma) else ""))
@@ -214,15 +240,15 @@ def ingestar(a):
     # ------------------------------------------------------------ salidas
     out = Path(a.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    val.to_csv(out / "lote1_real_validado.csv", index=False, encoding="utf-8")
-    pd.DataFrame({"real_id": idioma["real_id"], "alerta": "posible otro idioma"}).to_csv(out / "lote1_alertas_frases.csv", index=False, encoding="utf-8")  # solo marcas; las frases no se modifican
-    rev = out / "lote1_revision_etiquetas.csv"
+    val.to_csv(out / N("real_validado.csv"), index=False, encoding="utf-8")
+    pd.DataFrame({"real_id": idioma["real_id"], "alerta": "posible otro idioma"}).to_csv(out / N("alertas_frases.csv"), index=False, encoding="utf-8")  # solo marcas; las frases no se modifican
+    rev = out / N("revision_etiquetas.csv")
     plantilla = pd.DataFrame({"real_id": val["real_id"], "text": val["text"], "intent_esperada": val["intent_esperada"],
                               "intent_revisada": "", "decision": "", "comentario": ""})
     if rev.exists():
         previa = pd.read_csv(rev, dtype=str, keep_default_na=False, encoding="utf-8-sig")
         if (previa.get("decision", pd.Series(dtype=str)).str.strip() != "").any() and not a.forzar_revision:
-            nuevo = rev.with_name("lote1_revision_etiquetas.NUEVO.csv")
+            nuevo = rev.with_name(N("revision_etiquetas.NUEVO.csv"))
             plantilla.to_csv(nuevo, index=False, encoding="utf-8")
             L.append(f"AVISO: {rev.name} ya tiene decisiones; no se sobrescribió. Plantilla nueva en {nuevo.name}")
             rep_path.write_text("\n".join(L) + "\n", encoding="utf-8")
@@ -231,7 +257,7 @@ def ingestar(a):
     else:
         plantilla.to_csv(rev, index=False, encoding="utf-8")
     print("\n".join(L))
-    print(f"\nSalidas: {out / 'lote1_real_validado.csv'}, {rev}, {rep_path}")
+    print(f"\nSalidas: {out / N('real_validado.csv')}, {rev}, {rep_path}")
 
 
 def kappa(y1, y2):
@@ -241,8 +267,8 @@ def kappa(y1, y2):
 def aplicar_revision(a):
     intents, cat_de, _ = intenciones_y_categorias(a.domain, a.corpus)
     out = Path(a.out_dir)
-    val = leer(out / "lote1_real_validado.csv", ["real_id", "text", "intent_esperada"], "el lote validado")
-    rev = leer(a.revision or out / "lote1_revision_etiquetas.csv", ["real_id", "intent_revisada", "decision"], "la revisión de etiquetas")
+    val = leer(out / N("real_validado.csv"), ["real_id", "text", "intent_esperada"], "el lote validado")
+    rev = leer(a.revision or out / N("revision_etiquetas.csv"), ["real_id", "intent_revisada", "decision"], "la revisión de etiquetas")
     errores = []
     if set(rev["real_id"]) != set(val["real_id"]):
         errores.append(f"los real_id de la revisión no coinciden con el lote validado (faltan {len(set(val['real_id']) - set(rev['real_id']))}, sobran {len(set(rev['real_id']) - set(val['real_id']))})")
@@ -254,7 +280,7 @@ def aplicar_revision(a):
     if len(cam):
         errores.append(f"{len(cam)} filas CAMBIAR sin intent_revisada válida: {cam['real_id'].tolist()[:10]}")
     if errores:
-        print("ERRORES (no se generó lote1_real_final.csv):\n" + "\n".join(f"  - {e}" for e in errores))
+        print(f"ERRORES (no se generó {N('real_final.csv')}):\n" +"\n".join(f"  - {e}" for e in errores))
         sys.exit(2)
     m = val.merge(rev[[c for c in rev.columns if c not in ("text", "intent_esperada")]], on="real_id")
     n = len(m)
@@ -263,7 +289,7 @@ def aplicar_revision(a):
     final["category"] = final["intent"].map(cat_de)
     final["source"] = SOURCE_REAL
     cols = ["real_id", "participant_code", "scenario_id", "intent_esperada", "intent", "category", "text", "source"]
-    final[cols].to_csv(out / "lote1_real_final.csv", index=False, encoding="utf-8")
+    final[cols].to_csv(out / N("real_final.csv"), index=False, encoding="utf-8")
 
     n_cam, n_desc = int((m["decision"] == "CAMBIAR").sum()), int((m["decision"] == "DESCARTAR").sum())
     cob = final.groupby("intent").size().reindex(intents, fill_value=0)
@@ -287,7 +313,7 @@ def aplicar_revision(a):
     log.parent.mkdir(parents=True, exist_ok=True)
     log.write_text(txt + "\n", encoding="utf-8")
     print(txt)
-    print(f"\nSalidas: {out / 'lote1_real_final.csv'}, {log}")
+    print(f"\nSalidas: {out / N('real_final.csv')}, {log}")
 
 
 def hoja_a_tabla(wb, nombre, columnas, ancla=None):
@@ -308,7 +334,7 @@ def hoja_a_tabla(wb, nombre, columnas, ancla=None):
 
 
 ESTADOS_LIBRO = {"Pendiente", "Aplicado", "Transcrito"}
-CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2\d|3[0-2])$")  # P01–P32 (lote 1, P26–P28 del 1b y P29–P32 del 1c)
+CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2\d|3[0-2])$")  # P01–P32 (lote 1, P26–P28 del 1b y P29–P32 del 1c); con --lote 2: P33–P57
 COLS_PART = ["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado"]
 
 
@@ -317,7 +343,7 @@ def procesar_libro(wb, a):
     part = hoja_a_tabla(wb, "Participantes", COLS_PART)
     resp = hoja_a_tabla(wb, "Respuestas", ["participant_code", "form", "scenario_id", "text"])
     sit = hoja_a_tabla(wb, "Situaciones", ["scenario_id", "form", "Intención esperada", "Situación"], ancla="scenario_id")
-    min_part = 15
+    min_part = MIN_PART_DEFECTO
     if "Parametros" in wb.sheetnames:
         for f in wb["Parametros"].iter_rows(values_only=True):
             if f and isinstance(f[0], str) and f[0].startswith("Mínimo de participantes transcritos") and isinstance(f[1], (int, float)):
@@ -326,7 +352,7 @@ def procesar_libro(wb, a):
     for nombre, tabla in (("Participantes", part), ("Respuestas", resp)):
         malos = sorted({c for c in tabla["participant_code"] if not CODIGO_LIBRO.match(c)})
         if malos:
-            errores.append(f"{nombre}: códigos fuera de P01–P32: {malos}")
+            errores.append(f"{nombre}: códigos fuera de {RANGO}: {malos}")
     malos = part[~part["Estado"].isin(ESTADOS_LIBRO)]
     if len(malos):
         errores.append(f"Participantes: Estado fuera de la lista {sorted(ESTADOS_LIBRO)}: {[(c, e) for c, e in zip(malos['participant_code'], malos['Estado'])][:10]}")
@@ -361,8 +387,8 @@ def procesar_libro(wb, a):
     resp = resp[resp["participant_code"].isin(codigos)]
     blancos = resp[resp["text"] == ""][["participant_code", "scenario_id"]].sort_values(["participant_code", "scenario_id"])
     con_texto = resp[resp["text"] != ""][["participant_code", "form", "scenario_id", "text"]]
-    out = Path(tempfile.mkdtemp(prefix="lote1_libro_"))  # carpeta de paso: los CSV solo pasan a --out-dir si la ingesta termina sin errores bloqueantes
-    pp, rp, bp = out / "lote1_participantes.csv", out / "lote1_respuestas.csv", out / "lote1_blancos_derivados.csv"
+    out = Path(tempfile.mkdtemp(prefix="lote_libro_"))  # carpeta de paso: los CSV solo pasan a --out-dir si la ingesta termina sin errores bloqueantes
+    pp, rp, bp = out / N("participantes.csv"), out / N("respuestas.csv"), out / N("blancos_derivados.csv")
     transcritos[["participant_code", "form", "age_range", "vive_en_juliaca", "tramite_12m"]].sort_values("participant_code").to_csv(pp, index=False, encoding="utf-8")
     con_texto.to_csv(rp, index=False, encoding="utf-8")
     blancos.to_csv(bp, index=False, encoding="utf-8")
@@ -376,10 +402,10 @@ def publicar_exportaciones(a):
     """Copia los tres CSV del libro de la carpeta de paso a --out-dir (solo si la ingesta no encontró errores bloqueantes)."""
     paso, out = Path(a.info_libro["paso"]), Path(a.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    for nombre in ("lote1_respuestas.csv", "lote1_participantes.csv", "lote1_blancos_derivados.csv"):
+    for nombre in (N("respuestas.csv"), N("participantes.csv"), N("blancos_derivados.csv")):
         shutil.copyfile(paso / nombre, out / nombre)
     shutil.rmtree(paso, ignore_errors=True)
-    print(f"Exportados desde el libro: {out / 'lote1_respuestas.csv'}, {out / 'lote1_participantes.csv'}, {out / 'lote1_blancos_derivados.csv'}")
+    print(f"Exportados desde el libro: {out / N('respuestas.csv')}, {out / N('participantes.csv')}, {out / N('blancos_derivados.csv')}")
 
 
 def revisar_origen(a):
@@ -417,7 +443,7 @@ def revisar_origen(a):
         if errores:
             log = Path(a.log_dir) / "ingesta_reporte.txt"
             log.parent.mkdir(parents=True, exist_ok=True)
-            txt = ["INGESTA DEL LOTE 1 — ERRORES BLOQUEANTES DEL LIBRO (no se generó ninguna salida)", ""] + [f"  - {e}" for e in errores]
+            txt = [f"INGESTA DEL LOTE {LOTE} — ERRORES BLOQUEANTES DEL LIBRO (no se generó ninguna salida)", ""] + [f"  - {e}" for e in errores]
             log.write_text("\n".join(txt) + "\n", encoding="utf-8")
             print("\n".join(txt))
             sys.exit(2)
@@ -426,8 +452,8 @@ def revisar_origen(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--situaciones", default=str(ROOT / "docs" / "lote_real_1" / "situaciones_lote1_v1.csv"))
-    ap.add_argument("--participantes", default=str(ROOT / "corpus" / "real" / "lote1_participantes.csv"))
-    ap.add_argument("--respuestas", default=str(ROOT / "corpus" / "real" / "lote1_respuestas.csv"))
+    ap.add_argument("--participantes", default=str(ROOT / "corpus" / "real" / N("participantes.csv")))
+    ap.add_argument("--respuestas", default=str(ROOT / "corpus" / "real" / N("respuestas.csv")))
     ap.add_argument("--out-dir", default=str(ROOT / "corpus" / "real"))
     ap.add_argument("--log-dir", default=str(LOGS / "v3_real"))
     ap.add_argument("--domain", default=str(ROOT / "domain.yml"))
@@ -442,7 +468,26 @@ def main():
     ap.add_argument("--ejecucion", default="", help="nombre de la carpeta de la ejecución en modo demostración (por defecto, fecha y hora)")
     ap.add_argument("--demo-sin-marcar", action="store_true", help=argparse.SUPPRESS)  # lo usa el orquestador: marca una sola vez al final
     ap.add_argument("--demo-raiz", default="", help=argparse.SUPPRESS)  # solo para las pruebas: raíz alternativa del modo demostración
+    ap.add_argument("--lote", type=int, choices=[1, 2], default=1, help="2 = lote 2 (solo test): participantes P33–P57, ids Q0001…, archivos lote2_*.csv en corpus/real_lote2/ y logs/v3_real/lote2/; no se ejecuta con datos reales hasta que el tesista lo indique")
+    ap.add_argument("--congelado-previo", default=str(LOGS / "v3_real" / "lote2_congelado_previo.json"), help="(lote 2) congelamiento previo del modelo y el umbral; sin él no se lee el lote 2")
+    ap.add_argument("--sin-congelado", action="store_true", help=argparse.SUPPRESS)  # solo para las pruebas con datos falsos
+    ap.add_argument("--entrenamiento-extra", default="", help="(lote 2) CSV con las frases reales de entrenamiento (lote1_real_final.csv sin las excluidas/descartadas) para avisar de frases idénticas")
     a = ap.parse_args()
+    if a.lote == 2:
+        configurar_lote(2)
+        for k, nuevo in (("situaciones", ROOT / "docs" / "lote_real_2" / "situaciones_lote2_v1.csv"), ("participantes", ROOT / "corpus" / "real_lote2" / "lote2_participantes.csv"),
+                         ("respuestas", ROOT / "corpus" / "real_lote2" / "lote2_respuestas.csv"), ("out_dir", ROOT / "corpus" / "real_lote2"), ("log_dir", LOGS / "v3_real" / "lote2")):
+            if getattr(a, k) == ap.get_default(k):
+                setattr(a, k, str(nuevo))
+        if not a.entrenamiento_extra:
+            a.entrenamiento_extra = str(ROOT / "corpus" / "real" / "lote1_real_final.csv")
+        if a.demo_simulada:
+            sys.exit("ERROR: --demo-simulada es del lote 1; el lote 2 no tiene demostración simulada.")
+        if not a.sin_congelado:  # puerta: el modelo y el umbral se congelan ANTES de abrir el lote 2 (procedimiento cerrado, protocolo V1.6 5.8)
+            import congelar_modelo as cm
+            ok, difs = cm.verificar(a.congelado_previo)
+            if not ok:
+                sys.exit("ME NIEGO a leer el lote 2: el modelo y el umbral no están congelados (o cambiaron). " + "; ".join(difs))
     if a.demo_simulada:
         if a.aplicar_revision:
             sys.exit("ERROR: --demo-simulada no se combina con --aplicar-revision.")

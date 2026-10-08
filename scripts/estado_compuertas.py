@@ -39,7 +39,7 @@ COMPUERTAS = [("G1", "Lote 1 completo"), ("G2", "Parte B ejecutada"), ("G3", "Ca
 CRITERIOS = {
     "G1": "«Listo para la Parte B»: ≥ 15 transcritos, 0 sin consentimiento, cada intención ≥ 3 frases",
     "G2": "Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista",
-    "G3": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75",
+    "G3": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75 (V1.6: medida en el lote 2; la del lote 1 queda como «No cumplida, lote 1»)",
     "G4": "TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin confirmar = 0",
     "G5": "Modelo congelado válido, después de G3 y G4",
     "G6": "5–15 sesiones completas y alfa de Cronbach ≥ 0,70",
@@ -57,6 +57,9 @@ REAL_CICLOS = "logs/avance/ciclos_refinamiento.csv"
 REAL_TEST_REG = "logs/v3_real/test_registro.json"
 REAL_TEST_RES = "logs/v3_real/eval_real_resumen.json"
 REAL_CONGELADO = "logs/v3_real/modelo_congelado.json"
+REAL2_REG = "logs/v3_real/lote2/test_registro.json"          # lote 2 (protocolo V1.6, 5.8): única evaluación del test nuevo
+REAL2_RES = "logs/v3_real/lote2/eval_lote2_resumen.json"
+REAL2_CONG = "logs/v3_real/lote2_congelado_previo.json"      # modelo y umbral congelados ANTES de abrir el lote 2
 REAL_CIERRE = "logs/avance/cierre_piloto.txt"
 
 
@@ -162,7 +165,7 @@ def _ciclos(W):
     return f, filas
 
 
-def g3(W, previos):
+def _g3_lote1(W, previos):
     fc, ciclos = _ciclos(W)
     n = len(ciclos)
     f1s = []
@@ -200,6 +203,45 @@ def g3(W, previos):
     if n > 0:
         return res(EN_CURSO, evid, f"{nota_c} Aún no se evaluó el test real.", sim)
     return res(PENDIENTE, evid, "Sin ciclos de refinamiento ni evaluación del test real.")
+
+
+def g3(W, previos):
+    """G3 (V1.6): la medición del lote 1 se conserva tal cual («No cumplida, lote 1») y la compuerta solo se cumple con UNA medición en el lote 2 (prueba nueva e independiente)
+    de F1 macro ≥ 0,75, con el modelo y el umbral congelados ANTES de abrirlo. «Medida en lote 2» se informa aparte y no se mezcla con la del lote 1."""
+    r1 = _g3_lote1(W, previos)
+    if r1["estado"] != NO_CUMPLIDA or "Única evaluación del test real" not in r1["nota"]:
+        return r1  # lote 1 cumplida, o aún sin medir / mal medida: sin cambios
+    base = "No cumplida, lote 1. " + r1["nota"]
+    freg, fres, fcong = W.ruta(REAL2_REG), W.ruta(REAL2_RES), W.ruta(REAL2_CONG)
+    evid = r1["evidencia"] + "".join(f", {W.rel(x)}" for x in (freg, fcong) if x)
+    if not freg:
+        extra = " Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez)." + ("" if fcong else " Falta el congelamiento previo del modelo y el umbral.")
+        return res(NO_CUMPLIDA, evid, base + extra, r1["simulado"], r1["fecha"])
+    reg = json.loads(freg.read_text(encoding="utf-8"))
+    ev = [x for x in reg.get("evaluaciones", []) if x.get("metodo") == "rasa"]
+    fecha = a_fecha(ev[-1].get("fecha")) if ev else None
+    if len(ev) > 1:
+        return res(NO_CUMPLIDA, evid, f"{base} Medida en lote 2: el test del lote 2 se evaluó {len(ev)} veces; debía evaluarse una sola vez.", r1["simulado"], fecha)
+    if not fcong:
+        return res(NO_CUMPLIDA, evid, f"{base} Medida en lote 2: no consta el congelamiento previo del modelo y el umbral ({REAL2_CONG}); la medición no cuenta.", r1["simulado"], fecha)
+    fz_fecha = None
+    try:
+        fz_fecha = a_fecha(json.loads(fcong.read_text(encoding="utf-8")).get("fecha"))
+    except (ValueError, OSError):
+        pass
+    if fecha and fz_fecha and fz_fecha > fecha:
+        return res(NO_CUMPLIDA, evid, f"{base} Medida en lote 2: el congelamiento ({fz_fecha.astimezone():%Y-%m-%d %H:%M}) es posterior a la evaluación del lote 2; la medición no cuenta.", r1["simulado"], fecha)
+    f1 = None
+    if fres:
+        try:
+            f1 = float(json.loads(fres.read_text(encoding="utf-8"))["metodos"]["rasa"]["f1_macro"][0])
+        except (KeyError, ValueError, TypeError):
+            f1 = None
+    if f1 is None:
+        return res(EN_CURSO, evid, f"{base} Lote 2 evaluado una vez, pero falta eval_lote2_resumen.json con el F1 macro.", r1["simulado"], fecha)
+    ok = f1 >= F1_MIN
+    return res(CUMPLIDA if ok else NO_CUMPLIDA, evid, f"{base} Medida en lote 2: F1 macro = {f1:.4f} ({'≥' if ok else '<'} {F1_MIN}); " +
+               ("G3 cumplida con la medición independiente del lote 2 (la del lote 1 queda como «No cumplida, lote 1»)." if ok else "G3 no cumplida: no se baja el umbral ni se repite la evaluación."), r1["simulado"], fecha)
 
 
 # --------------------------------------------------------------------------- G4

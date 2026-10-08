@@ -212,6 +212,36 @@ def main():
         c, t, g, _ = tablero(rg)
         check(f"G3 con {nombre}: «{esperado}»", g["G3"]["estado"] == esperado, str(g["G3"]))
 
+    print("\nG3 con lote 2 (V1.6): «Medida en lote 2» aparte de la medición del lote 1")
+
+    def l2(nombre, f1=None, evaluaciones=1, congelado="2026-02-15T10:00:00", eval_fecha="2026-03-01T10:00:00"):
+        r = W / ("t_l2_" + nombre)
+        g3_falso(r, f1=0.70)  # lote 1: una sola evaluación con F1 = 0,70 -> «No cumplida, lote 1»
+        if evaluaciones:
+            escribir(r, "logs/v3_real/lote2/test_registro.json", json.dumps({"evaluaciones": [{"fecha": eval_fecha, "metodo": "rasa"}] * evaluaciones}))
+            if f1 is not None:
+                escribir(r, "logs/v3_real/lote2/eval_lote2_resumen.json", json.dumps({"metodos": {"rasa": {"f1_macro": [f1, f1 - 0.05, f1 + 0.05]}}}))
+        if congelado:
+            escribir(r, "logs/v3_real/lote2_congelado_previo.json", json.dumps({"fecha": congelado}))
+        return tablero(r)[2]["G3"]
+    x = l2("sin_lote2", evaluaciones=0, congelado="")
+    check("G3 sin datos del lote 2: «No cumplida» con «No cumplida, lote 1», y el lote 2 «planificado, sin medición todavía»", x["estado"] == "No cumplida" and x["nota"].startswith("No cumplida, lote 1.") and "planificado, sin medición todavía" in x["nota"], str(x))
+    x = l2("ok", f1=0.80)
+    check("G3 con lote 2: F1 0,80 una sola vez y congelado antes: «Cumplida»; «Medida en lote 2» aparte y el lote 1 sigue como «No cumplida, lote 1»", x["estado"] == "Cumplida" and "Medida en lote 2: F1 macro = 0.8000" in x["nota"] and "No cumplida, lote 1" in x["nota"], str(x))
+    x = l2("bajo", f1=0.70)
+    check("G3 con lote 2: F1 0,70 una sola vez: «No cumplida» (no se baja el umbral ni se repite)", x["estado"] == "No cumplida" and "Medida en lote 2: F1 macro = 0.7000" in x["nota"] and "no se baja el umbral" in x["nota"], str(x))
+    x = l2("dos", f1=0.80, evaluaciones=2)
+    check("G3 con el test del lote 2 evaluado 2 veces: «No cumplida»", x["estado"] == "No cumplida" and "2 veces" in x["nota"], str(x))
+    x = l2("sin_cong", f1=0.80, congelado="")
+    check("G3 con lote 2 medido sin congelamiento previo: «No cumplida» (no cuenta)", x["estado"] == "No cumplida" and "no consta el congelamiento previo" in x["nota"], str(x))
+    x = l2("cong_tarde", f1=0.80, congelado="2026-04-01T10:00:00")
+    check("G3 con el congelamiento posterior a la evaluación del lote 2: «No cumplida» (no cuenta)", x["estado"] == "No cumplida" and "posterior" in x["nota"], str(x))
+    r = W / "t_l2_lote1_ok"
+    g3_falso(r, f1=0.80)
+    escribir(r, "logs/v3_real/lote2/test_registro.json", json.dumps({"evaluaciones": [{"fecha": "2026-03-01T10:00:00", "metodo": "rasa"}]}))
+    x = tablero(r)[2]["G3"]
+    check("si el lote 1 ya cumplió (F1 ≥ 0,75), el lote 2 no cambia el resultado (reglas V1.2 intactas)", x["estado"] == "Cumplida" and "lote 2" not in x["nota"].lower(), str(x))
+
     # ------------------------------------------------------------------ G4 y G5
     print("\nG4 y G5: respuestas verificadas y orden del congelamiento")
     rg4 = W / "t_g4"
