@@ -1,24 +1,31 @@
-# Propuesta: respuestas de `despedida` y `agradecimiento` para un «gracias» suelto
+# Propuesta (v2): respuestas de `despedida` y `agradecimiento` para un «gracias» suelto
 
-**Estado: PROPUESTA, no aplicada.** No se tocó `domain.yml` ni `domain_v3.yml`.
+**Estado: PROPUESTA, no aplicada.** No se tocó `domain.yml` ni `domain_v3.yml`. La revisa el tesista.
 
 ## Problema
-Un «gracias» suelto se usa tanto para agradecer como para despedirse, y las frases de los lotes lo confirman (varias respuestas de ambas situaciones son solo «gracias»). El modelo lo clasificará a veces como `agradecimiento` y a veces como `despedida`;
-la confusión entre ambas es **esperable** y no es un error del chatbot, así que conviene que **cualquiera de las dos respuestas sirva para las dos lecturas**.
+Un «gracias» suelto se usa tanto para agradecer como para despedirse; las dos intenciones se confunden de forma esperable. Por eso ambas respuestas deben servir para un «gracias» y también para «chau», «hasta luego» o «ya listo», y la de despedida no debe sonar a que contesta un agradecimiento que no hubo.
 
 ## Texto actual (idéntico en `domain.yml` y `domain_v3.yml`)
-| Respuesta | Texto actual | Qué falla con un «gracias» suelto |
+| Respuesta | Texto actual | Observación |
 |---|---|---|
-| `utter_agradecimiento` | ¡Con gusto! ¿Hay algo más en lo que te pueda ayudar? | Si la persona se estaba despidiendo, se le vuelve a preguntar como si siguiera la conversación (aceptable, pero no cierra). |
-| `utter_despedida` | ¡Gracias por tu consulta! Que tengas un buen día. | Si la persona solo agradecía, la respuesta suena a eco («gracias» contestado con «gracias») y cierra la conversación sin ofrecer más ayuda. |
+| `utter_despedida` | ¡Gracias por tu consulta! Que tengas un buen día. | **Empieza con «Gracias»**: hace eco si la persona agradeció. |
+| `utter_agradecimiento` | ¡Con gusto! ¿Hay algo más en lo que te pueda ayudar? | Responde bien al agradecimiento, pero no cierra si la persona se despedía. |
 
 ## Texto propuesto
-| Respuesta | Texto propuesto | Por qué sirve para las dos lecturas |
-|---|---|---|
-| `utter_agradecimiento` | ¡Con gusto! Si necesitas algo más sobre algún trámite de la MPSR, aquí estoy. Si ya terminaste, ¡que tengas un buen día! | Atiende al que agradece (ofrece ayuda) y al que se despide (se cierra con un deseo). |
-| `utter_despedida` | ¡Con gusto! Gracias por escribirnos. Que tengas un buen día; si te surge otra consulta sobre un trámite de la MPSR, escríbeme. | Responde al agradecimiento («con gusto»), cierra para el que se despide y deja la puerta abierta para el que quería seguir. |
+| Respuesta | Texto propuesto |
+|---|---|
+| `utter_agradecimiento` | ¡Un gusto ayudarte! Si necesitas algo más, aquí estoy. |
+| `utter_despedida` | ¡Un gusto ayudarte! Que tengas un buen día. Si te surge otra consulta sobre algún trámite de la municipalidad, escríbeme. |
 
-Criterios: ambas empiezan con «¡Con gusto!» (responde al «gracias»), ninguna repite «gracias» como eco, las dos ofrecen ayuda y se cierran con cortesía, y no prometen nada que el chatbot no pueda cumplir. No llevan marca `[Verificar]` (no dependen del TUPA).
+## Verificaciones sobre el texto propuesto
+- Apertura común «¡Un gusto ayudarte!» en las dos (en vez de «¡Con gusto!»): vale para un «gracias» y para una despedida.
+- **Ninguna de las dos contiene «gracias»** (ni como eco ni de otra forma); se retiró el «Gracias por tu consulta» actual de la despedida y el «Gracias por escribirnos» de la propuesta anterior.
+- **Ninguna contiene «MPSR»**; donde hace falta nombrar a la institución dice «la municipalidad». La sigla queda solo en nombres de archivo, código y comentarios.
+- Segunda frase de `utter_agradecimiento`: una sola línea corta («Si necesitas algo más, aquí estoy.»), apta para chat por celular.
+- Se mantiene el tuteo y el tono de las demás respuestas; no prometen nada que el chatbot no pueda cumplir y no llevan marca `[Verificar]` (no dependen del TUPA).
+
+## Aparte
+`logs/avance/listado_mpsr_en_respuestas.md` lista (solo lectura) las 34 respuestas de los `domain` que hoy dicen «MPSR», incluidas las del TUPA. Es una decisión tuya si se reemplaza por «la municipalidad»; no se cambió nada.
 
 ## Cómo se aplicaría (cuando lo apruebes)
-Son dos respuestas conversacionales que **no** forman parte de las 26 del TUPA; se aplicarían aparte, en `domain.yml` y en `domain_v3.yml` (mismo texto), sin tocar el resto de las respuestas, y se verificaría con la prueba de humo de respuestas de las 54 intenciones.
+Se aplicarían aparte de las 26 del TUPA, en `domain.yml` y `domain_v3.yml` (mismo texto), sin tocar el resto, y se verificaría con la prueba de humo de respuestas de las 54 intenciones.
