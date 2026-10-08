@@ -55,3 +55,11 @@ Condiciones que cumple el texto: sin nombres ni celulares de funcionarios, sin e
 Sigue con marcador solo `constancia_domiciliaria` ([Verificar costo y plazo]): costo y plazo sin fuente; el requisito «recibo de servicio» tampoco está confirmado, aunque el texto vigente lo menciona (queda como observación; no se cambió el texto).
 
 **Aplicado el 2026-10-08** (informe `logs/avance/aplicar_respuestas_aplicado2.md`, TUPA v10_4): las cuatro respuestas quedaron con los textos del tesista y `constancia_domiciliaria` con su texto nuevo y el marcador [Verificar costo y plazo]. Es la única respuesta con marcador.
+
+---
+
+## Actualización — `constancia_domiciliaria` sin marcador (DRY-RUN 3, aún NO aplicado)
+
+- **Texto propuesto por el tesista:** se tramita en la municipalidad, con solicitud dirigida al Alcalde y DNI; costo aproximado de S/ 10 a S/ 35; entrega en 1 a 3 días; consultar en ventanilla el monto exacto y si piden otro documento. Sin marcador [Verificar]. Informe: `logs/avance/aplicar_respuestas_dryrun3.md`.
+- **Origen del costo (S/ 10–35) y del plazo (1–3 días):** lo indicado por el tesista el 08/10/2026. **No figuran en el TUPA publicado** (la fila 18 de la hoja de verificación dice «No figura en la fuente»). Son datos sin fuente documental.
+- **Requisito «recibo de servicio»:** sigue **sin confirmar**; el texto nuevo ya no lo menciona y remite a la ventanilla para otros documentos.

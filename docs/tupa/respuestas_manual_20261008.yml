@@ -21,8 +21,8 @@ impuesto_alcabala:
   bloque: C4
   derivado: true   # texto vigente sin el marcador + la frase indicada
 constancia_domiciliaria:
-  texto: "La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. Consulta en ventanilla si piden algún otro documento. [Verificar costo y plazo]"
-  bloque: C5b   # texto exacto del tesista (2026-10-08, v10_4)
+  texto: "La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. El costo es de aproximadamente S/ 10 a S/ 35 y se entrega en 1 a 3 días. Consulta en ventanilla el monto exacto y si piden algún otro documento."
+  bloque: C5c   # texto exacto del tesista; costo y plazo indicados por el tesista (08/10/2026), no figuran en el TUPA publicado
 serenazgo_contacto:
   texto: "Puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana."
   bloque: C6
