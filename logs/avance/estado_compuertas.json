@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-07T19:07:48",
+  "generado": "2026-10-07T19:08:16",
   "compuertas_cumplidas_con_datos_reales": 2,
   "compuertas_cumplidas_con_datos_simulados": 2,
   "total": 7,
@@ -42,10 +42,10 @@
     },
     {
       "estado": "En curso",
-      "evidencia": "",
-      "nota": "No se pudo evaluar: IndexError: tuple index out of range",
+      "evidencia": "docs/tupa/Verificacion_TUPA_v10.xlsx",
+      "nota": "Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 2 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 26).",
       "simulado": false,
-      "fecha": null,
+      "fecha": "2026-10-07T05:00:00+00:00",
       "estado_base": "En curso",
       "datos": "Real",
       "id": "G4",

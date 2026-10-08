@@ -211,7 +211,7 @@ def g4(W, previos):
     wb = load_workbook(f, read_only=True, data_only=True)
     try:
         motivo = ds.revisar_libro(wb, hojas_datos=())  # títulos y columnas Observaciones
-        resumen = {r[0]: r[1] for r in wb["Resumen"].iter_rows(values_only=True) if r and isinstance(r[0], str)}
+        resumen = {r[0]: (r[1] if len(r) > 1 else None) for r in wb["Resumen"].iter_rows(values_only=True) if r and isinstance(r[0], str)}
         filas = list(wb["Verificacion"].iter_rows(values_only=True))
     finally:
         wb.close()

@@ -99,6 +99,7 @@ def tupa_falso(ruta, alta, alertas, sinconf, fecha, antiguo=False, confirmadas=0
         ws.cell(3, j, h)
     ws.cell(4, 1, 1); ws.cell(4, 16, fecha)
     rs = wb.create_sheet("Resumen")
+    rs["A1"] = "Resumen de la verificación (fila de título de una sola celda: la v10 real las trae)"
     filas = [("Respuestas a verificar", 44), ("Verificadas (todo menos Pendiente)" if antiguo else "Con resultado (propuesto o confirmado)", 44 - alta)]
     if not antiguo:
         filas.append(("Confirmadas por el tesista", confirmadas))

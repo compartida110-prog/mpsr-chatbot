@@ -250,7 +250,7 @@ def main():
     def parametros(libro, hoja="Parametros"):
         wb = load_workbook(libro, read_only=True, data_only=True)
         try:
-            return {f[0].strip(): f[1] for f in wb[hoja].iter_rows(values_only=True) if f and isinstance(f[0], str) and f[1] is not None}
+            return {f[0].strip(): f[1] for f in wb[hoja].iter_rows(values_only=True) if f and len(f) > 1 and isinstance(f[0], str) and f[1] is not None}
         finally:
             wb.close()
     ids = [g for g, _ in ec.COMPUERTAS]
@@ -347,7 +347,7 @@ def main():
         L.append(f"| {i} | {d} | {dice} | {repo} | **{est}** | {errata_de(f) or '—'} | {nota} |".replace("\n", " "))
     L += ["", "## No verificable con el repositorio (no se comprobó)", "",
           "Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutados: el tamaño planificado n = 120 de la V1.2 y su fórmula (el piloto V1.3 usa n = 60), antecedentes (Vargas Ríos, 2022), "
-          "línea base y post-test de P01 y P12–P14 (simulados), el avance real de cada compuerta (hoy ninguna cumplida con datos reales; ver logs/avance/estado_compuertas.md), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
+          "línea base y post-test de P01 y P12–P14 (simulados), el avance real de cada compuerta (ver logs/avance/estado_compuertas.md; hoy 2 de 7 con datos reales), las fórmulas del registro de sesiones (16 resultados contra un cálculo independiente; el registro ya está en docs/piloto/ y tests/smoke_piloto.py contrasta 12 cifras de su hoja Resumen con las recalculadas, pero esa comprobación de 16 resultados no se repitió aquí), Alfa de Cronbach, recolección del lote 1, partición V1.2, evaluación sobre lenguaje real y umbral de confianza "
           "(planificados), y la redacción metodológica."]
     if disc:
         L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
