@@ -99,7 +99,7 @@ responses:
   utter_requisitos_mesa_partes:
   - text: Los requisitos para presentar un documento dependen del procedimiento al que va dirigido. El TUPA no establece una lista única para todos los escritos. Dime qué trámite necesitas y reviso su ficha.
   utter_estado_tramite:
-  - text: El portal oficial de la MPSR en gob.pe tiene un enlace directo llamado «Seguimiento de trámites». Lo encuentras en la sección de enlaces directos de la municipalidad.
+  - text: El portal oficial de la municipalidad en gob.pe tiene un enlace directo llamado «Seguimiento de trámites». Lo encuentras en la sección de enlaces directos de la municipalidad.
   utter_horario_mesa_partes:
   - text: La sede central atiende de lunes a viernes, de 8:00 a. m. a 1:00 p. m. y de 2:00 p. m. a 4:00 p. m. Confirma con la municipalidad si la Mesa de Partes Virtual tiene un horario distinto.
   utter_copia_documento:

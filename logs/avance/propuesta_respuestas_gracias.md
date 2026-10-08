@@ -1,6 +1,6 @@
-# Propuesta (v2): respuestas de `despedida` y `agradecimiento` para un «gracias» suelto
+# Propuesta (v3): respuestas de `despedida` y `agradecimiento` para un «gracias» suelto
 
-**Estado: PROPUESTA, no aplicada.** No se tocó `domain.yml` ni `domain_v3.yml`. La revisa el tesista.
+**Estado: PROPUESTA con los textos del tesista (v3), a la espera de su confirmación; NO aplicada.** No se tocó `domain.yml` ni `domain_v3.yml`. La revisa el tesista.
 
 ## Problema
 Un «gracias» suelto se usa tanto para agradecer como para despedirse; las dos intenciones se confunden de forma esperable. Por eso ambas respuestas deben servir para un «gracias» y también para «chau», «hasta luego» o «ya listo», y la de despedida no debe sonar a que contesta un agradecimiento que no hubo.
@@ -15,7 +15,7 @@ Un «gracias» suelto se usa tanto para agradecer como para despedirse; las dos 
 | Respuesta | Texto propuesto |
 |---|---|
 | `utter_agradecimiento` | ¡Un gusto ayudarte! Si necesitas algo más, aquí estoy. |
-| `utter_despedida` | ¡Un gusto ayudarte! Que tengas un buen día. Si te surge otra consulta sobre algún trámite de la municipalidad, escríbeme. |
+| `utter_despedida` | ¡Un gusto ayudarte! Que tengas un buen día. Si necesitas algo más de la municipalidad, escríbeme. |
 
 ## Verificaciones sobre el texto propuesto
 - Apertura común «¡Un gusto ayudarte!» en las dos (en vez de «¡Con gusto!»): vale para un «gracias» y para una despedida.
