@@ -266,7 +266,7 @@ def main():
     reg("Protocolo 2.14 (G3)", "hasta 2 ciclos de refinamiento, parada si la mejora entre ciclos es menor a 0.02 de F1, y una sola evaluación del test con F1 macro de 0.75 o más",
         f"tablero: {ec.CICLOS_MAX} ciclos, mejora mínima {ec.MEJORA_MIN}, F1 mínimo {ec.F1_MIN}; eval_real.py {'usa' if '>= 0.75' in src else 'NO usa'} el umbral 0.75 y guarda un registro de cada evaluación del test",
         "OK" if (ec.CICLOS_MAX, ec.MEJORA_MIN, ec.F1_MIN) == (2, 0.02, 0.75) and ">= 0.75" in src and "test_registro" in src else "DISCREPANCIA")
-    versiones_tupa = sorted((ROOT / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: int(f.stem.rsplit("_v", 1)[1]))
+    versiones_tupa = sorted((ROOT / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: tuple(int(x) for x in f.stem.rsplit("_v", 1)[1].split("_")))
     tp = versiones_tupa[-1] if versiones_tupa else ROOT / "docs" / "tupa" / "Verificacion_TUPA_v0.xlsx"
     etiquetas = ("Prioridad Alta pendientes", "Filas con alerta", "Corregir o Coincide sin confirmar por el tesista")
     ok_tupa = tp.exists() and all(k in parametros(tp, "Resumen") or True for k in etiquetas)

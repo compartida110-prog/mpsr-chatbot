@@ -4,8 +4,8 @@
 
 | Archivo | Qué es |
 |---|---|
-| `Verificacion_TUPA_v10.xlsx` | Una fila por respuesta de trámite (44): compara la respuesta actual de `domain.yml` con el TUPA y otras fuentes oficiales. Los datos de las filas no cambian respecto de la v4; la hoja Resumen aclara que un resultado **propuesto** no es una verificación confirmada: «Verificadas (todo menos Pendiente)» pasó a «Con resultado (propuesto o confirmado)» y se agregó «Confirmadas por el tesista» |
-| `historico/Verificacion_TUPA_v3.xlsx`, `v4` y `v5` | Versiones anteriores (la v4 agregó la columna de marco general orientativo, no verificado) |
+| `Verificacion_TUPA_v10_1.xlsx` | Una fila por respuesta de trámite (44): compara la respuesta actual de `domain.yml` con el TUPA y otras fuentes oficiales. Los datos de las filas no cambian respecto de la v4; la hoja Resumen aclara que un resultado **propuesto** no es una verificación confirmada: «Verificadas (todo menos Pendiente)» pasó a «Con resultado (propuesto o confirmado)» y se agregó «Confirmadas por el tesista» |
+| `historico/Verificacion_TUPA_v3.xlsx`, `v4`, `v5` y `v10` (la v10_1 es la misma con el Resumen recalculado: Corregir 28, No figura 7) | Versiones anteriores (la v4 agregó la columna de marco general orientativo, no verificado) |
 
 **Cómo se mide la compuerta G4** (hoja Resumen): filas de prioridad Alta pendientes = 0, filas con alerta = 0 y filas Corregir o Coincide sin confirmar por el tesista = 0. Las de prioridad Media
 sin verificar conservan la marca [Verificar] y se declaran como limitación. Hoy: 10 de 44 con resultado propuesto, **0 confirmadas por el tesista**, 23 Alta pendientes y 10 sin confirmar

@@ -1,6 +1,6 @@
-# Dry-run de aplicar_tupa.py — Verificacion_TUPA_v10.xlsx
+# Dry-run de aplicar_tupa.py — Verificacion_TUPA_v10_1.xlsx
 
-Generado el 2026-10-07 19:06. **No se escribió domain.yml.** Entran 26 de 44 filas (Resultado = Corregir, texto corregido, confirmada por el tesista, sin alerta).
+Generado el 2026-10-07 19:45. **No se escribió domain.yml.** Entran 26 de 44 filas (Resultado = Corregir, texto corregido, confirmada por el tesista, sin alerta).
 
 No entran: Pendiente: 9; No figura en la fuente: 7; Corregir sin confirmar: 2.
 

@@ -37,7 +37,7 @@ REQUISITOS_APLICAR = [("la partición v3", "corpus/v3_real/dataset_split_v3.csv"
 
 
 def libro_mas_alto():
-    c = sorted((ROOT / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: int(re.search(r"_v(\d+)", f.name).group(1)))
+    c = sorted((ROOT / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: tuple(int(x) for x in re.search(r"_v(\d+(?:_\d+)*)", f.name).group(1).split("_")))
     if not c:
         sys.exit("ERROR: no hay docs/tupa/Verificacion_TUPA_v*.xlsx")
     return c[-1]

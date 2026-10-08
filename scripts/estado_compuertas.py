@@ -100,7 +100,7 @@ class Mundo:
 
     def tupa(self):
         if not self.simulado:
-            c = sorted((self.raiz / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: int(re.search(r"_v(\d+)", f.name).group(1)))
+            c = sorted((self.raiz / "docs" / "tupa").glob("Verificacion_TUPA_v*.xlsx"), key=lambda f: tuple(int(x) for x in re.search(r"_v(\d+(?:_\d+)*)", f.name).group(1).split("_")))
             return c[-1] if c else None
         c = sorted(self.base.glob("**/Verificacion_TUPA*_SIMULADO.xlsx"))
         return c[-1] if c else None
