@@ -36,3 +36,20 @@ No se cambia su texto. Fuentes: «Hoja_Consulta_Municipalidad_v4.xlsx» (llamada
 - Subgerencia de Gestión de Residuos Sólidos 962341074 (solo en un listado externo): no se usa.
 - YouTube institucional (inactivo hace 7 años): no se usa.
 - Libro de reclamaciones, alumbrado, poda y limpieza: ver arriba.
+
+---
+
+# Actualización 2026-10-08 (v10_4): textos del tesista para las cuatro respuestas pendientes — DRY-RUN, aún NO aplicados
+
+Estado: el tesista dio textos exactos y pidió quitar el marcador [Verificar] de estas cuatro. Se aplican solo después de su «aplica» (informe: `logs/avance/aplicar_respuestas_dryrun2.md`). Fuentes según el tesista; Claude no verificó por su cuenta los datos de Electro Puno.
+
+| Respuesta | Qué dice el texto nuevo | Fuente declarada |
+|---|---|---|
+| `reporte_alumbrado_publico` | Lo atiende Electro Puno: Central de Reclamos (051) 366066, portal de reclamos, central (051) 352552 y su correo; riesgo eléctrico: llamar de inmediato | Datos de Electro Puno entregados por el tesista; la secretaria había dicho «creo que debe corresponderle a Electro Puno» (llamada 08/10/2026) |
+| `limpieza_via_publica` | A cargo de la Gerencia de Gestión Ambiental y Residuos Sólidos; solicitud en Mesa de Partes (calle y cuadra) o en la sede, Jr. Jáuregui N.° 321 | Croquis de recojo de basura (firma de esa gerencia) y dirección del portal oficial; la secretaria había dicho «Gerencia de Servicios Públicos y Medio Ambiente» (con «creo») |
+| `poda_arboles` | Se evalúa en la Gerencia de Gestión Ambiental y Residuos Sólidos; Mesa de Partes o sede; si toca cables, avisar a Electro Puno (051) 366066 | Decisión del tesista; la secretaria había dicho que la poda en lugares públicos está prohibida por normativa (sin precisar): el texto nuevo no menciona esa prohibición |
+| `libro_reclamaciones` | Libro en la sede (Jr. Jáuregui N.° 321, Plaza de Armas); existe versión digital; para el acceso, llamar a la central (051) 321201 | Dirección y central del portal oficial; la secretaria solo respondió «Si.»; la v10_4 propone una redacción propia que el texto manual reemplaza |
+
+Condiciones que cumple el texto: sin nombres ni celulares de funcionarios, sin el correo mpsrj@munisanroman.gob.pe y sin «MPSR».
+
+Sigue con marcador solo `constancia_domiciliaria` ([Verificar costo y plazo]): costo y plazo sin fuente; el requisito «recibo de servicio» tampoco está confirmado, aunque el texto vigente lo menciona (queda como observación; no se cambió el texto).

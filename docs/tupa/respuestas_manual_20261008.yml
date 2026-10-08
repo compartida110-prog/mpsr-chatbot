@@ -47,12 +47,20 @@ sugerencia:
   texto: "Puedes dejar tu sugerencia en Mesa de Partes mediante un documento simple, o por los canales de atención ciudadana de la municipalidad."
   bloque: C17
 # redes_sociales_mpsr: ahora usa la fila 47 (#44) de Verificacion_TUPA_v10_3.xlsx (decisión del tesista, 2026-10-08); el texto C18 se retiró
+reporte_alumbrado_publico:
+  texto: "El alumbrado público generalmente lo atiende Electro Puno, la empresa eléctrica. Puedes reportar la falla en su Central de Reclamos al (051) 366066 o en su portal de reclamos: https://www.electropuno.com.pe/virtual.php . También puedes llamar a su central al (051) 352552 o escribir a electropuno@electropuno.com.pe. Si un poste o cable representa riesgo eléctrico, llama de inmediato."
+  bloque: H1
+limpieza_via_publica:
+  texto: "La limpieza de vías públicas está a cargo de la Gerencia de Gestión Ambiental y Residuos Sólidos de la municipalidad. Puedes presentar tu solicitud en Mesa de Partes indicando la calle y la cuadra, o acercarte a la sede en el Jr. Jáuregui N.° 321."
+  bloque: H2
+poda_arboles:
+  texto: "La solicitud de poda de árboles se evalúa en la Gerencia de Gestión Ambiental y Residuos Sólidos. Presenta tu pedido en Mesa de Partes indicando la ubicación exacta del árbol, o acércate a la sede en el Jr. Jáuregui N.° 321. Si el árbol toca cables eléctricos, avisa también a Electro Puno: (051) 366066."
+  bloque: H3
+libro_reclamaciones:
+  texto: "Puedes presentar tu reclamo en el Libro de Reclamaciones, en la sede de la municipalidad (Jr. Jáuregui N.° 321, Plaza de Armas). También existe una versión digital; para consultar cómo acceder, llama a la central: (051) 321201."
+  bloque: H4
 # Respuestas que NO se tocan (bloque E): conservan su texto y su marcador [Verificar…]
-conservar:
-  - libro_reclamaciones
-  - reporte_alumbrado_publico
-  - poda_arboles
-  - limpieza_via_publica
+conservar: []   # el bloque E (libro_reclamaciones, reporte_alumbrado_publico, poda_arboles, limpieza_via_publica) se levantó el 2026-10-08: ahora tienen texto manual (bloque H)
 # Bloque D: nombres oficiales (se aplican a toda respuesta que no esté en `conservar`)
 nombres:
   - desde: "Plataforma de Atención"
