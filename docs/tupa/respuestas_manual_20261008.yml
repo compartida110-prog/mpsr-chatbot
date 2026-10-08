@@ -1,0 +1,66 @@
+# Textos de respuesta indicados por el tesista el 2026-10-08 (fuente: llamada a la secretaria del 08/10/2026 + portal oficial + verificación del tesista).
+# Se usan tal cual. Las claves son intenciones (utter_<intención>). Los marcadores [Verificar…] se quitan solo en estas respuestas.
+# `derivado: true` = el tesista dio la instrucción y el texto lo armó Claude a partir del texto vigente; hay que revisarlo en el dry-run.
+agradecimiento:
+  texto: "¡Un gusto ayudarte! Si necesitas algo más, aquí estoy."
+  bloque: B
+despedida:
+  texto: "¡Un gusto ayudarte! Que tengas un buen día. Si necesitas algo más de la municipalidad, escríbeme."
+  bloque: B
+consulta_deuda_predial:
+  texto: "Para consultar tu deuda de impuesto predial acércate a la Plataforma de Atención al Ciudadano, en la ventanilla de Orientación Tributaria / Rentas, con tu DNI y tu número de contribuyente. Si llevas tu autoavalúo, el trámite puede ser más rápido."
+  bloque: C1
+pago_predial_como:
+  texto: "Puedes pagar tu impuesto predial en las ventanillas de Caja de la municipalidad o en sus agencias: Complejo Deportivo La Capilla, Agencia Municipal San Pablo, Agencia Municipal Rodolfo Diesel, Agencia Municipal Tambopata, Agencia Municipal Néstor Cáceres Velásquez y MAC Juliaca (Real Plaza)."
+  bloque: C2
+pago_arbitrios:
+  texto: "Los arbitrios municipales se pueden pagar junto con el impuesto predial o por separado, en las ventanillas de Caja o en las agencias municipales."
+  bloque: C3
+impuesto_alcabala:
+  texto: "El impuesto de alcabala se paga cuando compras un inmueble, y corresponde al 3% del valor de transferencia (con un tramo inicial inafecto equivalente a 10 UIT). Se cancela dentro del mes siguiente a la compra. Para más información, acércate a la ventanilla de Orientación Tributaria / Rentas."
+  bloque: C4
+  derivado: true   # texto vigente sin el marcador + la frase indicada
+constancia_domiciliaria:
+  texto: "La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde, tu DNI y un recibo de servicio. [Verificar costo y plazo con el TUPA vigente]."
+  bloque: C5
+  derivado: true   # el marcador queda solo para costo y plazo; su redacción es de Claude
+serenazgo_contacto:
+  texto: "Puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana."
+  bloque: C6
+denuncia_seguridad_ciudadana:
+  texto: "Para reportar un problema de seguridad ciudadana puedes comunicarte con serenazgo al 051 329001 (también al 051 329002 y 051 329003). La central de la municipalidad es el (051) 321201. Si es una emergencia, acude a la comisaría más cercana."
+  bloque: C7
+  derivado: true   # «mismos números que (6), conservando la indicación de comisaría»
+mantenimiento_parques:
+  texto: "Presenta una solicitud en Mesa de Partes indicando la ubicación del parque. Si es urgente, acércate a la Gerencia de Servicios Públicos y Medio Ambiente."
+  bloque: C9
+presentar_reclamo:
+  texto: "Puedes presentar tus quejas, reclamos o sugerencias en Mesa de Partes, con un escrito simple que indique los hechos y adjuntando tu DNI. También puedes usar la Mesa de Partes Virtual: https://san-roman.siamsoft.pe/portal-ciudadano"
+  bloque: C13
+estado_reclamo:
+  texto: "Puedes consultar el estado de tu trámite en Mesa de Partes con tu número de expediente, o en línea desde Trámite documentario / Seguimiento de trámites en la web: https://munisanroman.gob.pe/web/"
+  bloque: C14
+queja_atencion:
+  texto: "Puedes presentar tu queja por la atención recibida en Mesa de Partes, detallando lo ocurrido."
+  bloque: C16
+sugerencia:
+  texto: "Puedes dejar tu sugerencia en Mesa de Partes mediante un documento simple, o por los canales de atención ciudadana de la municipalidad."
+  bloque: C17
+redes_sociales_mpsr:
+  texto: "Puedes encontrar a la municipalidad en su web https://munisanroman.gob.pe/web/, en Facebook (https://web.facebook.com/munisanromanjuliaca), Instagram (https://www.instagram.com/muni_san_roman/) y TikTok (https://www.tiktok.com/@munisanroman)."
+  bloque: C18
+# Respuestas que NO se tocan (bloque E): conservan su texto y su marcador [Verificar…]
+conservar:
+  - libro_reclamaciones
+  - reporte_alumbrado_publico
+  - poda_arboles
+  - limpieza_via_publica
+# Bloque D: nombres oficiales (se aplican a toda respuesta que no esté en `conservar`)
+nombres:
+  - desde: "Plataforma de Atención"
+    hasta: "Plataforma de Atención al Ciudadano"
+    no_repetir_si_sigue: " al Ciudadano"
+  - desde: "área de Servicios Públicos"
+    hasta: "Gerencia de Servicios Públicos y Medio Ambiente"
+  - desde: "Área de Servicios Públicos"
+    hasta: "Gerencia de Servicios Públicos y Medio Ambiente"
