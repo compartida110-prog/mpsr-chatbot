@@ -1,0 +1,2 @@
+fecha,utterance_id,intent,real_id,motivo
+2026-10-08,U0554,agradecimiento,R0185,idéntica (texto normalizado) a la frase real R0185; la real se conserva para validación/test y esta copia sintética se excluye del entrenamiento; el corpus sintético no se edita
