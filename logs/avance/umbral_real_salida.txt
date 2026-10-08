@@ -1,0 +1,16 @@
+UMBRAL DE CONFIANZA — SELECCIÓN EN VALIDACIÓN REAL
+Predicciones: C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\logs\v3_real\RASA-e100-b64-d20-s42\predictions_validation_conf.csv (71 frases) | lambda = 2 | ambiguity_threshold = 0.1
+Puntaje = aciertos respondidos − 2 × errores respondidos
+
+         t  respondidas  aciertos_respondidos  errores_respondidos  abstenciones  correctas_perdidas  errores_atrapados cobertura precision_respondida  puntaje
+sin umbral           71                    50                   21             0                   0                  0    100.0%                70.4%      8.0
+      0.30           61                    48                   13            10                   2                  8     85.9%                78.7%     22.0
+      0.40           55                    44                   11            16                   6                 10     77.5%                80.0%     22.0
+      0.50           50                    41                    9            21                   9                 12     70.4%                82.0%     23.0
+      0.60           45                    38                    7            26                  12                 14     63.4%                84.4%     24.0
+      0.70           38                    33                    5            33                  17                 16     53.5%                86.8%     23.0
+      0.80           35                    31                    4            36                  19                 17     49.3%                88.6%     23.0
+
+UMBRAL ELEGIDO Y CONGELADO: t = 0.60 (puntaje 24.0; cobertura 63.4%; precisión respondida 84.4%)
+Sin umbral: puntaje 8.0. El umbral MEJORA el puntaje en la validación real -> se pueden promover domain_v3.yml y rasa_config_v3_fallback.yml a vigentes (documéntalo en incident_log.csv)
+Este análisis se hizo sin leer ningún dato de test.

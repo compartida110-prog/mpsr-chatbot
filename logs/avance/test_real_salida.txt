@@ -1,0 +1,77 @@
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+corpus v3: train=707 (sintético) | validation=71 (real) | test=114 (real) | intenciones=54
+
+SVM (C=10) — test real, semillas [10, 20, 30, 40, 50]:
+  BASE-SVM-C10-s10                   accuracy=0.6842  precision_macro=0.7285  recall_macro=0.6790  f1_macro=0.6676  balanced_accuracy=0.6790
+  BASE-SVM-C10-s20                   accuracy=0.6842  precision_macro=0.7285  recall_macro=0.6790  f1_macro=0.6676  balanced_accuracy=0.6790
+  BASE-SVM-C10-s30                   accuracy=0.6842  precision_macro=0.7285  recall_macro=0.6790  f1_macro=0.6676  balanced_accuracy=0.6790
+  BASE-SVM-C10-s40                   accuracy=0.6842  precision_macro=0.7285  recall_macro=0.6790  f1_macro=0.6676  balanced_accuracy=0.6790
+  BASE-SVM-C10-s50                   accuracy=0.6842  precision_macro=0.7285  recall_macro=0.6790  f1_macro=0.6676  balanced_accuracy=0.6790
+
+Rasa/DIET (e100 b64 d20) — test real, semillas [10, 20, 30, 40, 50]:
+  RASA-e100-b64-d20-s10 (330s)       accuracy=0.7018  precision_macro=0.7407  recall_macro=0.7068  f1_macro=0.6898  balanced_accuracy=0.7068
+  RASA-e100-b64-d20-s20 (331s)       accuracy=0.6930  precision_macro=0.7111  recall_macro=0.6944  f1_macro=0.6647  balanced_accuracy=0.6944
+  RASA-e100-b64-d20-s30 (345s)       accuracy=0.7018  precision_macro=0.7361  recall_macro=0.7068  f1_macro=0.6885  balanced_accuracy=0.7068
+  RASA-e100-b64-d20-s40 (341s)       accuracy=0.7018  precision_macro=0.7164  recall_macro=0.7037  f1_macro=0.6798  balanced_accuracy=0.7037
+  RASA-e100-b64-d20-s50 (359s)       accuracy=0.7281  precision_macro=0.7549  recall_macro=0.7253  f1_macro=0.7108  balanced_accuracy=0.7253
+
+EVALUACIÓN SOBRE LENGUAJE REAL — TEST
+
+Test: 114 frases reales, 54 intenciones | validación: 71 frases | entrenamiento sintético: 707
+IC95 % por bootstrap sobre frases (1000 remuestreos, seed 42); media sobre las semillas [10, 20, 30, 40, 50]
+
+Rasa NLU / DIET:
+  F1 macro test   = 0.6867  IC95 % [0.5703, 0.7072]  (DE entre semillas 0.0168)
+  Accuracy test   = 0.7053  IC95 % [0.6333, 0.7754]
+  Balanced acc.   = 0.7074
+  F1 macro validación (seed 42) = 0.6809  IC95 % [0.5414, 0.7370]
+  Criterio F1 >= 0.75: NO CUMPLE (punto); límite inferior del IC = 0.5703
+
+  10 confusiones principales (veces por semilla): presentar_reclamo->estado_reclamo (2.0); licencia_funcionamiento_costo->licencia_funcionamiento_requisitos (2.0); despedida->agradecimiento (1.6); licencia_edificacion_costo->licencia_edificacion_requisitos (1.2); certificado_posesion->constancia_domiciliaria (1.2); inspeccion_tecnica->requisitos_defensa_civil (1.0); pago_arbitrios->serenazgo_contacto (1.0); licencia_funcionamiento_requisitos->denuncia_seguridad_ciudadana (1.0); contacto_telefonico->redes_sociales_mpsr (1.0); fuera_de_alcance->ubicacion_oficinas (1.0)
+  CONFUSIÓN ESPERABLE despedida ↔ agradecimiento (se reporta aparte; «gracias» se usa también para despedirse; no cambia el criterio de las demás intenciones). Media por semilla, filas = real:
+      real / predicha         despedida  agradecimiento   otra   (soporte)
+      despedida                     0.4             1.6    0.0   (2)
+      agradecimiento                0.0             3.0    0.0   (3)
+      Errores cruzados del par (media por semilla): 1.6
+  10 intenciones con peor F1: licencia_funcionamiento_requisitos (0.00), denuncia_seguridad_ciudadana (0.18), despedida (0.23), certificado_posesion (0.27), estado_tramite (0.27), licencia_funcionamiento_costo (0.35), licencia_edificacion_costo (0.37), impuesto_alcabala (0.37), consulta_deuda_predial (0.40), presentar_reclamo (0.46)
+
+TF-IDF + SVM:
+  F1 macro test   = 0.6676  IC95 % [0.5469, 0.7065]  (DE entre semillas 0.0000)
+  Accuracy test   = 0.6842  IC95 % [0.5965, 0.7719]
+  Balanced acc.   = 0.6790
+  F1 macro validación (seed 42) = 0.6304  IC95 % [0.5021, 0.7058]
+  Criterio F1 >= 0.75: NO CUMPLE (punto); límite inferior del IC = 0.5469
+
+  10 confusiones principales (veces por semilla): denuncia_seguridad_ciudadana->fuera_de_alcance (2.0); licencia_edificacion_requisitos->licencia_funcionamiento_requisitos (2.0); despedida->agradecimiento (2.0); impuesto_alcabala->fuera_de_alcance (1.0); inspeccion_tecnica->requisitos_defensa_civil (1.0); limpieza_via_publica->fuera_de_alcance (1.0); contacto_telefonico->ubicacion_oficinas (1.0); pago_arbitrios->horario_recojo_basura (1.0); estado_tramite->negar (1.0); inspeccion_tecnica->fuera_de_alcance (1.0)
+  CONFUSIÓN ESPERABLE despedida ↔ agradecimiento (se reporta aparte; «gracias» se usa también para despedirse; no cambia el criterio de las demás intenciones). Media por semilla, filas = real:
+      real / predicha         despedida  agradecimiento   otra   (soporte)
+      despedida                     0.0             2.0    0.0   (2)
+      agradecimiento                0.0             3.0    0.0   (3)
+      Errores cruzados del par (media por semilla): 2.0
+  10 intenciones con peor F1: licencia_edificacion_requisitos (0.00), licencia_edificacion_costo (0.00), despedida (0.00), denuncia_seguridad_ciudadana (0.00), impuesto_alcabala (0.00), contacto_telefonico (0.00), inspeccion_tecnica (0.00), certificado_posesion (0.00), licencia_funcionamiento_requisitos (0.25), fuera_de_alcance (0.25)
+
+COMPARACIÓN RASA/DIET vs. SVM (mismas frases de test):
+  Diferencia de F1 macro (Rasa − SVM) = +0.0191  IC95 % bootstrap pareado [-0.0588, +0.0816]  -> el IC incluye 0: no hay diferencia demostrable
+  McNemar exacto (Rasa por mayoría entre semillas vs. SVM): solo SVM acierta 9, solo Rasa acierta 17, p = 0.1686
+  McNemar exacto por semilla de Rasa: s10: p=0.815; s20: p=1.000; s30: p=0.845; s40: p=0.832; s50: p=0.442
+
+Veces que se evaluó el test real: {'rasa': 1, 'svm': 1} (registro: test_registro.json)
+
+Umbral congelado: se aplica a las predicciones que se acaban de guardar (misma pasada; no se evalúa el test otra vez ni se reentrena):
+UMBRAL DE CONFIANZA APLICADO A LAS PREDICCIONES DEL TEST YA GUARDADAS (t = 0.60 congelado el 2026-10-08T08:52:14; semillas [10, 20, 30, 40, 50]; promedio)
+
+No se reentrenó ni se volvió a evaluar el test: se usaron las predicciones de la evaluación única del 2026-10-08T09:22:01 (114 frases por semilla); aplicado en la misma pasada de esa evaluación.
+
+Sin umbral: respondidas 114.0 | aciertos 80.4 | errores 33.6 | abstenciones 0.0 (correctas perdidas 0.0, errores atrapados 0.0) | cobertura 100.0% | precisión respondida 70.5% | puntaje 13.2
+Con umbral t=0.60: respondidas 76.6 | aciertos 66.0 | errores 10.6 | abstenciones 37.4 (correctas perdidas 14.4, errores atrapados 23.0) | cobertura 67.2% | precisión respondida 86.1% | puntaje 44.8
+
+Veces que se evaluó el test: {'rasa': 1, 'svm': 1} (esta aplicación no suma una evaluación); aplicaciones del umbral: 1

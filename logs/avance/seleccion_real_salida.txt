@@ -1,0 +1,34 @@
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\tensorflow\lite\python\util.py:52: DeprecationWarning: jax.xla_computation is deprecated. Please use the AOT APIs.
+  from jax import xla_computation as _xla_computation
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\rasa\core\tracker_store.py:1044: MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base: DeclarativeMeta = declarative_base()
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:66: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+  ).setParseAction(self._family)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:127: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  self._parser.parseString(pattern)
+C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\venv\lib\site-packages\matplotlib\fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  self._parser.resetCache()
+corpus v3: train=707 (sintético) | validation=71 (real) | test=114 (real) | intenciones=54
+
+SVM — selección en validación real (seed 42):
+  BASE-SVM-C0.1-s42                  accuracy=0.0423  precision_macro=0.0008  recall_macro=0.0185  f1_macro=0.0015  balanced_accuracy=0.0185
+  BASE-SVM-C1-s42                    accuracy=0.5634  precision_macro=0.5276  recall_macro=0.5648  f1_macro=0.5248  balanced_accuracy=0.5648
+  BASE-SVM-C10-s42                   accuracy=0.6761  precision_macro=0.6293  recall_macro=0.6698  f1_macro=0.6304  balanced_accuracy=0.6698
+  => C seleccionado: 10 (F1 macro validación = 0.6304)
+
+Rasa/DIET — selección en validación real (12 combinaciones, seed 42):
+  RASA-e100-b64-d20-s42 (307s)       accuracy=0.7042  precision_macro=0.6744  recall_macro=0.7222  f1_macro=0.6809  balanced_accuracy=0.7222
+  RASA-e100-b64-d50-s42 (280s)       accuracy=0.6761  precision_macro=0.6343  recall_macro=0.7037  f1_macro=0.6414  balanced_accuracy=0.7037
+  RASA-e100-b128-d20-s42 (250s)      accuracy=0.6338  precision_macro=0.5710  recall_macro=0.6543  f1_macro=0.5846  balanced_accuracy=0.6543
+  RASA-e100-b128-d50-s42 (260s)      accuracy=0.6761  precision_macro=0.6111  recall_macro=0.7037  f1_macro=0.6327  balanced_accuracy=0.7037
+  RASA-e150-b64-d20-s42 (523s)       accuracy=0.6901  precision_macro=0.6574  recall_macro=0.7037  f1_macro=0.6525  balanced_accuracy=0.7037
+  RASA-e150-b64-d50-s42 (600s)       accuracy=0.6338  precision_macro=0.5556  recall_macro=0.6667  f1_macro=0.5858  balanced_accuracy=0.6667
+  RASA-e150-b128-d20-s42 (533s)      accuracy=0.6901  precision_macro=0.6481  recall_macro=0.7160  f1_macro=0.6506  balanced_accuracy=0.7160
+  RASA-e150-b128-d50-s42 (531s)      accuracy=0.6479  precision_macro=0.5988  recall_macro=0.6852  f1_macro=0.6080  balanced_accuracy=0.6852
+  RASA-e200-b64-d20-s42 (766s)       accuracy=0.7042  precision_macro=0.6651  recall_macro=0.7438  f1_macro=0.6802  balanced_accuracy=0.7438
+  RASA-e200-b64-d50-s42 (726s)       accuracy=0.6056  precision_macro=0.5247  recall_macro=0.6327  f1_macro=0.5494  balanced_accuracy=0.6327
+  RASA-e200-b128-d20-s42 (707s)      accuracy=0.7042  precision_macro=0.6543  recall_macro=0.7160  f1_macro=0.6580  balanced_accuracy=0.7160
+  RASA-e200-b128-d50-s42 (645s)      accuracy=0.6479  precision_macro=0.5972  recall_macro=0.6790  f1_macro=0.6080  balanced_accuracy=0.6790
+  => combinación seleccionada: epochs=100 batch_size=64 embedding_dimension=20 (F1 macro validación = 0.6809)
+
+Selección guardada en C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\logs\v3_real\seleccion_final.json

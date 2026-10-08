@@ -1,13 +1,13 @@
 {
-  "generado": "2026-10-07T19:45:35",
+  "generado": "2026-10-08T09:23:28",
   "compuertas_cumplidas_con_datos_reales": 2,
-  "compuertas_cumplidas_con_datos_simulados": 2,
+  "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
   "compuertas": [
     {
       "estado": "Cumplida",
       "evidencia": "logs/v3_real/ingesta_reporte.txt",
-      "nota": "Transcritos 28/15 (≥ 15); intenciones con menos de 3 frases: 0.",
+      "nota": "Transcritos 32/15 (≥ 15); intenciones con menos de 3 frases: 0.",
       "simulado": false,
       "fecha": null,
       "estado_base": "Cumplida",
@@ -29,13 +29,13 @@
       "criterio": "Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista"
     },
     {
-      "estado": "Cumplida (Simulado)",
-      "evidencia": "evidencias/simulado_demostracion/20261005_demostracion/03_evaluacion/test_registro_SIMULADO.json",
-      "nota": "Ciclos de refinamiento: 0/2. Única evaluación del test real: F1 macro = 0.8206 (≥ 0.75).",
-      "simulado": true,
-      "fecha": "2026-10-05T16:21:17+00:00",
-      "estado_base": "Cumplida",
-      "datos": "Simulado",
+      "estado": "No cumplida",
+      "evidencia": "logs/v3_real/test_registro.json",
+      "nota": "Ciclos de refinamiento: 0/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75).",
+      "simulado": false,
+      "fecha": "2026-10-08T14:22:01+00:00",
+      "estado_base": "No cumplida",
+      "datos": "Real",
       "id": "G3",
       "nombre": "Calidad con lenguaje real",
       "criterio": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75"
