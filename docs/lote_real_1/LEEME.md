@@ -51,3 +51,15 @@
 a la base editando el XML (conserva validaciones, formato y fórmulas), se detiene sin escribir si algo no cuadra o si el destino ya tiene datos, y no modifica ni la base ni la fuente. El resultado queda sin valores guardados y con
 recálculo completo al abrir: ábrelo y guárdalo una vez en Excel. `scripts/libro_xml.py` verifica además que las fórmulas de cada fila apunten a su propia fila (así se detectó el error antiguo de la columna «En blanco»
 de P26–P28). **La ingesta solo procesa participantes con Estado = «Transcrito»**: si un participante tiene frases pero sigue «Pendiente», sus frases se ignoran (el reporte lo avisa).
+
+### Lote 1c (complemento: formulario G)
+
+Motivo: con los descartes previstos (un duplicado exacto y una frase ambigua), `agradecimiento` y `despedida` quedarían con 2 frases (mínimo 3, con textos distintos). El lote 1c reúne frases nuevas **solo de las situaciones S46 (despedida) y S47 (agradecimiento)**
+con tres personas nuevas: **P29, P30 y P31, formulario G** (ids nuevos; no se reutiliza ninguno). `situaciones_lote1c_v1.csv` suma G a esas dos situaciones sin cambiar A–F ni el catálogo.
+
+- **Libro:** `python scripts/ampliar_libro.py --base <libro> --salida <libro nuevo> --codigos P29,P30,P31 --forma G --situaciones S46,S47` agrega los tres participantes (Estado «Pendiente») y 6 filas de respuestas, **sin datos**, a un libro vacío o ya lleno;
+  los datos anteriores no cambian. Hay una copia ya ampliada en `privado/` (fuera de Git). Ábrela y guárdala una vez en Excel para que recalcule.
+- **Ingesta:** `python scripts/ingest_real_lote.py --libro <libro> --nuevos P29,P30,P31`. Aparte de lo de siempre, el reporte avisa **«FRASE NUEVA que repite el texto normalizado de una existente»** y si un mismo texto aparece con intenciones esperadas distintas.
+- **El formulario G impreso** (consentimiento y las dos situaciones) lo prepara el tesista; no forma parte del repositorio todavía.
+- **Después de ingestar el 1c** se aplican, con motivo y fecha, el descarte de R0147 y la exclusión de R0136, se verifica que las 54 intenciones tengan al menos 3 frases con textos distintos y se recalculan los conteos antes de partir.
+  Hasta entonces la partición y las etapas siguientes están en espera.

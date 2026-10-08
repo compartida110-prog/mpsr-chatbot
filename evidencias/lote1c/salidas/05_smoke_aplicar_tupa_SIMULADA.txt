@@ -1,0 +1,12 @@
+inicio: 2026-10-07 20:28:46
+$ python tests/smoke_aplicar_tupa.py   (SIMULADA)
+SIMULADA — carpeta temporal (datos FALSOS): C:\Users\LUISMA~1\AppData\Local\Temp\aplicar_tupa_PRUEBA_SIMULADA_gis2eh7x
+  [PASS] dry-run: entran 2 de 5 (Corregir + texto + confirmadas); las otras 3 quedan fuera
+  [PASS] dry-run: no escribe domain.yml y escribe el informe
+  [PASS] --aplicar sin partición ni evaluación se niega y no toca domain.yml
+  [PASS] --aplicar con partición y evaluación: reemplaza utter_a y utter_b y deja utter_c
+  [PASS] conserva las comillas y los dos puntos del texto, el resto del archivo igual y la copia previa
+  [PASS] una intención que no existe en domain.yml bloquea la aplicación
+
+RESULTADO (SIMULADA): 6/6 comprobaciones PASS
+fin: 2026-10-07 20:28:55

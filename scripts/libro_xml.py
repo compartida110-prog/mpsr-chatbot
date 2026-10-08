@@ -65,19 +65,24 @@ def celda_vacia(xml, ref):
 
 
 def agregar_fila_f(xml):
-    """Agrega «Formulario F» después de «Formulario E» en la tabla «Transcritos por formulario» del Resumen (hoja Resumen)."""
-    if re.search(r">Formulario F<", xml):
+    return agregar_fila_formulario(xml, "F", "E")
+
+
+def agregar_fila_formulario(xml, nueva_letra, previa):
+    """Agrega «Formulario <nueva>» después de «Formulario <previa>» (la última fila) en la tabla «Transcritos por formulario» del Resumen."""
+    if re.search(r">Formulario %s<" % nueva_letra, xml):
         return xml
-    m = re.search(r'<row r="(\d+)"[^>]*>(?:(?!</row>).)*?COUNTIFS\(Participantes!\$B\$\d+:\$B\$\d+,(?:&quot;|")E(?:&quot;|")(?:(?!</row>).)*</row>', xml, re.S)
+    q = r'(?:&quot;|")'
+    m = re.search(r'<row r="(\d+)"[^>]*>(?:(?!</row>).)*?COUNTIFS\(Participantes!\$B\$\d+:\$B\$\d+,' + q + previa + q + r'(?:(?!</row>).)*</row>', xml, re.S)
     if not m:
-        raise KeyError("no encuentro la fila «Formulario E» del Resumen")
+        raise KeyError(f"no encuentro la fila «Formulario {previa}» del Resumen")
     fila, n = m.group(0), int(m.group(1))
     nueva = desplazar_fila(fila, n, n + 1)
-    nueva = re.sub(r"(COUNTIFS\(Participantes!\$B\$\d+:\$B\$\d+,(?:&quot;|\"))E((?:&quot;|\"))", r"\1F\2", nueva)
-    nueva = re.sub(r"(Participantes!\$C\$\d+:\$C\$\d+,(?:&quot;|\")Aplicado)", r"\1", nueva)
-    nueva = re.sub(r'<c r="A%d"([^>]*?)(?: t="s")?><v>\d+</v></c>' % (n + 1), lambda mm: inline(f"A{n + 1}", re.search(r's="(\d+)"', mm.group(1)).group(1), "Formulario F"), nueva)
-    nueva = re.sub(r"(<f[^>]*>[^<]*</f>)<v>[^<]*</v>", r"\1", nueva)
-    nueva = re.sub(r"(<f[^>]*/>)<v>[^<]*</v>", r"\1", nueva)
+    nueva = re.sub(r"(COUNTIFS\(Participantes!\$B\$\d+:\$B\$\d+," + q + ")" + previa + "(" + q + ")", lambda mm: mm.group(1) + nueva_letra + mm.group(2), nueva)
+    nueva = re.sub(r'<c r="A%d"([^>]*?)(?: t="s")?><v>\d+</v></c>' % (n + 1), lambda mm: inline(f"A{n + 1}", re.search(r's="(\d+)"', mm.group(1)).group(1), f"Formulario {nueva_letra}"), nueva)
+    nueva = re.sub(r'(<c r="A%d"[^>]*t="inlineStr"><is><t[^>]*>)Formulario [A-Z](</t>)' % (n + 1), lambda mm: mm.group(1) + f"Formulario {nueva_letra}" + mm.group(2), nueva)
+    nueva = re.sub(r"(<f[^>]*>[^<]*</f>)<v>[^<]*</v>", r"", nueva)
+    nueva = re.sub(r"(<f[^>]*/>)<v>[^<]*</v>", r"", nueva)
     xml = xml.replace(fila, fila + nueva, 1)
     return re.sub(r'<dimension ref="A1:C%d"/>' % n, f'<dimension ref="A1:C{n + 1}"/>', xml)
 

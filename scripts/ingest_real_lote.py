@@ -26,7 +26,7 @@ Nunca genera ni completa frases reales: solo transforma lo que el tesista transc
 Libro de transcripción (--libro): se lee directamente el .xlsx (solo lectura; no se exporta a CSV desde Excel). Las columnas de entrada son valores escritos a mano:
   Participantes: participant_code, form, Estado, age_range, vive_en_juliaca, tramite_12m, Consentimiento firmado
   Respuestas:    participant_code, form, scenario_id, text      (el encabezado se busca por texto en las primeras 10 filas)
-Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P28,
+Solo se procesan los participantes con Estado = Transcrito. Errores BLOQUEANTES (sin salidas): Transcrito sin Consentimiento firmado «Sí», códigos fuera de P01–P31,
 Estado fuera de la lista, o una pestaña Situaciones que no coincide con el catálogo (scenario_id, form, intención y texto). Un texto vacío o de solo espacios es un blanco:
 no se exporta como respuesta pero se registra como blanco derivado. Salidas en --out-dir (por defecto corpus/real): lote1_respuestas.csv, lote1_participantes.csv y
 lote1_blancos_derivados.csv (participant_code, scenario_id), UTF-8, coma, sin filas vacías; después sigue la ingesta de siempre. El reporte agrega «¿Listo para la Parte B?».
@@ -175,8 +175,19 @@ def ingestar(a):
     for rid, p, tipos in pii:
         L.append(f"        {rid} ({p}): {', '.join(tipos)}")
     L.append(f"  [4] Duplicados exactos entre participantes distintos: {dup['_norm'].nunique()} textos")
+    nuevos = {c.strip() for c in getattr(a, "nuevos", "").split(",") if c.strip()}
+    n_nuevas_rep, n_conflicto = 0, 0
     for _, g in dup.groupby("_norm"):
-        L.append(f"        {g['real_id'].tolist()} ({g['intent_esperada'].tolist()})")
+        marca = ""
+        if nuevos and g["participant_code"].isin(nuevos).any() and (~g["participant_code"].isin(nuevos)).any():
+            marca += " <- FRASE NUEVA que repite el texto normalizado de una existente"
+            n_nuevas_rep += 1
+        if g["intent_esperada"].nunique() > 1:
+            marca += " <- MISMO TEXTO con intenciones esperadas distintas"
+            n_conflicto += 1
+        L.append(f"        {g['real_id'].tolist()} ({g['intent_esperada'].tolist()}){marca}")
+    if nuevos:
+        L.append(f"        Participantes del complemento ({', '.join(sorted(nuevos))}): frases nuevas que repiten una existente: {n_nuevas_rep}; textos con intenciones distintas: {n_conflicto}")
     L.append(f"  [5] Frases idénticas a una del corpus sintético: {len(ident_sint)}" + (f" -> {ident_sint['real_id'].tolist()} (provocarían fuga si pasan a validación/test)" if len(ident_sint) else ""))
     L.append(f"  [6] Intenciones con menos de {MIN_FRASES} frases: {len(pocas)}" + (" -> " + ", ".join(f"{i} ({n})" for i, n in pocas.items()) if len(pocas) else ""))
     L.append(f"  [7] Categoría del catálogo distinta a la del corpus sintético: {len(dif_cat)}" + (f" -> {dif_cat['scenario_id'].tolist()} (se usa la del corpus)" if len(dif_cat) else ""))
@@ -285,7 +296,7 @@ def hoja_a_tabla(wb, nombre, columnas, ancla=None):
 
 
 ESTADOS_LIBRO = {"Pendiente", "Aplicado", "Transcrito"}
-CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2[0-8])$")  # P01–P28 (lote 1) y P26–P28 (lote 1b)
+CODIGO_LIBRO = re.compile(r"^P(0[1-9]|1\d|2\d|3[01])$")  # P01–P31 (lote 1, P26–P28 del 1b y P29–P31 del 1c)
 COLS_PART = ["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado"]
 
 
@@ -303,7 +314,7 @@ def procesar_libro(wb, a):
     for nombre, tabla in (("Participantes", part), ("Respuestas", resp)):
         malos = sorted({c for c in tabla["participant_code"] if not CODIGO_LIBRO.match(c)})
         if malos:
-            errores.append(f"{nombre}: códigos fuera de P01–P28: {malos}")
+            errores.append(f"{nombre}: códigos fuera de P01–P31: {malos}")
     malos = part[~part["Estado"].isin(ESTADOS_LIBRO)]
     if len(malos):
         errores.append(f"Participantes: Estado fuera de la lista {sorted(ESTADOS_LIBRO)}: {[(c, e) for c, e in zip(malos['participant_code'], malos['Estado'])][:10]}")
@@ -412,6 +423,7 @@ def main():
     ap.add_argument("--aplicar-revision", action="store_true", help="aplica lote1_revision_etiquetas.csv y genera lote1_real_final.csv")
     ap.add_argument("--revision", default="", help="ruta de la revisión (por defecto corpus/real/lote1_revision_etiquetas.csv)")
     ap.add_argument("--forzar-revision", action="store_true", help="sobrescribe la plantilla de revisión aunque ya tenga decisiones")
+    ap.add_argument("--nuevos", default="", help="códigos de los participantes de un complemento (p. ej. P29,P30,P31): el reporte avisa si una frase suya repite el texto normalizado de una existente")
     ap.add_argument("--libro", default="", help="libro de transcripción (hojas Participantes y Respuestas) en lugar de los dos CSV; solo se lee")
     ap.add_argument("--permitir-simulado", action="store_true", help="solo para pruebas: acepta datos simulados y escribe en una carpeta temporal")
     ap.add_argument("--demo-simulada", action="store_true", help="demostración con datos simulados: escribe en evidencias/simulado_demostracion/<ejecución>/ con el marcador SIMULADO")

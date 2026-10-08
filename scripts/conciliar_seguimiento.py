@@ -47,7 +47,7 @@ CODIGO = re.compile(r"^P\d{2}$")
 
 def forma_de(codigo):
     n = int(codigo[1:])
-    return "F" if n > 25 else "ABCDE"[(n - 1) % 5]  # misma rotación que la hoja Participantes; P26–P28 son el lote 1b (formulario F)
+    return "G" if n > 28 else "F" if n > 25 else "ABCDE"[(n - 1) % 5]  # misma rotación que la hoja Participantes; P26–P28 son el lote 1b (formulario F)
 
 
 def texto(v):

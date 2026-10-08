@@ -160,9 +160,9 @@ def main():
 
     def codigo_fuera(wb):
         ws = wb["Participantes"]
-        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P29"
+        ws.cell(fila_de(ws, 1, "P25"), 1).value = "P32"
     c, t = ingerir(variante("codigo_fuera.xlsx", codigo_fuera), "cod")
-    check("un código fuera de P01–P28 bloquea", c == 2 and "P29" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
+    check("un código fuera de P01–P31 bloquea", c == 2 and "P32" in t and not (W / "cod" / "lote1_respuestas.csv").exists(), t[-300:])
 
     def estado_malo(wb):
         ws = wb["Participantes"]
@@ -265,7 +265,7 @@ def main():
     formas = cf.formas_por_situacion(cat_df, CATALOGO)
     F4 = ["S02", "S24", "S34", "S39"]
     check("el complemento suma F solo a S02, S24, S34 y S39, sin quitar su formulario A–E",
-          {s for s, f in formas.items() if "F" in f} == set(F4) and all(len(f) == 1 for s, f in formas.items() if s not in F4) and formas["S02"] == {"B", "F"} and formas["S24"] == {"D", "F"}, str({k: v for k, v in formas.items() if len(v) > 1}))
+          {s for s, f in formas.items() if "F" in f} == set(F4) and all(len(f) == 1 for s, f in formas.items() if s not in F4 + ["S46", "S47"]) and formas["S02"] == {"B", "F"} and formas["S24"] == {"D", "F"}, str({k: v for k, v in formas.items() if len(v) > 1}))
     check("las 56 situaciones siguen en su formulario A–E (el catálogo del tesista no cambió)", all(next(iter(cat_df[cat_df.scenario_id == s].form)) in formas[s] for s in formas) and cf.por_formulario(formas)["F"] == set(F4))
     import conciliar_seguimiento as cs
     check("conciliar: P26 a P28 son del formulario F y P01 a P25 conservan la rotación A–E", [cs.forma_de(c) for c in ("P26", "P27", "P28")] == ["F"] * 3 and "".join(cs.forma_de(f"P{k:02d}") for k in range(1, 6)) == "ABCDE")
@@ -349,6 +349,50 @@ def main():
     check("si la base ya tiene una frase en el destino, se detiene sin escribir (nunca sobrescribe)", c == 2 and "no se sobrescribe" in t and not (W / "choque.xlsx").exists(), t[-300:])
     c, t = run("combinar_libros.py", "--base", LIBRO, "--fuente", LIBRO, "--salida", LIBRO)
     check("--salida no puede ser la base ni la fuente", c != 0 and "no puede ser" in t)
+
+    # ------------------------------------------------------------------ lote 1c (formulario G: P29–P31, S46 y S47)
+    print("\nLote 1c (formulario G): P29–P31 con S46 y S47")
+    check("el complemento del lote 1c suma G solo a S46 y S47 (y el F sigue en sus 4 situaciones)", {s for s, f in formas.items() if "G" in f} == {"S46", "S47"} and formas["S46"] == {"A", "G"} and formas["S47"] == {"B", "G"} and cf.por_formulario(formas)["G"] == {"S46", "S47"}, str({k: v for k, v in formas.items() if len(v) > 1}))
+    check("conciliar: P29 a P31 son del formulario G", [cs.forma_de(c) for c in ("P29", "P30", "P31")] == ["G"] * 3 and cs.forma_de("P28") == "F")
+    ampl = W / "ampliado_1c.xlsx"
+    h_base = hashlib.sha256(V13.read_bytes()).hexdigest()
+    c, t = run("ampliar_libro.py", "--base", V13, "--salida", ampl, "--codigos", "P29,P30,P31", "--forma", "G", "--situaciones", "S46,S47")
+    check("ampliar_libro.py agrega P29–P31 (G) y 6 filas de respuestas al libro V1.3 vacío sin modificarlo", c == 0 and "6 filas de respuestas" in t and hashlib.sha256(V13.read_bytes()).hexdigest() == h_base, t[-300:])
+    zc2 = zipfile.ZipFile(ampl)
+    check("el libro ampliado: fórmulas de las filas nuevas apuntan a su fila, rangos extendidos (4:34 y 4:301), Formulario G en el Resumen y recálculo al abrir",
+          not lx.verificar_filas(zc2.read("xl/worksheets/sheet1.xml").decode(), range(4, 35)) and not lx.verificar_filas(zc2.read("xl/worksheets/sheet2.xml").decode(), range(4, 302))
+          and "$4:$A$301" in zc2.read("xl/worksheets/sheet1.xml").decode() and "$C$34" in zc2.read("xl/worksheets/sheet3.xml").decode() and "Formulario G" in zc2.read("xl/worksheets/sheet3.xml").decode() and 'fullCalcOnLoad="1"' in zc2.read("xl/workbook.xml").decode(), "")
+    c, t = run("ampliar_libro.py", "--base", comb, "--salida", W / "choque_ids.xlsx", "--codigos", "P05", "--forma", "G", "--situaciones", "S46,S47")
+    check("ampliar_libro.py no reutiliza ids: un código que ya existe se rechaza", c != 0 and "no se reutilizan ids" in t and not (W / "choque_ids.xlsx").exists(), t[-200:])
+    # libro lleno (el combinado de prueba) + 1c: los datos anteriores no cambian y las filas nuevas salen vacías
+    ampl2 = W / "combinado_1c.xlsx"
+    c, t = run("ampliar_libro.py", "--base", comb, "--salida", ampl2, "--codigos", "P29,P30,P31", "--forma", "G", "--situaciones", "S46,S47")
+    c1, t1 = ingerir(comb, "lleno_sin1c")
+    c2, t2 = ingerir(ampl2, "lleno_con1c")
+    check("sobre un libro LLENO: la ingesta del ampliado da exactamente lo mismo que la del original (las filas nuevas no traen datos)",
+          c == 0 and c1 == 0 and c2 == 0 and all((W / "lleno_sin1c" / n).read_bytes() == (W / "lleno_con1c" / n).read_bytes() for n in COLUMNAS), (t + t1 + t2)[-300:])
+    def con_G(nombre, frase_repetida=False, sit_mala=False):
+        def f(wb):
+            wp, wr = wb["Participantes"], wb["Respuestas"]
+            for k, cod in enumerate(("P29", "P30", "P31")):
+                for col, v in ((1, cod), (2, "G"), (3, "Transcrito"), (4, "30–44"), (5, "Sí"), (6, "Sí"), (7, "Sí")):
+                    wp.cell(wp.max_row + (1 if k == 0 and col == 1 else 0) if False else 4 + 25 + k, col).value = v
+            r = wr.max_row + 1
+            for cod in ("P29", "P30", "P31"):
+                for sit in ("S46", "S47"):
+                    for col, v in ((1, cod), (2, "G"), (3, "S01" if (sit_mala and cod == "P31" and sit == "S47") else sit), (4, f"prueba falsa {cod} {sit}")):
+                        wr.cell(r, col).value = v
+                    r += 1
+            if frase_repetida:  # la frase nueva de P29 en S47 repite una existente (P01 S01)
+                wr.cell(wr.max_row - 4, 4).value = wr.cell(4, 4).value
+        return variante(nombre, f)
+    c, t = ingerir(con_G("con_G.xlsx"), "conG", "--nuevos", "P29,P30,P31")
+    resp = leer_csv(W / "conG" / "lote1_respuestas.csv")[1:] if c == 0 else []
+    check("el libro con P29–P31 (formulario G, S46 y S47) se ingiere: 6 respuestas más y 0 frases nuevas repetidas", c == 0 and sum(1 for r in resp if r[1] == "G") == 6 and "frases nuevas que repiten una existente: 0" in t, t[-500:])
+    c, t = ingerir(con_G("G_situacion_mala.xlsx", sit_mala=True), "G_mala", "--nuevos", "P29,P30,P31")
+    check("una respuesta de G a una situación que G no reparte (S01) bloquea", c == 2 and "distinto del formulario de la situación" in t and not (W / "G_mala" / "lote1_respuestas.csv").exists(), t[-300:])
+    c, t = ingerir(con_G("G_repetida.xlsx", frase_repetida=True), "G_rep", "--nuevos", "P29,P30,P31")
+    check("una frase nueva que repite el texto normalizado de una existente se avisa como «FRASE NUEVA que repite…» (advertencia, no bloquea)", c == 0 and "FRASE NUEVA que repite el texto normalizado de una existente" in t and "nuevas que repiten una existente: 1" in t, t[-600:])
 
     # ------------------------------------------------------------------ integridad
     print("\nIntegridad del repositorio")

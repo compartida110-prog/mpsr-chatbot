@@ -1,0 +1,80 @@
+--- domain_v3.yml (actual)
++++ domain_v3.yml (con las 26 respuestas)
+@@ -76 +76 @@
+-  - text: 'Para la licencia de funcionamiento necesitas: copia de tu DNI, el certificado de compatibilidad de uso, el certificado de Defensa Civil (ITSE) y el recibo de pago de la tasa correspondiente. [Verificar lista exacta con el TUPA vigente de la MPSR].'
++  - text: El TUPA pide una solicitud de licencia con carácter de declaración jurada y una declaración de cumplimiento de las condiciones de seguridad. Para riesgo bajo o medio, la ITSE se realiza después de otorgar la licencia; para riesgo alto o muy alto, se realiza antes y se adjuntan documentos técnicos, como croquis, planos y plan de seguridad. La municipalidad determina el nivel de riesgo y los requisitos exactos.
+@@ -78 +78 @@
+-  - text: El costo de la licencia de funcionamiento depende del giro del negocio y del área del local. Puedes consultar el monto exacto en el TUPA de la MPSR o acercarte a la Plataforma de Atención. [Verificar monto vigente].
++  - text: 'El derecho de trámite depende del nivel de riesgo: S/ 169,80 (bajo), S/ 175,70 (medio), S/ 525,60 (alto) y S/ 893,70 (muy alto).'
+@@ -80 +80 @@
+-  - text: El trámite de licencia de funcionamiento suele atenderse en un plazo de 10 a 15 días hábiles, según la complejidad del giro del negocio. [Verificar plazo exacto con el TUPA vigente].
++  - text: 'Para riesgo bajo o medio, la licencia se emite en 2 días hábiles y la ITSE posterior se atiende hasta en 9 días hábiles. Para riesgo alto o muy alto, la ITSE previa puede tomar hasta 7 días y la licencia se emite en 1 día más: 8 días hábiles en total.'
+@@ -82 +82 @@
+-  - text: 'Para la licencia de edificación necesitas: título de propiedad o documento que acredite posesión, planos de arquitectura firmados por un profesional colegiado, y el pago de la tasa correspondiente. [Verificar lista exacta con el TUPA vigente].'
++  - text: Los requisitos de licencia de edificación dependen de la modalidad (A, B, C o D), el tipo de obra y sus características. Dime qué proyecto vas a realizar, su uso y área para orientarte sobre la ficha que corresponde.
+@@ -84 +84 @@
+-  - text: El costo de la licencia de edificación varía según el tipo y tamaño de la obra. Puedes consultar el monto exacto en el TUPA de la MPSR. [Verificar monto vigente].
++  - text: El derecho de trámite de una licencia de edificación depende del procedimiento y la modalidad aplicable a la obra. Dime qué proyecto vas a realizar para identificar la ficha y su monto en el TUPA.
+@@ -86 +86 @@
+-  - text: Para renovar tu licencia de funcionamiento debes presentar tu licencia anterior, DNI vigente y el pago de la tasa de renovación. El trámite se realiza en la Plataforma de Atención. [Verificar requisitos exactos].
++  - text: La licencia de funcionamiento tiene vigencia indeterminada y no requiere renovación. El certificado ITSE sí debe renovarse cada 2 años.
+@@ -96 +96 @@
+-  - text: Para fraccionar una deuda tributaria debes presentar una solicitud en mesa de partes, adjuntando tu DNI y el detalle de la deuda. La municipalidad evaluará una cuota inicial y un cronograma de pagos. [Verificar requisitos y procedimiento con el TUPA vigente de la MPSR].
++  - text: El fraccionamiento de deuda tributaria es gratuito y de aprobación automática si presentas la documentación completa. Se requiere una solicitud que indique la deuda; si actúa un representante, un poder específico; y una declaración jurada de compromiso de pago con firma legalizada ante notario.
+@@ -98 +98 @@
+-  - text: La constancia de no adeudo se tramita presentando tu DNI en la Plataforma de Atención; se emite una vez verificado que no tienes deudas pendientes por impuesto predial o arbitrios. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: La constancia de no adeudo es un servicio exclusivo. Presenta una solicitud firmada por el titular de la propiedad o su representante legal e indica el número de pago. Cuesta S/ 18,40 y el plazo máximo es de 5 días hábiles.
+@@ -100 +100 @@
+-  - text: Para presentar un documento en mesa de partes necesitas tu solicitud (puede ser un formato simple), copia de tu DNI, y los anexos que sustenten tu pedido. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: Los requisitos para presentar un documento dependen del procedimiento al que va dirigido. El TUPA no establece una lista única para todos los escritos. Dime qué trámite necesitas y reviso su ficha.
+@@ -102 +102 @@
+-  - text: Puedes consultar el estado de tu trámite presentando tu número de expediente en mesa de partes o en la Plataforma de Atención. [Verificar canal de consulta con el TUPA vigente de la MPSR].
++  - text: El portal oficial de la MPSR en gob.pe tiene un enlace directo llamado «Seguimiento de trámites». Lo encuentras en la sección de enlaces directos de la municipalidad.
+@@ -104 +104 @@
+-  - text: Mesa de partes atiende de lunes a viernes en el horario de oficina de la municipalidad. [Verificar horario exacto vigente].
++  - text: La sede central atiende de lunes a viernes, de 8:00 a. m. a 1:00 p. m. y de 2:00 p. m. a 4:00 p. m. Confirma con la municipalidad si la Mesa de Partes Virtual tiene un horario distinto.
+@@ -106 +106 @@
+-  - text: Para obtener una copia certificada de un documento presentado anteriormente, debes solicitarlo en mesa de partes indicando el número de expediente, y abonar la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
++  - text: El servicio permite obtener copias certificadas de documentos que están en expedientes o archivos municipales. Presenta una solicitud con la información del documento e indica el número y la fecha del comprobante de pago. El costo varía por tamaño de hoja y el plazo es de hasta 15 días hábiles.
+@@ -108 +108 @@
+-  - text: El certificado de posesión se tramita presentando una declaración jurada, croquis del predio y documentos que acrediten la posesión pacífica del terreno. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: La constancia de posesión se emite para acceder a agua, desagüe y electricidad. El TUPA pide solicitud, planos de ubicación/perimétrico/localización que cubran un radio de 550 metros, declaración jurada notarial de posesión, documento de propiedad, verificación del predio y visto bueno de la empresa prestadora. Cuesta S/ 85,80 y el plazo es de 10 días hábiles.
+@@ -112 +112 @@
+-  - text: El certificado de Defensa Civil (ITSE) se tramita presentando el plano de distribución del local, el certificado de medidas de seguridad y el pago de la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
++  - text: En el TUPA el trámite se denomina ITSE (Inspección Técnica de Seguridad en Edificaciones). El certificado tiene vigencia de 2 años; el procedimiento, los requisitos, el costo y el plazo dependen del nivel de riesgo del establecimiento.
+@@ -114 +114 @@
+-  - text: Para solicitar una inspección técnica de seguridad (ITSE) debes presentar tu solicitud en mesa de partes; un inspector de Defensa Civil coordinará una visita al local. [Verificar procedimiento con el TUPA vigente de la MPSR].
++  - text: La ITSE se solicita con el formato correspondiente y los documentos exigidos para el nivel de riesgo del establecimiento. Para riesgo bajo o medio es posterior al inicio de actividades; para riesgo alto o muy alto es previa. El costo y el plazo varían según la ficha.
+@@ -116 +116 @@
+-  - text: 'Los requisitos de Defensa Civil incluyen: plano de distribución, certificado de medición eléctrica, extintores vigentes y señalización de seguridad, entre otros, según el tipo de establecimiento. [Verificar requisitos exactos con el TUPA vigente de la MPSR].'
++  - text: Los requisitos de ITSE dependen del nivel de riesgo. Para riesgo bajo o medio, el TUPA pide solicitud y declaración jurada de cumplimiento de condiciones de seguridad. Para riesgo alto o muy alto, también exige documentos técnicos, como croquis, planos, certificado de puesta a tierra, plan de seguridad y protocolos de mantenimiento.
+@@ -122 +122 @@
+-  - text: Puedes solicitar una copia de tu partida de nacimiento en la oficina de Registro Civil, presentando tu DNI y abonando la tasa correspondiente. [Verificar requisitos y tasa con el TUPA vigente de la MPSR].
++  - text: Para obtener una copia de una partida de nacimiento, paga el derecho de expedición de S/ 8,50. El plazo de atención del TUPA es de 1 día hábil.
+@@ -124 +124 @@
+-  - text: La partida de matrimonio se solicita en la oficina de Registro Civil, indicando los datos del matrimonio (fecha, nombres de los contrayentes) y presentando tu DNI. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: Para obtener una copia de una partida de matrimonio, paga el derecho de expedición de S/ 8,50. El plazo de atención del TUPA es de 1 día hábil.
+@@ -126 +126 @@
+-  - text: Para inscribir o solicitar una partida de defunción debes presentar el certificado médico de defunción y el DNI del fallecido, en la oficina de Registro Civil. [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: Inscribir una defunción es distinto de pedir una copia del acta. La inscripción es gratuita, se atiende en 1 día hábil y los requisitos dependen del caso (defunción ordinaria, muerte violenta, mandato judicial o muerte presunta). La copia de una partida cuesta S/ 8,50 y se atiende en 1 día hábil.
+@@ -128 +128 @@
+-  - text: Para rectificar un dato en una partida debes presentar una solicitud en Registro Civil junto con los documentos que sustenten la corrección (DNI, partida original, entre otros). [Verificar requisitos exactos con el TUPA vigente de la MPSR].
++  - text: El TUPA contempla la rectificación administrativa, judicial y notarial de partidas. La ficha pide el oficio judicial o parte notarial, la sentencia certificada o escritura pública correspondiente y el pago. El derecho es S/ 34,80 y el plazo de atención es de 5 días hábiles. La vía aplicable depende del caso.
+@@ -130 +130 @@
+-  - text: 'Para matrimonio civil se requiere: DNI de ambos contrayentes, certificados de nacimiento actualizados, y en algunos casos certificado médico prenupcial. [Verificar requisitos vigentes].'
++  - text: Para mayores de edad, el TUPA pide pliego matrimonial, partidas de nacimiento, certificados de domicilio, documentos de identidad de la pareja y testigos, pago por publicación del edicto y pago del trámite. Hay requisitos adicionales para divorciados, viudos o extranjeros. El plazo es de 15 días hábiles. La tarifa es S/ 125,30 en instalaciones municipales de lunes a viernes, S/ 220,00 en esas instalaciones sábados, domingos y feriados, o S/ 370,00 fuera de la municipalidad.
+@@ -152 +152 @@
+-  - text: La Municipalidad Provincial de San Román atiende de lunes a viernes en horario de oficina. [Verificar horario exacto vigente].
++  - text: La sede central atiende de lunes a viernes, de 8:00 a. m. a 1:00 p. m. y de 2:00 p. m. a 4:00 p. m. Las agencias municipales pueden tener un horario distinto; confirma el horario de la sede que visitarás.
+@@ -154 +154 @@
+-  - text: La Municipalidad Provincial de San Román se encuentra en la Plaza de Armas de Juliaca. [Verificar dirección exacta].
++  - text: La sede central de la Municipalidad Provincial de San Román está en el Jr. Jáuregui N.° 321, Centro Cívico, referencia Plaza de Armas, Juliaca.
+@@ -156 +156 @@
+-  - text: Para la mayoría de trámites municipales necesitarás presentar tu DNI vigente; algunos trámites piden además documentos adicionales según el caso.
++  - text: Los requisitos dependen del trámite. Dime cuál necesitas y reviso los documentos que pide su ficha del TUPA.
+@@ -158 +158 @@
+-  - text: Los costos de los trámites municipales están establecidos en el TUPA (Texto Único de Procedimientos Administrativos), disponible en la municipalidad.
++  - text: 'Los costos dependen de cada trámite: algunos son gratuitos y otros tienen un derecho específico indicado en el TUPA. Dime cuál necesitas y reviso el monto aplicable.'
+@@ -160 +160 @@
+-  - text: Puedes comunicarte con la Municipalidad Provincial de San Román a través de su central telefónica. [Verificar número vigente].
++  - text: La central telefónica de la Municipalidad Provincial de San Román es (051) 321201.
