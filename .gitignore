@@ -37,3 +37,13 @@ docs/piloto/privado/*
 corpus/real/lote1_*.csv
 logs/v3_real/ingesta_reporte.txt
 logs/v3_real/revision_reporte.txt
+
+# Partición v3 con frases REALES (validación y test): no subir
+corpus/v3_real/*
+!corpus/v3_real/.gitkeep
+data/v3/nlu_train.yml
+data/v3/nlu_validation.yml
+data/v3/nlu_test.yml
+logs/v3_real/*
+!logs/v3_real/.gitkeep
+!logs/v3_real/auditoria_*.md
