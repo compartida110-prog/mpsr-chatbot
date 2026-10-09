@@ -342,7 +342,11 @@ def procesar_libro(wb, a):
     """Valida el libro, exporta los tres CSV y deja a.participantes / a.respuestas apuntando a ellos. Devuelve (errores, info)."""
     part = hoja_a_tabla(wb, "Participantes", COLS_PART)
     resp = hoja_a_tabla(wb, "Respuestas", ["participant_code", "form", "scenario_id", "text"])
-    sit = hoja_a_tabla(wb, "Situaciones", ["scenario_id", "form", "Intención esperada", "Situación"], ancla="scenario_id")
+    if "Situaciones" not in wb.sheetnames and "Cobertura" in wb.sheetnames:  # el libro del lote 2 trae «Cobertura» (scenario_id, form, Intención esperada) en vez de «Situaciones»
+        sit = hoja_a_tabla(wb, "Cobertura", ["scenario_id", "form", "Intención esperada"], ancla="scenario_id").assign(**{"Situación": ""})
+        sit = sit[sit["scenario_id"].str.match(r"^S\d+$")]  # descarta filas de pie (totales)
+    else:
+        sit = hoja_a_tabla(wb, "Situaciones", ["scenario_id", "form", "Intención esperada", "Situación"], ancla="scenario_id")
     min_part = MIN_PART_DEFECTO
     if "Parametros" in wb.sheetnames:
         for f in wb["Parametros"].iter_rows(values_only=True):
@@ -375,7 +379,7 @@ def procesar_libro(wb, a):
                     errores.append(f"Situaciones {sid}: formulario '{lib.loc[sid, 'form']}' y el catálogo dice '{cat.loc[sid, 'form']}'")
                 if lib.loc[sid, "Intención esperada"] != cat.loc[sid, "intent_esperada"]:
                     errores.append(f"Situaciones {sid}: intención '{lib.loc[sid, 'Intención esperada']}' y el catálogo dice '{cat.loc[sid, 'intent_esperada']}'")
-                if col_txt and " ".join(lib.loc[sid, "Situación"].split()) != " ".join(cat.loc[sid, col_txt].split()):
+                if col_txt and lib.loc[sid, "Situación"] and " ".join(lib.loc[sid, "Situación"].split()) != " ".join(cat.loc[sid, col_txt].split()):
                     errores.append(f"Situaciones {sid}: el texto de la situación difiere del catálogo")
     info = {"transcritos": len(transcritos), "min_part": min_part, "no_transcritos_con_texto": 0}
     if errores:

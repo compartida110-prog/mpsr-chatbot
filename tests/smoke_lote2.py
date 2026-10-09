@@ -150,6 +150,50 @@ def main():
     c, t = run("preparar_entrenamiento_lote2.py", "--real1", fin1, "--log-cambios-1", log1, "--log-sintetico", W / "no_existe.csv", "--solo-contar")
     check("--solo-contar informa sin escribir", c == 0 and "--solo-contar" in t and "930 frases" in t, t[:200])
 
+    # ------------------------------------------------------------------------------ libro del lote 2 (Participantes / Respuestas / Cobertura), hoja de revisión e informe sin frases
+    print("\nLibro del lote 2 (estructura real: Participantes, Respuestas, Cobertura), hoja de revisión e informe de cifras")
+    from openpyxl import Workbook, load_workbook
+    wbk = Workbook()
+    wp = wbk.active
+    wp.title = "Participantes"
+    wp.append(["Transcripción del lote 2 — participantes"])
+    wp.append(["participant_code", "form", "Estado", "age_range", "vive_en_juliaca", "tramite_12m", "Consentimiento firmado", "Fecha de aplicación", "Situaciones del formulario", "Frases transcritas", "En blanco", "Alerta", "Observaciones"])
+    for pc, fm, ag, vj, tr in part2:
+        wp.append([pc, fm, "Transcrito", ag, vj, tr, "Sí", "2026-10-08", None, None, None, None, None])
+    wr = wbk.create_sheet("Respuestas")
+    wr.append(["Transcripción del lote 2 — respuestas"])
+    wr.append(["participant_code", "form", "scenario_id", "text", "Situación (referencia)", "Intención esperada (referencia)", "Largo", "Alerta"])
+    for r in resp2:
+        wr.append(r + [None, None, len(r[3]), None])
+    wc = wbk.create_sheet("Cobertura")
+    wc.append(["Cobertura del lote 2 por situación"])
+    wc.append(["Meta: 5 frases por situación (mínimo 4)."])
+    wc.append(["scenario_id", "form", "Intención esperada", "Frases transcritas", "Personas asignadas", "Meta", "Estado"])
+    for sid, f, intent, _c in esc:
+        wc.append([sid, f, intent, 5, 5, 5, "Completa"])
+    libro2 = W / "Lote2_libro_falso.xlsx"
+    wbk.save(libro2)
+    c, t = run("ingest_real_lote.py", "--lote", "2", "--sin-congelado", "--libro", libro2, "--out-dir", W / "libro", "--log-dir", W / "libro" / "log", "--entrenamiento-extra", fin1)
+    check("el libro del lote 2 (sin hoja Situaciones; con Cobertura) se ingesta: 25 participantes y 280 frases, ids Q…, sin errores", c == 0 and len(read_csv(W / "libro" / "lote2_real_validado.csv")) == 280 and "25 participantes Transcritos" in t, t[:300])
+    wbk["Cobertura"]["C5"] = "estado_tramite"  # intención distinta a la del catálogo
+    libro_mal = W / "Lote2_libro_falso_mal.xlsx"
+    wbk.save(libro_mal)
+    c, t = run("ingest_real_lote.py", "--lote", "2", "--sin-congelado", "--libro", libro_mal, "--out-dir", W / "libro_mal", "--log-dir", W / "libro_mal" / "log")
+    check("si la pestaña Cobertura no coincide con el catálogo (intención distinta), la ingesta bloquea y no genera salidas", c == 2 and "no coincide" in t.lower() or (c == 2 and "intención" in t), t[:300])
+    rev_x = W / "Revision_falsa.xlsx"
+    c, t = run("hoja_revision_lote2.py", "--validado", W / "libro" / "lote2_real_validado.csv", "--alertas", W / "libro" / "lote2_alertas_frases.csv", "--entrenamiento", ent_csv, "--salida", rev_x)
+    wbr = load_workbook(rev_x) if rev_x.exists() else None
+    hdr = [x.value for x in wbr["Revision"][1]] if wbr else []
+    check("hoja de revisión del lote 2: 280 filas, columnas Decisión e Intención correcta (listas OK/CAMBIAR/DESCARTAR y las 54 intenciones), SIN columna de sugerencia y con decisiones vacías", c == 0 and wbr is not None
+          and wbr["Revision"].max_row == 281 and "Decisión" in hdr and "Intención correcta (si CAMBIAR)" in hdr and not any("Sugerencia" in str(h) for h in hdr) and all(r[7].value is None for r in wbr["Revision"].iter_rows(min_row=2))
+          and wbr["Intenciones"].max_row == 55 and len(wbr["Revision"].data_validations.dataValidation) == 2, t[:300])
+    check("la hoja de revisión no imprime frases y no se sobrescribe si ya existe", "prueba falsa" not in t and run("hoja_revision_lote2.py", "--validado", W / "libro" / "lote2_real_validado.csv", "--entrenamiento", ent_csv, "--salida", rev_x)[0] != 0)
+    c, t = run("trasladar_revision.py", "--libro", rev_x, "--solo-verificar", "--validado", W / "libro" / "lote2_real_validado.csv", "--revision", W / "libro" / "lote2_revision_etiquetas.csv")
+    check("trasladar_revision.py lee la hoja del lote 2 y empareja las 280 frases (solo se queja de las decisiones vacías, no de frases o intenciones distintas)", c == 2 and "decisión «»" in t and "no coincide" not in t and "sin emparejar" not in t, t[:300])
+    c, t = run("informe_ingesta_lote2.py", "--validado", W / "libro" / "lote2_real_validado.csv", "--participantes", W / "libro" / "lote2_participantes.csv", "--entrenamiento", ent_csv, "--salida", W / "ingesta_cifras.md")
+    check("el informe de la ingesta solo trae cifras e ids (ninguna frase): participantes, perfil, frases por intención, idénticas a entrenamiento y repetidas", c == 0 and "prueba falsa" not in t and "Participantes transcritos: **25**" in t
+          and "no vive en Juliaca:** 0" in t and "repetidas dentro del lote" in t, t[:300])
+
     # ------------------------------------------------------------------------------ puerta de congelamiento
     print("\nPuerta de congelamiento y partición solo test")
     out2, nlu2 = W / "v3l2", W / "v3l2nlu"
