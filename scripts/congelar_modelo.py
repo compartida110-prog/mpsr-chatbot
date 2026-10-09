@@ -125,6 +125,7 @@ def main():
     ap.add_argument("--corpus", default=str(CORPUS))
     ap.add_argument("--umbral", default=str(UMBRAL), help="umbral_congelado.json de fallback_threshold.py (opcional)")
     ap.add_argument("--salida", default=str(SALIDA))
+    ap.add_argument("--proposito", choices=["piloto", "lote2"], default="piloto", help="lote2: congelamiento previo a abrir el lote 2 (protocolo V1.6 5.8); solo cambia el rótulo del archivo")
     ap.add_argument("--forzar", action="store_true", help="rehacer un congelamiento existente (exige --motivo)")
     ap.add_argument("--motivo", default="")
     ap.add_argument("--verificar", action="store_true", help="solo comprueba que nada cambió desde el congelamiento")
@@ -181,6 +182,9 @@ def main():
           "protocolo": "V1.3", "modelo_nombre": Path(a.modelo).name, "python": platform.python_version(), "commit": git_commit(), "archivos": archivos,
           "sha256": huellas(a.modelo, a.config, a.domain, a.corpus, a.umbral), "versiones": versiones(),
           "umbral_t": None, "nota": "Las consultas de las sesiones no se usan para ajustar el modelo; son el test final, evaluado una sola vez."}
+    if a.proposito == "lote2":
+        fz.update({"estado": "Ejecutado (modelo y umbral congelados ANTES de abrir el lote 2)", "protocolo": "V1.6 5.8",
+                   "nota": "El lote 2 es solo test: se evalúa una sola vez con este modelo y este umbral; no se usa para ajustar nada."})
     if Path(a.umbral).exists():
         fz["umbral_detalle"] = json.loads(Path(a.umbral).read_text(encoding="utf-8"))
         fz["umbral_t"] = fz["umbral_detalle"].get("t")

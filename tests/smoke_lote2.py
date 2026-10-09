@@ -12,6 +12,7 @@ import csv
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -221,6 +222,69 @@ def main():
     write_csv(fin4, list(f4[0].keys()), [list(r.values()) for r in f4])
     c, t = run("split_lote2.py", "--real2", fin4, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log4_cambios.csv", "--log-exclusion", W / "log4_excl.csv", "--out-dir", W / "v3p05", "--nlu-dir", W / "v3p05nlu")
     check("un participante del lote 1 dentro del lote 2 (P05): error, no se escribe nada", c == 2 and "fuera de P33–P57" in t and not (W / "v3p05").exists(), t[:300])
+
+    # ------------------------------------------------------------------------------ evaluación única (modelo REAL de 3 épocas, datos FALSOS)
+    print("\nEvaluación única del lote 2 (modelo de 3 épocas entrenado con datos FALSOS; el resultado no significa nada)")
+    base_cfg = yaml.safe_load(open(ROOT / "configs" / "rasa_config.yml", encoding="utf-8"))
+    diet = next(c for c in base_cfg["pipeline"] if c["name"] == "DIETClassifier")
+    diet.update({"epochs": 3, "random_seed": 42})
+    cfg_t = W / "config_prueba.yml"
+    cfg_t.write_text(yaml.safe_dump(base_cfg, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    mdir = W / "modelo"
+    mdir.mkdir(exist_ok=True)
+    proc = subprocess.run([sys.executable, "-m", "rasa", "train", "nlu", "--config", str(cfg_t), "--nlu", str(nlu_dir / "nlu_train.yml"), "--out", str(mdir), "--fixed-model-name", "m_falso"],
+                          capture_output=True, text=True, encoding="utf-8", errors="replace", env=ENV, cwd=W)
+    check("se entrenó un modelo Rasa de 3 épocas con el entrenamiento falso (fuera del repositorio)", proc.returncode == 0 and (mdir / "m_falso.tar.gz").exists(), (proc.stdout + proc.stderr)[-300:])
+    umbral_e = W / "umbral_prueba.json"
+    umbral_e.write_text(json.dumps({"t": 0.3, "ambiguity_threshold": 0.1}), encoding="utf-8")
+    cong_e = W / "cong_eval.json"
+    c, t = run("congelar_modelo.py", "--modelo", mdir / "m_falso.tar.gz", "--config", cfg_t, "--corpus", ent_csv, "--umbral", umbral_e, "--salida", cong_e, "--proposito", "lote2")
+    fze = json.loads(cong_e.read_text(encoding="utf-8")) if cong_e.exists() else {}
+    check("congelar_modelo.py --proposito lote2 rotula el congelamiento como previo al lote 2 (V1.6 5.8) y guarda el umbral", c == 0 and "lote 2" in fze.get("estado", "") and fze.get("protocolo") == "V1.6 5.8" and fze.get("umbral_t") == 0.3, t[:200])
+    out_e, nlu_e = W / "v3l2e", W / "v3l2enlu"
+    spe = ["--real2", fin2, "--entrenamiento", ent_csv, "--congelado", cong_e, "--log-cambios", W / "logE_cambios.csv", "--log-exclusion", W / "logE_excl.csv", "--out-dir", out_e, "--nlu-dir", nlu_e]
+    c, t = run("split_lote2.py", *spe)
+    check("la partición del lote 2 se rehace con el congelamiento del modelo de prueba", c == 0 and (out_e / "resumen_lote2.json").exists(), t[:300])
+    ev = ["--congelado", cong_e, "--entrenamiento", ent_csv, "--metadata", out_e / "corpus_metadata_v3_lote2.csv", "--resumen-split", out_e / "resumen_lote2.json", "--out-dir", W / "evl2", "--boot", "200"]
+    c, t = run("eval_lote2.py", "--congelado", W / "no_hay.json", *ev[2:])
+    check("sin congelamiento previo, eval_lote2.py se niega a evaluar", c != 0 and "ME NIEGO" in t and not (W / "evl2" / "test_registro.json").exists(), t[:300])
+    c, t = run("eval_lote2.py", "--congelado", cong_e, "--entrenamiento", ent_otro, *ev[4:])
+    check("si el entrenamiento cambió después de congelar, eval_lote2.py se niega a evaluar", c != 0 and "ME NIEGO" in t and not (W / "evl2" / "test_registro.json").exists(), t[:300])
+    c, t = run("eval_lote2.py", *ev)
+    reg_e = json.loads((W / "evl2" / "test_registro.json").read_text(encoding="utf-8")) if (W / "evl2" / "test_registro.json").exists() else {}
+    rs_e = json.loads((W / "evl2" / "eval_lote2_resumen.json").read_text(encoding="utf-8")) if (W / "evl2" / "eval_lote2_resumen.json").exists() else {}
+    m = rs_e.get("metodos", {}).get("rasa", {})
+    check("evaluación única: corre (código 0) y escribe registro, resumen, predicciones, F1 por intención e informe", c == 0 and all((W / "evl2" / n).exists() for n in ("test_registro.json", "eval_lote2_resumen.json", "predicciones_lote2.csv", "f1_por_intencion_lote2.csv", "informe_lote2.md")), t[-400:])
+    check("el registro cuenta UNA evaluación del test del lote 2 (método rasa, con huella del modelo y del congelamiento)", len(reg_e.get("evaluaciones", [])) == 1 and reg_e["evaluaciones"][0]["metodo"] == "rasa" and reg_e["evaluaciones"][0]["modelo_sha256"] == fze["sha256"]["modelo"])
+    ic_f, ic_p = m.get("f1_macro", []), m.get("f1_macro_ic_participantes", [])
+    check("F1 macro con IC95 % por frases y por participantes (punto, inferior, superior; inferior ≤ superior) y media del bootstrap", len(ic_f) == 3 and len(ic_p) == 3 and ic_f[1] <= ic_f[2] and ic_p[1] <= ic_p[2] and 0 <= ic_f[0] <= 1
+          and "media_por_frases" in rs_e.get("bootstrap", {}) and "media_por_participantes" in rs_e.get("bootstrap", {}), str(m)[:300])
+    check("el criterio F1 macro ≥ 0,75 se evalúa sobre el punto sin cambiarlo y el resumen dice si cumple", rs_e.get("criterio_f1_macro") == 0.75 and rs_e.get("cumple_criterio") == (ic_f[0] >= 0.75), str(rs_e)[:200])
+    pi_e = read_csv(W / "evl2" / "f1_por_intencion_lote2.csv") if (W / "evl2" / "f1_por_intencion_lote2.csv").exists() else []
+    check("F1 por intención con su n: 54 intenciones y n suma 280", len(pi_e) == 54 and sum(int(r["n"]) for r in pi_e) == 280 and {"intent", "n", "f1", "aciertos"} <= set(pi_e[0]), pi_e[:1])
+    u = rs_e.get("umbral_congelado", {})
+    check("cobertura y precisión con el umbral congelado (t = 0,3): respondidas + abstenciones = 280", u.get("t") == 0.3 and u.get("respondidas", 0) + u.get("abstenciones", 0) == 280 and 0 <= u.get("cobertura", -1) <= 1, str(u))
+    pr_e = rs_e.get("confusion_par_despedida_agradecimiento", {})
+    check("la confusión despedida ↔ agradecimiento va aparte, rotulada como esperable, con n de cada una", "esperable" in pr_e.get("rotulo", "") and pr_e.get("despedida", {}).get("n") == 5 and pr_e.get("agradecimiento", {}).get("n") == 5, str(pr_e))
+    check("el script no imprime frases del lote 2 (solo cifras)", "prueba falsa" not in t, t[:200])
+    c2, t2 = run("eval_lote2.py", *ev)
+    check("repetir la evaluación se niega (UNA sola vez, sin motivo adicional) y no cambia el registro", c2 != 0 and "ya se evaluó" in t2 and json.loads((W / "evl2" / "test_registro.json").read_text(encoding="utf-8")) == reg_e, t2[:300])
+    # el tablero lee estos archivos: «Medida en lote 2» aparte de la del lote 1
+    rg = W / "raiz_g3"
+    for rel, contenido in (("logs/avance/ciclos_refinamiento.csv", "ciclo,fecha,f1_macro_validacion\n1,2026-01-01,0.60\n"),
+                           ("logs/v3_real/test_registro.json", json.dumps({"evaluaciones": [{"fecha": "2026-02-01T10:00:00", "metodo": "rasa"}]})),
+                           ("logs/v3_real/eval_real_resumen.json", json.dumps({"metodos": {"rasa": {"f1_macro": [0.70, 0.6, 0.8]}}}))):
+        (rg / rel).parent.mkdir(parents=True, exist_ok=True)
+        (rg / rel).write_text(contenido, encoding="utf-8")
+    (rg / "logs" / "v3_real" / "lote2").mkdir(parents=True, exist_ok=True)
+    for n in ("test_registro.json", "eval_lote2_resumen.json"):
+        shutil.copyfile(W / "evl2" / n, rg / "logs" / "v3_real" / "lote2" / n)
+    fz_t = dict(fze)
+    fz_t["fecha"] = "2026-01-15T10:00:00+00:00"
+    (rg / "logs" / "v3_real" / "lote2_congelado_previo.json").write_text(json.dumps(fz_t), encoding="utf-8")
+    c3, t3 = run("estado_compuertas.py", "--raiz", rg)
+    g3j = {x["id"]: x for x in json.loads((rg / "logs" / "avance" / "estado_compuertas.json").read_text(encoding="utf-8"))["compuertas"]}["G3"] if c3 == 0 else {}
+    check("el tablero lee la evaluación del lote 2 y escribe «Medida en lote 2» aparte de «No cumplida, lote 1»", "Medida en lote 2: F1 macro =" in g3j.get("nota", "") and "No cumplida, lote 1" in g3j.get("nota", ""), str(g3j)[:400])
 
     # ------------------------------------------------------------------------------ integridad
     print("\nIntegridad del repositorio")
