@@ -49,7 +49,24 @@ def construir(a):
                       "participant_code": real["participant_code"], "split": "train"})], ignore_index=True)
     if ent["utterance_id"].duplicated().any():
         sys.exit("ERROR: ids repetidos en el entrenamiento.")
-    return ent, len(sint), len(real), len(fuera)
+    nuevas = 0
+    for ruta in [x for x in getattr(a, "sinteticas_extra", "").split(",") if x.strip()]:
+        ex = leer(ruta.strip(), "sintéticas nuevas del refinamiento")
+        for c in ("utterance_id", "text", "intent", "category"):
+            if c not in ex.columns:
+                sys.exit(f"ERROR: {ruta} no tiene la columna {c}.")
+        jerga = load_jerga()
+        previas = {normalize(t, jerga) for t in ent["text"]}
+        repetidas = [t for t in ex["text"] if normalize(t, jerga) in previas]
+        if repetidas:
+            sys.exit(f"ERROR: {len(repetidas)} frases sintéticas nuevas repiten (tras normalizar) una frase del entrenamiento; no se agregan frases repetidas ni copias de frases reales.")
+        add = pd.DataFrame({"utterance_id": ex["utterance_id"], "text": ex["text"], "intent": ex["intent"], "category": ex["category"], "source": ex.get("source", "sintético (refinamiento)"),
+                            "participant_code": "", "split": "train"})
+        ent = pd.concat([ent, add], ignore_index=True)
+        nuevas += len(add)
+    if ent["utterance_id"].duplicated().any():
+        sys.exit("ERROR: ids repetidos en el entrenamiento (tras sumar las sintéticas nuevas).")
+    return ent, len(sint), len(real), len(fuera), nuevas
 
 
 def main():
@@ -60,13 +77,14 @@ def main():
     ap.add_argument("--log-cambios-1", default=str(ROOT / "docs" / "lote_real_1" / "log_cambios_lote1.csv"))
     ap.add_argument("--out-csv", default=str(ROOT / "corpus" / "v3_lote2" / "entrenamiento_lote2.csv"))
     ap.add_argument("--nlu-dir", default=str(ROOT / "data" / "v3_lote2"))
+    ap.add_argument("--sinteticas-extra", default="", help="CSV(s) separados por coma con las frases sintéticas NUEVAS del refinamiento (corpus/refinamiento_lote2/sinteticas_ciclo*.csv); se suman al entrenamiento")
     ap.add_argument("--min-por-intencion", type=int, default=8, help="mínimo de frases de entrenamiento por intención")
     ap.add_argument("--solo-contar", action="store_true")
     a = ap.parse_args()
-    ent, n_sint, n_real, n_fuera = construir(a)
+    ent, n_sint, n_real, n_fuera, n_nuevas = construir(a)
     por = ent.groupby("intent").size()
     pocas = {i: int(n) for i, n in por.items() if n < a.min_por_intencion}
-    print(f"Entrenamiento del lote 2: {len(ent)} frases = {n_sint} sintéticas + {n_real} reales activas del lote 1 ({n_fuera} del log de cambios del lote 1 quedan fuera). {por.size} intenciones; mínimo por intención: {int(por.min())}.")
+    print(f"Entrenamiento del lote 2: {len(ent)} frases = {n_sint} sintéticas + {n_real} reales activas del lote 1 ({n_fuera} del log de cambios del lote 1 quedan fuera)" + (f" + {n_nuevas} sintéticas nuevas del refinamiento" if n_nuevas else "") + f". {por.size} intenciones; mínimo por intención: {int(por.min())}.")
     if pocas:
         sys.exit(f"ERROR: intenciones con menos de {a.min_por_intencion} frases de entrenamiento: {pocas}")
     if a.solo_contar:

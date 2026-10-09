@@ -20,7 +20,6 @@ from sklearn.metrics import f1_score
 from sklearn.model_selection import StratifiedGroupKFold
 
 import run_rasa_grid as rg
-import train_baseline as tb
 from common import BASE_SEED, CONFIGS, ROOT, load_jerga, normalize
 from eval_real import predict_conf
 from export_rasa_nlu import to_rasa_yaml
@@ -32,7 +31,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--folds", type=int, default=5)
     ap.add_argument("--reusar", action="store_true", help="no reentrena: recalcula el resumen con las predicciones ya guardadas (misma partición por participante)")
-    ap.add_argument("--modelos", default="svm,rasa")
+    ap.add_argument("--modelos", default="rasa", help="rasa (por defecto) y/o svm; svm se importa solo si se pide")
+    ap.add_argument("--sinteticas-extra", default="", help="CSV(s) separados por coma con frases sintéticas nuevas del refinamiento (utterance_id,text,intent,category,…); se suman al entrenamiento de cada fold")
     ap.add_argument("--corpus-v3", default=str(ROOT / "corpus" / "v3_real" / "corpus_metadata_v3.csv"))
     ap.add_argument("--seleccion", default=str(ROOT / "logs" / "v3_real" / "seleccion_final.json"))
     ap.add_argument("--participantes", default=str(ROOT / "corpus" / "real" / "lote1_real_validado.csv"))
@@ -47,6 +47,10 @@ def main():
     df["_norm"] = df["text"].map(lambda t: normalize(t, jerga))
     quien = pd.read_csv(a.participantes, dtype=str, keep_default_na=False, encoding="utf-8-sig")[["real_id", "participant_code"]]
     sint = df[df["split"] == "train"].reset_index(drop=True)
+    for ruta in [x for x in a.sinteticas_extra.split(",") if x.strip()]:
+        ex = pd.read_csv(ruta.strip(), dtype=str, keep_default_na=False, encoding="utf-8")
+        ex["_norm"] = ex["text"].map(lambda t: normalize(t, jerga))
+        sint = pd.concat([sint, ex.reindex(columns=sint.columns, fill_value="")], ignore_index=True)
     real = df[df["split"].isin(["validation", "test"])].merge(quien, left_on="utterance_id", right_on="real_id", how="left").reset_index(drop=True)
     if real["participant_code"].eq("").any() or real["participant_code"].isna().any():
         sys.exit("ERROR: hay frases reales sin participante.")
@@ -56,11 +60,12 @@ def main():
     for k, (tr, te) in enumerate(folds, 1):
         assert not (set(real.iloc[tr]["participant_code"]) & set(real.iloc[te]["participant_code"])), f"fold {k}: participante en entrenamiento y prueba"
     print(ROTULO); print(f"{len(real)} frases reales, {real['participant_code'].nunique()} participantes, {a.folds} folds; entrenamiento sintético: {len(sint)}")
-    cfg_b = json.load(open(CONFIGS / "baseline_config.json", encoding="utf-8")) if (CONFIGS / "baseline_config.json").exists() else None
     base_rasa = yaml.safe_load(open(CONFIGS / "rasa_config.yml", encoding="utf-8"))
     res = {}
     for modelo in a.modelos.split(","):
         pred = pd.Series([""] * len(real), index=real.index, dtype=object)
+        conf1 = pd.Series([float("nan")] * len(real), index=real.index)
+        conf2 = pd.Series([float("nan")] * len(real), index=real.index)
         if a.reusar:
             g = pd.read_csv(out / f"predicciones_{modelo}.csv", dtype=str, keep_default_na=False, encoding="utf-8")
             assert list(g["utterance_id"]) == list(real["utterance_id"]), "las predicciones guardadas no coinciden con el corpus"
@@ -69,6 +74,8 @@ def main():
         for k, (tr, te) in enumerate(folds, 1):
             train = pd.concat([sint, real.iloc[tr]], ignore_index=True)
             if modelo == "svm":
+                import train_baseline as tb  # sklearn.svm solo si se pide SVM (Windows puede bloquear su DLL)
+                cfg_b = json.load(open(CONFIGS / "baseline_config.json", encoding="utf-8"))
                 pipe = tb.build_pipeline(cfg_b, "svm", sel["svm"]["C"], BASE_SEED).fit(train["_norm"], train["intent"])
                 pred.iloc[te] = list(pipe.predict(real.iloc[te]["_norm"]))
             else:
@@ -76,11 +83,15 @@ def main():
                 nlu = out / f"nlu_fold{k}.yml"
                 nlu.write_text(to_rasa_yaml(train), encoding="utf-8")
                 mp, secs = rg.train(rg.make_config(base_rasa, r["epochs"], r["batch_size"], r["embedding_dimension"], BASE_SEED, 0), f"CVP-RASA-fold{k}", nlu)
-                pred.iloc[te] = [p[0] for p in predict_conf(mp, real.iloc[te]["_norm"].tolist())]
+                pc = predict_conf(mp, real.iloc[te]["_norm"].tolist())
+                pred.iloc[te] = [p[0] for p in pc]
+                conf1.iloc[te] = [p[1] for p in pc]
+                conf2.iloc[te] = [p[2] for p in pc]
                 print(f"  rasa fold {k}/{a.folds} ({secs:.0f}s)", flush=True)
         real[f"pred_{modelo}"] = pred
         res[modelo] = pred
-        pd.DataFrame({"utterance_id": real["utterance_id"], "participant_code": real["participant_code"], "text": real["text"], "intent": real["intent"], "predicted": pred}
+        pd.DataFrame({"utterance_id": real["utterance_id"], "participant_code": real["participant_code"], "text": real["text"], "intent": real["intent"], "predicted": pred,
+                      "confidence": conf1, "confidence_2": conf2}
                      ).to_csv(out / f"predicciones_{modelo}.csv", index=False, encoding="utf-8")
     y = real["intent"].values
     rng = np.random.default_rng(BASE_SEED)

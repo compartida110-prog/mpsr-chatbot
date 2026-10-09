@@ -1,0 +1,52 @@
+utterance_id,text,intent,category,source,base_phrase_id,split
+UR001,"Eso era todo, hasta luego",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR001,train
+UR002,"Ya no tengo más preguntas, chau",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR002,train
+UR003,"Listo, ya me voy, que les vaya bien",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR003,train
+UR004,"Hasta mañana, cuídense",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR004,train
+UR005,"Con eso me despido, adiós",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR005,train
+UR006,"Ya terminé, nos vemos pronto",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR006,train
+UR007,"Eso es todo por hoy, adiós",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR007,train
+UR008,"No necesito nada más, que estén bien",despedida,Interacción conversacional,sintético (refinamiento ciclo 1),UR008,train
+UR009,"Qué amable, muchas gracias por explicarme",agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR009,train
+UR010,Gracias por responderme tan rápido,agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR010,train
+UR011,Se agradece la ayuda,agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR011,train
+UR012,"Gracias, justo eso buscaba",agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR012,train
+UR013,Muy agradecido por la orientación,agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR013,train
+UR014,"Excelente, gracias por la respuesta",agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR014,train
+UR015,"Gracias, me quedó clara la información",agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR015,train
+UR016,Te agradezco la información,agradecimiento,Interacción conversacional,sintético (refinamiento ciclo 1),UR016,train
+UR017,"Hay desmonte tirado en la esquina, ¿cómo pido que lo recojan?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR017,train
+UR018,"Quiero que barran la calle de mi barrio, ¿a dónde acudo?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR018,train
+UR019,"La avenida está llena de basura y nadie la limpia, ¿qué hago?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR019,train
+UR020,"El pasaje está lleno de desperdicios, ¿a quién se lo pido?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR020,train
+UR021,¿Cómo solicito que limpien la vereda de mi cuadra?,limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR021,train
+UR022,"Hay mucha tierra y basura en la pista, ¿quién la limpia?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR022,train
+UR023,"Pido que limpien la calle después de la feria, ¿cómo lo hago?",limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR023,train
+UR024,¿Dónde solicito un barrido extra en mi cuadra?,limpieza_via_publica,Servicios públicos,sintético (refinamiento ciclo 1),UR024,train
+UR025,¿A qué hora pasa el recolector por mi calle?,horario_recojo_basura,Servicios públicos,sintético (refinamiento ciclo 1),UR025,train
+UR026,¿Cada cuántos días pasa el camión de residuos?,horario_recojo_basura,Servicios públicos,sintético (refinamiento ciclo 1),UR026,train
+UR027,No sé qué días pasa la basura en mi sector,horario_recojo_basura,Servicios públicos,sintético (refinamiento ciclo 1),UR027,train
+UR028,¿Hay recojo de basura los domingos?,horario_recojo_basura,Servicios públicos,sintético (refinamiento ciclo 1),UR028,train
+UR029,"Hay gente sospechosa rondando en mi calle, ¿a quién aviso?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR029,train
+UR030,Quiero denunciar que robaron en mi cuadra,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR030,train
+UR031,"Vi un robo ayer, ¿dónde lo reporto?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR031,train
+UR032,¿Cómo pido más patrullaje en mi zona?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR032,train
+UR033,"Hay pandillas en la esquina, ¿cómo lo denuncio?",denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR033,train
+UR034,Necesito que serenazgo vigile mi barrio por los robos,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR034,train
+UR035,¿A dónde acudo si hay inseguridad en mi urbanización?,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR035,train
+UR036,Quiero reportar vehículos sospechosos en mi cuadra,denuncia_seguridad_ciudadana,Defensa civil y seguridad ciudadana,sintético (refinamiento ciclo 1),UR036,train
+UR037,"Me quiero independizar con un negocio, ¿qué trámites me piden primero?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR037,train
+UR038,¿Qué pide la municipalidad para dejarme abrir mi local?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR038,train
+UR039,"Voy a alquilar un local para vender ropa, ¿qué necesito?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR039,train
+UR040,¿Qué papeles piden para abrir una tienda de abarrotes?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR040,train
+UR041,"Quiero emprender con un negocio de comida, ¿qué requisitos hay?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR041,train
+UR042,"Tengo un local nuevo, ¿qué debo presentar para que me dejen atender?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR042,train
+UR043,¿Qué hace falta para tener mi negocio en regla?,licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR043,train
+UR044,"Para abrir un taller, ¿qué documentos debo llevar?",licencia_funcionamiento_requisitos,Licencias y autorizaciones,sintético (refinamiento ciclo 1),UR044,train
+UR045,¿Dónde sale la combi a Arequipa?,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR045,train
+UR046,¿Cuándo es el próximo feriado?,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR046,train
+UR047,¿A cuánto está el dólar hoy?,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR047,train
+UR048,Ayúdame a escribir un poema,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR048,train
+UR049,¿Cuál es el mejor celular para comprar?,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR049,train
+UR050,Dime cómo se prepara un ceviche,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR050,train
+UR051,Quiero comprar un pasaje a Lima,fuera_de_alcance,Interacción conversacional,sintético (refinamiento ciclo 1),UR051,train
