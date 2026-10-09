@@ -10,8 +10,9 @@
 | `historico/` | Versiones anteriores (`Registro_Sesiones_Piloto_v1.xlsx`, `Sesion_Asistida_Formulario_v1` y `_v2`; la v2 del formulario solo conserva la casilla de la «fecha de corte» que reemplazó la v3). La v2 del registro: la v2 solo corrige dos textos de meta del Resumen (el formato decimal dependía del idioma de Excel: salía «Meta ≥ 04» y «Mínimo 001»); los encabezados no cambian | Reemplazadas por la v2 |
 | `Instrucciones_ClaudeCode_*.md` (cambio de diseño, siguiente paso, ajustes al registro) | Instrucciones de los últimos pasos | Trazabilidad |
 | `privado/` | Registro real lleno y hojas originales; **no se sube a GitHub** (`.gitignore`) | — |
+| `../../scripts/asistente_local.py` | Asistente de consola para el pre-piloto: carga solo el NLU congelado (`LOTE2-FINAL`), verifica `congelar_modelo.py --verificar` antes de arrancar, aplica t = 0,50 y responde con `domain_v3.yml`; guarda un registro CSV por sesión (PPxx) en `privado/`. Comando: `python scripts/asistente_local.py PP01`. Prueba: `tests/smoke_asistente.py` (datos falsos) | **Ejecutado** (probado con datos falsos) |
+| `../../scripts/preparar_registro_prepiloto.py` | Copia la plantilla a `privado/Registro_Sesiones_Prepiloto.xlsx` (el nombre que lee el tablero para G6) y anota en Parametros el modelo congelado y su fecha, editando el XML (sin openpyxl) | **Ejecutado** |
 
-**Todavía no:** el modelo no se congeló (se congela con `scripts/congelar_modelo.py` solo después de la Parte B y del refinamiento, justo antes de la primera sesión)
-ni se ejecutó la Parte B ni el análisis con datos reales.
+**Estado al 8 de octubre de 2026:** el modelo ya está congelado (`logs/v3_real/modelo_congelado.json`, G5 cumplida; `LOTE2-FINAL v1`, 2026-10-08 22:17); faltan el pre-piloto (G6) y las sesiones (G7). Con `analizar_piloto.py` no se analiza el registro del pre-piloto: gastaría la prueba final única del modelo congelado; para G6 basta el tablero (`estado_compuertas.py`).
 
 **No guardar los `.xlsx` con openpyxl**: se pierden validaciones y formato; los scripts solo los leen. Pre-piloto: 5 a 15 personas (objetivo operativo 5–8 por el plazo del curso).
