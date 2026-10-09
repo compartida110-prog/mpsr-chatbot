@@ -54,6 +54,8 @@ SCRIPTS = {
     "demostracion_simulada.py": ("2.14 (demostración)", "Lote1_Transcripcion_SIMULADO_v2.xlsx y Registro_Sesiones_Piloto_SIMULADO_v4.xlsx", "evidencias/simulado_demostracion/<ejecución>/ (6 etapas + informe)", "Resultado guardado (etapa 15, Simulado)"),
     "construir_colab.py": ("Documentación (Colab)", "Repositorio (solo lectura) + tests/", "colab_paquetes/*.zip, notebooks/Colab_Avance_MPSR_v1.ipynb, docs/Documentacion_Codigo_v1.md", "Documentado (genera este cuaderno y los paquetes)"),
     "colab_metadatos.py": ("Documentación (Colab)", "—", "Tablas curadas (paso del protocolo, glosario, trazabilidad) que lee construir_colab.py", "Documentado"),
+    "colab_util.py": ("Documentación (Colab)", "—", "Funciones comunes de los cuadernos por paso: rutas, rótulos, comparar, métricas, tabla de scripts", "Documentado (se importa en cada cuaderno)"),
+    "construir_colab_por_paso.py": ("Documentación (Colab)", "Cuaderno único + paquetes", "notebooks/colab_por_paso/*.ipynb, colab_paquetes/colab_por_paso/", "Documentado (genera los cuadernos por paso)"),
     "stats_analysis.py": ("P14", "Datos de línea base y de sesiones", "Pruebas de normalidad, t pareada o Wilcoxon, tamaño del efecto", "Documentado"),
     "simular_analisis_p14.py": ("P14 (ilustrativo)", "Datos inventados", "Demuestra que el pipeline estadístico corre", "Documentado (Simulado)"),
     "simular_P14_n120.py": ("P14 (ilustrativo)", "Línea base simulada P01 (n = 120)", "Resultados simulados de P14", "Documentado (Simulado)"),
@@ -157,3 +159,26 @@ DATOS = [
     ("logs/avance/estado_compuertas.json", "Real", "Estado de las 7 compuertas.", "estado_compuertas.py"),
     ("incident_log.csv", "Real", "Bitácora de incidencias y desviaciones (P16).", "escrito por el equipo"),
 ]
+
+# cuadernos por paso (notebooks/colab_por_paso/): id -> título corto
+CUADERNOS = {
+    "02": ("02_P02_Corpus", "P02 Corpus"), "03": ("03_P03_Auditoria", "P03 Auditoría"), "04": ("04_P04_Fuga_Parafrasis", "P04 Fuga por paráfrasis"),
+    "05": ("05_P05_Division", "P05 División"), "06": ("06_P06_Preprocesamiento", "P06 Preprocesamiento"), "07": ("07_P07_Baseline_SVM", "P07 Baseline SVM"),
+    "08": ("08_P08_Rasa_DIET", "P08 Rasa/DIET"), "09": ("09_P09_Dialogo_Umbral", "P09 Diálogo y umbral"),
+    "10": ("10_P10_P11_Repeticiones_Metricas", "P10–P11 Repeticiones y métricas"), "11": ("11_P11_1_2_Tecnicas_Lotes_Prepiloto", "P11.1–P11.2b Técnicas, lotes y pre-piloto"),
+    "12": ("12_P15_P16_Reproducibilidad_Incidencias", "P15–P16 Reproducibilidad e incidencias"), "13": ("13_P01_P12_P13_P14_Demostracion_Simulada", "P01, P12–P14 Demostración simulada"),
+}
+
+# cada script de scripts/ debe figurar en al menos un cuaderno por paso
+ASIGNACION = {
+    "ampliar_libro.py": ["11"], "analizar_piloto.py": ["11", "13"], "aplicar_respuestas.py": ["09"], "aplicar_tupa.py": ["09"], "apply_ampliacion_v3.py": ["02"],
+    "asistente_local.py": ["11"], "audit_corpus.py": ["03", "04"], "auditar_diseno_piloto.py": ["12"], "auditar_fecha_corte.py": ["12"], "catalogo_formularios.py": ["11"],
+    "colab_metadatos.py": ["12"], "colab_util.py": ["12"], "combinar_libros.py": ["11"], "common.py": ["06"], "conciliar_seguimiento.py": ["11"], "congelar_modelo.py": ["12"],
+    "construir_colab.py": ["12"], "construir_colab_por_paso.py": ["12"], "crossval_agrupada.py": ["08"], "crossval_participantes.py": ["08", "10"],
+    "demostracion_simulada.py": ["13"], "deteccion_simulado.py": ["13"], "entrenar_svm_lote2.py": ["07"], "estado_compuertas.py": ["11", "12"], "eval_lote2.py": ["10"],
+    "eval_real.py": ["08", "10"], "expand_corpus.py": ["02"], "export_rasa_nlu.py": ["06"], "fallback_threshold.py": ["09"], "hoja_revision_lote2.py": ["11"],
+    "humo_respuestas.py": ["09"], "informe_ingesta_lote2.py": ["11"], "ingest_real_lote.py": ["11"], "libro_xml.py": ["11"], "plot_p11_1.py": ["11"], "plot_v3_comparacion.py": ["11"],
+    "preparar_entrenamiento_lote2.py": ["05"], "preparar_libro_v13.py": ["11"], "preparar_registro_prepiloto.py": ["11"], "run_rasa_grid.py": ["08"],
+    "simular_P14_n120.py": ["13"], "simular_analisis_p14.py": ["13"], "smoke_test.py": ["11"], "split_corpus.py": ["05"], "split_corpus_v3.py": ["05"], "split_lote2.py": ["05"],
+    "stats_analysis.py": ["13"], "train_baseline.py": ["07"], "train_baseline_p07.py": ["07"], "trasladar_revision.py": ["11"], "umbral_lote2.py": ["09"], "verificar_referencias.py": ["12"],
+}

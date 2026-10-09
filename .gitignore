@@ -71,3 +71,4 @@ logs/CVP-RASA-fold*/
 colab_paquetes/*.zip
 colab_paquetes/_trabajo/
 colab_paquetes/_cache/
+colab_paquetes/colab_por_paso/

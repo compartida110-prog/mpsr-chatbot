@@ -73,12 +73,17 @@ PUBLICO_ARCHIVOS = [
     "logs/v3_real/modelo_congelado.json", "logs/v3_real/lote2_congelado_previo.json", "logs/v3_real/lote2_congelado_previo_svm.json", "logs/v3_real/lote2_umbral_congelado.json",
     "logs/v3_real/test_registro.json", "logs/v3_real/eval_real_resumen.json", "logs/v3_real/umbral_congelado.json", "logs/v3_real/seleccion_final.json",
     "logs/v3_real/lote2/eval_lote2_resumen.json", "logs/v3_real/lote2/f1_por_intencion_lote2.csv", "logs/v3_real/lote2/f1_por_intencion_lote2_svm.csv", "logs/v3_real/lote2/test_registro.json",
+    "logs/simulaciones_P14/SIMULACION_resultado_P14.json", "logs/simulaciones_P14/SIMULACION_resultado_P14_n120.json",
+    "logs/v3_real/rasa_validation.csv", "logs/v3_real/rasa_test.csv", "logs/v3_real/baseline_validation.csv", "logs/v3_real/baseline_test.csv",
+    "logs/v3_real/f1_por_intencion_test_rasa.csv", "logs/v3_real/f1_por_intencion_test_svm.csv", "logs/v3_real/confusiones_top10_test_rasa.csv", "logs/v3_real/confusiones_top10_test_svm.csv",
+    "logs/v3_real/eval_real_resumen.txt", "logs/v3_real/umbral_reporte.txt", "logs/v3_real/umbral_test_reporte.txt",
+    "evidencias/p11_1_pruebas/README.md", "evidencias/p11_1_pruebas/REPORTE_FALLAS.md", "evidencias/p11_1_pruebas/config_usada_en_el_entrenamiento.yml",
     "docs/README.md", "docs/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v11.pdf", "docs/Nota_Desviacion_P11_1_v11.pdf",
     "docs/tupa/Verificacion_TUPA_v10_4.xlsx", "docs/tupa/respuestas_manual_20261008.yml", "docs/tupa/LEEME.md",
     "docs/piloto/Registro_Sesiones_Piloto_v2.xlsx", "docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_SIMULADO_v4.xlsx", "docs/piloto/ejemplos_simulados/LEEME.md",
     "docs/lote_real_1/ejemplos_simulados/Lote1_Transcripcion_SIMULADO_v2.xlsx", "evidencias/README.md",
 ]
-PUBLICO_ARBOLES = ["logs/avance", "evidencias/simulado_demostracion"]
+PUBLICO_ARBOLES = ["logs/avance", "evidencias/simulado_demostracion", "corpus/historico", "evidencias/p11_1_pruebas/salidas"]
 
 
 def archivos_publicos():
@@ -100,6 +105,8 @@ def metadatos_json():
     return {
         "scripts": {k: list(v) for k, v in M.SCRIPTS.items()},
         "datos": [{"ruta": r, "origen": o, "descripcion": d, "generado_por": g} for r, o, d, g in M.DATOS],
+        "asignacion": M.ASIGNACION,
+        "cuadernos": {k: list(v) for k, v in M.CUADERNOS.items()},
         "glosario": [{"término": a, "definición": b, "fórmula": c, "interpretación": d, "limitación": e} for a, b, c, d, e in M.GLOSARIO],
         "pruebas": {k: list(v) for k, v in M.PRUEBAS.items()},
         "traza_pasos": [list(x) for x in M.TRAZA_PASOS],
@@ -207,6 +214,9 @@ def agregados_reales():
         "particion_lote2": {"split": l2["split"].value_counts().to_dict(), "entrenamiento_por_origen": ent["source"].value_counts().to_dict(),
                             "participantes_test": int(test["participant_code"].nunique()), "situaciones_test": resumen2.get("situaciones"),
                             "test_por_intencion_min_max": [int(test.groupby("intent").size().min()), int(test.groupby("intent").size().max())]},
+        "real_por_intencion": {
+            "lote1_final": pd.read_csv(ROOT / "corpus/real/lote1_real_final.csv", dtype=str, keep_default_na=False, encoding="utf-8")["intent"].value_counts().sort_index().to_dict(),
+            "lote2_final": pd.read_csv(ROOT / "corpus/real_lote2/lote2_real_final.csv", dtype=str, keep_default_na=False, encoding="utf-8")["intent"].value_counts().sort_index().to_dict()},
         "controles": {"lote1_grupos_de_parafrasis_en_varias_particiones": int((gp > 1).sum()),
                       "lote2_solape_texto_exacto_test_vs_entrenamiento": len(h_tr & h_te),
                       "lote2_participantes_en_test_y_entrenamiento_real": len(set(ent.loc[ent["participant_code"] != "", "participant_code"]) & set(test["participant_code"])),
@@ -480,6 +490,8 @@ def ejecutar(celdas, env, etiqueta):
                 continue
             s = Salida()
             ns["display"] = s.display
+            if "colab_util" in sys.modules:
+                sys.modules["colab_util"].display = s.display   # las tablas de las funciones de colab_util salen como display_data
             try:
                 with contextlib.redirect_stdout(s.buf):
                     exec(compile(src, f"<celda {i}>", "exec"), ns)

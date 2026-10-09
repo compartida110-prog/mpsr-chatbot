@@ -113,9 +113,13 @@ if os.environ.get("MPSR_CORRER_PRUEBAS") == "1":
 
 # %%
 tb = leer_json("logs/avance/estado_compuertas.json")
-real = pd.DataFrame([{"compuerta": c["id"], "nombre": c["nombre"], "estado": c["estado"], "datos": c["datos"], "criterio": c["criterio"], "nota": c["nota"]} for c in tb["compuertas"]])
+real = pd.DataFrame([{"compuerta": c["id"], "nombre": c["nombre"], "estado": c["estado"], "datos": c["datos"], "criterio": c["criterio"], "nota": c["nota"]} for c in tb["compuertas"] if c["datos"] != "Simulado"])
 rotulo(ORIGEN_REAL, f"tablero real: {tb['compuertas_cumplidas_con_datos_reales']} de {tb['total']} compuertas cumplidas con datos reales (generado {tb['generado']})")
 display(real)
+sim_en_real = [c for c in tb["compuertas"] if c["datos"] == "Simulado"]
+if sim_en_real:
+    rotulo(ORIGEN_SIMULADO, "compuertas que el tablero real muestra solo con datos simulados (NO cuentan como reales)")
+    display(pd.DataFrame([{"compuerta": c["id"], "nombre": c["nombre"], "estado": c["estado"], "datos": c["datos"]} for c in sim_en_real]))
 comparar("12", "compuertas cumplidas con datos reales", tb["compuertas_cumplidas_con_datos_reales"], 5, "Protocolo V1.8 (5 de 7)", tol=0)
 estados_real = {c["id"]: c["estado"] for c in tb["compuertas"]}
 comparar("12", "G1–G5 cumplidas, G6 no cumplida", ",".join(f"{k}:{estados_real[k]}" for k in ("G1", "G2", "G3", "G4", "G5", "G6")), "G1:Cumplida,G2:Cumplida,G3:Cumplida,G4:Cumplida,G5:Cumplida,G6:No cumplida", "tablero G6 (PP01–PP07)", tipo="txt")
