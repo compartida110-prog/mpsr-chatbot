@@ -127,6 +127,8 @@ def main():
     ap.add_argument("--umbral", default=str(UMBRAL), help="umbral_congelado.json de fallback_threshold.py (opcional)")
     ap.add_argument("--salida", default=str(SALIDA))
     ap.add_argument("--proposito", choices=["piloto", "lote2"], default="piloto", help="lote2: congelamiento previo a abrir el lote 2 (protocolo V1.6 5.8); solo cambia el rótulo del archivo")
+    ap.add_argument("--version", default="", help="etiqueta de versión del modelo que se registra en el archivo (p. ej. «LOTE2-FINAL v1»)")
+    ap.add_argument("--nota", default="", help="texto libre que se agrega al registro (p. ej. dónde se midió el modelo)")
     ap.add_argument("--forzar", action="store_true", help="rehacer un congelamiento existente (exige --motivo)")
     ap.add_argument("--motivo", default="")
     ap.add_argument("--verificar", action="store_true", help="solo comprueba que nada cambió desde el congelamiento")
@@ -183,6 +185,25 @@ def main():
           "protocolo": "V1.3", "modelo_nombre": Path(a.modelo).name, "python": platform.python_version(), "commit": git_commit(), "archivos": archivos,
           "sha256": huellas(a.modelo, a.config, a.domain, a.corpus, a.umbral), "versiones": versiones(),
           "umbral_t": None, "nota": "Las consultas de las sesiones no se usan para ajustar el modelo; son el test final, evaluado una sola vez."}
+    if a.version:
+        fz["version"] = a.version
+    if a.nota:
+        fz["nota_registro"] = a.nota
+    try:  # configuración del NLU y tamaño del entrenamiento, para que el registro sea legible sin abrir los archivos
+        import yaml
+        cfgy = yaml.safe_load(open(a.config, encoding="utf-8"))
+        diet = next(c for c in cfgy["pipeline"] if c["name"] == "DIETClassifier")
+        fb = next((c for c in cfgy["pipeline"] if c["name"] == "FallbackClassifier"), {})
+        fz["configuracion_nlu"] = {"epochs": diet.get("epochs"), "batch_size": diet.get("batch_size"), "embedding_dimension": diet.get("embedding_dimension"), "random_seed": diet.get("random_seed"),
+                                   "fallback_threshold": fb.get("threshold"), "ambiguity_threshold": fb.get("ambiguity_threshold")}
+    except Exception:
+        pass
+    if Path(a.corpus).exists():
+        try:
+            import pandas as _pd
+            fz["frases_entrenamiento"] = int(len(_pd.read_csv(a.corpus, dtype=str, keep_default_na=False, encoding="utf-8")))
+        except Exception:
+            pass
     if a.proposito == "lote2":
         fz.update({"estado": "Ejecutado (modelo y umbral congelados ANTES de abrir el lote 2)", "protocolo": "V1.6 5.8",
                    "nota": "El lote 2 es solo test: se evalúa una sola vez con este modelo y este umbral; no se usa para ajustar nada."})

@@ -58,6 +58,15 @@ def run(script, *args):
     return p.returncode, (p.stdout or "") + (p.stderr or "")
 
 
+def fz_real_hash():
+    """Huella del congelamiento REAL (G5), si existe: las pruebas con datos falsos no deben crearlo ni modificarlo (puede existir de verdad desde el congelamiento del lote 2)."""
+    f = ROOT / "logs" / "v3_real" / "modelo_congelado.json"
+    return hashlib.sha256(f.read_bytes()).hexdigest() if f.exists() else None
+
+
+FZ_REAL_0 = fz_real_hash()
+
+
 def escribir(raiz, rel, texto):
     f = Path(raiz) / rel
     f.parent.mkdir(parents=True, exist_ok=True)
@@ -330,7 +339,7 @@ def main():
     check("los CSV llevan el sufijo _SIMULADO y la columna ESTADO", all(f.name.endswith("_SIMULADO.csv") for f in archivos if f.suffix == ".csv") and any(f.suffix == ".csv" for f in archivos))
     check("el modo de demostración escribe solo bajo evidencias/simulado_demostracion/ (no crea nada más en la raíz)", {p.relative_to(rd).parts[:2] for p in rd.rglob("*") if p.is_file()} == {("evidencias", "simulado_demostracion")})
     fz = json.loads((d2 / "modelo_congelado_SIMULADO.json").read_text(encoding="utf-8"))
-    check("el modelo de demostración no es el real: otro nombre de archivo y estado SIMULADO; no existe logs/v3_real/modelo_congelado.json", "SIMULADO" in fz["estado"] and "demostracion" in fz["modelo_nombre"] and not (ROOT / "logs" / "v3_real" / "modelo_congelado.json").exists())
+    check("el modelo de demostración no es el real: otro nombre de archivo y estado SIMULADO; no se crea ni se modifica logs/v3_real/modelo_congelado.json", "SIMULADO" in fz["estado"] and "demostracion" in fz["modelo_nombre"] and fz_real_hash() == FZ_REAL_0)
     c, t, g, j = tablero(rd)
     check("el tablero lee la carpeta de demostración y la muestra siempre como Simulado (G1 y G7 «Cumplida (Simulado)»; 0 reales)",
           g["G1"]["estado"] == "Cumplida (Simulado)" and g["G7"]["estado"] == "Cumplida (Simulado)" and j["compuertas_cumplidas_con_datos_reales"] == 0 and g["G1"]["datos"] == "Simulado", str({k: v["estado"] for k, v in g.items()}))
@@ -347,7 +356,7 @@ def main():
     check("congelar_modelo.py --demo-simulada se NIEGA a escribir en logs/v3_real", c != 0 and "ME NIEGO" in t and not (ROOT / "logs" / "v3_real" / "modelo_congelado_otro.json").exists(), t[-200:])
     c, t = run("congelar_modelo.py", "--demo-simulada", "--salida", ROOT / "logs" / "v3_real" / "modelo_congelado.json", "--demo-raiz", rd, "--ejecucion", "defecto")
     check("con la ruta real por defecto (indistinguible de no pasarla) escribe en la carpeta de demostración y no toca el modelo congelado real",
-          c == 0 and (rd / "evidencias" / "simulado_demostracion" / "defecto" / "modelo_congelado_SIMULADO.json").exists() and not (ROOT / "logs" / "v3_real" / "modelo_congelado.json").exists(), t[-200:])
+          c == 0 and (rd / "evidencias" / "simulado_demostracion" / "defecto" / "modelo_congelado_SIMULADO.json").exists() and fz_real_hash() == FZ_REAL_0, t[-200:])
     ajeno = W / "Lote1_Transcripcion_otro.xlsx"
     shutil.copy(LIBRO, ajeno)
     for nombre, ruta in (("un libro con otro nombre", ajeno), ("la plantilla vacía real", PLANTILLA_LOTE)):
