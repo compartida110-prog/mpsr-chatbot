@@ -47,7 +47,8 @@
 
 ## 7. Qué hay hecho y qué falta
 - **Hecho (solo preparación, probado con datos FALSOS en `tests/smoke_lote2.py`):** carpeta `docs/lote_real_2/` y protecciones `.gitignore`; catálogo `situaciones_lote2_v1.csv`; `ingest_real_lote.py --lote 2` (P33–P57, ids `Q…`, archivos `lote2_*`, puerta de congelamiento); `preparar_entrenamiento_lote2.py`; `split_lote2.py` (solo test, sin validación, duplicados con log); tablero con «Medida en lote 2».
-- **Falta (no se hizo):** el script de evaluación única del lote 2 (IC por frases y por participantes, F1 por intención, umbral, confusión del par); el refinamiento previo (0 de 2, requiere aprobación); congelar modelo y umbral; recolectar y transcribir el lote 2; actualizar la matriz y el protocolo si cambia algo; confirmar la interpretación de duplicados con el entrenamiento (punto 2).
+- **Hecho después (2026-10-08/09):** script de evaluación única `scripts/eval_lote2.py` (probado con datos falsos); refinamiento previo aprobado por el tesista: 1 de 2 ciclos (F1 macro de la validación cruzada por participante 0,7866 → 0,7987, mejora +0,012 < 0,02, se detiene); umbral t = 0,50; modelo y umbral **congelados** con sha256 (`logs/v3_real/lote2_congelado_previo.json`). Informe: `logs/avance/informe_refinamiento_lote2.md`. Interpretación de duplicados con el entrenamiento: **confirmada** por el tesista (solo coincidencia exacta tras normalizar, nunca por predicciones; cada caso al log con motivo y cuenta).
+- **Falta:** recolectar y transcribir el lote 2 (el tesista avisará con el archivo); ingesta, revisión de etiquetas, `split_lote2.py` y `eval_lote2.py` (una sola vez); decidir antes si se aplica el dry-run 3 de `constancia_domiciliaria` (cambiaría el dominio y exigiría rehacer el congelamiento); actualizar la sección 5.8 del protocolo (a cargo del tesista).
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T18:28:31",
+  "generado": "2026-10-08T20:20:47",
   "compuertas_cumplidas_con_datos_reales": 3,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
@@ -30,15 +30,15 @@
     },
     {
       "estado": "No cumplida",
-      "evidencia": "logs/v3_real/test_registro.json",
-      "nota": "No cumplida, lote 1. Ciclos de refinamiento: 0/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez). Falta el congelamiento previo del modelo y el umbral.",
+      "evidencia": "logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json, logs/v3_real/lote2_congelado_previo.json",
+      "nota": "No cumplida, lote 1. Ciclos de refinamiento: 1/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez).",
       "simulado": false,
       "fecha": "2026-10-08T14:22:01+00:00",
       "estado_base": "No cumplida",
       "datos": "Real",
       "id": "G3",
       "nombre": "Calidad con lenguaje real",
-      "criterio": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75"
+      "criterio": "≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75 (V1.6: medida en el lote 2; la del lote 1 queda como «No cumplida, lote 1»)"
     },
     {
       "estado": "Cumplida",

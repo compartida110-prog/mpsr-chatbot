@@ -1,0 +1,23 @@
+# rasa_config_lote2.yml -- configuración del modelo que se congela ANTES de abrir el lote 2 (protocolo V1.6 5.8).
+# DIET epochs=100 batch_size=64 embedding_dimension=20 (elegida en la validación del lote 1, sin cambios en el refinamiento); FallbackClassifier threshold=0.5 ambiguity_threshold=0.1
+# (umbral elegido con la validación cruzada por participante del lote 1: logs/v3_real/lote2_umbral_congelado.json). El FallbackClassifier no entra al entrenamiento de DIET.
+recipe: default.v1
+language: es
+pipeline:
+- name: WhitespaceTokenizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 100
+  batch_size: 64
+  embedding_dimension: 20
+  learning_rate: 0.001
+  constrain_similarities: true
+  random_seed: 42
+  entity_recognition: true
+- name: FallbackClassifier
+  threshold: 0.5
+  ambiguity_threshold: 0.1

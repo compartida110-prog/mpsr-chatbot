@@ -1,0 +1,13 @@
+UMBRAL DE CONFIANZA DEL LOTE 2 — ELECCIÓN CON DATOS DEL LOTE 1 (no se leyó el lote 2)
+Origen: validación cruzada agrupada por participante, último ciclo de refinamiento (185 frases activas del lote 1) | 185 frases | lambda = 2 | ambiguity_threshold = 0.1
+
+         t  respondidas  aciertos_respondidos  errores_respondidos  abstenciones  correctas_perdidas  errores_atrapados cobertura precision_respondida  puntaje
+sin umbral          185                   147                   38             0                   0                  0    100.0%                79.5%     71.0
+      0.30          169                   144                   25            16                   3                 13     91.3%                85.2%     94.0
+      0.40          162                   143                   19            23                   4                 19     87.6%                88.3%    105.0
+      0.50          151                   137                   14            34                  10                 24     81.6%                90.7%    109.0
+      0.60          140                   128                   12            45                  19                 26     75.7%                91.4%    104.0
+      0.70          129                   121                    8            56                  26                 30     69.7%                93.8%    105.0
+      0.80          120                   114                    6            65                  33                 32     64.9%                95.0%    102.0
+
+UMBRAL ELEGIDO Y CONGELADO: t = 0.50 (puntaje 109.0; cobertura 81.6%; precisión respondida 90.7%). Sin umbral: puntaje 71.0.

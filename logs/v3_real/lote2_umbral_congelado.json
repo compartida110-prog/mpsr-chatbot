@@ -1,0 +1,14 @@
+{
+  "t": 0.5,
+  "ambiguity_threshold": 0.1,
+  "lambda": 2.0,
+  "puntaje_cv": 109.0,
+  "puntaje_sin_umbral_cv": 71.0,
+  "cobertura_cv": 0.8162,
+  "precision_respondida_cv": 0.9073,
+  "fecha": "2026-10-08T20:09:20",
+  "origen": "validación cruzada agrupada por participante, último ciclo de refinamiento (185 frases activas del lote 1)",
+  "n_frases": 185,
+  "predicciones_sha256": "daa59fd6855a73bae04cdd6ba1d58eb0147f902a8a1146f5cfc6fd4c6f53e412",
+  "motivo_rehacer": null
+}

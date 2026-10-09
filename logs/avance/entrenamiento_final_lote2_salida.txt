@@ -1,0 +1,1 @@
+modelo: C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot\models\rasa\LOTE2-FINAL.tar.gz (642s)

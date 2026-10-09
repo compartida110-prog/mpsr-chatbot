@@ -59,3 +59,7 @@ data/v3_lote2/nlu_*.yml
 
 # Carpetas de entrenamiento de la validación cruzada por participante (config y log; los resultados van en logs/avance y logs/v3_real)
 logs/CVP-RASA-fold*/
+
+# Congelamiento previo al lote 2: solo huellas y rutas (sin frases); se versiona para que quede constancia anterior a los datos del lote 2
+!logs/v3_real/lote2_congelado_previo.json
+!logs/v3_real/lote2_umbral_congelado.json
