@@ -1,15 +1,15 @@
-"""Verifica que las rutas y las cifras citadas en el protocolo V1.7 y en la Nota de Desviación (versiones _v10) existan y coincidan con el repositorio.
+"""Verifica que las rutas y las cifras citadas en el protocolo V1.8 y en la Nota de Desviación (versiones _v11) existan y coincidan con el repositorio.
 
 Parte 1: cada archivo o carpeta que cita el protocolo existe (y en qué ruta).
 Parte 2: cada cifra (intenciones, situaciones, F1, validación cruzada, smoke test, McNemar, incidencias, …) se RECALCULA desde los
          archivos del repositorio y se compara con lo que dicen los documentos. Ningún valor se escribe a mano en el resultado.
 
 Estados: OK · DISCREPANCIA (el documento y el repositorio difieren) · PLANIFICADO (aún no existe, coherente con su estado) · NOTA.
-Las afirmaciones se transcribieron del protocolo V1.7 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v10) y de la
-Nota_Desviacion_P11_1_v10; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
+Las afirmaciones se transcribieron del protocolo V1.8 (Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v11) y de la
+Nota_Desviacion_P11_1_v11; este script NO modifica esos documentos. Las erratas E1–E5 ya están aplicadas desde la v5, así que las
 afirmaciones de esas filas se actualizaron; una diferencia nueva se informa, no se tapa.
 
-Escribe evidencias/piloto/verificacion_referencias_v10.md (los de v8 y anteriores son historia y no se editan; el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
+Escribe evidencias/piloto/verificacion_referencias_v11.md (los de v10 y anteriores son historia y no se editan; el archivo evidencias/v3_real/verificacion_referencias.md es la verificación de la
 V1.2 y forma parte de la historia: no se edita).
 
 Uso:
@@ -45,7 +45,7 @@ def media_f1(patron, col="f1_macro"):
 
 def main():
     # ============================================================ PARTE 1: rutas
-    cit = "Protocolo V1.7"
+    cit = "Protocolo V1.8"
     rutas = [
         ("README.md", "README.md", "OK"),
         ("corpus_audit.csv", "corpus/corpus_audit.csv", "OK"),
@@ -195,7 +195,7 @@ def main():
         "OK" if (ev["test"], ev["validation"], sorted(set(fr))) == (27, 27, [3]) else "DISCREPANCIA")
     # incidencias
     n_inc = len(pd.read_csv(ROOT / "incident_log.csv"))
-    reg("Protocolo y Nota v10 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
+    reg("Protocolo y Nota v11 (evidencias)", "la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra)",
         f"`incident_log.csv` existe y tiene {n_inc} filas (dato informativo: cambia con cada incidencia nueva)", "OK" if existe("incident_log.csv") and n_inc > 0 else "DISCREPANCIA",
         f"informativo: {n_inc} incidencias registradas a la fecha de esta verificación")
 
@@ -343,15 +343,15 @@ def main():
         e2 = _json.loads(ev.read_text(encoding="utf-8"))
         m2 = e2["metodos"]["rasa"]
         ok2 = (round(m2["f1_macro"][0], 4), round(m2["f1_macro_ic_participantes"][1], 3), round(m2["f1_macro_ic_participantes"][2], 3), e2["n_test"], e2["participantes"]) == (0.9072, 0.852, 0.939, 267, 25)
-        reg("Nota v10 (lote 2)", "F1 macro 0.9072 (IC95 % por participantes 0.852–0.939); 267 frases de test; 25 participantes",
+        reg("Nota v11 (lote 2)", "F1 macro 0.9072 (IC95 % por participantes 0.852–0.939); 267 frases de test; 25 participantes",
             f"F1 macro {m2['f1_macro'][0]:.4f} (IC por participantes {m2['f1_macro_ic_participantes'][1]:.3f}–{m2['f1_macro_ic_participantes'][2]:.3f}); {e2['n_test']} frases; {e2['participantes']} participantes (logs/avance/eval_lote2_resumen.json)", "OK" if ok2 else "DISCREPANCIA")
         sv = e2["metodos"].get("svm", {})
         cmp_ = sv.get("comparacion_con_rasa", {})
-        reg("Nota v10 (lote 2)", "exactitud 0.8876; SVM 0.8925; McNemar: solo SVM acierta 10 y solo DIET acierta 14 (p = 0.541)",
+        reg("Nota v11 (lote 2)", "exactitud 0.8876; SVM 0.8925; McNemar: solo SVM acierta 10 y solo DIET acierta 14 (p = 0.541)",
             f"exactitud {m2['accuracy']:.4f}; SVM {sv.get('f1_macro', [float('nan')])[0]:.4f}; solo SVM {cmp_.get('solo_svm_acierta')} / solo DIET {cmp_.get('solo_rasa_acierta')} (p = {cmp_.get('p_mcnemar_exacto', float('nan')):.3f})",
             "OK" if (round(m2["accuracy"], 4), round(sv.get("f1_macro", [0])[0], 4), cmp_.get("solo_svm_acierta"), cmp_.get("solo_rasa_acierta"), round(cmp_.get("p_mcnemar_exacto", 0), 3)) == (0.8876, 0.8925, 10, 14, 0.541) else "DISCREPANCIA")
     else:
-        reg("Nota v10 (lote 2)", "F1 macro 0.9072 en el lote 2", "NO EXISTE logs/avance/eval_lote2_resumen.json", "DISCREPANCIA")
+        reg("Nota v11 (lote 2)", "F1 macro 0.9072 en el lote 2", "NO EXISTE logs/avance/eval_lote2_resumen.json", "DISCREPANCIA")
     pred2 = ROOT / "logs" / "v3_real" / "lote2" / "predicciones_lote2.csv"
     if pred2.exists():
         from sklearn.metrics import f1_score
@@ -360,23 +360,45 @@ def main():
         fb2 = p2 == "nlu_fallback"
         f54 = f1_score(y2, p2, labels=sorted(set(y2)), average="macro", zero_division=0)
         cob, prec = 1 - fb2.mean(), float(((y2 == p2) & ~fb2).sum() / (~fb2).sum())
-        reg("Nota v10 (lote 2)", "19 abstenciones de 267 (7.1 %); F1 sobre las 54 intenciones 0.9240; cobertura 92.9 % y precisión de lo respondido 95.6 %; 237 aciertos, 30 errores",
+        reg("Nota v11 (lote 2)", "19 abstenciones de 267 (7.1 %); F1 sobre las 54 intenciones 0.9240; cobertura 92.9 % y precisión de lo respondido 95.6 %; 237 aciertos, 30 errores",
             f"{int(fb2.sum())} de {len(q)} ({fb2.mean():.1%}); F1 54 intenciones {f54:.4f}; cobertura {cob:.1%}; precisión {prec:.1%}; {int((y2 == p2).sum())} aciertos, {int((y2 != p2).sum())} errores (recalculado de las predicciones guardadas; carpeta privada)",
             "OK" if (int(fb2.sum()), round(f54, 4), round(cob, 3), round(prec, 3), int((y2 == p2).sum())) == (19, 0.924, 0.929, 0.956, 237) else "DISCREPANCIA")
     else:
-        reg("Nota v10 (lote 2)", "19 abstenciones; cobertura 92.9 %; precisión 95.6 %", "las predicciones del lote 2 (carpeta privada) no están en este equipo", "NOTA")
+        reg("Nota v11 (lote 2)", "19 abstenciones; cobertura 92.9 %; precisión 95.6 %", "las predicciones del lote 2 (carpeta privada) no están en este equipo", "NOTA")
     rs2 = ROOT / "corpus" / "v3_lote2" / "resumen_lote2.json"
     if rs2.exists():
         r2 = _json.loads(rs2.read_text(encoding="utf-8"))
-        reg("Nota v10 (lote 2)", "280 frases, 13 excluidas por duplicado con el entrenamiento, 267 en test",
+        reg("Nota v11 (lote 2)", "280 frases, 13 excluidas por duplicado con el entrenamiento, 267 en test",
             f"{r2['frases_lote2_recibidas']} frases; {len(r2['excluidas_por_identicas_a_entrenamiento'])} excluidas; {r2['frases_test']} en test (corpus/v3_lote2/resumen_lote2.json)",
             "OK" if (r2["frases_lote2_recibidas"], len(r2["excluidas_por_identicas_a_entrenamiento"]), r2["frases_test"]) == (280, 13, 267) else "DISCREPANCIA")
+    fzr = ROOT / "logs" / "v3_real" / "modelo_congelado.json"
+    prev_p = ROOT / "logs" / "v3_real" / "lote2_congelado_previo.json"
+    if fzr.exists() and prev_p.exists():
+        import congelar_modelo as _cm
+        from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+        fz = _json.loads(fzr.read_text(encoding="utf-8"))
+        ok_int, _difs = _cm.verificar(fzr)
+        loc = _dt.fromisoformat(fz["fecha"]).astimezone(_tz(_td(hours=-5))).strftime("%Y-%m-%d %H:%M")  # hora de Lima (UTC-5)
+        cfgn = fz.get("configuracion_nlu", {})
+        dom_prev = _json.loads(prev_p.read_text(encoding="utf-8"))["sha256"]["dominio"]
+        conds = {"versión LOTE2-FINAL v1": str(fz.get("version", "")).startswith("LOTE2-FINAL v1"), "943 frases de entrenamiento": fz.get("frases_entrenamiento") == 943,
+                 "DIET 100/64/20 y semilla 42": (cfgn.get("epochs"), cfgn.get("batch_size"), cfgn.get("embedding_dimension"), cfgn.get("random_seed")) == (100, 64, 20, 42), "umbral t = 0,50": fz.get("umbral_t") == 0.5,
+                 "verificación «intacto»": ok_int, "fecha 2026-10-08 22:17 hora local": loc == "2026-10-08 22:17", "hash del dominio = el del congelamiento previo al lote 2": fz["sha256"]["dominio"] == dom_prev,
+                 "huellas del modelo, dominio, entrenamiento, configuración y umbral": {"modelo", "dominio", "corpus", "config", "umbral"} <= set(fz["sha256"])}
+        reg("Nota v11 (congelamiento G5)", "el 8 de octubre de 2026 (22:17 hora local) se congeló LOTE2-FINAL v1 (943 frases, DIET 100/64/20, semilla 42, t = 0.50), sin reentrenar, con huellas sha256 de modelo, dominio, entrenamiento, configuración y umbral, verificación «intacto» y el hash del dominio igual al del congelamiento previo al lote 2",
+            f"{fz.get('version', '')[:24]}…; {fz.get('frases_entrenamiento')} frases; {cfgn}; t = {fz.get('umbral_t')}; {loc} (Lima); intacto: {ok_int}; dominio igual al previo: {conds['hash del dominio = el del congelamiento previo al lote 2']}",
+            "OK" if all(conds.values()) else "DISCREPANCIA", "" if all(conds.values()) else "falla: " + ", ".join(k for k, v in conds.items() if not v))
+    else:
+        reg("Nota v11 (congelamiento G5)", "congelamiento del modelo medido en el lote 2", "NO EXISTE logs/v3_real/modelo_congelado.json o lote2_congelado_previo.json", "DISCREPANCIA")
     jc = ROOT / "logs" / "avance" / "estado_compuertas.json"
     if jc.exists():
         gj = _json.loads(jc.read_text(encoding="utf-8"))
         reales = [g["id"] for g in gj["compuertas"] if g["estado"] == "Cumplida" and not g.get("simulado")]
-        reg("Nota v10", "hoy hay 4 de 7 compuertas cumplidas con datos reales (G1, G2, G3 y G4)", f"{len(reales)} de 7 ({', '.join(reales)}) según logs/avance/estado_compuertas.json",
-            "OK" if reales == ["G1", "G2", "G3", "G4"] else "DISCREPANCIA", "el tablero se regenera con estado_compuertas.py; si cambia después de escribir la Nota, la diferencia es del documento, no del repositorio")
+        reg("Nota v11", "hoy hay 5 de 7 compuertas cumplidas con datos reales (G1 a G5)", f"{len(reales)} de 7 ({', '.join(reales)}) según logs/avance/estado_compuertas.json",
+            "OK" if reales == ["G1", "G2", "G3", "G4", "G5"] else "DISCREPANCIA", "el tablero se regenera con estado_compuertas.py; si cambia después de escribir la Nota, la diferencia es del documento, no del repositorio")
+        g5 = next((g for g in gj["compuertas"] if g["id"] == "G5"), {})
+        reg("Nota v11 (G5)", "G5 (modelo congelado) cumplida, con datos reales", f"G5 = {g5.get('estado')} (simulado: {bool(g5.get('simulado'))}); {g5.get('nota', '')}"[:260],
+            "OK" if g5.get("estado") == "Cumplida" and not g5.get("simulado") else "DISCREPANCIA")
 
     try:
         import json as _j2
@@ -386,11 +408,11 @@ def main():
     cuenta = {e: sum(1 for f in FILAS if f[3] == e) for e in ("OK", "NOTA", "PLANIFICADO", "DISCREPANCIA")}
     disc = [f for f in FILAS if f[3] == "DISCREPANCIA"]
     con_errata = sum(1 for f in disc if errata_de(f))
-    L = ["# Verificación de referencias y cifras — protocolo V1.7 (v10) y Nota de Desviación (v10)", "",
+    L = ["# Verificación de referencias y cifras — protocolo V1.8 (v11) y Nota de Desviación (v11)", "",
          "Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repositorio» se **recalcula** desde los archivos; las afirmaciones se transcribieron "
-         "del protocolo V1.7 (v10) y de la Nota (v10), que este script no modifica.", "",
+         "del protocolo V1.8 (v11) y de la Nota (v11), que este script no modifica.", "",
          f"**Resumen:** {len(FILAS)} afirmaciones · OK {cuenta['OK']} · NOTA {cuenta['NOTA']} · PLANIFICADO {cuenta['PLANIFICADO']} · **DISCREPANCIA {cuenta['DISCREPANCIA']}** "
-         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 a v10)", "",
+         "(las erratas E1–E5 de la V1.2 ya están aplicadas en los documentos v5 a v11)", "",
          "| # | Dónde se cita | El documento dice | Repositorio | Estado | Errata | Nota |", "|---|---|---|---|---|---|---|"]
     for i, f in enumerate(FILAS, 1):
         d, dice, repo, est, nota = f
@@ -402,7 +424,7 @@ def main():
     if disc:
         L += ["", "## Discrepancias (se informan tal cual; no se corrigen los documentos)", ""] + [
             f"- **{errata_de(f) or 'sin errata'}** · **{f[0]}** — «{f[1]}»: el repositorio tiene {f[2]}. {f[4]}" for f in disc]
-    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v10.md"
+    out = ROOT / "evidencias" / "piloto" / "verificacion_referencias_v11.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

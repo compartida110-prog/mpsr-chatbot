@@ -2,11 +2,11 @@
 
 | Archivo | Qué es | Estado |
 |---|---|---|
-| `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v10.pdf` y `.docx` | **Protocolo Experimental V1.7** (octubre de 2026): incorpora la ejecución del lote 2 (G3 cumplida con la medición del lote 2, F1 macro 0,9072), con el modelo, el umbral y los datos congelados antes de medir; mantiene las compuertas de avance 2.14. | Vigente |
-| `historico/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf` y `…_v5`, `…_v6`, `…_v7`, `…_v8` y `…_v9` (`.pdf` / `.docx`) | Protocolos V1.2 (piloto planificado de 120 personas), V1.3 v5 y v6 | Reemplazados por la v10 |
+| `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v11.pdf` y `.docx` | **Protocolo Experimental V1.8** (8 de octubre de 2026): incorpora el congelamiento del modelo medido en el lote 2 (G5 cumplida; 5 de 7 compuertas con datos reales) además de la ejecución del lote 2 y G3; mantiene las compuertas de avance 2.14. | Vigente |
+| `historico/Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR_v2.pdf` y `…_v5`, `…_v6`, `…_v7`, `…_v8`, `…_v9` y `…_v10` (`.pdf` / `.docx`) | Protocolos V1.2 (piloto planificado de 120 personas), V1.3 v5 y v6 | Reemplazados por la v11 |
 | `Planteamiento_Metodologia_Protocolo_Matriz_ChatbotMPSR.docx` | Protocolo V1.1 (anterior) | Reemplazado por V1.2 |
-| `Nota_Desviacion_P11_1_v10.pdf` y `.docx` | Nota de desviación: hallazgos de P11.1, medidas y modificaciones V1.1 → V1.7 (lote 1 real, lote 2 ejecutado y G3 cumplida con el lote 2, con las limitaciones declaradas). | Vigente |
-| `historico/Nota_Desviacion_P11_1_v2.pdf`, `…_v5`, `…_v6`, `…_v7`, `…_v8` y `…_v9` (`.pdf` / `.docx`) | Notas de desviación anteriores (V1.2 y V1.3) | Reemplazadas por la v10 |
+| `Nota_Desviacion_P11_1_v11.pdf` y `.docx` | Nota de desviación: hallazgos de P11.1, medidas y modificaciones V1.1 → V1.8 (lote 1 real, lote 2 ejecutado, G3 cumplida con el lote 2 y modelo congelado, con las limitaciones declaradas). | Vigente |
+| `historico/Nota_Desviacion_P11_1_v2.pdf`, `…_v5`, `…_v6`, `…_v7`, `…_v8`, `…_v9` y `…_v10` (`.pdf` / `.docx`) | Notas de desviación anteriores (V1.2 y V1.3) | Reemplazadas por la v11 |
 | `Ficha2_Registro_Correcciones_Protocolo.docx` | Registro de correcciones de la revisión por pares (V1.0 → V1.1) | Histórico |
 | `Ficha_Diagnostico_P01_OE1.docx` | Instrumento de diagnóstico de la atención presencial (OE1) | Vigente |
 | `Informe_Ejecucion_Preliminar.docx` | Informe de la ejecución preliminar (baseline P07 y simulaciones de P14) | Histórico |

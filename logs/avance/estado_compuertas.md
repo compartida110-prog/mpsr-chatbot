@@ -2,7 +2,7 @@
 
 **Compuertas cumplidas con datos reales: 5 de 7.** Cumplidas con datos simulados: 1 (no cuentan como reales).
 
-Generado el 2026-10-08 22:23 por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.
+Generado el 2026-10-08 22:34 por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.
 
 | Compuerta | Criterio | Estado | Datos | Evidencia | Nota |
 |---|---|---|---|---|---|
