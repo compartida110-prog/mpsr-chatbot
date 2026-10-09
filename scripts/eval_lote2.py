@@ -13,6 +13,8 @@ Evalúa con el modelo ya congelado (no entrena, no elige nada): predice las fras
   * F1 por intención con su n;
   * cobertura y precisión con el umbral congelado (respondidas, aciertos, errores, abstenciones, errores atrapados, correctas perdidas);
   * la confusión despedida ↔ agradecimiento aparte (esperable: «gracias» se usa también para despedirse).
+SVM baseline: si existe su congelamiento previo (logs/v3_real/lote2_congelado_previo_svm.json) se evalúa UNA vez en la misma pasada, con los mismos intervalos y McNemar exacto contra DIET (informativo: G3 se mide con DIET);
+si scikit-learn no carga (bloqueo de Windows) NO se fuerza y se declara «no ejecutado en el lote 2».
 Salidas (logs/v3_real/lote2/, carpeta protegida: trae frases): test_registro.json, eval_lote2_resumen.json, predicciones_lote2.csv, f1_por_intencion_lote2.csv, informe_lote2.md (solo cifras).
 
 Uso (solo con aviso del tesista):
@@ -28,6 +30,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.stats import binomtest
 from sklearn.metrics import f1_score, precision_recall_fscore_support
 
 import congelar_modelo as cm
@@ -83,6 +86,7 @@ def main():
     ap.add_argument("--metadata", default=str(ROOT / "corpus" / "v3_lote2" / "corpus_metadata_v3_lote2.csv"))
     ap.add_argument("--resumen-split", default=str(ROOT / "corpus" / "v3_lote2" / "resumen_lote2.json"))
     ap.add_argument("--out-dir", default=str(ROOT / "logs" / "v3_real" / "lote2"))
+    ap.add_argument("--congelado-svm", default=str(ROOT / "logs" / "v3_real" / "lote2_congelado_previo_svm.json"), help="congelamiento previo del SVM baseline (opcional; se evalúa UNA vez junto a DIET)")
     ap.add_argument("--boot", type=int, default=N_BOOT)
     a = ap.parse_args()
     out = Path(a.out_dir)
@@ -107,6 +111,22 @@ def main():
     if rs.get("particion_validacion") is not False or rs.get("entradas_sha256", {}).get("entrenamiento") != file_sha256(a.entrenamiento) \
             or rs.get("congelado_previo") != file_sha256(a.congelado):
         sys.exit("ME NIEGO: la partición del lote 2 no se hizo con este congelamiento y este entrenamiento (vuelve a ejecutar split_lote2.py).")
+    # SVM baseline (opcional): si tiene congelamiento previo debe estar intacto y haberse usado en la partición; si scikit-learn no carga, se declara «no ejecutado» y NO se fuerza
+    svm_model, svm_estado, fsvm = None, "no ejecutado en el lote 2 (no hay congelamiento previo del SVM)", Path(a.congelado_svm)
+    if fsvm.exists():
+        ok2, d2 = cm.verificar(fsvm)
+        if not ok2:
+            sys.exit("ME NIEGO: el congelamiento del SVM cambió. " + "; ".join(d2))
+        zs = json.loads(fsvm.read_text(encoding="utf-8"))
+        if zs.get("sha256", {}).get("corpus") != file_sha256(a.entrenamiento) or rs.get("congelado_previo_svm") != file_sha256(fsvm):
+            sys.exit("ME NIEGO: la partición del lote 2 no se hizo con el congelamiento del SVM y este entrenamiento (vuelve a ejecutar split_lote2.py).")
+        ms = Path(zs["archivos"]["modelo"])
+        try:
+            import joblib
+            svm_model = joblib.load(ms if ms.is_absolute() else ROOT / ms)
+            svm_estado = "ejecutado"
+        except Exception as e:  # p. ej. bloqueo de Windows sobre una DLL de scikit-learn: no se fuerza
+            svm_estado = f"no ejecutado en el lote 2 (scikit-learn no carga: {str(e)[:100]})"
     modelo = Path(fz["archivos"]["modelo"])
     modelo = modelo if modelo.is_absolute() else ROOT / modelo
     umbral_p = Path(fz["archivos"]["umbral"])
@@ -123,8 +143,10 @@ def main():
     # ------------------------------------------------------------ registro ANTES de predecir
     out.mkdir(parents=True, exist_ok=True)
     fecha = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    reg.write_text(json.dumps({"protocolo": "V1.6 5.8", "evaluaciones": [{"fecha": fecha, "metodo": "rasa", "motivo": "evaluación única del test del lote 2", "modelo_sha256": sh["modelo"],
-                                                                          "n_frases": int(len(te)), "congelado_sha256": file_sha256(a.congelado)}]}, indent=2, ensure_ascii=False), encoding="utf-8")
+    evals = [{"fecha": fecha, "metodo": "rasa", "motivo": "evaluación única del test del lote 2", "modelo_sha256": sh["modelo"], "n_frases": int(len(te)), "congelado_sha256": file_sha256(a.congelado)}]
+    if svm_model is not None:
+        evals.append({"fecha": fecha, "metodo": "svm", "motivo": "evaluación única del test del lote 2 (baseline)", "modelo_sha256": zs["sha256"]["modelo"], "n_frases": int(len(te)), "congelado_sha256": file_sha256(fsvm)})
+    reg.write_text(json.dumps({"protocolo": "V1.6 5.8", "evaluaciones": evals}, indent=2, ensure_ascii=False), encoding="utf-8")
 
     # ------------------------------------------------------------ predicciones con el modelo congelado
     jerga = load_jerga()
@@ -143,6 +165,21 @@ def main():
     pi = pd.DataFrame({"intent": intents, "n": sup, "aciertos": [int(((y == i) & (p == i)).sum()) for i in intents], "precision": pre.round(4), "recall": rec.round(4), "f1": f1i.round(4)})
     pi.to_csv(out / "f1_por_intencion_lote2.csv", index=False, encoding="utf-8")
 
+    # SVM baseline: misma partición, mismos intervalos (mismas semillas del bootstrap); sin umbral (el SVM no da confianza)
+    svm_res = {"estado": svm_estado}
+    if svm_model is not None:
+        ps = np.asarray(svm_model.predict([normalize(x, jerga) for x in te["text"]]))
+        pd.DataFrame({"utterance_id": te["utterance_id"], "participant_code": g, "intent": y, "predicted": ps}).to_csv(out / "predicciones_lote2_svm.csv", index=False, encoding="utf-8")
+        sf, sp_ = ic(y, ps, g, np.random.default_rng(SEED), a.boot), ic(y, ps, g, np.random.default_rng(SEED), a.boot, por_participante=True)
+        pre_s, rec_s, f1_s, sup_s = precision_recall_fscore_support(y, ps, labels=intents, zero_division=0)
+        pd.DataFrame({"intent": intents, "n": sup_s, "aciertos": [int(((y == i) & (ps == i)).sum()) for i in intents], "precision": pre_s.round(4), "recall": rec_s.round(4), "f1": f1_s.round(4)}
+                     ).to_csv(out / "f1_por_intencion_lote2_svm.csv", index=False, encoding="utf-8")
+        solo_svm, solo_rasa = int(((ps == y) & (p != y)).sum()), int(((p == y) & (ps != y)).sum())
+        mc = float(binomtest(min(solo_svm, solo_rasa), solo_svm + solo_rasa, 0.5).pvalue) if solo_svm + solo_rasa else 1.0
+        svm_res.update({"f1_macro": [sf[0], sf[1], sf[2]], "f1_macro_ic_participantes": [sp_[0], sp_[1], sp_[2]], "accuracy": float(np.mean(y == ps)), "media_bootstrap_frases": sf[3], "media_bootstrap_participantes": sp_[3],
+                        "modelo_sha256": zs["sha256"]["modelo"], "informativo": "baseline; G3 se mide solo con DIET",
+                        "comparacion_con_rasa": {"solo_svm_acierta": solo_svm, "solo_rasa_acierta": solo_rasa, "p_mcnemar_exacto": mc, "diferencia_f1_rasa_menos_svm": f1_f[0] - sf[0]}})
+
     # umbral congelado
     ab = (df["confidence"] < t) | ((df["confidence"] - df["confidence_2"]) < amb)
     acierto = df["predicted"] == df["intent"]
@@ -159,7 +196,8 @@ def main():
 
     res = {"fecha": fecha, "protocolo": "V1.6 5.8", "lote": 2, "evaluacion": "única (el test del lote 2 no se repite)", "n_test": int(len(df)), "participantes": int(len(np.unique(g))),
            "criterio_f1_macro": F1_MIN, "cumple_criterio": bool(cumple), "limite_inferior_ic_frases_sobre_criterio": bool(f1_f[1] >= F1_MIN),
-           "metodos": {"rasa": {"f1_macro": [f1_f[0], f1_f[1], f1_f[2]], "f1_macro_ic_participantes": [f1_p[0], f1_p[1], f1_p[2]], "accuracy": acc}},
+           "metodos": {"rasa": {"f1_macro": [f1_f[0], f1_f[1], f1_f[2]], "f1_macro_ic_participantes": [f1_p[0], f1_p[1], f1_p[2]], "accuracy": acc}, **({"svm": svm_res} if svm_model is not None else {})},
+           "svm": svm_res,
            "bootstrap": {"remuestreos": a.boot, "seed": SEED, "media_por_frases": f1_f[3], "media_por_participantes": f1_p[3],
                          "nota": "con pocas frases por intención, el IC por percentiles queda sesgado hacia abajo (faltan intenciones en cada remuestreo); se informa también la media del bootstrap"},
            "umbral_congelado": umb, "confusion_par_despedida_agradecimiento": {"rotulo": "confusión esperable: «gracias» se usa también para despedirse", **par},
@@ -172,10 +210,13 @@ def main():
          + ("" if cumple else " G3 no cumplida: no se baja el umbral ni se repite la evaluación."),
          f"- Con el umbral: cobertura {umb['cobertura']:.1%}, precisión de lo respondido {umb['precision_respondida']:.1%}; respondidas {umb['respondidas']} ({umb['aciertos_respondidos']} aciertos, {umb['errores_respondidos']} errores); "
          f"abstenciones {umb['abstenciones']} ({umb['errores_atrapados']} errores atrapados, {umb['correctas_perdidas']} correctas perdidas).",
-         f"- Confusión despedida ↔ agradecimiento (esperable): {par}", "", "| Intención | n | F1 |", "|---|---|---|"] + [f"| {r.intent} | {r.n} | {r.f1:.2f} |" for r in pi.itertuples()]
+         f"- Confusión despedida ↔ agradecimiento (esperable): {par}",
+         (f"- SVM baseline (informativo; G3 se mide solo con DIET): F1 macro = {svm_res['f1_macro'][0]:.4f} | IC95 % por frases [{svm_res['f1_macro'][1]:.4f}, {svm_res['f1_macro'][2]:.4f}] | por participantes "
+          f"[{svm_res['f1_macro_ic_participantes'][1]:.4f}, {svm_res['f1_macro_ic_participantes'][2]:.4f}] | accuracy {svm_res['accuracy']:.4f}; McNemar exacto (solo SVM acierta {svm_res['comparacion_con_rasa']['solo_svm_acierta']}, "
+          f"solo DIET acierta {svm_res['comparacion_con_rasa']['solo_rasa_acierta']}): p = {svm_res['comparacion_con_rasa']['p_mcnemar_exacto']:.3f}") if svm_model is not None else f"- SVM baseline: {svm_estado}.", "", "| Intención | n | F1 |", "|---|---|---|"] + [f"| {r.intent} | {r.n} | {r.f1:.2f} |" for r in pi.itertuples()]
     (out / "informe_lote2.md").write_text("\n".join(L) + "\n", encoding="utf-8")
-    print("\n".join(L[:9]))
-    print(f"\nSalidas en {out}: test_registro.json, eval_lote2_resumen.json, predicciones_lote2.csv, f1_por_intencion_lote2.csv, informe_lote2.md. El test del lote 2 queda evaluado: no se repite.")
+    print("\n".join(L[:10]))
+    print(f"\nSalidas en {out}: test_registro.json, eval_lote2_resumen.json, predicciones_lote2.csv, f1_por_intencion_lote2.csv, informe_lote2.md (y las del SVM si se ejecutó). El test del lote 2 queda evaluado: no se repite.")
 
 
 if __name__ == "__main__":

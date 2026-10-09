@@ -107,7 +107,7 @@ responses:
   utter_certificado_posesion:
   - text: La constancia de posesión se emite para acceder a agua, desagüe y electricidad. El TUPA pide solicitud, planos de ubicación/perimétrico/localización que cubran un radio de 550 metros, declaración jurada notarial de posesión, documento de propiedad, verificación del predio y visto bueno de la empresa prestadora. Cuesta S/ 85,80 y el plazo es de 10 días hábiles.
   utter_constancia_domiciliaria:
-  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. El costo es de aproximadamente S/ 10 a S/ 35 y se entrega en 1 a 3 días. Consulta en ventanilla el monto exacto y si piden algún otro documento.
+  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. Consulta en ventanilla si piden algún otro documento. [Verificar costo y plazo]
   utter_certificado_defensa_civil:
   - text: En el TUPA el trámite se denomina ITSE (Inspección Técnica de Seguridad en Edificaciones). El certificado tiene vigencia de 2 años; el procedimiento, los requisitos, el costo y el plazo dependen del nivel de riesgo del establecimiento.
   utter_inspeccion_tecnica:

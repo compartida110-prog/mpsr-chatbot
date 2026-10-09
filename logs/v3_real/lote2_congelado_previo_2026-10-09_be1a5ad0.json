@@ -1,11 +1,11 @@
 {
-  "fecha": "2026-10-09T01:37:30+00:00",
+  "fecha": "2026-10-09T01:20:34+00:00",
   "zona_horaria": "UTC",
   "estado": "Ejecutado (modelo y umbral congelados ANTES de abrir el lote 2)",
   "protocolo": "V1.6 5.8",
   "modelo_nombre": "LOTE2-FINAL.tar.gz",
   "python": "3.10.11",
-  "commit": "3b0ed8f-modificado",
+  "commit": "7505fd4-modificado",
   "archivos": {
     "modelo": "models/rasa/LOTE2-FINAL.tar.gz",
     "config": "configs/rasa_config_lote2.yml",
@@ -16,7 +16,7 @@
   "sha256": {
     "modelo": "be1a5ad06357b26370fc14f780f49cbf205b08dbe5fe3af383625e44f64b10d9",
     "config": "e975783f2bcd6dac366b2ff53677c5221ef77044ec23fb615c3d763dcadbf9e4",
-    "dominio": "7a69ac91c32cf439e82b4c34a553ec066a71d4041b1b8632288864d36a7756b5",
+    "dominio": "985f07e3d0e370df28f18ae9cd1e97ce888a32bf5cf34d88b795412748cd9a1f",
     "corpus": "c035252d63aa89e11295279b363c98d66b9f2e608008b82390b15ce40a6a4adc",
     "umbral": "410d9898240ae0ea5118e5d5010af195fa21d0a118c7967875875cd956f8fe4b"
   },

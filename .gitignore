@@ -63,3 +63,5 @@ logs/CVP-RASA-fold*/
 # Congelamiento previo al lote 2: solo huellas y rutas (sin frases); se versiona para que quede constancia anterior a los datos del lote 2
 !logs/v3_real/lote2_congelado_previo.json
 !logs/v3_real/lote2_umbral_congelado.json
+!logs/v3_real/lote2_congelado_previo_svm.json
+!logs/v3_real/lote2_congelado_previo_2*.json

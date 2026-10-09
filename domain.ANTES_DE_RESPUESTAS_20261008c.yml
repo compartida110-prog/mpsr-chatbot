@@ -1,6 +1,3 @@
-# domain_v3.yml -- copia de domain.yml + intención nlu_fallback + utter_no_entendi (umbral de confianza, protocolo V1.2).
-# domain.yml sigue siendo la línea base vigente; promover esta versión solo si el puntaje del umbral mejora en la
-# validación real (ver scripts/fallback_threshold.py). Las respuestas de trámites siguen sin validar con el TUPA real.
 # domain_v2.yml -- P09 completado (54/54 respuestas, ya no hay [PENDIENTE]).
 #
 # IMPORTANTE: las 44 respuestas de tramites (todo lo que no es conversacional:
@@ -70,7 +67,6 @@ intents:
 - serenazgo_contacto
 - sugerencia
 - ubicacion_oficinas
-- nlu_fallback
 responses:
   utter_licencia_funcionamiento_requisitos:
   - text: El TUPA pide una solicitud de licencia con carácter de declaración jurada y una declaración de cumplimiento de las condiciones de seguridad. Para riesgo bajo o medio, la ITSE se realiza después de otorgar la licencia; para riesgo alto o muy alto, se realiza antes y se adjuntan documentos técnicos, como croquis, planos y plan de seguridad. La municipalidad determina el nivel de riesgo y los requisitos exactos.
@@ -107,7 +103,7 @@ responses:
   utter_certificado_posesion:
   - text: La constancia de posesión se emite para acceder a agua, desagüe y electricidad. El TUPA pide solicitud, planos de ubicación/perimétrico/localización que cubran un radio de 550 metros, declaración jurada notarial de posesión, documento de propiedad, verificación del predio y visto bueno de la empresa prestadora. Cuesta S/ 85,80 y el plazo es de 10 días hábiles.
   utter_constancia_domiciliaria:
-  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. El costo es de aproximadamente S/ 10 a S/ 35 y se entrega en 1 a 3 días. Consulta en ventanilla el monto exacto y si piden algún otro documento.
+  - text: La constancia domiciliaria se tramita en la municipalidad. Necesitas una solicitud dirigida al Alcalde y tu DNI. Consulta en ventanilla si piden algún otro documento. [Verificar costo y plazo]
   utter_certificado_defensa_civil:
   - text: En el TUPA el trámite se denomina ITSE (Inspección Técnica de Seguridad en Edificaciones). El certificado tiene vigencia de 2 años; el procedimiento, los requisitos, el costo y el plazo dependen del nivel de riesgo del establecimiento.
   utter_inspeccion_tecnica:
@@ -180,8 +176,6 @@ responses:
   - text: Perfecto, continuemos.
   utter_negar:
   - text: Entendido, dime en qué más te puedo ayudar.
-  utter_no_entendi:
-  - text: 'No estoy seguro de haber entendido tu consulta. ¿Puedes reformularla o decirme qué trámite necesitas?'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

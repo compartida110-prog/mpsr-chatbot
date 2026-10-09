@@ -48,6 +48,7 @@ def main():
     ap.add_argument("--real2", default=str(ROOT / "corpus" / "real_lote2" / "lote2_real_final.csv"))
     ap.add_argument("--entrenamiento", default=str(ROOT / "corpus" / "v3_lote2" / "entrenamiento_lote2.csv"))
     ap.add_argument("--congelado", default=str(ROOT / "logs" / "v3_real" / "lote2_congelado_previo.json"))
+    ap.add_argument("--congelado-svm", default=str(ROOT / "logs" / "v3_real" / "lote2_congelado_previo_svm.json"), help="congelamiento previo del SVM baseline (opcional)")
     ap.add_argument("--log-cambios", default=str(ROOT / "docs" / "lote_real_2" / "log_cambios_lote2.csv"))
     ap.add_argument("--log-exclusion", default=str(ROOT / "docs" / "lote_real_2" / "log_exclusion_entrenamiento_lote2.csv"))
     ap.add_argument("--out-dir", default=str(ROOT / "corpus" / "v3_lote2"))
@@ -68,6 +69,10 @@ def main():
             sys.exit("ME NIEGO a leer el lote 2: el congelamiento no incluye la huella del conjunto de entrenamiento actual (corpus/v3_lote2/entrenamiento_lote2.csv).")
         if "umbral" not in fz.get("sha256", {}):
             sys.exit("ME NIEGO a leer el lote 2: el congelamiento no incluye el umbral de confianza.")
+        if Path(a.congelado_svm).exists():  # si el SVM baseline está congelado, también debe estar intacto
+            ok_s, difs_s = cm.verificar(a.congelado_svm)
+            if not ok_s or json.loads(Path(a.congelado_svm).read_text(encoding="utf-8")).get("sha256", {}).get("corpus") != file_sha256(a.entrenamiento):
+                sys.exit("ME NIEGO a leer el lote 2: el congelamiento del SVM cambió o no corresponde al entrenamiento actual. " + "; ".join(difs_s))
 
     ent = leer(a.entrenamiento, "entrenamiento del lote 2")
     real = leer(a.real2, "lote 2 final (¿ingest_real_lote.py --lote 2 --aplicar-revision?)")
@@ -178,7 +183,8 @@ def main():
                "situaciones": int(por_sit.size), "min_frases_por_situacion": int(por_sit.min()), "max_frases_por_situacion": int(por_sit.max()),
                "entrenamiento": int(len(ent)), "particion_validacion": False, "test_por_intencion": {i: int(n) for i, n in activas.groupby("intent").size().reindex(intents, fill_value=0).items()},
                "distintas_min_por_intencion": int(distintas.min()), "entradas_sha256": {"lote2": file_sha256(a.real2), "entrenamiento": file_sha256(a.entrenamiento)},
-               "congelado_previo": None if a.sin_congelado else file_sha256(a.congelado)}
+               "congelado_previo": None if a.sin_congelado else file_sha256(a.congelado),
+               "congelado_previo_svm": file_sha256(a.congelado_svm) if (not a.sin_congelado and Path(a.congelado_svm).exists()) else None}
     (out / "resumen_lote2.json").write_text(json.dumps(resumen, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Lote 2 (solo test): recibidas {resumen['frases_lote2_recibidas']} | descartadas por duplicado {len(descartadas)} | excluidas por ambiguas {len(excluidas_amb)} | "
           f"excluidas por idénticas a entrenamiento {len(excl_entr)} | frases de test {len(activas)} | participantes {resumen['participantes']} | situaciones {resumen['situaciones']}")

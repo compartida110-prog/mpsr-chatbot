@@ -41,3 +41,22 @@ Elegido con las predicciones de la validación cruzada del ciclo 1 (185 frases),
 ## 6. Qué sigue (cuando tú avises)
 1. Decidir si aplicar el dry-run 3 (constancia) **antes** de abrir el lote 2 (y, si sí, rehacer el congelamiento).
 2. Ingesta del lote 2 (`ingest_real_lote.py --lote 2`), revisión de etiquetas, `split_lote2.py`, `eval_lote2.py` (una sola vez).
+
+---
+
+## Actualización 2026-10-09: constancia aplicada, congelamiento rehecho y SVM baseline congelado
+- **Respuesta aplicada:** `constancia_domiciliaria` sin [Verificar] (informe `logs/avance/aplicar_respuestas_aplicado3.md`); 0 de 44 respuestas con marcador; humo 54/54; 0 «MPSR».
+- **Congelamiento rehecho** (`--forzar --motivo «cambio del texto de una respuesta (constancia_domiciliaria) sin cambios de NLU, antes de abrir el lote 2; el lote 2 no ha sido ingestado ni leído»`; el anterior se conserva como `lote2_congelado_previo_2026-10-09_be1a5ad0.json`). **Solo cambió la huella del dominio**; modelo, configuración, entrenamiento y umbral son idénticos; no hizo falta reentrenar. Verificado con `--verificar`: intacto.
+
+| Archivo | sha256 (nueva) |
+|---|---|
+| Modelo DIET `LOTE2-FINAL.tar.gz` (sin cambios) | `be1a5ad06357b26370fc14f780f49cbf205b08dbe5fe3af383625e44f64b10d9` |
+| Configuración (sin cambios) | `e975783f2bcd6dac366b2ff53677c5221ef77044ec23fb615c3d763dcadbf9e4` |
+| **Dominio `domain_v3.yml` (nueva)** | `7a69ac91c32cf439e82b4c34a553ec066a71d4041b1b8632288864d36a7756b5` |
+| Entrenamiento (sin cambios) | `c035252d63aa89e11295279b363c98d66b9f2e608008b82390b15ce40a6a4adc` |
+| Umbral t = 0,50 (sin cambios) | `410d9898240ae0ea5118e5d5010af195fa21d0a118c7967875875cd956f8fe4b` |
+| **SVM baseline `LOTE2-SVM.joblib`** (TF-IDF + SVC lineal, C = 10, seed 42; mismas 943 frases; `lote2_congelado_previo_svm.json`) | `b53f7cfb8659f482009b6790b581768fcf3d8257a43e2828b55e79e331c6646b` |
+
+- **SVM:** scikit-learn cargó sin bloqueo; se entrenó con el mismo entrenamiento y se congeló con su huella (sin umbral: el SVM no da confianza). `eval_lote2.py` lo evaluará UNA vez junto a DIET, con los mismos intervalos y McNemar exacto contra DIET; G3 se mide solo con DIET. Si scikit-learn se bloquea al evaluar, no se fuerza: el SVM queda «no ejecutado en el lote 2».
+- **Pruebas:** `tests/smoke_lote2.py` 46 de 46 (datos falsos; incluye SVM, congelamiento rehecho y las puertas).
+- **El lote 2 sigue sin ingestar, sin leer y sin evaluar.**

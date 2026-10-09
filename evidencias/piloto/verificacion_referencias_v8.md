@@ -30,7 +30,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 22 | Protocolo 2.4.2 | 56 situaciones: una por intención y tres para fuera_de_alcance, en 5 formularios (A–E) | 56 situaciones, 54 intenciones, fuera_de_alcance x3 | **OK** | — |  |
 | 23 | Seguimiento (Notas) | 12/11/11/11/11 situaciones por formulario | 12/11/11/11/11 | **OK** | — |  |
 | 24 | Protocolo 2.4.2 | con 20 participantes cada situación queda respondida por 4 personas | 20 participantes / 5 formularios (rotación A–E) = 4 por formulario | **OK** | — |  |
-| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 1 de 44 con [Verificar] | **DISCREPANCIA** | — |  |
+| 25 | Protocolo P09 / T07; Nota | 54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar] | 54 respuestas sin [PENDIENTE] de 54; 0 de 44 con [Verificar] | **DISCREPANCIA** | — |  |
 | 26 | Protocolo 2.11 / P11.1 / T06; Nota | F1 macro en test (partición de P05): Rasa/DIET 0.624 y SVM 0.648 | Rasa/DIET 0.624 y SVM 0.648 (logs/rasa_test.csv, logs/baseline_test.csv) | **OK** | — |  |
 | 27 | Protocolo 2.11 / P11.1; Nota | validación cruzada agrupada por base_phrase_id: Rasa/DIET 0.655 y SVM 0.637 | Rasa/DIET 0.655 y SVM 0.637 (logs/P11_1_crossval_agrupada/folds_metrics.csv) | **OK** | — |  |
 | 28 | Protocolo 2.11; Nota | validación cruzada nativa de Rasa 0.778 (inflada por fuga) | 0.778 (evidencias/p11_1_pruebas/salidas/03_rasa_test_nlu_crossval.txt) | **OK** | — | la CV nativa se hizo con el corpus v2 (648 frases); la agrupada, con el v3 (708) |
@@ -46,7 +46,7 @@ Generado por `scripts/verificar_referencias.py`. Cada valor de la columna «Repo
 | 38 | Protocolo 2.8 / P05 / T05 | partición V1.1 (ejecutada): 486/81/81 = 75 % / 12,5 % / 12,5 % (el objetivo nominal era 70/15/15) | 486/81/81 frases = 75.0/12.5/12.5 % | **OK** | — | coincide con la V1.3 (errata E4 ya aplicada); el mecanismo descrito en 2.8 se verifica en la fila siguiente |
 | 39 | Protocolo 2.8 | con 4 grupos por intención, 3 pasan a entrenamiento y el cuarto se asigna alternadamente a validación o a prueba | las 54 intenciones tienen 4 grupos, 3 en entrenamiento; el cuarto: 27 grupos a validación y 27 a prueba | **OK** | — |  |
 | 40 | Protocolo 2.8 / 5.2; Nota | el test mide 27 de las 54 intenciones (3 frases cada una) y la validación las otras 27 | test: 27 intenciones con [3] frases; validación: 27 intenciones; sin solape: True | **OK** | — |  |
-| 41 | Protocolo y Nota v8 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 63 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 63 incidencias registradas a la fecha de esta verificación |
+| 41 | Protocolo y Nota v8 (evidencias) | la bitácora completa de incidencias está en `incident_log.csv` (los documentos ya no citan una cifra) | `incident_log.csv` existe y tiene 64 filas (dato informativo: cambia con cada incidencia nueva) | **OK** | — | informativo: 64 incidencias registradas a la fecha de esta verificación |
 | 42 | Protocolo 2.4 (V1.3) | margen de error de una proporción ≈ 11,7 % con n = 60 y ≈ 7,5 % con n = 120 (N ≈ 400, confianza 95 %) | 11.7 % con n = 60 y 7.5 % con n = 120 (fórmula con corrección para población finita, p = q = 0,5) | **OK** | — |  |
 | 43 | Protocolo 2.4 (V1.3) | con 60 pares, la t pareada detecta con 80 % de potencia (α = 0,05, dos colas) efectos de d ≈ 0,37 o mayores | d mínimo con 80 % de potencia (t pareada, dos colas, n = 60) = 0.368 | **OK** | — |  |
 | 44 | Protocolo 5.4 (V1.3) | pruebas de humo con datos falsos (simuladas): 59/59 y 22/22 | 59/59 y 22/22 (últimas salidas guardadas en evidencias/v3_real/salidas/) | **OK** | — |  |
@@ -67,4 +67,4 @@ Cifras y afirmaciones que dependen de datos externos o de pasos aún no ejecutad
 
 ## Discrepancias (se informan tal cual; no se corrigen los documentos)
 
-- **sin errata** · **Protocolo P09 / T07; Nota** — «54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar]»: el repositorio tiene 54 respuestas sin [PENDIENTE] de 54; 1 de 44 con [Verificar]. 
+- **sin errata** · **Protocolo P09 / T07; Nota** — «54 de 54 respuestas redactadas; 40 de las 44 de trámites con [Verificar]»: el repositorio tiene 54 respuestas sin [PENDIENTE] de 54; 0 de 44 con [Verificar]. 

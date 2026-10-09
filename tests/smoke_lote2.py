@@ -104,7 +104,7 @@ def main():
 
     # ------------------------------------------------------------------------------ ingesta --lote 2
     print("\nIngesta --lote 2")
-    c, t = ingest(resp2, "puerta")
+    c, t = ingest(resp2, "puerta", "--congelado-previo", W / "no_hay_congelado.json")
     check("sin congelamiento previo la ingesta del lote 2 se niega a leer (y no genera salidas)", c != 0 and "ME NIEGO a leer el lote 2" in t and not (W / "puerta" / "lote2_real_validado.csv").exists(), t[:300])
     c, t = ingest(resp2, "ok", "--sin-congelado")
     val = read_csv(W / "ok" / "lote2_real_validado.csv") if (W / "ok" / "lote2_real_validado.csv").exists() else []
@@ -154,11 +154,11 @@ def main():
     print("\nPuerta de congelamiento y partición solo test")
     out2, nlu2 = W / "v3l2", W / "v3l2nlu"
     sp = ["--real2", fin2, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log_cambios_lote2.csv", "--log-exclusion", W / "log_excl.csv",
-          "--out-dir", out2, "--nlu-dir", nlu2]
+          "--out-dir", out2, "--nlu-dir", nlu2, "--congelado-svm", W / "no_hay_svm_sp.json"]
     c, t = run("split_lote2.py", *sp)
     check("sin congelamiento previo, split_lote2.py se niega a leer el lote 2 y no escribe nada", c != 0 and "ME NIEGO a leer el lote 2" in t and not out2.exists(), t[:300])
     c, t = run("split_lote2.py")
-    check("con las rutas reales y sin congelamiento, también se niega (el lote 2 real no se lee)", c != 0 and "ME NIEGO a leer el lote 2" in t, t[:300])
+    check("con las rutas reales (ya hay congelamiento real) solo falla porque el archivo del lote 2 no existe: no se lee ni se evalúa nada", c != 0 and "no existe" in t and "lote2_real_final.csv" in t and not (ROOT / "corpus" / "v3_lote2" / "corpus_metadata_v3_lote2.csv").exists(), t[:300])
     modelo = W / "modelo_falso.tar.gz"
     modelo.write_text("SIMULADO: modelo falso de prueba\n", encoding="utf-8")
     umbral = W / "umbral_falso.json"
@@ -194,7 +194,7 @@ def main():
     f2[f2.index(otro)]["text"] = next(r for r in ent if r["source"] == "lenguaje real (lote 1)")["text"]  # idéntica a una de entrenamiento
     finD = W / "lote2_real_final_dups.csv"
     write_csv(finD, list(f2[0].keys()), [list(r.values()) for r in f2])
-    spD = ["--real2", finD, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "logD_cambios.csv", "--log-exclusion", W / "logD_excl.csv", "--out-dir", W / "v3D", "--nlu-dir", W / "v3Dnlu"]
+    spD = ["--real2", finD, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "logD_cambios.csv", "--log-exclusion", W / "logD_excl.csv", "--out-dir", W / "v3D", "--nlu-dir", W / "v3Dnlu", "--congelado-svm", W / "no_hay_svm_sp.json"]
     c, t = run("split_lote2.py", *spD)
     lc = read_csv(W / "logD_cambios.csv") if (W / "logD_cambios.csv").exists() else []
     le = read_csv(W / "logD_excl.csv") if (W / "logD_excl.csv").exists() else []
@@ -214,13 +214,13 @@ def main():
         r["text"] = "mismo texto falso repetido"
     fin3 = W / "lote2_real_final_pocas.csv"
     write_csv(fin3, list(f3[0].keys()), [list(r.values()) for r in f3])
-    c, t = run("split_lote2.py", "--real2", fin3, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log3_cambios.csv", "--log-exclusion", W / "log3_excl.csv", "--out-dir", W / "v3pocas", "--nlu-dir", W / "v3pocasnlu")
+    c, t = run("split_lote2.py", "--real2", fin3, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log3_cambios.csv", "--log-exclusion", W / "log3_excl.csv", "--out-dir", W / "v3pocas", "--nlu-dir", W / "v3pocasnlu", "--congelado-svm", W / "no_hay_svm_sp.json")
     check("una intención con menos de 3 textos distintos en test: error y no se escribe nada (ni salidas ni logs)", c == 2 and "menos de 3 frases de test" in t and not (W / "v3pocas").exists() and not (W / "log3_cambios.csv").exists(), t[:300])
     f4 = read_csv(fin2)
     f4[0]["participant_code"] = "P05"
     fin4 = W / "lote2_real_final_p05.csv"
     write_csv(fin4, list(f4[0].keys()), [list(r.values()) for r in f4])
-    c, t = run("split_lote2.py", "--real2", fin4, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log4_cambios.csv", "--log-exclusion", W / "log4_excl.csv", "--out-dir", W / "v3p05", "--nlu-dir", W / "v3p05nlu")
+    c, t = run("split_lote2.py", "--real2", fin4, "--entrenamiento", ent_csv, "--congelado", W / "congelado.json", "--log-cambios", W / "log4_cambios.csv", "--log-exclusion", W / "log4_excl.csv", "--out-dir", W / "v3p05", "--nlu-dir", W / "v3p05nlu", "--congelado-svm", W / "no_hay_svm_sp.json")
     check("un participante del lote 1 dentro del lote 2 (P05): error, no se escribe nada", c == 2 and "fuera de P33–P57" in t and not (W / "v3p05").exists(), t[:300])
 
     # ------------------------------------------------------------------------------ evaluación única (modelo REAL de 3 épocas, datos FALSOS)
@@ -241,11 +241,16 @@ def main():
     c, t = run("congelar_modelo.py", "--modelo", mdir / "m_falso.tar.gz", "--config", cfg_t, "--corpus", ent_csv, "--umbral", umbral_e, "--salida", cong_e, "--proposito", "lote2")
     fze = json.loads(cong_e.read_text(encoding="utf-8")) if cong_e.exists() else {}
     check("congelar_modelo.py --proposito lote2 rotula el congelamiento como previo al lote 2 (V1.6 5.8) y guarda el umbral", c == 0 and "lote 2" in fze.get("estado", "") and fze.get("protocolo") == "V1.6 5.8" and fze.get("umbral_t") == 0.3, t[:200])
+    c, t = run("entrenar_svm_lote2.py", "--entrenamiento", ent_csv, "--salida", W / "svm_falso.joblib")
+    cong_s = W / "cong_eval_svm.json"
+    c_, t_ = run("congelar_modelo.py", "--modelo", W / "svm_falso.joblib", "--config", ROOT / "configs" / "baseline_config.json", "--corpus", ent_csv, "--umbral", W / "no_aplica.json", "--salida", cong_s, "--proposito", "lote2")
+    check("SVM baseline: se entrena con el mismo entrenamiento (sin leer el lote 2) y se congela con su huella (sin umbral)", c == 0 and c_ == 0 and "No se leyó nada del lote 2" in t and cong_s.exists()
+          and json.loads(cong_s.read_text(encoding="utf-8"))["sha256"]["corpus"] == fze["sha256"]["corpus"], (t + t_)[:300])
     out_e, nlu_e = W / "v3l2e", W / "v3l2enlu"
-    spe = ["--real2", fin2, "--entrenamiento", ent_csv, "--congelado", cong_e, "--log-cambios", W / "logE_cambios.csv", "--log-exclusion", W / "logE_excl.csv", "--out-dir", out_e, "--nlu-dir", nlu_e]
+    spe = ["--real2", fin2, "--entrenamiento", ent_csv, "--congelado", cong_e, "--log-cambios", W / "logE_cambios.csv", "--log-exclusion", W / "logE_excl.csv", "--out-dir", out_e, "--nlu-dir", nlu_e, "--congelado-svm", cong_s]
     c, t = run("split_lote2.py", *spe)
     check("la partición del lote 2 se rehace con el congelamiento del modelo de prueba", c == 0 and (out_e / "resumen_lote2.json").exists(), t[:300])
-    ev = ["--congelado", cong_e, "--entrenamiento", ent_csv, "--metadata", out_e / "corpus_metadata_v3_lote2.csv", "--resumen-split", out_e / "resumen_lote2.json", "--out-dir", W / "evl2", "--boot", "200"]
+    ev = ["--congelado", cong_e, "--entrenamiento", ent_csv, "--metadata", out_e / "corpus_metadata_v3_lote2.csv", "--resumen-split", out_e / "resumen_lote2.json", "--out-dir", W / "evl2", "--boot", "200", "--congelado-svm", cong_s]
     c, t = run("eval_lote2.py", "--congelado", W / "no_hay.json", *ev[2:])
     check("sin congelamiento previo, eval_lote2.py se niega a evaluar", c != 0 and "ME NIEGO" in t and not (W / "evl2" / "test_registro.json").exists(), t[:300])
     c, t = run("eval_lote2.py", "--congelado", cong_e, "--entrenamiento", ent_otro, *ev[4:])
@@ -255,7 +260,10 @@ def main():
     rs_e = json.loads((W / "evl2" / "eval_lote2_resumen.json").read_text(encoding="utf-8")) if (W / "evl2" / "eval_lote2_resumen.json").exists() else {}
     m = rs_e.get("metodos", {}).get("rasa", {})
     check("evaluación única: corre (código 0) y escribe registro, resumen, predicciones, F1 por intención e informe", c == 0 and all((W / "evl2" / n).exists() for n in ("test_registro.json", "eval_lote2_resumen.json", "predicciones_lote2.csv", "f1_por_intencion_lote2.csv", "informe_lote2.md")), t[-400:])
-    check("el registro cuenta UNA evaluación del test del lote 2 (método rasa, con huella del modelo y del congelamiento)", len(reg_e.get("evaluaciones", [])) == 1 and reg_e["evaluaciones"][0]["metodo"] == "rasa" and reg_e["evaluaciones"][0]["modelo_sha256"] == fze["sha256"]["modelo"])
+    check("el registro cuenta UNA evaluación del test del lote 2 por método (DIET y SVM, con huella del modelo y del congelamiento)", [x["metodo"] for x in reg_e.get("evaluaciones", [])] == ["rasa", "svm"] and reg_e["evaluaciones"][0]["modelo_sha256"] == fze["sha256"]["modelo"])
+    sv = rs_e.get("metodos", {}).get("svm", {})
+    check("SVM evaluado en la misma pasada con los mismos intervalos (por frases y por participantes), F1 por intención y McNemar exacto contra DIET", len(sv.get("f1_macro", [])) == 3 and len(sv.get("f1_macro_ic_participantes", [])) == 3
+          and "p_mcnemar_exacto" in sv.get("comparacion_con_rasa", {}) and (W / "evl2" / "f1_por_intencion_lote2_svm.csv").exists() and (W / "evl2" / "predicciones_lote2_svm.csv").exists(), str(sv)[:300])
     ic_f, ic_p = m.get("f1_macro", []), m.get("f1_macro_ic_participantes", [])
     check("F1 macro con IC95 % por frases y por participantes (punto, inferior, superior; inferior ≤ superior) y media del bootstrap", len(ic_f) == 3 and len(ic_p) == 3 and ic_f[1] <= ic_f[2] and ic_p[1] <= ic_p[2] and 0 <= ic_f[0] <= 1
           and "media_por_frases" in rs_e.get("bootstrap", {}) and "media_por_participantes" in rs_e.get("bootstrap", {}), str(m)[:300])
@@ -269,6 +277,11 @@ def main():
     check("el script no imprime frases del lote 2 (solo cifras)", "prueba falsa" not in t, t[:200])
     c2, t2 = run("eval_lote2.py", *ev)
     check("repetir la evaluación se niega (UNA sola vez, sin motivo adicional) y no cambia el registro", c2 != 0 and "ya se evaluó" in t2 and json.loads((W / "evl2" / "test_registro.json").read_text(encoding="utf-8")) == reg_e, t2[:300])
+    c4, t4 = run("eval_lote2.py", "--congelado", cong_e, "--entrenamiento", ent_csv, "--metadata", out_e / "corpus_metadata_v3_lote2.csv", "--resumen-split", out_e / "resumen_lote2.json", "--out-dir", W / "evl2b", "--boot", "50",
+                 "--congelado-svm", W / "no_hay_svm.json")
+    inf_b = (W / "evl2b" / "informe_lote2.md").read_text(encoding="utf-8") if (W / "evl2b" / "informe_lote2.md").exists() else ""
+    reg_b = json.loads((W / "evl2b" / "test_registro.json").read_text(encoding="utf-8")) if (W / "evl2b" / "test_registro.json").exists() else {}
+    check("sin congelamiento del SVM: DIET se evalúa igual y el SVM se declara «no ejecutado en el lote 2» (una sola entrada en el registro)", c4 == 0 and "no ejecutado en el lote 2" in inf_b and [x["metodo"] for x in reg_b.get("evaluaciones", [])] == ["rasa"], t4[-300:])
     # el tablero lee estos archivos: «Medida en lote 2» aparte de la del lote 1
     rg = W / "raiz_g3"
     for rel, contenido in (("logs/avance/ciclos_refinamiento.csv", "ciclo,fecha,f1_macro_validacion\n1,2026-01-01,0.60\n"),

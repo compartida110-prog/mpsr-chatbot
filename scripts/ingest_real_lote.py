@@ -488,6 +488,11 @@ def main():
             ok, difs = cm.verificar(a.congelado_previo)
             if not ok:
                 sys.exit("ME NIEGO a leer el lote 2: el modelo y el umbral no están congelados (o cambiaron). " + "; ".join(difs))
+            svm_f = Path(a.congelado_previo).with_name(Path(a.congelado_previo).stem + "_svm.json")
+            if svm_f.exists():
+                ok_s, difs_s = cm.verificar(svm_f)
+                if not ok_s:
+                    sys.exit("ME NIEGO a leer el lote 2: el congelamiento del SVM cambió. " + "; ".join(difs_s))
     if a.demo_simulada:
         if a.aplicar_revision:
             sys.exit("ERROR: --demo-simulada no se combina con --aplicar-revision.")

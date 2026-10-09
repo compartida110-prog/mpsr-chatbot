@@ -81,12 +81,13 @@ def verificar(ruta=SALIDA):
     return not difs, difs
 
 
-def agregar_incidente(motivo, anterior, nuevo):
-    fila = [str(date.today()), "Piloto (congelamiento del modelo)",
-            "Se rehízo el congelamiento del modelo del piloto con --forzar",
+def agregar_incidente(motivo, anterior, nuevo, lote2=False):
+    fila = [str(date.today()), "Lote 2 (congelamiento previo del modelo y el umbral)" if lote2 else "Piloto (congelamiento del modelo)",
+            "Se rehízo el congelamiento previo al lote 2 con --forzar" if lote2 else "Se rehízo el congelamiento del modelo del piloto con --forzar",
             f"Congelamiento anterior ({anterior['fecha']}, modelo {anterior['sha256']['modelo'][:12]}) reemplazado por el de {nuevo['fecha']} "
             f"(modelo {nuevo['sha256']['modelo'][:12]}); el anterior se conserva en el historial del archivo.",
-            motivo + ". Mientras no haya consultas reales de sesiones evaluadas, rehacerlo no contamina la prueba final; después de evaluarlas, el modelo ya no puede cambiar."]
+            motivo + (". Mientras el lote 2 no se haya ingestado ni leído, rehacerlo no contamina la prueba; después de abrirlo, el modelo y el umbral ya no pueden cambiar." if lote2 else
+                      ". Mientras no haya consultas reales de sesiones evaluadas, rehacerlo no contamina la prueba final; después de evaluarlas, el modelo ya no puede cambiar.")]
     nuevo_archivo = not INCIDENTES.exists()
     with open(INCIDENTES, "a", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -160,15 +161,15 @@ def main():
     for nombre, p in (("modelo", a.modelo), ("config", a.config), ("domain", a.domain)):
         if not Path(p).exists():
             sys.exit(f"ERROR: no existe el archivo de {nombre}: {p}")
-    if not str(a.modelo).endswith(".tar.gz"):
-        sys.exit("ERROR: el modelo debe ser un archivo .tar.gz de Rasa.")
+    if not (str(a.modelo).endswith(".tar.gz") or (a.proposito == "lote2" and str(a.modelo).endswith(".joblib"))):
+        sys.exit("ERROR: el modelo debe ser un archivo .tar.gz de Rasa (para el SVM del lote 2: --proposito lote2 con un .joblib).")
 
     anterior = None
     if salida.exists():
         if not (a.forzar and a.motivo.strip()):
             sys.exit(f"ERROR: ya hay un modelo congelado en {rel(salida)}. Rehacerlo exige --forzar --motivo \"<texto>\" (se registra en incident_log.csv).")
         anterior = json.loads(salida.read_text(encoding="utf-8"))
-        copia = salida.with_name(f"modelo_congelado_{anterior['fecha'][:10]}_{anterior['sha256']['modelo'][:8]}.json")
+        copia = salida.with_name(f"{salida.stem if a.proposito == 'lote2' else 'modelo_congelado'}_{anterior['fecha'][:10]}_{anterior['sha256']['modelo'][:8]}.json")
         copia.write_text(json.dumps(anterior, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     elif a.forzar:
         sys.exit("ERROR: --forzar solo tiene sentido si ya existe un congelamiento.")
@@ -193,7 +194,7 @@ def main():
     salida.parent.mkdir(parents=True, exist_ok=True)
     salida.write_text(json.dumps(fz, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if anterior:
-        agregar_incidente(a.motivo.strip(), anterior, fz)
+        agregar_incidente(a.motivo.strip(), anterior, fz, a.proposito == "lote2")
         print("Incidencia agregada a incident_log.csv")
     print(f"Modelo congelado en {rel(salida)}")
     print("  modelo sha256:", fz["sha256"]["modelo"])
