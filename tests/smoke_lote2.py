@@ -201,8 +201,8 @@ def main():
           "--out-dir", out2, "--nlu-dir", nlu2, "--congelado-svm", W / "no_hay_svm_sp.json"]
     c, t = run("split_lote2.py", *sp)
     check("sin congelamiento previo, split_lote2.py se niega a leer el lote 2 y no escribe nada", c != 0 and "ME NIEGO a leer el lote 2" in t and not out2.exists(), t[:300])
-    c, t = run("split_lote2.py")
-    check("con las rutas reales (ya hay congelamiento real) solo falla porque el archivo del lote 2 no existe: no se lee ni se evalúa nada", c != 0 and "no existe" in t and "lote2_real_final.csv" in t and not (ROOT / "corpus" / "v3_lote2" / "corpus_metadata_v3_lote2.csv").exists(), t[:300])
+    # (Se quitó la comprobación «con las rutas reales»: antes el archivo real del lote 2 no existía y split_lote2.py fallaba sin leer nada; ahora existe y esa orden reescribiría
+    #  corpus/v3_lote2/ con datos reales. Esta prueba NUNCA debe ejecutar un script de lote 2 con las rutas reales.)
     modelo = W / "modelo_falso.tar.gz"
     modelo.write_text("SIMULADO: modelo falso de prueba\n", encoding="utf-8")
     umbral = W / "umbral_falso.json"

@@ -66,3 +66,8 @@ logs/CVP-RASA-fold*/
 !logs/v3_real/lote2_congelado_previo_svm.json
 !logs/v3_real/lote2_congelado_previo_2*.json
 !logs/v3_real/modelo_congelado.json
+
+# Paquetes de Colab (contienen material derivado de datos reales: no versionar los .zip ni el trabajo intermedio)
+colab_paquetes/*.zip
+colab_paquetes/_trabajo/
+colab_paquetes/_cache/
