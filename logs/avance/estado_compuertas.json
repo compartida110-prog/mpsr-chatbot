@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-08T20:51:29",
-  "compuertas_cumplidas_con_datos_reales": 3,
+  "generado": "2026-10-08T22:01:22",
+  "compuertas_cumplidas_con_datos_reales": 4,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
   "compuertas": [
@@ -29,12 +29,12 @@
       "criterio": "Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista"
     },
     {
-      "estado": "No cumplida",
-      "evidencia": "logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json, logs/v3_real/lote2_congelado_previo.json",
-      "nota": "No cumplida, lote 1. Ciclos de refinamiento: 1/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez).",
+      "estado": "Cumplida",
+      "evidencia": "logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json, logs/v3_real/lote2/test_registro.json, logs/v3_real/lote2_congelado_previo.json",
+      "nota": "No cumplida, lote 1. Ciclos de refinamiento: 1/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Medida en lote 2: F1 macro = 0.9072 (≥ 0.75); G3 cumplida con la medición independiente del lote 2 (la del lote 1 queda como «No cumplida, lote 1»).",
       "simulado": false,
-      "fecha": "2026-10-08T14:22:01+00:00",
-      "estado_base": "No cumplida",
+      "fecha": "2026-10-09T02:59:59+00:00",
+      "estado_base": "Cumplida",
       "datos": "Real",
       "id": "G3",
       "nombre": "Calidad con lenguaje real",

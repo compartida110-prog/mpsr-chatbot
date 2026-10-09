@@ -1,0 +1,21 @@
+{
+  "protocolo": "V1.6 5.8",
+  "evaluaciones": [
+    {
+      "fecha": "2026-10-09T02:59:59+00:00",
+      "metodo": "rasa",
+      "motivo": "evaluación única del test del lote 2",
+      "modelo_sha256": "be1a5ad06357b26370fc14f780f49cbf205b08dbe5fe3af383625e44f64b10d9",
+      "n_frases": 267,
+      "congelado_sha256": "cba881e15fc184884b4b6289f2919390d318f2f478d8f95a322c067db2afc0c7"
+    },
+    {
+      "fecha": "2026-10-09T02:59:59+00:00",
+      "metodo": "svm",
+      "motivo": "evaluación única del test del lote 2 (baseline)",
+      "modelo_sha256": "b53f7cfb8659f482009b6790b581768fcf3d8257a43e2828b55e79e331c6646b",
+      "n_frases": 267,
+      "congelado_sha256": "7c59fffb87817b468c4ae26b3fda199380c64ebb40d6f1f756601e0e06174da0"
+    }
+  ]
+}

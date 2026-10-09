@@ -1,0 +1,110 @@
+{
+  "fecha": "2026-10-09T02:59:59+00:00",
+  "protocolo": "V1.6 5.8",
+  "lote": 2,
+  "evaluacion": "única (el test del lote 2 no se repite)",
+  "n_test": 267,
+  "participantes": 25,
+  "criterio_f1_macro": 0.75,
+  "cumple_criterio": true,
+  "limite_inferior_ic_frases_sobre_criterio": true,
+  "metodos": {
+    "rasa": {
+      "f1_macro": [
+        0.9072399317853862,
+        0.8626410687706929,
+        0.9290189974347438
+      ],
+      "f1_macro_ic_participantes": [
+        0.9072399317853862,
+        0.852416392790835,
+        0.9385040020140287
+      ],
+      "accuracy": 0.8876404494382022
+    },
+    "svm": {
+      "estado": "ejecutado",
+      "f1_macro": [
+        0.8924519559824218,
+        0.8417155424117627,
+        0.9170881167592043
+      ],
+      "f1_macro_ic_participantes": [
+        0.8924519559824218,
+        0.8367650683732554,
+        0.9214924876310615
+      ],
+      "accuracy": 0.8726591760299626,
+      "media_bootstrap_frases": 0.8811485494481154,
+      "media_bootstrap_participantes": 0.8821515672378666,
+      "modelo_sha256": "b53f7cfb8659f482009b6790b581768fcf3d8257a43e2828b55e79e331c6646b",
+      "informativo": "baseline; G3 se mide solo con DIET",
+      "comparacion_con_rasa": {
+        "solo_svm_acierta": 10,
+        "solo_rasa_acierta": 14,
+        "p_mcnemar_exacto": 0.5412561893463135,
+        "diferencia_f1_rasa_menos_svm": 0.014787975802964426
+      }
+    }
+  },
+  "svm": {
+    "estado": "ejecutado",
+    "f1_macro": [
+      0.8924519559824218,
+      0.8417155424117627,
+      0.9170881167592043
+    ],
+    "f1_macro_ic_participantes": [
+      0.8924519559824218,
+      0.8367650683732554,
+      0.9214924876310615
+    ],
+    "accuracy": 0.8726591760299626,
+    "media_bootstrap_frases": 0.8811485494481154,
+    "media_bootstrap_participantes": 0.8821515672378666,
+    "modelo_sha256": "b53f7cfb8659f482009b6790b581768fcf3d8257a43e2828b55e79e331c6646b",
+    "informativo": "baseline; G3 se mide solo con DIET",
+    "comparacion_con_rasa": {
+      "solo_svm_acierta": 10,
+      "solo_rasa_acierta": 14,
+      "p_mcnemar_exacto": 0.5412561893463135,
+      "diferencia_f1_rasa_menos_svm": 0.014787975802964426
+    }
+  },
+  "bootstrap": {
+    "remuestreos": 1000,
+    "seed": 42,
+    "media_por_frases": 0.8979734782335245,
+    "media_por_participantes": 0.8997457427598385,
+    "nota": "con pocas frases por intención, el IC por percentiles queda sesgado hacia abajo (faltan intenciones en cada remuestreo); se informa también la media del bootstrap"
+  },
+  "umbral_congelado": {
+    "t": 0.5,
+    "ambiguity_threshold": 0.1,
+    "respondidas": 264,
+    "aciertos_respondidos": 237,
+    "errores_respondidos": 27,
+    "abstenciones": 3,
+    "correctas_perdidas": 0,
+    "errores_atrapados": 3,
+    "cobertura": 0.9888,
+    "precision_respondida": 0.8977
+  },
+  "confusion_par_despedida_agradecimiento": {
+    "rotulo": "confusión esperable: «gracias» se usa también para despedirse",
+    "despedida": {
+      "n": 5,
+      "predicha_despedida": 4,
+      "predicha_agradecimiento": 0,
+      "otra": 1
+    },
+    "agradecimiento": {
+      "n": 5,
+      "predicha_despedida": 1,
+      "predicha_agradecimiento": 4,
+      "otra": 0
+    }
+  },
+  "modelo_sha256": "be1a5ad06357b26370fc14f780f49cbf205b08dbe5fe3af383625e44f64b10d9",
+  "congelado_sha256": "cba881e15fc184884b4b6289f2919390d318f2f478d8f95a322c067db2afc0c7"
+}

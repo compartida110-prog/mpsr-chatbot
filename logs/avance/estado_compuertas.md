@@ -1,14 +1,14 @@
 # Estado de las compuertas de avance (protocolo 2.14)
 
-**Compuertas cumplidas con datos reales: 3 de 7.** Cumplidas con datos simulados: 1 (no cuentan como reales).
+**Compuertas cumplidas con datos reales: 4 de 7.** Cumplidas con datos simulados: 1 (no cuentan como reales).
 
-Generado el 2026-10-08 20:51 por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.
+Generado el 2026-10-08 22:01 por `scripts/estado_compuertas.py` (solo lee; escribe únicamente en `logs/avance/`). Las etapas avanzan por criterios, no por fechas: si una compuerta no se cumple, esa etapa y las siguientes se presentan como planificadas.
 
 | Compuerta | Criterio | Estado | Datos | Evidencia | Nota |
 |---|---|---|---|---|---|
 | **G1** Lote 1 completo | «Listo para la Parte B»: ≥ 15 transcritos, 0 sin consentimiento, cada intención ≥ 3 frases | **Cumplida** | Real | logs/v3_real/ingesta_reporte.txt | Transcritos 32/15 (≥ 15); intenciones con menos de 3 frases: 0. |
 | **G2** Parte B ejecutada | Ingesta sin errores bloqueantes y revisión de datos personales marcada por el tesista | **Cumplida** | Real | logs/v3_real/ingesta_reporte.txt + logs/avance/revision_pii.txt | Ingesta sin errores bloqueantes y revisión de datos personales marcada. |
-| **G3** Calidad con lenguaje real | ≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75 (V1.6: medida en el lote 2; la del lote 1 queda como «No cumplida, lote 1») | **No cumplida** | Real | logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json, logs/v3_real/lote2_congelado_previo.json | No cumplida, lote 1. Ciclos de refinamiento: 1/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Lote 2 (V1.6): planificado, sin medición todavía (prueba nueva e independiente; se mide una sola vez). |
+| **G3** Calidad con lenguaje real | ≤ 2 ciclos de refinamiento y UNA evaluación del test real con F1 macro ≥ 0,75 (V1.6: medida en el lote 2; la del lote 1 queda como «No cumplida, lote 1») | **Cumplida** | Real | logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json, logs/v3_real/lote2/test_registro.json, logs/v3_real/lote2_congelado_previo.json | No cumplida, lote 1. Ciclos de refinamiento: 1/2. Única evaluación del test real: F1 macro = 0.6867 (< 0.75). Medida en lote 2: F1 macro = 0.9072 (≥ 0.75); G3 cumplida con la medición independiente del lote 2 (la del lote 1 queda como «No cumplida, lote 1»). |
 | **G4** Respuestas verificadas | TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin confirmar = 0 | **Cumplida** | Real | docs/tupa/Verificacion_TUPA_v10_4.xlsx | Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin confirmar: 0 (con resultado, propuesto o confirmado: 35 de 44; confirmadas por el tesista: 28). |
 | **G5** Modelo congelado | Modelo congelado válido, después de G3 y G4 | **No cumplida (Simulado)** | Simulado | evidencias/simulado_demostracion/20261005_demostracion/04_congelado/modelo_congelado_SIMULADO.json | Congelamiento inválido: la huella de dominio cambió. |
 | **G6** Pre-piloto | 5–15 sesiones completas y alfa de Cronbach ≥ 0,70 | **Pendiente (sin evidencia)** | — | falta docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx | Registro del pre-piloto (copia del registro de sesiones). |
