@@ -294,16 +294,21 @@ def main():
         sp.escribir_registro(ruta, filas, 0.0)
         return items9
     r6 = W / "t_g6"
-    items = registro(r6, "Registro_Sesiones_Prepiloto_prueba.xlsx", 8, 3)
+    items = registro(r6, "Registro_Sesiones_Prepiloto.xlsx", 8, 3)
     alfa = sp.alfa_numpy(items[:, :8])
     c, t, g, _ = tablero(r6)
     esperado = "Cumplida" if alfa >= 0.70 else "No cumplida"
     check(f"G6 con 8 sesiones y alfa {alfa:.2f} (calculado aparte con numpy): «{esperado}»", g["G6"]["estado"] == esperado and f"{alfa:.3f}" in g["G6"]["nota"], str(g["G6"]))
     check("G6 avisa que con n pequeño el alfa es poco estable", "advertencia" in g["G6"]["nota"], str(g["G6"]))
     r6b = W / "t_g6b"
-    registro(r6b, "Registro_Sesiones_Prepiloto_prueba.xlsx", 3, 3)
+    registro(r6b, "Registro_Sesiones_Prepiloto.xlsx", 3, 3)
     c, t, g, _ = tablero(r6b)
     check("G6 con 3 sesiones (menos de 5): «En curso»", g["G6"]["estado"] == "En curso", str(g["G6"]))
+    r6c = W / "t_g6c"
+    registro(r6c, "Registro_Sesiones_Prepiloto_v2.xlsx", 8, 3)
+    registro(r6c, "Registro_Sesiones_Prepiloto_plantilla_SA_descartado.xlsx", 8, 3)
+    c, t, g, _ = tablero(r6c)
+    check("G6 lee solo Registro_Sesiones_Prepiloto.xlsx: con copias _v2 o _descartado y sin ese nombre queda «Pendiente»", g["G6"]["estado"].startswith("Pendiente"), str(g["G6"]))
     for n, cierre, esperado, nombre in ((60, False, "Cumplida", "60 sesiones elegibles"), (40, True, "Cumplida", "40 sesiones y cierre declarado"), (20, True, "No cumplida", "20 sesiones y cierre declarado (menos de 30)"),
                                         (40, False, "En curso", "40 sesiones sin cierre declarado")):
         r7 = W / f"t_g7_{n}_{int(cierre)}"

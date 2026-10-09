@@ -1,4 +1,4 @@
-"""Tablero de las compuertas de avance (protocolo V1.4, sección 2.14, G1 a G7).
+﻿"""Tablero de las compuertas de avance (protocolo V1.4, sección 2.14, G1 a G7).
 
 Lee los artefactos del repositorio y escribe logs/avance/estado_compuertas.md y .json con una fila por compuerta: estado, evidencia y si los datos son Reales o Simulados.
 Solo LEE; nunca escribe fuera de logs/avance/ (se niega si --salida apunta a otra carpeta).
@@ -10,7 +10,7 @@ Solo LEE; nunca escribe fuera de logs/avance/ (se niega si --salida apunta a otr
 | G3 Calidad con lenguaje real | hasta 2 ciclos de refinamiento (se informa la mejora entre ciclos) y UNA sola evaluación del test real con F1 macro ≥ 0,75 | logs/avance/ciclos_refinamiento.csv, logs/v3_real/test_registro.json y eval_real_resumen.json |
 | G4 Respuestas verificadas | en la hoja del TUPA: filas Alta pendientes = 0, filas con alerta = 0 y Corregir/Coincide sin confirmar = 0 (Resumen) | docs/tupa/Verificacion_TUPA_v*.xlsx (la versión más alta) |
 | G5 Modelo congelado | existe, es válido (huellas) y se congeló DESPUÉS de G3 y G4 (si no, No cumplida) | logs/v3_real/modelo_congelado.json |
-| G6 Pre-piloto | de 5 a 15 sesiones completas y alfa de Cronbach ≥ 0,70 (con aviso si n es pequeño) | docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx |
+| G6 Pre-piloto | de 5 a 15 sesiones completas y alfa de Cronbach ≥ 0,70 (con aviso si n es pequeño) | docs/piloto/privado/Registro_Sesiones_Prepiloto.xlsx |
 | G7 Sesiones | 60 sesiones elegibles y completas, o cierre declarado con ≥ 30 (con menos de 30: demostración del procedimiento, sin análisis inferencial) | docs/piloto/privado/Registro_Sesiones_Piloto*.xlsx y logs/avance/cierre_piloto.txt (lo crea el tesista) |
 
 Estados: Cumplida · En curso · Pendiente (sin evidencia) · No cumplida. Una compuerta evaluada con datos simulados se muestra «Cumplida (Simulado)» y NUNCA cuenta como real: los
@@ -337,9 +337,9 @@ def _sesiones(path):
 
 
 def g6(W, previos):
-    fs = W.registros("Registro_Sesiones_Prepiloto*.xlsx")
+    fs = W.registros("Registro_Sesiones_Prepiloto.xlsx")  # solo este nombre: copias _v2 o _descartado en la carpeta no cuentan
     if not fs:
-        return res(PENDIENTE, "falta docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx", "Registro del pre-piloto (copia del registro de sesiones).")
+        return res(PENDIENTE, "falta docs/piloto/privado/Registro_Sesiones_Prepiloto.xlsx", "Registro del pre-piloto (copia del registro de sesiones).")
     f = fs[-1]
     r = _sesiones(f)
     ev = W.rel(f)
@@ -433,7 +433,7 @@ def informe(filas, raiz, demo=False):
           "- **G3:** los ciclos de refinamiento medidos sobre validación van en `logs/avance/ciclos_refinamiento.csv` (columnas `ciclo,fecha,f1_macro_validacion`; los anota quien refina); la evaluación única del test real sale de `logs/v3_real/test_registro.json` y `eval_real_resumen.json` (los escribe `eval_real.py`).",
           "- **G4:** la versión más alta de `docs/tupa/Verificacion_TUPA_v*.xlsx` (hoja Resumen, valores guardados por Excel).",
           "- **G5:** `logs/v3_real/modelo_congelado.json` (`congelar_modelo.py`).",
-          "- **G6/G7:** los registros llenos van en `docs/piloto/privado/` (fuera de Git) con los nombres `Registro_Sesiones_Prepiloto*.xlsx` y `Registro_Sesiones_Piloto*.xlsx`; el cierre declarado con ≥ 30 sesiones va en `logs/avance/cierre_piloto.txt`.",
+          "- **G6/G7:** los registros llenos van en `docs/piloto/privado/` (fuera de Git) con los nombres `Registro_Sesiones_Prepiloto.xlsx` (nombre exacto) y `Registro_Sesiones_Piloto*.xlsx`; el cierre declarado con ≥ 30 sesiones va en `logs/avance/cierre_piloto.txt`.",
           "- **Simulados:** solo se leen de `evidencias/simulado_demostracion/<ejecución>/` (archivos `*_SIMULADO`, modo `--demo-simulada`) y se muestran siempre como Simulado.", ""]
     return "\n".join(L), reales, simuladas
 

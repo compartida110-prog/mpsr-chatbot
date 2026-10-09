@@ -152,7 +152,7 @@ def leer_registro(ruta, mapa_usuario=None, permitir_simulado=False):
     if df.empty:
         sys.exit("ERROR: el registro no tiene filas con código de sesión.")
     df["codigo"] = df["codigo"].astype(str).str.strip()
-    cand = df[df["codigo"].str.upper().str.match(r"^SA\d")].copy()
+    cand = df[df["codigo"].str.upper().str.match(r"^(SA|PP)\d")].copy()  # SA = piloto, PP = pre-piloto (las filas de ejemplo EJ01 no cuentan)
     if not cand.empty and any(MARCA_TEXTO.search(norm(x)) for k in (1, 2, 3) for x in cand[f"t{k}_consulta"].dropna().astype(str)):
         marcadas.append("textos de consulta marcados como simulación")
     if marcadas and not permitir_simulado:

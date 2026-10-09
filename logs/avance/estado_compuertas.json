@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T22:34:34",
+  "generado": "2026-10-09T08:52:45",
   "compuertas_cumplidas_con_datos_reales": 5,
   "compuertas_cumplidas_con_datos_simulados": 1,
   "total": 7,
@@ -65,13 +65,13 @@
       "criterio": "Modelo congelado válido, después de G3 y G4"
     },
     {
-      "estado": "Pendiente (sin evidencia)",
-      "evidencia": "falta docs/piloto/privado/Registro_Sesiones_Prepiloto*.xlsx",
-      "nota": "Registro del pre-piloto (copia del registro de sesiones).",
+      "estado": "No cumplida",
+      "evidencia": "docs/piloto/privado/Registro_Sesiones_Prepiloto.xlsx",
+      "nota": "Alfa de Cronbach 0.366 < 0.7: se corrige el instrumento y se repite una sola vez con otro grupo. Con n = 5 el alfa es poco estable (advertencia).",
       "simulado": false,
       "fecha": null,
-      "estado_base": "Pendiente (sin evidencia)",
-      "datos": "—",
+      "estado_base": "No cumplida",
+      "datos": "Real",
       "id": "G6",
       "nombre": "Pre-piloto",
       "criterio": "5–15 sesiones completas y alfa de Cronbach ≥ 0,70"
