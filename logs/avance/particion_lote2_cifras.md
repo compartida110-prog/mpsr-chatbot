@@ -1,0 +1,6 @@
+# Revisión y partición del lote 2 — cifras (sin frases)
+
+- Revisión de etiquetas aplicada con `Revision_Etiquetas_Lote2_v2.xlsx` (sha256 verificado: `6c23ca633bfaba37c655c00af28fbf7da7107b02559e6d4663b2c499c1b86a04`): 280 OK, 0 CAMBIAR, 0 DESCARTAR; frases finales 280 (Q0001–Q0280). Kappa etiqueta esperada vs. revisión de una sola revisora = 1,000 (sin cambios; no es acuerdo entre revisores).
+- `split_lote2.py`: recibidas 280 | descartadas por duplicado entre frases del lote: 0 | excluidas por ambiguas: 0 | **excluidas por idénticas a entrenamiento (coincidencia exacta tras normalizar, nunca por predicciones): 13** (Q0018, Q0025, Q0039, Q0087, Q0176, Q0181, Q0183, Q0202, Q0209, Q0210, Q0212, Q0213, Q0222; 7 sintéticas y 6 reales del lote 1; log `docs/lote_real_2/log_exclusion_entrenamiento_lote2.csv`).
+- **Frases activas (en el test): 267** | participantes cubiertos: 25 | situaciones cubiertas: 56 de 56 (4 a 5 frases por situación) | mínimo de textos distintos por intención en test: 4 (máximo 15, `fuera_de_alcance`) | entrenamiento: 943 | partición de validación: no existe.
+- Congelamientos de DIET y SVM: intactos. `eval_lote2.py` NO se ejecutó; no se evaluó nada ni se vieron predicciones.
