@@ -149,8 +149,10 @@ def ejecutar_en_subproceso(nombre, celdas, privado):
         env["MPSR_SIN_PRIVADO"] = "1"
     else:
         env.pop("MPSR_SIN_PRIVADO", None)
-    p = subprocess.run([sys.executable, str(Path(__file__)), "--uno", str(d / "celdas.json"), "--salida", str(d / "salida.json"), "--etiqueta", nombre],
+    p = subprocess.run([os.environ.get("MPSR_PYTHON", sys.executable), str(Path(__file__)), "--uno", str(d / "celdas.json"), "--salida", str(d / "salida.json"), "--etiqueta", nombre],
                        capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=ROOT, env=env, timeout=1800)
+    if p.returncode != 0 and os.environ.get("MPSR_PROBAR") == "1":
+        raise RuntimeError(((p.stdout or "") + (p.stderr or ""))[-900:])
     if p.returncode != 0:
         sys.exit(f"[{nombre}] {'completa' if privado else 'pública'} falló:\n{(p.stdout or '')[-600:]}\n{(p.stderr or '')[-1200:]}")
     return json.loads((d / "salida.json").read_text(encoding="utf-8"))
@@ -202,6 +204,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--todo", action="store_true")
     ap.add_argument("--etiquetas", action="store_true")
+    ap.add_argument("--probar-entorno", action="store_true", help="ejecuta cada cuaderno SOLO con el paquete público y el Python de MPSR_PYTHON (p. ej. un venv con librerías nuevas, como Colab); no escribe cuadernos")
     ap.add_argument("--uno")
     ap.add_argument("--salida")
     ap.add_argument("--etiqueta", default="cuaderno")
@@ -212,6 +215,15 @@ def main():
     if a.etiquetas:
         for et, (t, s) in etiquetas.items():
             print(f"{et:10s} {t:9s} {s.splitlines()[0][:90] if s.strip() else ''}")
+        return
+    if a.probar_entorno:
+        os.environ["MPSR_PROBAR"] = "1"
+        for f in sorted(FUENTE_PP.glob("*.py")):
+            try:
+                ejecutar_en_subproceso(f.stem, leer_cuaderno(f, etiquetas), privado=False)
+                print("OK   ", f.stem)
+            except Exception as e:  # noqa: BLE001
+                print("FALLA", f.stem, "->", str(e).strip().splitlines()[-1][:300] if str(e).strip() else "")
         return
     if not a.todo:
         ap.print_help()

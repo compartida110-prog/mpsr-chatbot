@@ -109,6 +109,17 @@ def main():
           and "PP07_log_" not in o and not any(t in o for t in FALSAS[2:]) and o.count("Asistente:") == 5, o[:400])
     check("los segundos desde el primer mensaje parten de 0 y no decrecen", float(filas[0]["segundos_desde_primer_mensaje"]) == 0.0 and all(float(filas[i + 1]["segundos_desde_primer_mensaje"]) >= float(filas[i]["segundos_desde_primer_mensaje"]) for i in range(4)))
 
+    # ---------------------------------------------------------------- modo --demo (modelo SINTÉTICO, sin material sensible)
+    print("\nModo demo (modelo de prueba sintético)")
+    logdemo = W / "logs_demo"
+    c, o, e = run("asistente_local.py", "PP01", "--demo", "--modelo-demo", md / "m_falso.tar.gz", "--log-dir", logdemo, entrada="salir\n")
+    check("en modo --demo un código de sesión real (PPxx) se rechaza y no escribe nada", c == 2 and "NO INICIA" in o and not logdemo.exists(), o[:200])
+    c, o, e = run("asistente_local.py", "DEMO", "--demo", "--modelo-demo", W / "no_existe.tar.gz", "--log-dir", logdemo, entrada="salir\n")
+    check("en modo --demo sin modelo sintético se niega e indica cómo crearlo", c == 2 and "entrenar_modelo_demo.py" in o and not logdemo.exists(), o[:250])
+    c, o, e = run("asistente_local.py", "DEMO", "--demo", "--modelo-demo", md / "m_falso.tar.gz", "--log-dir", logdemo, entrada="\n".join(FALSAS[:2]) + "\nsalir\n")
+    ld = sorted(logdemo.glob("DEMO_log_*.csv")) if logdemo.exists() else []
+    check("con --demo y el código DEMO la sesión corre, avisa «MODO DEMO … NO es el modelo congelado», no verifica ni toca el congelamiento y escribe DEMO_log_*.csv", c == 0 and len(ld) == 1 and "MODO DEMO" in o and "NO es el modelo congelado" in o and "terminada: 2 mensaje(s)" in o, (o + e)[-300:])
+
     # ---------------------------------------------------------------- congelamiento REAL (modelo LOTE2-FINAL), registro en carpeta temporal
     print("\nCongelamiento real (modelo LOTE2-FINAL; registro temporal)")
     logr = W / "logs_real"

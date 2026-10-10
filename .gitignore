@@ -72,3 +72,7 @@ colab_paquetes/*.zip
 colab_paquetes/_trabajo/
 colab_paquetes/_cache/
 colab_paquetes/colab_por_paso/
+logs/demo_vivo_*.txt
+evidencias/capturas_avance/
+MPSR_colab_*.zip
+mpsr_trabajo/

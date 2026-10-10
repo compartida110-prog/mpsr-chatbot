@@ -12,6 +12,7 @@ Los textos son frases reales de las personas: el archivo no se sube a GitHub ni 
 
 Se ejecuta con el Python del entorno (3.10, Rasa 3.6; NO rasa.exe, que Smart App Control puede bloquear):
     python scripts/asistente_local.py PP01
+    python scripts/asistente_local.py DEMO --demo        # modelo sintético, sin material sensible (ver scripts/entrenar_modelo_demo.py)
 Para terminar: escribir `salir` (o /salir) o Ctrl+C / Ctrl+Z.
 """
 import argparse
@@ -80,7 +81,9 @@ def main(argv=None, entrada=None, salida=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("codigo", help="código de la sesión, PP01, PP02…")
     ap.add_argument("--congelado", default=str(ROOT / "logs" / "v3_real" / "modelo_congelado.json"), help="congelamiento que se verifica y del que se toman modelo, dominio y umbral")
-    ap.add_argument("--log-dir", default=str(ROOT / "docs" / "piloto" / "privado"), help="carpeta del registro de la sesión (ignorada por Git)")
+    ap.add_argument("--log-dir", default=None, help="carpeta del registro de la sesión (ignorada por Git); por defecto docs/piloto/privado (y models/demo_vivo/logs_demo con --demo)")
+    ap.add_argument("--demo", action="store_true", help="MODO DEMO: usa un modelo entrenado SOLO con datos sintéticos (NO el congelado), código DEMO y registro en models/demo_vivo/logs_demo; para mostrar el asistente sin material sensible")
+    ap.add_argument("--modelo-demo", default=str(ROOT / "models" / "demo_vivo" / "DEMO-VIVO.tar.gz"), help="modelo sintético para --demo (se crea con scripts/entrenar_modelo_demo.py o scripts/demo_vivo.ps1)")
     a = ap.parse_args(argv)
     entrada = entrada or sys.stdin
     salida = salida or sys.stdout
@@ -90,31 +93,44 @@ def main(argv=None, entrada=None, salida=None):
     def decir(t=""):
         print(t, file=salida, flush=True)
 
-    if not CODIGO.match(a.codigo):
+    log_dir = a.log_dir or str(ROOT / "models" / "demo_vivo" / "logs_demo" if a.demo else ROOT / "docs" / "piloto" / "privado")
+    if a.demo and a.codigo != "DEMO":
+        decir(f"NO INICIA: en modo --demo el código debe ser DEMO (los códigos PPxx son de sesiones reales); recibí «{a.codigo}».")
+        return 2
+    if not a.demo and not CODIGO.match(a.codigo):
         decir(f"NO INICIA: el código de sesión debe ser PPxx (p. ej. PP01); recibí «{a.codigo}».")
         return 2
-    if not carpeta_ignorada_por_git(a.log_dir):
-        decir(f"NO INICIA: {a.log_dir} está dentro del repositorio y Git no la ignora; el registro trae frases de personas y no puede quedar ahí.")
+    if not carpeta_ignorada_por_git(log_dir):
+        decir(f"NO INICIA: {log_dir} está dentro del repositorio y Git no la ignora; el registro trae frases de personas y no puede quedar ahí.")
         return 2
-    ok, msg = verificar_congelamiento(a.congelado)
-    if not ok:
-        decir("NO INICIA: el modelo congelado no está «intacto» (congelar_modelo.py --verificar): " + msg.replace("\n", " | "))
-        return 2
-    fz = json.loads(Path(a.congelado).read_text(encoding="utf-8"))
-    t = float(fz.get("umbral_t") if fz.get("umbral_t") is not None else -1)
-    amb = float(fz.get("umbral_detalle", {}).get("ambiguity_threshold", 0.1))
-    if t != T_ESPERADO:
-        decir(f"NO INICIA: el umbral congelado es {t}, no {T_ESPERADO}.")
-        return 2
-    rutas = {k: (Path(v) if Path(v).is_absolute() else ROOT / v) for k, v in fz["archivos"].items()}
+    if a.demo:
+        t, amb = T_ESPERADO, 0.1
+        modelo_demo = Path(a.modelo_demo)
+        if not modelo_demo.exists():
+            decir(f"NO INICIA: no existe el modelo de demostración {modelo_demo}. Créalo con:  python scripts/entrenar_modelo_demo.py   (entrena con datos SINTÉTICOS, unos 5 min).")
+            return 2
+        rutas = {"modelo": modelo_demo, "dominio": ROOT / "domain_v3.yml"}
+        fz = {"modelo_nombre": "DEMO (solo datos sintéticos; NO es el modelo congelado)"}
+    else:
+        ok, msg = verificar_congelamiento(a.congelado)
+        if not ok:
+            decir("NO INICIA: el modelo congelado no está «intacto» (congelar_modelo.py --verificar): " + msg.replace("\n", " | "))
+            return 2
+        fz = json.loads(Path(a.congelado).read_text(encoding="utf-8"))
+        t = float(fz.get("umbral_t") if fz.get("umbral_t") is not None else -1)
+        amb = float(fz.get("umbral_detalle", {}).get("ambiguity_threshold", 0.1))
+        if t != T_ESPERADO:
+            decir(f"NO INICIA: el umbral congelado es {t}, no {T_ESPERADO}.")
+            return 2
+        rutas = {k: (Path(v) if Path(v).is_absolute() else ROOT / v) for k, v in fz["archivos"].items()}
     resp = {k: v[0]["text"] for k, v in yaml.safe_load(open(rutas["dominio"], encoding="utf-8"))["responses"].items() if v}
     if "utter_no_entendi" not in resp:
         decir("NO INICIA: el dominio no tiene utter_no_entendi.")
         return 2
-    carpeta = Path(a.log_dir)
+    carpeta = Path(log_dir)
     carpeta.mkdir(parents=True, exist_ok=True)
     ruta_log = carpeta / f"{a.codigo}_log_{datetime.now():%Y%m%d_%H%M%S}.csv"
-    decir("Cargando el modelo congelado…")
+    decir("Cargando el modelo de demostración…" if a.demo else "Cargando el modelo congelado…")
     try:
         agente = cargar_agente(rutas["modelo"])
     except Exception as e:  # noqa: BLE001
@@ -122,7 +138,11 @@ def main(argv=None, entrada=None, salida=None):
         return 2
     jerga = load_jerga()
     bucle = asyncio.new_event_loop()
-    decir(f"Sesión {a.codigo} · modelo {fz.get('version') or fz.get('modelo_nombre')} (congelamiento verificado: intacto) · umbral t = {t:.2f}")
+    if a.demo:
+        decir("*** MODO DEMO: modelo entrenado SOLO con datos sintéticos; NO es el modelo congelado y sus respuestas no valen para el estudio. ***")
+        decir(f"Sesión {a.codigo} · modelo de demostración · umbral t = {t:.2f}")
+    else:
+        decir(f"Sesión {a.codigo} · modelo {fz.get('version') or fz.get('modelo_nombre')} (congelamiento verificado: intacto) · umbral t = {t:.2f}")
     decir("Escribe tu consulta y presiona Enter. Para terminar escribe: salir")
     decir()
     n, t0 = 0, None
@@ -154,7 +174,7 @@ def main(argv=None, entrada=None, salida=None):
             h.flush()
             n += 1
     decir()
-    decir(f"Sesión {a.codigo} terminada: {n} mensaje(s). El registro quedó en la carpeta privada (no se sube a Git).")
+    decir(f"Sesión {a.codigo} terminada: {n} mensaje(s). El registro quedó en " + ("models/demo_vivo/logs_demo (sin material sensible; no se sube a Git)." if a.demo else "la carpeta privada (no se sube a Git)."))
     return 0
 
 

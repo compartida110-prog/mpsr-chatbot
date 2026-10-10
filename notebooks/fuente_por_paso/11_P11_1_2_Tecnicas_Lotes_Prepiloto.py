@@ -58,8 +58,27 @@ comparar("P11.1", "participantes transcritos del lote 2", int(re.search(r"Partic
 # %% reuse: e10_md, e10_c1, e10_leer
 
 # %% [markdown]
-# ### 4. El asistente local (documentado, no se ejecuta aquí)
-# `asistente_local.py` carga **solo el NLU congelado**, verifica el congelamiento (`congelar_modelo.py --verificar`; si no dice «intacto», se niega a iniciar), aplica el umbral `t = 0,50` y responde con `utter_<intención>` o «no entendí», y registra un CSV por sesión en `docs/piloto/privado/` (carpeta ignorada por Git). No imprime intención ni confianza. Su comando: `python scripts/asistente_local.py PPxx`. Las sesiones PP01–PP07 se registraron a mano (no hay logs `PPxx_log_*.csv`).
+# ### 4. El asistente local: qué hace y cómo se ejecuta (solo documentación; no se ejecuta aquí)
+# `asistente_local.py` es una consola para las sesiones del pre-piloto. Carga **solo el NLU congelado** (`LOTE2-FINAL v1`), verifica antes el congelamiento (`congelar_modelo.py --verificar`; si no dice «intacto», **se niega a iniciar**), aplica el umbral `t = 0,50` (y ambigüedad 0,1) y responde con `utter_<intención>` de `domain_v3.yml` o con «no entendí». Registra un CSV por sesión en `docs/piloto/privado/` (carpeta ignorada por Git) y en pantalla solo muestra la conversación (ni intención ni confianza).
+#
+# **Por qué no corre en Colab:** necesita Rasa 3.6 (Python 3.10) y el modelo congelado, y escribe frases reales de personas con su código de sesión. Por eso este cuaderno solo lo documenta; su comportamiento se comprueba con la prueba automática `smoke_asistente.py` (datos falsos; resultado guardado arriba).
+#
+# **Comandos** (PowerShell, desde la carpeta del repositorio; se escriben aquí como texto y no se ejecutan):
+#
+# ```powershell
+# cd "C:\Users\Luis Mario\Documents\tesis2\mpsr-chatbot\mpsr-chatbot"
+#
+# # 1) SESIÓN REAL del pre-piloto (solo en la laptop del tesista): usa el siguiente código libre PPxx
+# .\venv\Scripts\python.exe scripts\asistente_local.py PPxx          # termina con la palabra: salir
+#
+# # 2) DEMOSTRACIÓN sin material sensible (modelo entrenado SOLO con datos sintéticos; código DEMO)
+# .\venv\Scripts\python.exe scripts\entrenar_modelo_demo.py        # una vez (≈ 5 min); con --rapida usa 20 épocas (NO oficial)
+# .\venv\Scripts\python.exe scripts\asistente_local.py DEMO --demo
+# ```
+#
+# - Hay que usar `python` del entorno `venv` (3.10, con Rasa) y no `rasa.exe`: Smart App Control puede bloquearlo.
+# - Con `--demo` solo se acepta el código `DEMO` (los `PPxx` son sesiones reales) y el registro queda en `models/demo_vivo/logs_demo/`.
+# - Para ejecutar la demostración fuera de la laptop (p. ej. en un Codespace de GitHub, que sí soporta Python 3.10 y Rasa), ver `docs/Ejecutar_en_Codespaces.md`.
 
 # %% [markdown]
 # ### 5. Pruebas automáticas y tablero de compuertas
