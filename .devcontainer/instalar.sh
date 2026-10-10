@@ -4,7 +4,9 @@ set -e
 python --version
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-python -m pip install ipykernel jupyter nbformat
+python -m pip install ipykernel nbformat
+# Rasa 3.6 necesita packaging<21 (LegacyVersion) y prompt-toolkit<3.0.29; ipykernel los sube y Rasa deja de importar. Se vuelven a fijar (probado en un Codespace el 2026-10-10).
+python -m pip install 'packaging==20.9' 'prompt-toolkit<3.0.29'
 python -m rasa --version
 python - <<'PY'
 import rasa, sklearn, pandas, numpy

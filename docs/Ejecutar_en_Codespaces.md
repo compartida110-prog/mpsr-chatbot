@@ -2,7 +2,7 @@
 
 Colab **no** puede correr Rasa 3.6 (necesita Python 3.10 y TensorFlow 2.12). En un **Codespace** de GitHub sí: es un entorno Linux en la nube, con terminal y Jupyter, que se crea con **Python 3.10 y las versiones exactas del proyecto** (`.devcontainer/`). Aquí se puede **entrenar DIET, correr el asistente y ejecutar los cuadernos y las pruebas**, todo con datos **sintéticos**.
 
-> **Estado de esta guía:** el `.devcontainer` y los comandos de abajo se probaron en la laptop del tesista (Windows, Python 3.10) pero **no se han ejecutado todavía dentro de un Codespace**. Haz la primera corrida con tiempo y anota cualquier error en `incident_log.csv`.
+> **Estado de esta guía:** probada el 10-oct-2026 en un Codespace real (Python 3.10.18, Linux, 2 núcleos): el entorno se crea, Rasa 3.6 importa, `entrenar_modelo_demo.py --rapida` termina y `asistente_local.py DEMO --demo` responde. Hallazgo: instalar Jupyter junto a Rasa subía `packaging` y `prompt-toolkit` y Rasa dejaba de importar (`LegacyVersion`); `instalar.sh` ya los vuelve a fijar. Si el Codespace se creó con la versión anterior del script, corre `python -m pip install 'packaging==20.9' 'prompt-toolkit<3.0.29'`.
 
 ## 0. Lo que NO debe estar en el Codespace
 El repositorio en GitHub **no** contiene (por `.gitignore`): el registro del pre-piloto, los logs de sesiones, las frases reales, las carpetas `privado/`, el modelo congelado `LOTE2-FINAL.tar.gz` (su vocabulario incluye frases reales del lote 1) ni los paquetes `.zip` privados. **No los subas.** Todo lo de abajo usa solo el corpus sintético.
