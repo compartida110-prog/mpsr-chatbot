@@ -92,16 +92,16 @@ for r in rp["pruebas"]:
 rotulo(ORIGEN_SIMULADO, "todas las pruebas usan datos y predictores FALSOS; ejecutadas el " + rp["fecha"] + " con " + rp["entorno"])
 display(pd.DataFrame(filas))
 print("Suma de comprobaciones guardadas:", sum(r.get("pass", 0) for r in rp["pruebas"]), "de", sum(r.get("total", 0) for r in rp["pruebas"]))
-for nombre, esperado in (("smoke_compuertas.py", (75, 75)), ("smoke_piloto.py", (51, 51)), ("smoke_asistente.py", (16, 16))):
+for nombre, esperado in (("smoke_compuertas.py", (75, 75)), ("smoke_piloto.py", (51, 51)), ("smoke_asistente.py", (19, 19))):
     r = next((x for x in rp["pruebas"] if x["prueba"] == nombre), None)
     if r:
-        comparar("11", f"{nombre}", f"{r['pass']}/{r['total']}", f"{esperado[0]}/{esperado[1]}", "informe de la sesión (commit ed6e487)", tipo="txt")
+        comparar("11", f"{nombre}", f"{r['pass']}/{r['total']}", f"{esperado[0]}/{esperado[1]}", "ejecución del 2026-10-10 (smoke_asistente suma 3 comprobaciones del modo demo)", tipo="txt")
 if os.environ.get("MPSR_CORRER_PRUEBAS") == "1":
     print("(MPSR_CORRER_PRUEBAS=1 solo tiene sentido dentro del repositorio completo; no se ejecuta desde los paquetes.)")
 
 # %% [markdown]
 # ### Cómo leer el resultado (etapa 11)
-# - «N/N» significa que todas las comprobaciones pasaron. Las tres pruebas centrales de la entrega son `smoke_compuertas` (75/75), `smoke_piloto` (51/51) y `smoke_asistente` (16/16).
+# - «N/N» significa que todas las comprobaciones pasaron. Las tres pruebas centrales de la entrega son `smoke_compuertas` (75/75), `smoke_piloto` (51/51) y `smoke_asistente` (19/19).
 # - Todas llevan el rótulo **Simulado**: demuestran que *el código detecta lo que debe*, no que el modelo funcione bien.
 # - Las pruebas no dependen de los datos privados: usan frases inventadas. Un resultado distinto de «N/N» tendría que registrarse en la bitácora (etapa 13).
 
