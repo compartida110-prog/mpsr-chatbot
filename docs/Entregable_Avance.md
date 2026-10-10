@@ -4,7 +4,7 @@ Fecha de preparación: 10 de octubre de 2026. Protocolo de referencia: **V1.8** 
 
 ## 1. Qué se entrega
 
-**GitHub** — repositorio `compartida110-prog/mpsr-chatbot` (rama `main`; la versión entregada se marca con la etiqueta `avance-2026-10-10`):
+**GitHub** — repositorio `compartida110-prog/mpsr-chatbot` (rama `main`; la versión entregada se marca con la etiqueta `entrega-avance-v2`, que reemplaza a `avance-2026-10-10` (esa tenía salidas de cuadernos incompletas: faltaban líneas impresas después de la primera tabla de cada celda)):
 
 - Código, pruebas y configuración (`scripts/`, `tests/`, `configs/`), corpus **sintético**, dominio con las respuestas verificadas contra el TUPA y el protocolo V1.8 con la Nota v11 (`docs/`).
 - 13 cuadernos por paso del protocolo con salidas guardadas (`notebooks/colab_por_paso/`; empieza por `00_Indice.ipynb`), el cuaderno único y `docs/Documentacion_Codigo_v1.md`.
@@ -17,7 +17,8 @@ Fecha de preparación: 10 de octubre de 2026. Protocolo de referencia: **V1.8** 
 |---|---|
 | `MPSR_colab_publico.zip` (la versión más reciente) | Paquete público: código, corpus sintético, demostración simulada y resultados agregados; sin frases reales |
 | Los 13 cuadernos de `colab_por_paso/` y `LEEME_colab_por_paso.md` | Cuadernos listos para abrir en Colab y orden de ejecución |
-| `Evidencias_Avance.pdf` e `INDICE.md` | Capturas de salidas reales, con fuente, fecha y sha256 |
+| `Evidencia_Ejecucion.pdf` | **PDF principal de evidencia de ejecución** (sin fechas): entrenamiento, métodos comparados, métricas y test, pruebas con datos sintéticos y reales y el ejecutable final aplicado a 5 personas |
+| `Evidencias_Avance.pdf` e `INDICE.md` | Anexo: todas las capturas de salidas guardadas de los cuadernos, con fuente y sha256 |
 | `logs/demo_vivo_AAAAMMDD_HHMM.txt` (la última corrida) | Registro del entrenamiento de SVM y DIET en la demo |
 
 ## 2. Qué NO se comparte

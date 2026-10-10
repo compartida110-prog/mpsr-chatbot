@@ -194,6 +194,7 @@ Salida guardada:
 7    openpyxl                                              3.1.5
 8        yaml                                              6.0.3
 9        Rasa  no instalado (no es necesario para este cuaderno)
+▌ORIGEN: Entorno con el que se entrenó el modelo congelado (leído de modelo_congelado.json)
      componente versión del congelamiento
 0          rasa                    3.6.21
 1  scikit-learn                     1.1.3
@@ -201,6 +202,8 @@ Salida guardada:
 3         numpy                    1.23.5
 4         scipy                    1.10.1
 5    tensorflow                    2.12.0
+Semilla global del proyecto: 42 (DIET, SVM, particiones y bootstrap). Remuestreos del bootstrap: 1000.
+Rasa disponible aquí: False | Colab: False
 ```
 
 ### Cómo leer el resultado (etapa 1)
@@ -237,7 +240,7 @@ Salida guardada:
 
 ```text
 ▌ORIGEN: Código del proyecto (no es dato del estudio)
-Scripts encontrados: 55 | clasificados en la tabla curada: 55 | sin clasificar: ninguno
+Scripts encontrados: 56 | clasificados en la tabla curada: 56 | sin clasificar: ninguno
 Scripts que usan Rasa: asistente_local.py, colab_util.py, crossval_agrupada.py, entrenar_modelo_demo.py, eval_lote2.py, eval_real.py, run_rasa_grid.py, smoke_test.py
                              script                             paso del protocolo                                                  propósito (docstring)                                                               entradas                                                        salida esperada                                                        cómo ejecutarlo             usa Rasa                                                   rol en este cuaderno
 0                  ampliar_libro.py                                T03 (lote real)  Agrega a un libro de transcripción (vacío o ya lleno) las filas de...                                   Libro de transcripción + complemento                    Libro ampliado (participantes y situaciones nuevas)  python scripts/ampliar_libro.py --base <libro> --salida <libro nue...                   No                                                            Documentado
@@ -269,32 +272,33 @@ Scripts que usan Rasa: asistente_local.py, colab_util.py, crossval_agrupada.py, 
 26             estado_compuertas.py                                   2.14 (G1–G7)  Tablero de las compuertas de avance (protocolo V1.4, sección 2.14,...                                 Archivos de evidencia de logs/ y docs/                                logs/avance/estado_compuertas.{json,md}                                    python scripts/estado_compuertas.py                   No                                          Resultado guardado (etapa 12)
 27                    eval_lote2.py                 Lote 2 — evaluación ÚNICA (G3)  Lote 2 — evaluación ÚNICA del test (protocolo V1.6, 5.8). Sirve pa...                                Modelo congelado + partición del lote 2   logs/v3_real/lote2/ (predicciones, F1, IC), logs/avance/eval_lote2_*                                           python scripts/eval_lote2.py          Sí (import)  NO se ejecuta: el cuaderno recalcula desde las predicciones guarda...
 28                     eval_real.py                         P08, P10, P11 (lote 1)  Evaluación sobre lenguaje real (protocolo V1.2, P08/P10/P11) — par...                                                      Partición v3 real       logs/v3_real/ (F1 macro, selección por validación, test UNA vez)  python scripts/eval_real.py                      # selección + tes...          Sí (import)                           Documentado (el test del lote 1 ya se gastó)
-29                 expand_corpus.py                                            P02  Amplía el Corpus MPSR-Bot: de 2 a 4 grupos de paráfrasis por inten...                                     corpus v1 (2 grupos por intención)                         corpus v2 (4 grupos por intención, 648 frases)                                 python scripts/expand_corpus.py --help                   No                                                            Documentado
-30               export_rasa_nlu.py                                       P06, P08   P06 / P08 — Convierte el corpus particionado al formato NLU de Rasa.                                                    Corpus particionado                    data/nlu_{train,validation,test}.yml (formato Rasa)                                      python scripts/export_rasa_nlu.py                   No                                                            Documentado
-31            fallback_threshold.py                                   T05 (umbral)  Umbral de confianza (FallbackClassifier) — elección en validación ...                                             Predicciones de validación                            Umbral t de confianza elegido en validación                                   python scripts/fallback_threshold.py                   No                                                            Documentado
-32           hoja_revision_lote2.py                              Lote 2 (revisión)  Lote 2 — hoja de revisión de etiquetas para que el tesista la llen...                                           Frases del lote 2 ingestadas                               Excel de revisión de etiquetas (privado)                                  python scripts/hoja_revision_lote2.py                   No                                             Documentado (datos reales)
-33               humo_respuestas.py                                        P09, G4  Prueba de humo de respuestas: cada una de las 54 intenciones tiene...                                              domain.yml, domain_v3.yml  Prueba de humo: 54 intenciones con utter_<intención> sin placeholders                               python scripts/humo_respuestas.py --help                   No                                           Lógica recalculada (etapa 9)
-34         informe_ingesta_lote2.py                                         Lote 2  Lote 2 — informe de la ingesta SOLO con cifras e identificadores (...                                                     Ingesta del lote 2                logs/avance/ingesta_lote2_cifras.md (solo cifras e ids)                         python scripts/informe_ingesta_lote2.py --help                   No                                                            Documentado
-35              ingest_real_lote.py                   T03.1 (ingesta), lotes 1 y 2  Lote 1 de lenguaje real — ingesta, validación y revisión de etique...                           Libro de transcripción lleno (frases reales)  corpus/real*/ (validado, final, alertas), reporte de ingesta, «Lis...                                     python scripts/ingest_real_lote.py                   No                          Documentado (no se ejecuta: usa datos reales)
-36                     libro_xml.py                              T03.1 (lote real)  Utilidades para editar el XML de los libros .xlsx de transcripción...                                                 .xlsx de transcripción  Mismo .xlsx con celdas editadas en el XML (conserva validaciones y...                                     python scripts/libro_xml.py --help                   No                                                            Documentado
-37                    plot_p11_1.py                                          P11.1  P11.1 — Figuras del reporte de fallas (evidencias/p11_1_pruebas/re...                                                    Resultados de P11.1                                   Figuras de evidencias/p11_1_pruebas/                                           python scripts/plot_p11_1.py                   No                                                            Documentado
-38           plot_v3_comparacion.py                           P11.1 (reevaluación)  P11.1 (re-evaluación) — Figuras de la comparación corpus v2 (648) ...                                                     Resultados v2 y v3                            Figuras de comparación v2 (648) vs v3 (708)                                  python scripts/plot_v3_comparacion.py                   No                                                            Documentado
-39  preparar_entrenamiento_lote2.py                              Lote 2 (V1.6 5.8)  Lote 2 (prueba independiente de G3) — conjunto de ENTRENAMIENTO, a...             707 sintéticas + 185 reales activas + 51 sintéticas nuevas                   corpus/v3_lote2/entrenamiento_lote2.csv (943 frases)           python scripts/preparar_entrenamiento_lote2.py --solo-contar                   No                                             Documentado (datos reales)
-40            preparar_libro_v13.py                                T03 (lote real)  Prepara el libro de transcripción VACÍO Lote1_Transcripcion_V1.3.x...                                                   Plantilla vacía V1.2                                    Lote1_Transcripcion_V1.3.xlsx vacío  python scripts/preparar_libro_v13.py [--plantilla ...] [--salida d...                   No                                                            Documentado
-41   preparar_registro_prepiloto.py                                         P11.2b  Prepara el registro del PRE-PILOTO: copia la plantilla vacía docs/...                             Plantilla Registro_Sesiones_Piloto_v2.xlsx  Registro_Sesiones_Prepiloto.xlsx (Parametros: LOTE2-FINAL v1 y fec...                          python scripts/preparar_registro_prepiloto.py                   No                                                            Documentado
-42                 run_rasa_grid.py                                  P08, P10, P11  P08 / P10 / P11 — Rasa NLU con DIETClassifier: grilla, selección y...                                   data/*.yml + configs/rasa_config.yml                        logs/RASA-e<epochs>-b<batch>-d<dim>-s<semilla>/  python scripts/run_rasa_grid.py                       # experiment...          Sí (import)                                            Documentado (requiere Rasa)
-43          simular_analisis_p14.py                              P14 (ilustrativo)  *** SIMULACIÓN ILUSTRATIVA -- NO SON DATOS DE CAMPO REALES *** Est...                                                       Datos inventados                            Demuestra que el pipeline estadístico corre                          python scripts/simular_analisis_p14.py --help                   No                                                 Documentado (Simulado)
-44              simular_P14_n120.py                              P14 (ilustrativo)  *** SIMULACIÓN ILUSTRATIVA -- NO SON DATOS DE CAMPO REALES (salvo ...                                      Línea base simulada P01 (n = 120)                                            Resultados simulados de P14                              python scripts/simular_P14_n120.py --help                   No                                                 Documentado (Simulado)
-45                    smoke_test.py                                          P11.1  P11.1 — Smoke test de las 54 intenciones (equivalente programático...                                 tests/smoke_test_queries*.csv + modelo            Predicción de las 54 intenciones (equivalente a rasa shell)  python scripts/smoke_test.py [--model models/smoke/smoke_test_mode...          Sí (import)                                            Documentado (requiere Rasa)
-46                  split_corpus.py                                            P05  P05 — Partición 70/15/15 agrupada por base_phrase_id (sin fuga, P04).                                                    corpus_metadata.csv  corpus/dataset_split.csv (train/validation/test agrupados por base...                                         python scripts/split_corpus.py                   No                                           Lógica recalculada (etapa 4)
-47               split_corpus_v3.py                              P05, T05 (lote 1)  Partición v3 (protocolo V1.2, P05/T05): entrenamiento sintético, v...                                Corpus sintético + lote 1 real validado  corpus/v3_real/ (train sintético; validación y test reales), log d...                                      python scripts/split_corpus_v3.py                   No                                             Documentado (datos reales)
-48                   split_lote2.py                                   Lote 2 (P05)  Lote 2 (prueba independiente de G3) — partición: las frases del lo...               Revisión aplicada + entrenamiento + congelamiento previo  corpus/v3_lote2/ (solo test; 13 frases idénticas al entrenamiento ...                                   python scripts/split_lote2.py --help                   No                                           Lógica recalculada (etapa 4)
-49                stats_analysis.py                                            P14                            P14 — Análisis estadístico (OE2, OE3, OE4).                                      Datos de línea base y de sesiones         Pruebas de normalidad, t pareada o Wilcoxon, tamaño del efecto                               python scripts/stats_analysis.py modelos                   No                                                            Documentado
-50                train_baseline.py                                  P07, P10, P11  P07 / P10 / P11 — Baseline de Machine Learning: TF-IDF + SVM (y re...                                  corpus + configs/baseline_config.json  logs/<experimento>/ con métricas y predicciones (TF-IDF + SVM y re...                                       python scripts/train_baseline.py                   No                     Lógica reproducida en pequeño (etapa 5, sintético)
-51            train_baseline_p07.py                          P07 (versión inicial)  P07 del Protocolo V1.1: Experimento baseline (TF-IDF + SVM) sobre ...                                           Corpus v1 real de 324 frases                                        logs/EXP_BASELINE_SVM_S42_2026/                            python scripts/train_baseline_p07.py --help                   No                                                Documentado (histórico)
-52            trasladar_revision.py                               T03.1 (revisión)  Traslada las decisiones de la revisión HUMANA de etiquetas (libro ...                               Libro Revision_Etiquetas (hoja Revision)                               corpus/real/lote1_revision_etiquetas.csv  python scripts/trasladar_revision.py --libro docs/lote_real_1/priv...                   No                                                            Documentado
-53                  umbral_lote2.py                                    Lote 2 (G3)  Lote 2 — umbral de confianza (FallbackClassifier) elegido con dato...                         Validación cruzada por participante del lote 1                    logs/v3_real/lote2_umbral_congelado.json (t = 0,50)  python scripts/umbral_lote2.py --pred logs/v3_real/cv_participante...                   No                                                            Documentado
-54         verificar_referencias.py                                        P15/P16  Verifica que las rutas y las cifras citadas en el protocolo V1.8 y...                                Protocolo V1.8 y Nota v11 + repositorio  Informe con 61 afirmaciones del protocolo/Nota: 59 OK y 0 discrepa...                                python scripts/verificar_referencias.py                   No                                                            Documentado
+29           evidencia_ejecucion.py                     Evidencias de avance (P15)  PDF «Evidencia de ejecución» (pruebas): entrenamiento, métodos com...                          Cuadernos ejecutados y registros de ejecución        evidencias/capturas_avance/Evidencia_Ejecucion.pdf (sin fechas)  python scripts/evidencia_ejecucion.py        (requiere los .zip ya...                   No                                                            Documentado
+30                 expand_corpus.py                                            P02  Amplía el Corpus MPSR-Bot: de 2 a 4 grupos de paráfrasis por inten...                                     corpus v1 (2 grupos por intención)                         corpus v2 (4 grupos por intención, 648 frases)                                 python scripts/expand_corpus.py --help                   No                                                            Documentado
+31               export_rasa_nlu.py                                       P06, P08   P06 / P08 — Convierte el corpus particionado al formato NLU de Rasa.                                                    Corpus particionado                    data/nlu_{train,validation,test}.yml (formato Rasa)                                      python scripts/export_rasa_nlu.py                   No                                                            Documentado
+32            fallback_threshold.py                                   T05 (umbral)  Umbral de confianza (FallbackClassifier) — elección en validación ...                                             Predicciones de validación                            Umbral t de confianza elegido en validación                                   python scripts/fallback_threshold.py                   No                                                            Documentado
+33           hoja_revision_lote2.py                              Lote 2 (revisión)  Lote 2 — hoja de revisión de etiquetas para que el tesista la llen...                                           Frases del lote 2 ingestadas                               Excel de revisión de etiquetas (privado)                                  python scripts/hoja_revision_lote2.py                   No                                             Documentado (datos reales)
+34               humo_respuestas.py                                        P09, G4  Prueba de humo de respuestas: cada una de las 54 intenciones tiene...                                              domain.yml, domain_v3.yml  Prueba de humo: 54 intenciones con utter_<intención> sin placeholders                               python scripts/humo_respuestas.py --help                   No                                           Lógica recalculada (etapa 9)
+35         informe_ingesta_lote2.py                                         Lote 2  Lote 2 — informe de la ingesta SOLO con cifras e identificadores (...                                                     Ingesta del lote 2                logs/avance/ingesta_lote2_cifras.md (solo cifras e ids)                         python scripts/informe_ingesta_lote2.py --help                   No                                                            Documentado
+36              ingest_real_lote.py                   T03.1 (ingesta), lotes 1 y 2  Lote 1 de lenguaje real — ingesta, validación y revisión de etique...                           Libro de transcripción lleno (frases reales)  corpus/real*/ (validado, final, alertas), reporte de ingesta, «Lis...                                     python scripts/ingest_real_lote.py                   No                          Documentado (no se ejecuta: usa datos reales)
+37                     libro_xml.py                              T03.1 (lote real)  Utilidades para editar el XML de los libros .xlsx de transcripción...                                                 .xlsx de transcripción  Mismo .xlsx con celdas editadas en el XML (conserva validaciones y...                                     python scripts/libro_xml.py --help                   No                                                            Documentado
+38                    plot_p11_1.py                                          P11.1  P11.1 — Figuras del reporte de fallas (evidencias/p11_1_pruebas/re...                                                    Resultados de P11.1                                   Figuras de evidencias/p11_1_pruebas/                                           python scripts/plot_p11_1.py                   No                                                            Documentado
+39           plot_v3_comparacion.py                           P11.1 (reevaluación)  P11.1 (re-evaluación) — Figuras de la comparación corpus v2 (648) ...                                                     Resultados v2 y v3                            Figuras de comparación v2 (648) vs v3 (708)                                  python scripts/plot_v3_comparacion.py                   No                                                            Documentado
+40  preparar_entrenamiento_lote2.py                              Lote 2 (V1.6 5.8)  Lote 2 (prueba independiente de G3) — conjunto de ENTRENAMIENTO, a...             707 sintéticas + 185 reales activas + 51 sintéticas nuevas                   corpus/v3_lote2/entrenamiento_lote2.csv (943 frases)           python scripts/preparar_entrenamiento_lote2.py --solo-contar                   No                                             Documentado (datos reales)
+41            preparar_libro_v13.py                                T03 (lote real)  Prepara el libro de transcripción VACÍO Lote1_Transcripcion_V1.3.x...                                                   Plantilla vacía V1.2                                    Lote1_Transcripcion_V1.3.xlsx vacío  python scripts/preparar_libro_v13.py [--plantilla ...] [--salida d...                   No                                                            Documentado
+42   preparar_registro_prepiloto.py                                         P11.2b  Prepara el registro del PRE-PILOTO: copia la plantilla vacía docs/...                             Plantilla Registro_Sesiones_Piloto_v2.xlsx  Registro_Sesiones_Prepiloto.xlsx (Parametros: LOTE2-FINAL v1 y fec...                          python scripts/preparar_registro_prepiloto.py                   No                                                            Documentado
+43                 run_rasa_grid.py                                  P08, P10, P11  P08 / P10 / P11 — Rasa NLU con DIETClassifier: grilla, selección y...                                   data/*.yml + configs/rasa_config.yml                        logs/RASA-e<epochs>-b<batch>-d<dim>-s<semilla>/  python scripts/run_rasa_grid.py                       # experiment...          Sí (import)                                            Documentado (requiere Rasa)
+44          simular_analisis_p14.py                              P14 (ilustrativo)  *** SIMULACIÓN ILUSTRATIVA -- NO SON DATOS DE CAMPO REALES *** Est...                                                       Datos inventados                            Demuestra que el pipeline estadístico corre                          python scripts/simular_analisis_p14.py --help                   No                                                 Documentado (Simulado)
+45              simular_P14_n120.py                              P14 (ilustrativo)  *** SIMULACIÓN ILUSTRATIVA -- NO SON DATOS DE CAMPO REALES (salvo ...                                      Línea base simulada P01 (n = 120)                                            Resultados simulados de P14                              python scripts/simular_P14_n120.py --help                   No                                                 Documentado (Simulado)
+46                    smoke_test.py                                          P11.1  P11.1 — Smoke test de las 54 intenciones (equivalente programático...                                 tests/smoke_test_queries*.csv + modelo            Predicción de las 54 intenciones (equivalente a rasa shell)  python scripts/smoke_test.py [--model models/smoke/smoke_test_mode...          Sí (import)                                            Documentado (requiere Rasa)
+47                  split_corpus.py                                            P05  P05 — Partición 70/15/15 agrupada por base_phrase_id (sin fuga, P04).                                                    corpus_metadata.csv  corpus/dataset_split.csv (train/validation/test agrupados por base...                                         python scripts/split_corpus.py                   No                                           Lógica recalculada (etapa 4)
+48               split_corpus_v3.py                              P05, T05 (lote 1)  Partición v3 (protocolo V1.2, P05/T05): entrenamiento sintético, v...                                Corpus sintético + lote 1 real validado  corpus/v3_real/ (train sintético; validación y test reales), log d...                                      python scripts/split_corpus_v3.py                   No                                             Documentado (datos reales)
+49                   split_lote2.py                                   Lote 2 (P05)  Lote 2 (prueba independiente de G3) — partición: las frases del lo...               Revisión aplicada + entrenamiento + congelamiento previo  corpus/v3_lote2/ (solo test; 13 frases idénticas al entrenamiento ...                                   python scripts/split_lote2.py --help                   No                                           Lógica recalculada (etapa 4)
+50                stats_analysis.py                                            P14                            P14 — Análisis estadístico (OE2, OE3, OE4).                                      Datos de línea base y de sesiones         Pruebas de normalidad, t pareada o Wilcoxon, tamaño del efecto                               python scripts/stats_analysis.py modelos                   No                                                            Documentado
+51                train_baseline.py                                  P07, P10, P11  P07 / P10 / P11 — Baseline de Machine Learning: TF-IDF + SVM (y re...                                  corpus + configs/baseline_config.json  logs/<experimento>/ con métricas y predicciones (TF-IDF + SVM y re...                                       python scripts/train_baseline.py                   No                     Lógica reproducida en pequeño (etapa 5, sintético)
+52            train_baseline_p07.py                          P07 (versión inicial)  P07 del Protocolo V1.1: Experimento baseline (TF-IDF + SVM) sobre ...                                           Corpus v1 real de 324 frases                                        logs/EXP_BASELINE_SVM_S42_2026/                            python scripts/train_baseline_p07.py --help                   No                                                Documentado (histórico)
+53            trasladar_revision.py                               T03.1 (revisión)  Traslada las decisiones de la revisión HUMANA de etiquetas (libro ...                               Libro Revision_Etiquetas (hoja Revision)                               corpus/real/lote1_revision_etiquetas.csv  python scripts/trasladar_revision.py --libro docs/lote_real_1/priv...                   No                                                            Documentado
+54                  umbral_lote2.py                                    Lote 2 (G3)  Lote 2 — umbral de confianza (FallbackClassifier) elegido con dato...                         Validación cruzada por participante del lote 1                    logs/v3_real/lote2_umbral_congelado.json (t = 0,50)  python scripts/umbral_lote2.py --pred logs/v3_real/cv_participante...                   No                                                            Documentado
+55         verificar_referencias.py                                        P15/P16  Verifica que las rutas y las cifras citadas en el protocolo V1.8 y...                                Protocolo V1.8 y Nota v11 + repositorio  Informe con 61 afirmaciones del protocolo/Nota: 59 OK y 0 discrepa...                                python scripts/verificar_referencias.py                   No                                                            Documentado
 ```
 
 ```python
@@ -394,11 +398,13 @@ Salida guardada:
 12                     logs/baseline_validation.csv                Métricas del baseline en validación (corpus sintético).  experiment_id, model, C, seed, accuracy, precision_macro, recall_m...              4                       train_baseline.py     en vivo
 13                           logs/baseline_test.csv                      Métricas del baseline en test (corpus sintético).  experiment_id, model, C, seed, accuracy, precision_macro, recall_m...             10                       train_baseline.py     en vivo
 14     docs/piloto/Registro_Sesiones_Piloto_v2.xlsx   Plantilla VACÍA del registro de sesiones (fórmulas de elegibilidad).                   Sesiones, Resumen, Tarjetas, Parametros, Calc, Notas                                         escrito a mano     en vivo
+▌ORIGEN: Simulado (demostración) — 4 archivos
                                                                  archivo                                                    qué contiene                                              columnas / hojas / claves filas o tamaño              generado por descripción
 0                 corpus/Encuestas_simuladas_TramiFacil_MPSR_120_v2.xlsx              Línea base P01 SIMULADA (n = 120) del diseño V1.2.                                                   Respuestas simuladas                 inventado para el diseño     en vivo
 1  docs/lote_real_1/ejemplos_simulados/Lote1_Transcripcion_SIMULADO_v...                         Libro de transcripción de demostración.  Participantes, Respuestas, Resumen, Cobertura, Situaciones, Parame...                                inventado     en vivo
 2  docs/piloto/ejemplos_simulados/Registro_Sesiones_Piloto_SIMULADO_v...  Registro de sesiones de demostración (60 sesiones inventadas).                   Sesiones, Resumen, Tarjetas, Parametros, Calc, Notas                                inventado     en vivo
 3  evidencias/simulado_demostracion/20261005_demostracion/INFORME_DEM...                   Informe de la demostración completa simulada.                                                                                 14473  demostracion_simulada.py     en vivo
+▌ORIGEN: Real — 14 archivos — solo estructura, nunca contenido
                                                    archivo                                                           qué contiene                                              columnas / hojas / claves filas o tamaño                                     generado por               descripción
 0                    corpus/v3_real/corpus_metadata_v3.csv  Partición del lote 1 (sintético + 186 frases reales): contiene fra...    utterance_id, text, intent, category, source, base_phrase_id, split            894                               split_corpus_v3.py  guardado (sin contenido)
 1                      corpus/v3_real/dataset_split_v3.csv                                        Partición del lote 1 sin texto.                      utterance_id, intent, base_phrase_id, split, seed            894                               split_corpus_v3.py  guardado (sin contenido)
@@ -458,6 +464,8 @@ split   test  train  validation
 frases    81    546          81
 category  Defensa civil y seguridad ciudadana  Información general  Interacción conversacional  Licencias y autorizaciones  Reclamos y quejas  Registro civil  Servicios públicos  Tributos y pagos municipales  Trámites documentarios
 frases                                     66                   72                         147                          81                 60              60                  66                            72                      84
+Grupos de paráfrasis presentes en más de una partición (fuga): 0
+Frases con texto duplicado (normalizado): 0 | dataset_split.csv coincide con corpus_metadata.csv: True
 ```
 
 ```python
@@ -587,6 +595,7 @@ Validación:
 1       BASE-SVM-C1-s42     svm   1.0    42    0.7778    0.6532
 2      BASE-SVM-C10-s42     svm  10.0    42    0.7901    0.6578
 3  BASE-LOGREG-C1.0-s42  logreg   1.0    42    0.7407    0.6632
+(El test sintético se muestra solo como registro histórico del protocolo; la decisión de C se tomó en validación.)
           experiment_id   model     C  seed  accuracy  f1_macro
 0      BASE-SVM-C10-s10     svm  10.0    10    0.7901    0.6480
 1      BASE-SVM-C10-s20     svm  10.0    20    0.7901    0.6480
@@ -655,6 +664,8 @@ Normalización de jerga local: scripts/common.py (configs/jerga_local.csv)
 0   0.1                  0.0000
 1   1.0                  0.6532
 2  10.0                  0.6578
+C elegido en validación: 10.0 (el test no se usa para decidir)
+Validación cruzada agrupada (5 folds, por base_phrase_id) — F1 macro por fold: [0.597, 0.559, 0.589, 0.65, 0.594] | media 0.598
 ```
 
 ```python
@@ -730,6 +741,9 @@ Salida guardada:
 2    dominio          7a69ac91c32c            7a69ac91c32c  intacto                                     True
 3     corpus          c035252d63aa            c035252d63aa  intacto                                     True
 4     umbral          410d9898240a            410d9898240a  intacto                                     True
+Congelamiento: INTACTO (los 5 componentes coinciden).
+Umbral congelado: t = 0.5 | ambigüedad = 0.1 | versión: LOTE2-FINAL v1 (DIET 100/64/20, seed 42, 943 frases de entrenamiento, umbral t=0,50)
+Frases de entrenamiento declaradas: 943 | Python/Rasa del congelamiento: 3.10.11 / 3.6.21
 ```
 
 ### Cómo leer el resultado (etapa 6)
@@ -837,6 +851,7 @@ Salida guardada:
 5                       abstenciones (nlu_fallback)      19.0000
 6                                         cobertura       0.9288
 7                        precisión de lo respondido       0.9556
+F1 macro promediando solo las 54 intenciones esperadas (sin la etiqueta de abstención): 0.9240 — declarado en la Nota; el oficial (0,9072) promedia 55 etiquetas y cuenta las abstenciones como error.
 ```
 
 ```python
@@ -870,6 +885,7 @@ Salida guardada:
       remuestreo      F1  IC95 % inferior  IC95 % superior  media del bootstrap
 0         frases  0.9072           0.8626           0.9290               0.8980
 1  participantes  0.9072           0.8524           0.9385               0.8997
+¿F1 macro (punto) ≥ 0,75? True | ¿límite inferior IC por frases ≥ 0,75? True | ¿límite inferior IC por participantes ≥ 0,75? True
 ```
 
 ```python
@@ -965,6 +981,8 @@ Salida guardada:
 51               mantenimiento_parques   5  1.0000
 52                      pago_arbitrios   5  1.0000
 53                  ubicacion_oficinas   5  1.0000
+Las tres intenciones más débiles: ['licencia_funcionamiento_plazo', 'fuera_de_alcance', 'denuncia_seguridad_ciudadana'] | F1: [0.5714, 0.6364, 0.6667]
+▌ORIGEN: Real — confusión agregada: pares (esperada → predicha) más frecuentes; incluye «nlu_fallback» = abstención
                          esperada                       predicha  veces
 0                fuera_de_alcance                   nlu_fallback      5
 1             redes_sociales_mpsr                   nlu_fallback      2
@@ -978,6 +996,8 @@ Salida guardada:
 9               pago_predial_como                   nlu_fallback      1
 10  licencia_funcionamiento_plazo  licencia_funcionamiento_costo      1
 11               fuera_de_alcance            horario_mesa_partes      1
+Errores totales: 30 de los cuales abstenciones (nlu_fallback): 19 | confusiones entre intenciones reales: 11
+Despedida: {'n': 5, 'predicha_despedida': 4, 'predicha_agradecimiento': 0} | Agradecimiento: {'n': 5, 'predicha_despedida': 1, 'predicha_agradecimiento': 4} (confusión esperable: «gracias» se usa también para despedirse)
 ```
 
 ```python
@@ -1010,6 +1030,7 @@ Salida guardada:
                        modelo  F1 macro  exactitud
 0            DIET (congelado)    0.9072     0.8876
 1  SVM (baseline informativo)    0.8925     0.8727
+Solo SVM acierta: 10 · solo DIET acierta: 14 · p de McNemar exacto = 0.541 → no hay evidencia de que uno sea mejor (p > 0,05).
 ```
 
 ```python
@@ -1046,6 +1067,9 @@ Etapa 7 — recalculado frente a reportado: 21 cifras · coinciden: 21 · NO coi
 18     7                                      McNemar: solo SVM acierta                                                                     10                                                                     10          logs/avance/eval_lote2_resumen.json       Sí
 19     7                                     McNemar: solo DIET acierta                                                                     14                                                                     14          logs/avance/eval_lote2_resumen.json       Sí
 20     7                                              McNemar: p exacto                                                               0.541256                                                               0.541256          logs/avance/eval_lote2_resumen.json       Sí
+
+Diferencias CONOCIDAS y ya declaradas (se muestran, no se corrigen):
+ - eval_lote2_resumen.json: cobertura 98,9 % y precisión 89,8 % son un artefacto declarado del script (las 19 abstenciones 'nlu_fallback' se contaron como respuestas); las cifras oficiales son 92,9 % y 95,6 %.
 ```
 
 ### Cómo leer el resultado (etapa 7)
@@ -1148,6 +1172,8 @@ Respuestas con marcador [Verificar]: 0 []
 8                         Prioridad Media pendientes      9
 9                                   Filas con alerta      0
 10  Corregir o Coincide sin confirmar por el tesista      0
+Observación (no se corrige): Verificacion_TUPA_v10_4.xlsx, hoja Resumen: «Marcadas [Verificar] en el repositorio» = 40 es un campo manual que NO se actualizó tras aplicar las respuestas; el dominio actual tiene 0 marcadores (comprobado arriba). No se modificó el libro.
+Etapa 9 — recalculado frente a reportado: 7 cifras · coinciden: 7 · NO coinciden: 0
   etapa                                          cifra  recalculado  reportado   fuente de lo reportado coincide
 0     9             respuestas de trámites a verificar           44         44  Nota v11 / hoja Resumen       Sí
 1     9        respuestas con [Verificar] entre las 44            0          0     Nota v11 («0 de 44»)       Sí
@@ -1252,6 +1278,12 @@ Incidencias técnicas declaradas: 0
 5  item6    3.6  0.548                0.3
 6  item7    4.2  0.447                0.2
 7  item8    3.8  0.447                0.2
+Paso a paso: k = 8 ítems; Σ varianzas de ítems = 1.7000; varianza de la suma = 2.5000
+α = k/(k−1) · (1 − Σvar/var_total) = 8/7 · (1 − 1.7000/2.5000) = 0.3657
+Verificación independiente (covarianzas): 0.3657 | pingouin no instalado (opcional)
+
+G6 (criterio: 5–15 sesiones completas y alfa ≥ 0,70): sesiones completas = 5, alfa = 0.366 → No cumplida. Con n = 5 el alfa es poco estable (advertencia).
+Etapa 10 — recalculado frente a reportado: 6 cifras · coinciden: 6 · NO coinciden: 0
   etapa                               cifra  recalculado  reportado                                    fuente de lo reportado coincide
 0    10        alfa de Cronbach (ítems 1–8)     0.365714   0.366000  Protocolo V1.8 / tablero G6 / cálculo manual del tesista       Sí
 1    10  alfa: implementación independiente     0.365714   0.365714                                             misma muestra       Sí
@@ -1303,6 +1335,7 @@ Salida guardada:
 6         smoke_piloto.py         51/51 PASS          51/51  Análisis del piloto con datos y predictor FALSOS: lectura del regi...  Garantiza que el análisis del piloto es correcto y que no se puede...
 7  smoke_transcripcion.py         51/51 PASS          51/51  Lectura del libro de transcripción del lote 1 (ingest_real_lote.py...  Si la lectura del libro fallara, se perderían o confundirían datos...
 8    smoke_umbral_test.py         24/24 PASS          24/24  fallback_threshold.py --fase test: aplica el umbral congelado a pr...                           El umbral no puede elegirse mirando el test.
+Suma de comprobaciones guardadas: 393 de 393
 ```
 
 ### Cómo leer el resultado (etapa 11)
@@ -1351,8 +1384,10 @@ Salida guardada:
 3        G4     Respuestas verificadas     Cumplida  Real  TUPA: Alta pendientes = 0, alertas = 0 y Corregir/Coincide sin con...  Alta pendientes: 0; filas con alerta: 0; Corregir o Coincide sin c...
 4        G5           Modelo congelado     Cumplida  Real                            Modelo congelado válido, después de G3 y G4                     Congelado el 2026-10-08 22:17, después de G3 y G4.
 5        G6                 Pre-piloto  No cumplida  Real                      5–15 sesiones completas y alfa de Cronbach ≥ 0,70  Alfa de Cronbach 0.366 < 0.7: se corrige el instrumento y se repit...
+▌ORIGEN: Simulado (demostración) — compuertas que el tablero real muestra solo con datos simulados (NO cuentan como reales)
   compuerta    nombre               estado     datos
 0        G7  Sesiones  Cumplida (Simulado)  Simulado
+▌ORIGEN: Simulado (demostración) — tablero de la demostración — NINGUNA de estas compuertas cuenta como real
   compuerta                     nombre                     estado     datos
 0        G1            Lote 1 completo        Cumplida (Simulado)  Simulado
 1        G2          Parte B ejecutada        En curso (Simulado)  Simulado
@@ -1361,6 +1396,8 @@ Salida guardada:
 4        G5           Modelo congelado        En curso (Simulado)  Simulado
 5        G6                 Pre-piloto  Pendiente (sin evidencia)         —
 6        G7                   Sesiones        Cumplida (Simulado)  Simulado
+Los dos tableros NO se suman: real = 5 de 7; la compuerta G7 solo aparece cumplida en la demostración simulada.
+Etapa 12 — recalculado frente a reportado: 2 cifras · coinciden: 2 · NO coinciden: 0
   etapa                                  cifra                                                            recalculado                                                              reportado   fuente de lo reportado coincide
 0    12  compuertas cumplidas con datos reales                                                                      5                                                                      5  Protocolo V1.8 (5 de 7)       Sí
 1    12        G1–G5 cumplidas, G6 no cumplida  G1:Cumplida,G2:Cumplida,G3:Cumplida,G4:Cumplida,G5:Cumplida,G6:No ...  G1:Cumplida,G2:Cumplida,G3:Cumplida,G4:Cumplida,G5:Cumplida,G6:No ...   tablero G6 (PP01–PP07)       Sí
@@ -1472,6 +1509,22 @@ Incidencias: 72 | por tipo (heurística): {'metodológica': 47, 'mixta': 12, 'si
 69  2026-10-09    sin clasificar                no declarado  Registro real del pre-piloto rehecho a partir de uno mezclado con ...  El registro del pre-piloto se había creado con filas generadas por...  Se conserva el descartado solo como evidencia y no cuenta para G6....
 70  2026-10-09      metodológica            posible: revisar  Una prueba de humo reescribió archivos derivados reales del lote 2...  Al ejecutar toda la batería tests/smoke_*.py para el material de C...  Se quitó esa comprobación de tests/smoke_lote2.py (una prueba nunc...
 71  2026-10-09             mixta            posible: revisar  La demo en vivo agregó assistant_id a configs/rasa_config_lote2.ym...  Al probar scripts/demo_vivo.ps1 de principio a fin, 'rasa train nl...  demo_vivo.ps1 entrena ahora con una copia de la configuración (mod...
+▌ORIGEN: Últimas 5 incidencias, con su justificación completa
+- 2026-10-09 · Evaluación única del lote 2 (G3): F1 macro 0,9072 y limitación del script de evaluación
+    Decisión: No se repite la evaluación ni se cambia el umbral ni el modelo; las limitaciones quedan declaradas en logs/avance/eval_lote2_notas.md y se reportan junto con el resultado; los casos mal clasificados se revisan solo por id y con aprobación del tesista
+    Justificación: El resultado es más alto que el estimado por validación cruzada del lote 1 (0,787–0,799); las 56 situaciones son las mismas del lote 1 (independiente por personas, no por situaciones), el entrenamiento incluye frases reales del lote 1 y 13 frases idénticas al entrenamiento se excluyeron del test; leer con cautela y como medición en este diseño, no como generalización a situaciones nuevas
+- 2026-10-09 · Congelamiento del modelo medido en el lote 2 (G5 real) y protocolo V1.7 / Nota v10
+    Decisión: G5 se evaluó solo con hashes coincidentes y fecha posterior a G3 y G4; el modelo congelado no vuelve a cambiar sin --forzar --motivo; las pruebas con datos falsos ya no suponen que el congelamiento real no exista
+    Justificación: La Nota v10 dice «4 de 7 compuertas con datos reales (G1, G2, G3 y G4)» y el tablero ya muestra 5 de 7 (G5): diferencia declarada entre el documento (anterior al congelamiento) y el repositorio; el documento no se modifica desde aquí
+- 2026-10-09 · Registro real del pre-piloto rehecho a partir de uno mezclado con filas de un asistente
+    Decisión: Se conserva el descartado solo como evidencia y no cuenta para G6. El tablero (G6) lee ahora únicamente Registro_Sesiones_Prepiloto.xlsx por nombre exacto, para que ni el v2 ni el descartado puedan tomarse por error. analizar_piloto.leer_registro acepta además códigos PP (antes solo SA). No se ejecutó analizar_piloto.py y no se tocó corpus/real/.
+    Justificación: Un registro con filas generadas por un asistente no puede entrar al análisis. Las filas se descartaron antes de leerlas y sin usarlas en ninguna cifra; las cifras de G6 salen solo del libro real con PP01–PP07. No cambia ningún criterio de las compuertas.
+- 2026-10-09 · Una prueba de humo reescribió archivos derivados reales del lote 2 (contenido sin cambios)
+    Decisión: Se quitó esa comprobación de tests/smoke_lote2.py (una prueba nunca debe ejecutar un script del lote 2 con las rutas reales); smoke_lote2 queda en 51/51 y no vuelve a escribir en corpus/v3_lote2/. Se declara aquí; no se restaura la fecha original porque no se guardó una copia.
+    Justificación: El archivo se reescribió con los mismos datos y las mismas entradas (sha256 del entrenamiento y de los congelamientos coinciden con los del resumen), de modo que ninguna cifra reportada cambia. El riesgo era sobrescribir datos reales con una prueba de humo; se elimina la causa.
+- 2026-10-09 · La demo en vivo agregó assistant_id a configs/rasa_config_lote2.yml (config del modelo congelado) y la huella cambió
+    Decisión: demo_vivo.ps1 entrena ahora con una copia de la configuración (models/demo_vivo/config_oficial_copia.yml, ignorada por Git), nunca con el archivo congelado. Se vuelve a correr la demo completa para confirmar que no cambia ninguna huella.
+    Justificación: La configuración forma parte del congelamiento (G5). Un cambio no declarado de su huella invalidaría el congelamiento; se detectó el mismo día, se restauró el contenido exacto y se declara aquí.
 ```
 
 ### Cómo leer el resultado (etapa 13)
@@ -1609,6 +1662,20 @@ Grupos de paráfrasis en más de una partición: 0
   método  F1 macro (promedio de semillas)  IC inferior  IC superior
 0   rasa                           0.8206       0.7318       0.8452
 1    svm                           0.8094       0.7122       0.8507
+▌ORIGEN: Simulado (demostración) — 4. «Congelamiento» de demostración (un marcador con otro nombre, no el modelo real)
+Estado declarado: SIMULADO — modelo de demostración; NO es el modelo congelado del piloto
+sha256 del marcador coincide con el congelamiento simulado: True
+▌ORIGEN: Simulado (demostración) — 5. Sesiones simuladas (60) y alfa de Cronbach
+Sesiones simuladas elegibles: 60 | alfa guardado de la demostración: 0.5488
+Alfa recalculado desde el registro simulado: 0.5488 (n = 60); la demostración NO es un resultado del pre-piloto ni del piloto.
+▌ORIGEN: Simulado (demostración) — 6. Tablero de la demostración
+Compuertas «Cumplida (Simulado)» en la demostración: ['G1', 'G2', 'G3', 'G5', 'G7'] | ninguna cuenta como real
+
+Advertencias del informe de la demostración (resumen):
+ - 1. **Las frases del lote son generadas y no miden lenguaje real.** Las escribió quien preparó el libro de prueba (varias son idénticas a frases del corpus sintético); las cifras de las etapas 2 y 3 no dicen nada sobre cómo escribe la gente de Juliaca.
+ - 2. **Las consultas de las sesiones son el texto de las tarjetas**, con el prefijo «[SIMULACIÓN…]», así que acertarlas es trivial; además la prueba final de la etapa 5 usa un **predictor simulado**, no el modelo. Su exactitud no evalúa ningún modelo.
+ - 3. **Las compuertas aparecen como «Cumplida (Simulado)» y no cuentan como reales.** Hoy las compuertas cumplidas con datos reales siguen siendo 0 de 7 (`logs/avance/estado_compuertas.md`).
+Etapa 15 — recalculado frente a reportado (Simulado): 1 cifras · coinciden: 1 · NO coinciden: 0
   etapa                                        cifra  recalculado  reportado                          fuente de lo reportado coincide
 0    15  alfa de la demostración simulada (Simulado)     0.548783   0.548783  evidencias/simulado_demostracion/…/05_sesiones       Sí
 ```
@@ -1661,6 +1728,16 @@ Salida guardada:
 4                V1.7  La evaluación del test del lote 2 es ÚNICA (el registro se escribe...
 5                V1.8  Compuertas reales: 5 de 7 (G1–G5 cumplidas). G6 y G7 siguen pendie...
 6          Pre-piloto  El pre-piloto usa el asistente local con el modelo congelado; su r...
+▌ORIGEN: Limitaciones declaradas
+1. Las 267 frases del test vienen de las MISMAS 56 situaciones del lote 1: el F1 0,907 es una medición independiente en participantes, no evidencia de generalización a situaciones nuevas.
+2. Una sola revisora de etiquetas: el «kappa» (0,935–0,938 en el lote 1; 1,000 en el lote 2) compara la etiqueta esperada con la revisión de UNA persona; no es acuerdo entre revisores.
+3. Solo 4–5 frases por intención en el test (mínimo de textos distintos por intención: 4): los IC por intención son muy inestables.
+4. El F1 oficial (0,9072) promedia 55 etiquetas y cuenta las abstenciones como error; sobre las 54 intenciones sería 0,9240. La sección «umbral» impresa por eval_lote2.py (98,9 % / 89,8 %) es un artefacto declarado; las cifras oficiales son cobertura 92,9 % y precisión 95,6 %.
+5. El 0,907 es más alto que la validación cruzada por participante del lote 1 (0,787–0,799); el 0,687 del lote 1 y estas cifras no son comparables entre sí (otros datos y otro procedimiento).
+6. Muestra de conveniencia: la MPSR no autorizó el despliegue ni el acceso al local; el piloto exploratorio (n = 60) no es confirmatorio ni generalizable.
+7. Pre-piloto: n = 5 elegibles; el alfa de Cronbach (0,366) es muy inestable.
+8. Punto abierto del protocolo: la sección 2.12 aún pide «F1 ≥ 0,75 sobre el conjunto real retenido del lote 1», que ya no es retenido (el modelo se entrenó con esas frases); la sección 5.8 debe actualizarse.
+9. Incidente: se imprimió por descuido una sola frase del lote 2 (P33, S01) en una salida de consola; está registrada en incident_log.csv y no se usó para ningún ajuste.
 ```
 
 ### Cómo leer el resultado (etapa 16)
@@ -1778,6 +1855,11 @@ TABLA FINAL — recalculado frente a reportado (todas las etapas): 61 cifras · 
 58    12                          compuertas cumplidas con datos reales                                                                      5                                                                      5                                                Protocolo V1.8 (5 de 7)       Sí
 59    12                                G1–G5 cumplidas, G6 no cumplida  G1:Cumplida,G2:Cumplida,G3:Cumplida,G4:Cumplida,G5:Cumplida,G6:No ...  G1:Cumplida,G2:Cumplida,G3:Cumplida,G4:Cumplida,G5:Cumplida,G6:No ...                                                 tablero G6 (PP01–PP07)       Sí
 60    15                    alfa de la demostración simulada (Simulado)                                                               0.548783                                                               0.548783                         evidencias/simulado_demostracion/…/05_sesiones       Sí
+
+DISCREPANCIAS (recalculado ≠ reportado): ninguna
+Diferencias CONOCIDAS y ya declaradas:
+ - eval_lote2_resumen.json: cobertura 98,9 % y precisión 89,8 % son un artefacto declarado del script (las 19 abstenciones 'nlu_fallback' se contaron como respuestas); las cifras oficiales son 92,9 % y 95,6 %.
+ - Verificacion_TUPA_v10_4.xlsx, hoja Resumen: «Marcadas [Verificar] en el repositorio» = 40 es un campo manual que NO se actualizó tras aplicar las respuestas; el dominio actual tiene 0 marcadores (comprobado arriba). No se modificó el libro.
 ```
 
 ### Cómo leer el resultado (etapa 17)

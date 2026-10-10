@@ -58,6 +58,7 @@ SCRIPTS = {
     "construir_colab_por_paso.py": ("Documentación (Colab)", "Cuaderno único + paquetes", "notebooks/colab_por_paso/*.ipynb, colab_paquetes/colab_por_paso/", "Documentado (genera los cuadernos por paso)"),
     "demo_vivo.py": ("Demostración en vivo (P07, P08)", "Corpus sintético, configs/", "models/demo_vivo/ (SVM y DIET de demostración), huellas de archivos protegidos, tabla de pruebas", "Documentado (se ejecuta con demo_vivo.ps1; requiere Rasa)"),
     "entrenar_modelo_demo.py": ("Demostración (P08)", "data/nlu_train.yml (sintético) + configs/rasa_config_lote2.yml (copia)", "models/demo_vivo/DEMO-VIVO.tar.gz", "Documentado (requiere Rasa; solo datos sintéticos)"),
+    "evidencia_ejecucion.py": ("Evidencias de avance (P15)", "Cuadernos ejecutados y registros de ejecución", "evidencias/capturas_avance/Evidencia_Ejecucion.pdf (sin fechas)", "Documentado"),
     "capturas_avance.py": ("Evidencias de avance (P15)", "Cuadernos ejecutados y logs existentes", "evidencias/capturas_avance/ (PNG, INDICE.md, PDF)", "Documentado"),
     "stats_analysis.py": ("P14", "Datos de línea base y de sesiones", "Pruebas de normalidad, t pareada o Wilcoxon, tamaño del efecto", "Documentado"),
     "simular_analisis_p14.py": ("P14 (ilustrativo)", "Datos inventados", "Demuestra que el pipeline estadístico corre", "Documentado (Simulado)"),
@@ -183,5 +184,5 @@ ASIGNACION = {
     "humo_respuestas.py": ["09"], "informe_ingesta_lote2.py": ["11"], "ingest_real_lote.py": ["11"], "libro_xml.py": ["11"], "plot_p11_1.py": ["11"], "plot_v3_comparacion.py": ["11"],
     "preparar_entrenamiento_lote2.py": ["05"], "preparar_libro_v13.py": ["11"], "preparar_registro_prepiloto.py": ["11"], "run_rasa_grid.py": ["08"],
     "simular_P14_n120.py": ["13"], "simular_analisis_p14.py": ["13"], "smoke_test.py": ["11"], "split_corpus.py": ["05"], "split_corpus_v3.py": ["05"], "split_lote2.py": ["05"],
-    "stats_analysis.py": ["13"], "demo_vivo.py": ["07", "08"], "entrenar_modelo_demo.py": ["08", "11"], "capturas_avance.py": ["12"], "train_baseline.py": ["07"], "train_baseline_p07.py": ["07"], "trasladar_revision.py": ["11"], "umbral_lote2.py": ["09"], "verificar_referencias.py": ["12"],
+    "stats_analysis.py": ["13"], "demo_vivo.py": ["07", "08"], "entrenar_modelo_demo.py": ["08", "11"], "capturas_avance.py": ["12"], "evidencia_ejecucion.py": ["12"], "train_baseline.py": ["07"], "train_baseline_p07.py": ["07"], "trasladar_revision.py": ["11"], "umbral_lote2.py": ["09"], "verificar_referencias.py": ["12"],
 }

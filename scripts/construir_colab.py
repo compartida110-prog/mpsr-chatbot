@@ -462,7 +462,8 @@ class Salida:
         t = self.buf.getvalue()
         if t:
             self.out.append({"output_type": "stream", "name": "stdout", "text": t.splitlines(keepends=True)})
-            self.buf = io.StringIO()
+            self.buf.seek(0)          # se REUTILIZA el mismo StringIO: redirect_stdout sigue apuntando a él (con uno nuevo se perdían las líneas impresas después de la primera tabla)
+            self.buf.truncate(0)
 
     def display(self, obj):
         self.flush()
